@@ -9,7 +9,6 @@ var config = require('../../config');
 
 // Exports controller function as scenario
 exports.run = function(controller) {
-
     if (config.botkit_token) {
         controller.on('direct_message,direct_mention', function(bot, message) {
             controller.studio.runTrigger(bot, message.text, message.user, message.channel).then(function(convo) {

@@ -1,0 +1,14 @@
+node_modules/
+npm-debug.log
+log/
+*.log
+*.swp
+.idea/
+.git/
+package-lock.json
+.DS_Store
+*/.DS_Store
+.env
+coverage
+db/
+__test__

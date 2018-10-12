@@ -10,8 +10,6 @@ var Logstash = require('logstash-client');
 var config = require('../config');
 
 exports.send = function(evt, message) {
-  // If BigData feature activated
-  if (config.bigdata.enable == true) {
     var msg = message;
     delete msg["type"];
     msg['message_type'] = evt;
@@ -54,6 +52,5 @@ exports.send = function(evt, message) {
       port: config.bigdata.port
     });
     logstash.send(msg);
-  }
 };
 
