@@ -26,6 +26,6 @@ var bot = controller.spawn({
 });
 
 // Scenario declarations
-var scenario = require('./scenario.js');
+var scenario = require('./lib/scenario.js');
 controller = scenario.run(controller);
 
