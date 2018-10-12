@@ -67,7 +67,7 @@ config.db.user = '';
 
 // BigData collector
 config.bigdata = {};
-config.bigdata.enable = true;
+config.bigdata.enable = false;
 config.bigdata.type = 'tcp';
 config.bigdata.port = '4055';
 config.bigdata.auth = '';
@@ -75,8 +75,25 @@ config.bigdata.host = "";
 
 
 /** FEATURE conf **/
-// Translate
+// AutoReplay --------------------------------
+config.autoreply = {};
+config.autoreply.enable = true;
+config.autoreply.delay = 2;
+config.autoreply.file = '/root/AutoReply/app/AutoReply.csv';
+config.autoreply.msg = {};
+config.autoreply.msg.help = 'When message is sent to the bot, the bot pickup one information from local source and provide it after a delay of 2s';
+
+// CSV ---------------------------------------
+config.csv = {};
+config.csv.enable = true;
+config.csv.file = '/root/AutoReply/app/local.csv';
+config.csv.storage = 'csv';
+config.csv.msg = {};
+config.csv.msg.help = 'Used to load and test CSV file'
+
+// Translate ----------------------------------
 config.translate = {};
+config.translate.enable = false;
 // Translate default conf
 config.translate.default = {};
 config.translate.default.langin = 'en';
