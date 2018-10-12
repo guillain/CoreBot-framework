@@ -1,0 +1,46 @@
+> translate('What is the shortest way to the Eiffel Tower, please ?', {to: 'fr'}).then(res => {
+...     console.log(res.text);
+...     //=> Quel est le plus court chemin vers la tour eiffel, s'il vous plait
+...     console.log(res.from.language.iso);
+...     //=> fr
+... }).catch(err => {
+...     console.error(err);
+... });
+Promise {
+  <pending>,
+  domain:
+   Domain {
+     domain: null,
+     _events: { error: [Function: debugDomainError] },
+     _eventsCount: 1,
+     _maxListeners: undefined,
+     members: [] } }
+> { Error: self signed certificate in certificate chain
+    at /root/node_modules/google-translate-token/index.js:103:25
+    at <anonymous>
+    at process._tickDomainCallback (internal/process/next_tick.js:228:7)
+  code: 'BAD_NETWORK',
+  message: 'self signed certificate in certificate chain' }
+
+
+# nslookup translate.google.com
+Server:         152.9.102.222
+Address:        152.9.102.222#53
+
+Non-authoritative answer:
+translate.google.com    canonical name = www3.l.google.com.
+Name:   www3.l.google.com
+Address: 172.217.18.238
+
+[root@test-ChatBot-01 botkit-translator]# ping 172.217.18.238
+PING 172.217.18.238 (172.217.18.238) 56(84) bytes of data.
+^C
+--- 172.217.18.238 ping statistics ---
+2 packets transmitted, 0 received, 100% packet loss, time 999ms
+
+[root@test-ChatBot-01 botkit-translator]# ping 216.58.204.142
+PING 216.58.204.142 (216.58.204.142) 56(84) bytes of data.
+^C
+--- 216.58.204.142 ping statistics ---
+12 packets transmitted, 0 received, 100% packet loss, time 10999ms
+

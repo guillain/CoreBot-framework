@@ -1,0 +1,35 @@
+#!/bin/bash
+
+NAME=botkit-translator
+ECS_BUCKET_ID=853520127795
+REGION=eu-central-1
+
+eval $(aws ecr get-login --no-include-email --region ${REGION})
+
+case "$1" in
+  build)
+    docker build -t ${NAME} .
+    ;;
+  push)
+    docker tag ${NAME}:latest ${ECS_BUCKET_ID}.dkr.ecr.${REGION}.amazonaws.com/${NAME}:latest
+    docker push ${ECS_BUCKET_ID}.dkr.ecr.${REGION}.amazonaws.com/${NAME}:latest
+    ;;
+  pull)
+    docker pull ${ECS_BUCKET_ID}.dkr.ecr.${REGION}.amazonaws.com/${NAME}:latest
+    ;;
+  run)
+    docker run --name ${NAME} -d ${NAME}
+    ;;
+  status)
+    docker images | grep ${NAME}
+    docker ps | grep ${NAME}
+    ;;
+  clean)
+    docker image prune -f
+    docker container prune -f
+    ;;
+  *)
+    echo "Argument missing - ${0} [build|push|get|run|status|clean]"
+    ;;
+esac
+
