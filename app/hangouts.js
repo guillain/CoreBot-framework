@@ -24,6 +24,6 @@ controller.setupWebserver(config.hangouts.port || 3002, function (err, webserver
 });
 
 // Scenario declarations
-var scenario = require('./scenario.js');
+var scenario = require('./lib/scenario.js');
 controller = scenario.run(controller);
 
