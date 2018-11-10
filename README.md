@@ -27,9 +27,7 @@ All configurations, feature activation included, in the single file [config.js](
 Don't hesitate to share yours ;-)
 
 ## Configuration
-Copy the file `config.js.template` to `config.js` and edit it according to your env.
-`cp config.js.template config.js`
-`vi config.js`
+Adapt the config file `config.js` and edit it according to your env.
 
 - Bot conf 
 - BigData collector
@@ -44,10 +42,12 @@ Copy the file `config.js.template` to `config.js` and edit it according to your 
   - autoreply
   ...
 
-Now just you to write your sketch.
+Now just up to you to write your sketch.
 You can pickup some example as GetStarted and to be forked for your own ;-)
 
 ## Installation
+Install and configure Redis-server as your needs and start prior to run the CoreBot
+
 Get the project
 ` git clone https://github.com/guillain/CoreBot-framework.git`
 
@@ -60,29 +60,31 @@ Installation dependencies
 
 #### Node 
 Run it manually (debug/dev)
+
 `DEBUG=* node app/jabber.py`
-or
-`DEBUG=* node app/spark.py`
-or
-`DEBUG=* node app/slack.py`
-or
-`DEBUG=* node app/hangout.py`
-or
-`DEBUG=* node app/teams.py`
+
+and/or `DEBUG=* node app/spark.py`
+
+and/or `DEBUG=* node app/slack.py`
+
+and/or `DEBUG=* node app/hangout.py`
+
+and/or `DEBUG=* node app/teams.py`
 
 Control+C to exit
 
 #### PM2
-Run as daemon (recommanded)
+Run as daemon (recommanded) 
+
 `pm2 start app/jabber.py`
-and/or
-`pm2 start app/spark.py`
-and/or
-`pm2 start app/slack.py`
-and/or
-`pm2 start app/hangout.py`
-and/or
-`pm2 start app/teams.py`
+
+and/or `pm2 start app/spark.py`
+
+and/or `pm2 start app/slack.py`
+
+and/or `pm2 start app/hangout.py`
+
+and/or `pm2 start app/teams.py`
 
 Status
 `pm2 status`
@@ -95,7 +97,9 @@ Delete
 
 Masse operation
 `pm2 start all`
+
 `pm2 stop all`
+
 `pm2 reset all`
 
 ### Docker image
