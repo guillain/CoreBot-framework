@@ -1,8 +1,14 @@
-# Botkit Translator
-Chatbot to translate automatically each message send by the user to a pre-configured langage
-Configuration available for the following Business Messaging:
+# CoreBot as chatbot framework
+Chatbot framework based on botkit and writte in nodejs.
+Setup is done to be supported on many business messaging solution:
 - Jabber
 - Cisco Webex Teams (Cisco Spark)
+- Microsoft Teams
+- Slack
+- Google Chat
+- Hangout
+
+Some fetaures are already existing but need to be completed with your needs ;-)
 
 ## Configuration
 Copy the file `config.js.template` to `config.js` and edit it according to your env.
@@ -15,8 +21,12 @@ Copy the file `config.js.template` to `config.js` and edit it according to your 
   - Slack
   - Cisco Jabber
   - Cisco Webex Teams
+  ...
 - Features conf
   - Translate (google)
+  - bigdata
+  - autoreply
+  ...
 
 Now just you to write your sketch.
 You can pickup some example as GetStarted and to be forked for your own ;-)
