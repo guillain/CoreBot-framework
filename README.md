@@ -1,6 +1,9 @@
 # CoreBot as chatbot framework
-Chatbot framework based on botkit and writte in nodejs.
-Setup is done to be supported on many business messaging solution:
+Chatbot framework is based on botkit and writte in nodejs.
+The idea is to provide a simple package compatible with the most of business messaging.
+In that case the features and/or sketchs developped are fully compatible with all environments and made the devepoment reusable in the futurs integrations.
+
+Generic setup is done to support the following business messaging solution:
 - Jabber
 - Cisco Webex Teams (Cisco Spark)
 - Microsoft Teams
@@ -8,7 +11,14 @@ Setup is done to be supported on many business messaging solution:
 - Google Chat
 - Hangout
 
-Some fetaures are already existing but need to be completed with your needs ;-)
+## Features
+- Google transaltion
+- BigData connector (to send info/tracking/APM data or search)
+- CSV file management
+- autoreply (like echo)
+- button
+
+Don't hesitate to share yours ;-)
 
 ## Configuration
 Copy the file `config.js.template` to `config.js` and edit it according to your env.
