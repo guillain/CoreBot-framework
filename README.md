@@ -48,14 +48,14 @@ You can pickup some example as GetStarted and to be forked for your own ;-)
 ## Installation
 Install and configure Redis-server as your needs and start prior to run the CoreBot
 
-Get the project
+- Get the project
 ` git clone https://github.com/guillain/CoreBot-framework.git`
 
-Move into
+- Move into
 `cd CoreBot-framework`
 
 ### Standalone server
-Installation dependencies
+- Installation dependencies
 `npm install`
 
 #### Node 
