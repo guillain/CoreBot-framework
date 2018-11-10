@@ -3,6 +3,7 @@ Chatbot framework is based on botkit and writte in nodejs.
 The idea is to provide a simple package compatible with the most of business messaging.
 In that case the features and/or sketchs developped are fully compatible with all environments and made the devepoment reusable in the futurs integrations.
 
+## Advantage
 Generic setup is done to support the following business messaging solution:
 - Jabber
 - Cisco Webex Teams (Cisco Spark)
@@ -11,7 +12,12 @@ Generic setup is done to support the following business messaging solution:
 - Google Chat
 - Hangout
 
+Standard library to be reuse with plug-and-conf mode.
+
+All configurations, feature activation included, in the single file [config.js](app/config.js)
+
 ## Features
+- NLP provided by [LUIS](https://botkit.ai/docs/readme-middlewares.html) via the botkit feature
 - Google transaltion
 - BigData connector (to send info/tracking/APM data or search)
 - CSV file management
