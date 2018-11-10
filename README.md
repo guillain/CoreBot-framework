@@ -48,11 +48,11 @@ You can pickup some example as GetStarted and to be forked for your own ;-)
 ## Installation
 Install and configure Redis-server as your needs and start prior to run the CoreBot
 
-- Get the project
-` git clone https://github.com/guillain/CoreBot-framework.git`
+Get the project
+- ` git clone https://github.com/guillain/CoreBot-framework.git`
 
-- Move into
-`cd CoreBot-framework`
+Move into
+- `cd CoreBot-framework`
 
 ### Standalone server
 - Installation dependencies
@@ -61,46 +61,36 @@ Install and configure Redis-server as your needs and start prior to run the Core
 #### Node 
 Run it manually (debug/dev)
 
-`DEBUG=* node app/jabber.py`
+- `DEBUG=* node app/jabber.py`
+- `DEBUG=* node app/spark.py`
+- `DEBUG=* node app/slack.py`
+- `DEBUG=* node app/hangout.py`
+- `DEBUG=* node app/teams.py`
 
-and/or `DEBUG=* node app/spark.py`
-
-and/or `DEBUG=* node app/slack.py`
-
-and/or `DEBUG=* node app/hangout.py`
-
-and/or `DEBUG=* node app/teams.py`
-
-Control+C to exit
+`Control+C` to exit
 
 #### PM2
 Run as daemon (recommanded) 
 
-`pm2 start app/jabber.py`
-
-and/or `pm2 start app/spark.py`
-
-and/or `pm2 start app/slack.py`
-
-and/or `pm2 start app/hangout.py`
-
-and/or `pm2 start app/teams.py`
+- `pm2 start app/jabber.py`
+- `pm2 start app/spark.py`
+- `pm2 start app/slack.py`
+- `pm2 start app/hangout.py`
+- `pm2 start app/teams.py`
 
 Status
-`pm2 status`
+- `pm2 status`
 
 Stop
-`pm2 stop jabber spark slack`
+- `pm2 stop jabber spark slack`
 
 Delete
-`pm2 delete jabber spark slack`
+- `pm2 delete jabber spark slack`
 
 Masse operation
-`pm2 start all`
-
-`pm2 stop all`
-
-`pm2 reset all`
+- `pm2 start all`
+- `pm2 stop all`
+- `pm2 reset all`
 
 ### Docker image
 The image is provided by AWS with specific account. 
@@ -110,16 +100,16 @@ Login in your AWS env.
 `aws configure`
 
 Get the image
-`./image get`
+- `./image get`
 
 Run the container with the image
-`./image run`
+- `./image run`
 
 Get the status
-`./image status`
+- `./image status`
 
 ## Tips
 
 Redis local record issue
-`redis-cli> config set stop-writes-on-bgsave-error no`
+- `redis-cli> config set stop-writes-on-bgsave-error no`
 
