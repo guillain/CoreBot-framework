@@ -1,7 +1,9 @@
 # CoreBot as chatbot framework
-Chatbot framework is based on botkit and writte in nodejs.
+Chatbot framework is based on **botkit**.
+
 The idea is to provide a simple package compatible with the most of business messaging.
-In that case the features and/or sketchs developped are fully compatible with all environments and made the devepoment reusable in the futurs integrations.
+In that case the features and/or sketches developed are fully compatible
+with all environments and made the development reusable in the futures integrations.
 
 ## Advantage
 Generic setup is done to support the following business messaging solution:
@@ -17,12 +19,17 @@ Standard library to be reuse with plug-and-conf mode.
 All configurations, feature activation included, in the single file [config.js](app/config.js)
 
 ## Features
+All features are stored in the *feature* folder and they're loaded
+with the help of a common script.
+
+The non-exhaustive list is hereafter:
 - NLP provided by [LUIS](https://botkit.ai/docs/readme-middlewares.html) via the botkit feature
-- Google transaltion
+- Google translation
 - BigData connector (to send info/tracking/APM data or search)
 - CSV file management
 - autoreply (like echo)
 - button
+- ...
 
 Don't hesitate to share yours ;-)
 
@@ -61,22 +68,22 @@ Move into
 #### Node 
 Run it manually (debug/dev)
 
-- `DEBUG=* node app/jabber.py`
-- `DEBUG=* node app/spark.py`
-- `DEBUG=* node app/slack.py`
-- `DEBUG=* node app/hangout.py`
-- `DEBUG=* node app/teams.py`
+- `DEBUG=* node app/launcher/jabber.py`
+- `DEBUG=* node app/launcher/spark.py`
+- `DEBUG=* node app/launcher/slack.py`
+- `DEBUG=* node app/launcher/hangout.py`
+- `DEBUG=* node app/launcher/teams.py`
 
 `Control+C` to exit
 
 #### PM2
 Run as daemon (recommanded) 
 
-- `pm2 start app/jabber.py`
-- `pm2 start app/spark.py`
-- `pm2 start app/slack.py`
-- `pm2 start app/hangout.py`
-- `pm2 start app/teams.py`
+- `pm2 start app/launcher/jabber.py`
+- `pm2 start app/launcher/spark.py`
+- `pm2 start app/launcher/slack.py`
+- `pm2 start app/launcher/hangout.py`
+- `pm2 start app/launcher/teams.py`
 
 Status
 - `pm2 status`
@@ -87,7 +94,7 @@ Stop
 Delete
 - `pm2 delete jabber spark slack`
 
-Masse operation
+Mass operation
 - `pm2 start all`
 - `pm2 stop all`
 - `pm2 reset all`

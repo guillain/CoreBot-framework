@@ -1,20 +1,16 @@
-/*
- * ChatBot scenario for botkit
- * @Target: conversation translated automatically
- * @Author: guillain (guillain.sanchez@dimensiondata.com)
- */
-
 // Configuration
-var config = require('../../config');
+let config = require('../../config');
 
 // Load the required libraries
-var stz = require('../../lib/stanza.js');
+let stz = require('../../component/stanza/run.js');
 
 // Exports controller function as scenario
 exports.run = function(controller) {
-    controller.hears('^test', ['direct_mention', 'direct_message', 'self_message'], function (bot, message) {
-	stz.msg(bot,message);
-    });
+    if (config.hears.echotest === 1) {
+        controller.hears('^test', ['direct_mention', 'direct_message', 'self_message'], function (bot, message) {
+            stz.msg(bot, message);
+        });
+    }
     return controller;
 };
 

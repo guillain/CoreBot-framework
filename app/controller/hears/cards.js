@@ -1,36 +1,33 @@
-/*
- * ChatBot scenario for botkit
- * @Target: convo hears
- * @Author: guillain (guillain.sanchez@dimensiondata.com)
- */
-
 // Configuration
-var config = require('../../config');
+let config = require('../../config');
 
 // Exports controller function as scenario
 exports.run = function(controller) {
-  controller.hears('cards', 'message_received', function (bot, message) {
-    bot.reply(message, {
-        requestBody: {
-            cards: [
-                {
-                    "sections": [
+    if (config.hears.cards === 1) {
+        controller.hears('cards', 'message_received', function (bot, message) {
+            bot.reply(message, {
+                requestBody: {
+                    cards: [
                         {
-                            "widgets": [
+                            "sections": [
                                 {
-                                    "image": { "imageUrl": "https://image.slidesharecdn.com/botkitsignal-160526164159/95/build-a-bot-with-botkit-1-638.jpg?cb=1464280993" }
-                                },
-                                {
-                                    "buttons": [
+                                    "widgets": [
                                         {
-                                            "textButton": {
-                                                "text": "Get Started",
-                                                "onClick": {
-                                                    "openLink": {
-                                                        "url": "https://botkit.ai/docs/"
+                                            "image": { "imageUrl": "https://image.slidesharecdn.com/botkitsignal-160526164159/95/build-a-bot-with-botkit-1-638.jpg?cb=1464280993" }
+                                        },
+                                        {
+                                            "buttons": [
+                                                {
+                                                    "textButton": {
+                                                        "text": "Get Started",
+                                                        "onClick": {
+                                                            "openLink": {
+                                                                "url": "https://botkit.ai/docs/"
+                                                            }
+                                                        }
                                                     }
                                                 }
-                                            }
+                                            ]
                                         }
                                     ]
                                 }
@@ -38,10 +35,8 @@ exports.run = function(controller) {
                         }
                     ]
                 }
-            ]
-        }
-    });
-  });
-  return controller;
+            });
+        });
+    }
+    return controller;
 };
-

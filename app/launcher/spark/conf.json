@@ -1,0 +1,11 @@
+{
+  "enable": 0,
+  "name": "",
+  "mail": "",
+  "botid": "",
+  "url": "",
+  "port": 3000,
+  "access_token": "",
+  "secret": "",
+  "webhook_name": ""
+}

@@ -8,5 +8,5 @@ RUN cd /app \
 WORKDIR /app
 
 RUN npm install -g httpster
-CMD [ "httpster" ]
 
+CMD [ "httpster" ]

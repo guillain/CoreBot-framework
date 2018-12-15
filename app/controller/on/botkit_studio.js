@@ -1,11 +1,5 @@
-/*
- * ChatBot scenario for botkit
- * @Target: conversation translated automatically
- * @Author: guillain (guillain.sanchez@dimensiondata.com)
- */
-
 // Configuration
-var config = require('../../config');
+let config = require('../../config');
 
 // Exports controller function as scenario
 exports.run = function(controller) {
