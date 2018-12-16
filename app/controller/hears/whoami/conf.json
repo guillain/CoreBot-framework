@@ -1,0 +1,14 @@
+{
+    "controller": {
+        "hears": {
+            "whoami": {
+                "enable": false,
+                "msg": {
+                    "help ": [
+                        "Provide information on the request owner"
+                    ]
+                }
+            }
+        }
+    }
+}
