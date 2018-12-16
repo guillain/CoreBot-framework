@@ -1,0 +1,16 @@
+{
+    "controller": {
+        "hears": {
+            "thread": {
+                "enable": false,
+                "msg": {
+                    "help ": [
+                        "Repeat the incoming message"
+                    ],
+                    "welcome": "Hello ! this is a new thread",
+                    "text": "Hi ! this message inside the same thread"
+                }
+            }
+        }
+    }
+}

@@ -1,17 +1,14 @@
-// Configuration
-let config = require('../../config');
-
 // Exports controller function as scenario
-exports.run = function(controller) {
-    if (config.hears.thread === 1) {
+exports.run = function(bot, controller, config) {
+    if (config.controller.hears.thread.enable === true) {
         controller.hears('new thread', 'message_received', function (bot, message) {
-            bot.replyAsNewThread(message, `Hello ! this is a new thread`);
+            bot.replyAsNewThread(message, config.controller.hears.thread.msg.welcome);
         });
         controller.hears('thread key', 'message_received', function (bot, message) {
             bot.replyWithThreadKey(message, {
                 threadKey: "YOUR_THREAD_KEY",
                 requestBody: {
-                    text: `Hi ! this message inside the same thread`
+                    text: config.controller.hears.thread.msg.text
                 }
             });
         });
