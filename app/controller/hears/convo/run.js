@@ -1,16 +1,13 @@
-// Configuration
-let config = require('../../config');
-
 // Exports controller function as scenario
-exports.run = function(controller) {
-    if (config.hears.convo === 1) {
+exports.run = function(bot, controller,  config) {
+    if (config.controller.hears.convo.enable === true) {
         controller.hears('convo', 'message_received', function (bot, message) {
             bot.startConversation(message, function (err, convo) {
-                convo.ask('You want to know more about Botkit ?', [
+                convo.ask(config.controller.hears.convo.msg.ask, [
                     {
                         pattern: bot.utterances.yes,
                         callback: function (response, convo) {
-                            convo.say('Take a look here https://botkit.ai/docs/');
+                            convo.say(config.controller.hears.convo.msg.say.yes);
                             convo.next();
                         }
                     },
@@ -18,7 +15,7 @@ exports.run = function(controller) {
                         pattern: bot.utterances.no,
                         default: true,
                         callback: function (response, convo) {
-                            convo.say('No problem');
+                            convo.say(config.controller.hears.convo.msg.say.no);
                             convo.next();
                         }
                     }
