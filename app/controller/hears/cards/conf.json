@@ -1,0 +1,17 @@
+{
+    "controller": {
+        "hears": {
+            "cards": {
+                "enable": false,
+                "image_url": "https://image.slidesharecdn.com/botkitsignal-160526164159/95/build-a-bot-with-botkit-1-638.jpg?cb=1464280993",
+                "open_link": "https://botkit.ai/docs/",
+                "msg": {
+                    "help ": [
+                        "provide contact card representation"
+                    ],
+                    "test": "Get Started"
+                }
+            }
+        }
+    }
+}

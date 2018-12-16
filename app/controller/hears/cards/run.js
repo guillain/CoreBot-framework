@@ -1,9 +1,6 @@
-// Configuration
-let config = require('../../config');
-
 // Exports controller function as scenario
-exports.run = function(controller) {
-    if (config.hears.cards === 1) {
+exports.run = function(bot, controller, config) {
+    if (config.controller.hears.cards.enable === true) {
         controller.hears('cards', 'message_received', function (bot, message) {
             bot.reply(message, {
                 requestBody: {
@@ -13,16 +10,18 @@ exports.run = function(controller) {
                                 {
                                     "widgets": [
                                         {
-                                            "image": { "imageUrl": "https://image.slidesharecdn.com/botkitsignal-160526164159/95/build-a-bot-with-botkit-1-638.jpg?cb=1464280993" }
+                                            "image": {
+                                                "imageUrl": config.controller.hears.cards.image_url
+                                            }
                                         },
                                         {
                                             "buttons": [
                                                 {
                                                     "textButton": {
-                                                        "text": "Get Started",
+                                                        "text": config.controller.hears.cards.msg.text,
                                                         "onClick": {
                                                             "openLink": {
-                                                                "url": "https://botkit.ai/docs/"
+                                                                "url": config.controller.hears.cards.open_link
                                                             }
                                                         }
                                                     }
