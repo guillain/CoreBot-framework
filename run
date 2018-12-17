@@ -13,7 +13,7 @@ APP=`basename ${SCRIPT}`
 ROOT_DIR=`dirname ${0}`
 LOG_DIR="${ROOT_DIR}/log"
 
-help="\n- Arg 1: action = start | stop | restart | status | log\n- Arg 2: script = ./app/myscript.js\nIE: ${0} start app/run.js"
+help="\n- Arg 1: action = start | stop | restart | status | log\n- Arg 2: script = ./app/launcher/to_launch/run.js\nIE: ${0} start app/launcher/spark/run.js"
 
 if [ "${1}" == "" ]; then echo -e "No argument provided. ${help}"; exit 1; fi
 if [ "${2}" == "" ]; then echo -e "Two arg are required. ${help}"; exit 1; fi

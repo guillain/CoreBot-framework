@@ -6,12 +6,12 @@ let lang_list = ["af","sq","am","ar","hy","az","eu","be","bn","bs","bg","ca","ce
 
 // on connect
 client.on('connect', function() {
-    console.log('::db::', 'connected');
+    console.log('debug: db ', 'connected');
 });
 
 // on error
 client.on("error", function (err) {
-    console.log("::db::", "error", err);
+    console.log("error: db ", err);
 });
 
 // Translate 

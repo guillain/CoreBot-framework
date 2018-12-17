@@ -70,8 +70,9 @@ exports.test_db_csv = function(bot, config) {
 };
 
 get_csv_data = function(file, cb) {
-    console.log('>>> file: ' + file);
-
+    console.log('debug: get_csv_data file ' + file);
+    console.log(__basedir);
+ 
     fs.readFile(file, function(err, data) {
         if(err) throw err;
         let strs = [];

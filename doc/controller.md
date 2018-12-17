@@ -1,5 +1,7 @@
 # Conroller
-They are used to add catch event (bot/msg)
+They are used to add listener and have categorized event (bot/msg)
+
+It's here where you can allow only 1:1 dialog or maybe only group chat.
 
 To do that, two methods:
 - *hears*: specific message pattern

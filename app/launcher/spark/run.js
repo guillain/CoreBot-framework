@@ -1,5 +1,6 @@
 // Configuration
-let config = require('../../config');
+global.__basedir = '../../' + __dirname  + '/';;
+let config = require('../../config.json');
 let Botkit = require('../../botkit/lib/Botkit.js');
 
 // Bot initialisation

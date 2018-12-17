@@ -1,5 +1,9 @@
 # Module
-They are used to add feature to the bot.
+They are used as responsive reply of the bot.
+
+It's the logic used when the bot will received your message.
+
+Some presets exist but of course, create your own ;-)
 
 # Composition
 They are define in dedicated folder and they need the following files:

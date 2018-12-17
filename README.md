@@ -1,5 +1,5 @@
 # CoreBot as chatbot framework
-Chatbot framework is based on **botkit**.
+Chatbot framework based on **botkit**.
 
 The idea is to provide a simple package compatible with the most of business messaging.
 In that case the features and/or sketches developed are fully compatible
@@ -14,11 +14,11 @@ Generic setup is done to support the following business messaging solution:
 - Google Chat
 - Hangout
 
-Standard library to be reuse with plug-and-conf mode.
+Standard library to be reused with plug-and-conf mode.
 
 All configurations, feature activation included, in the single file
 [config.json](app/config.json) who overload each single feature
-configuration. Easy to user only what is need.
+configuration.
 
 The configuration is taken dynamically so no need to restart anything,
 when your sketches are updated, your bots also ;-)

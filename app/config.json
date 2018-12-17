@@ -26,7 +26,7 @@
     "launcher": {
         "slack": {
             "enable": false,
-            "name": "",
+            "name": "CoreBot-framework",
             "token": ""
         },
         "jabber": {
@@ -43,9 +43,9 @@
             "name": "CoreBot-framework",
             "mail": "CoreBot-framework@webex.bot",
             "botid": "Y2lzY29zcGFyazovL3VzL0FQUExJQ0FUSU9OL2Y5MDQ1OTJjLTFjZGItNDU5OS05MzA5LThhZWZhYzI3ZjU2OQ",
-            "url": "https://48005b3a.ngrok.io",
-            "port": "3000",
-            "access_token": "MzFiMDNkMWQtZGNjMS00NzIyLTk2NmItOTZmZGYzNTVkNTZlMThlMWM5ODktYTdj_PF84_0198f08a",
+            "url": "https://corebot-framework-spark.eu-ddlab.com",
+            "port": "4001",
+            "access_token": "OGI1YWFhY2EtMzAzMS00NWY5LWFmOTktYWZiZWM5NGJjNmVkZjhkMWZjZTEtYjVh_PF84_0198f08a-3880-4871-b55e-4863ccf723d5",
             "secret": "3986489249882648140328301832813876395",
             "webhook_name": "corebot-framework"
         },
@@ -53,15 +53,15 @@
             "enable": false,
             "clientId": "",
             "clientSecret": "",
-            "hostname": "",
-            "port": "3001"
+            "hostname": "corebot-framework-teams.eu-ddlab.com",
+            "port": "4002"
         },
         "hangouts": {
             "enable": false,
             "endpoint": "",
             "token": "",
-            "hostname": "",
-            "port": "3002"
+            "hostname": "corebot-framework-google.eu-ddlabcom",
+            "port": "4003"
         }
     },
     "controller": {
@@ -70,10 +70,10 @@
                 "enable": false
             },
             "convo": {
-                "enable": false
+                "enable": true
             },
             "echotest": {
-                "enable": false
+                "enable": true
             },
             "thread": {
                 "enable": true
@@ -84,7 +84,7 @@
         },
         "on": {
             "mention": {
-                "mentidirect_mention": {
+                "direct_mention": {
                     "enable": true
                 }
             },
@@ -114,9 +114,9 @@
     },
     "module": {
         "autoreply": {
-            "enable": false,
+            "enable": true,
             "delay": 1,
-            "file": "doc/local.csv"
+            "file": "../../local.csv"
         },
         "csv": {
             "enable": false,
