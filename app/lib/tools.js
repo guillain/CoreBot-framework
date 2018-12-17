@@ -7,23 +7,24 @@ let merge_json = require("merge-json");
 
 // Debug function
 exports.debug = function(severity, message, bot = '') {
-    if (config.debug === true) {
+    if (config.log.debug === true) {
         if (bot !== '') bot.reply(message);
-        console.log(message);
+
+        if ((config.log.verbosity === "info") && (severity === "info"))
+            console.log("info: " + message);
+        else if (severity === "debug")
+            console.log("debug: " + message);
     }
 };
 
 // Exports controller function as scenario
 exports.load_config = function(conf_file = '', bot = '') {
-    exports.debug("info", "local_config::"+conf_file);
+    exports.debug("info", "local_config "+conf_file);
 
     let conf_merged = config;
     if (conf_file !== ''){
         let local_config = require(conf_file);
         conf_merged = merge_json.merge(local_config, config);
-        exports.debug("debug", conf_merged[type][feature]);
-    } else {
-        exports.debug("debug", conf_merged);
     }
     return conf_merged;
 };

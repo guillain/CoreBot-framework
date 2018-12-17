@@ -6,7 +6,7 @@ let Botkit = require('../../botkit/lib/Botkit.js');
 let controller = Botkit.googlehangoutsbot({
     endpoint: config.launcher.hangouts.endpoint,
     token: config.launcher.hangouts.token,
-    debug: config.debug,
+    debug: config.log.debug,
     studio_token: config.botkit_token
 });
 

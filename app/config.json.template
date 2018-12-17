@@ -21,10 +21,12 @@
     },
     "launcher": {
         "slack": {
+            "enable": false,
             "name": "",
             "token": ""
         },
         "jabber": {
+            "enable": false,
             "name": "CoreBot-framework",
             "jid": "",
             "password": "",
@@ -33,6 +35,7 @@
             "port": "5222"
         },
         "spark": {
+            "enable": false,
             "name": "CoreBot-framework",
             "mail": "CoreBot-framework@webex.bot",
             "botid": "",
@@ -43,12 +46,14 @@
             "webhook_name": "corebot-framework"
         },
         "teams": {
+            "enable": false,
             "clientId": "",
             "clientSecret": "",
             "hostname": "",
             "port": "3001"
         },
         "hangouts": {
+            "enable": false,
             "endpoint": "",
             "token": "",
             "hostname": "",

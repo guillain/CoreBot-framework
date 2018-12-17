@@ -8,7 +8,7 @@ let xml = require('@xmpp/xml');
 // Bot initialisation
 let controller = Botkit({
     json_file_store: config.launcher.jabber.store,
-    debug: config.debug,
+    debug: config.log.debug,
     studio_token: config.botkit_token
 });
 let bot = controller.spawn({

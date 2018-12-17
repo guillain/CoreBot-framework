@@ -6,7 +6,7 @@ exports.switcher = function(bot, message, config){
     // Get CSV file data
     csv.get_data(bot, message, config.module.autoreply.file, function(csv_data) {
         console.log('>>> csv_data - len: ' + csv_data.length);
-        if (config.debug === 1) {
+        if (config.log.debug === 1) {
             console.log('>>> csv_data - len: ' + csv_data.length + ' - data: ' + csv_data);
         }
 

@@ -7,12 +7,12 @@ let _ = require("underscore");
 // Exports controller function as scenario
 exports.run = function(controller, message_type, message_content, bot) {
     tools.debug("info",
-                message + "::" + message_type + "::" + message.user + "::says::" + message.text, bot);
+                message + "::" + message_type + "::" + message.user + "::says::" + message.text);
 
     let config = tools.load_config();
 
     _.each(config.module, function (conf, index) {
-        tools.debug("debug","module::" + index + '\n' + conf, bot);
+        tools.debug("debug","module::" + index);
 
         let conf_merged = tools.load_config("./module/" + index + "/conf.json", bot);
 

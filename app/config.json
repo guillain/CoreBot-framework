@@ -7,8 +7,12 @@
         "nothing more is need if you dont need specific feature",
         "For new feature, read the doc"
     ],
-    "debug": true,
-    "log": true,
+    "log": {
+        "debug": true,
+        "verbosity": "info",
+        "file": "./log/CoreBot.log"
+    },
+    "stats_optout": true,
     "botkit_token": "",
     "db": {
         "host": "",
@@ -21,10 +25,12 @@
     },
     "launcher": {
         "slack": {
+            "enable": false,
             "name": "",
             "token": ""
         },
         "jabber": {
+            "enable": false,
             "name": "CoreBot-framework",
             "jid": "",
             "password": "",
@@ -33,22 +39,25 @@
             "port": "5222"
         },
         "spark": {
+            "enable": true,
             "name": "CoreBot-framework",
             "mail": "CoreBot-framework@webex.bot",
             "botid": "Y2lzY29zcGFyazovL3VzL0FQUExJQ0FUSU9OL2Y5MDQ1OTJjLTFjZGItNDU5OS05MzA5LThhZWZhYzI3ZjU2OQ",
-            "url": "",
+            "url": "https://48005b3a.ngrok.io",
             "port": "3000",
             "access_token": "MzFiMDNkMWQtZGNjMS00NzIyLTk2NmItOTZmZGYzNTVkNTZlMThlMWM5ODktYTdj_PF84_0198f08a",
             "secret": "3986489249882648140328301832813876395",
             "webhook_name": "corebot-framework"
         },
         "teams": {
+            "enable": false,
             "clientId": "",
             "clientSecret": "",
             "hostname": "",
             "port": "3001"
         },
         "hangouts": {
+            "enable": false,
             "endpoint": "",
             "token": "",
             "hostname": "",

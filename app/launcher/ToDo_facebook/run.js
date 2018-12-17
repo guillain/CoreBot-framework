@@ -4,14 +4,14 @@ var Botkit = require('../../botkit/lib/Botkit.js');
 
 // Check if this BM is required
 if (config.web.enable == false) {
-    if (config.debug == 1) {
+    if (config.log.debug == 1) {
         console.log('>>> csv_data - len: ' + csv_data.length + ' - data: ' + csv_data);
     }
     return false;
 }
 
 let controller = Botkit.web({
-    debug: config.debug,
+    debug: config.log.debug,
     studio_token: config.botkit_token
 });
 
