@@ -1,0 +1,32 @@
+{
+    "controller": {
+        "on": {
+            "space": {
+                "user_space_join": {
+                    "enable": true,
+                    "msg": {
+                        "help ": [
+                            "Event when user joins a space"
+                        ]
+                    }
+                },
+                "user_space_leave": {
+                    "enable": true,
+                    "msg": {
+                        "help ": [
+                            "Event when user leaves a space"
+                        ]
+                    }
+                },
+                "bot_space_join": {
+                    "enable": true,
+                    "msg": {
+                        "help ": [
+                            "Event when the bot joins a space"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

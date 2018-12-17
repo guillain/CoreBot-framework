@@ -1,0 +1,15 @@
+{
+    "module": {
+        "autoreply": {
+            "enable": false,
+            "delay": 1,
+            "file": "doc/local.csv",
+            "msg": {
+                "help": [
+                    "When message is sent to the bot",
+                    "the bot pickup one information from the CSV file and provide it after a delay of 2s"
+                ]
+            }
+        }
+    }
+}

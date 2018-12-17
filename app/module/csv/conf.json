@@ -1,0 +1,26 @@
+{
+    "module": {
+        "csv": {
+            "enable": false,
+            "file": "doc/csv.conf",
+            "storage": "csv",
+            "msg": {
+                "help": [
+                    "Used to load CSV file in local database"
+                ],
+                "get": {
+                    "ok": "Data get successfully",
+                    "ko": "Issue to get the data"
+                },
+                "load": {
+                    "ok": "Data loaded successfully",
+                    "ko": "Issue to load the data"
+                },
+                "test": {
+                    "ok": "Data sources mismatch",
+                    "ko": "Data sources match"
+                }
+            }
+        }
+    }
+}

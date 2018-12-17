@@ -1,0 +1,14 @@
+{
+    "controller": {
+        "on": {
+            "botkitstudio": {
+                "enable": false,
+                "msg": {
+                    "help ": [
+                        "Provide botkit studio connection for advanced feature like NLP"
+                    ]
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "enable": false,
+    "name": "corebot-framework",
+    "jid": "",
+    "password": "",
+    "store": "./bot_store/",
+    "ip": "",
+    "port": 5222
+}

@@ -1,0 +1,14 @@
+{
+    "controller": {
+        "hears": {
+            "echotest": {
+                "enable": false,
+                "msg": {
+                    "help ": [
+                        "Repeat the incoming message"
+                    ]
+                }
+            }
+        }
+    }
+}

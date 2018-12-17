@@ -1,7 +1,9 @@
 # CoreBot as chatbot framework
-Chatbot framework is based on botkit and writte in nodejs.
+Chatbot framework is based on **botkit**.
+
 The idea is to provide a simple package compatible with the most of business messaging.
-In that case the features and/or sketchs developped are fully compatible with all environments and made the devepoment reusable in the futurs integrations.
+In that case the features and/or sketches developed are fully compatible
+with all environments and made the development reusable in the futures integrations.
 
 ## Advantage
 Generic setup is done to support the following business messaging solution:
@@ -14,102 +16,51 @@ Generic setup is done to support the following business messaging solution:
 
 Standard library to be reuse with plug-and-conf mode.
 
-All configurations, feature activation included, in the single file [config.js](app/config.js)
+All configurations, feature activation included, in the single file
+[config.json](app/config.json) who overload each single feature
+configuration. Easy to user only what is need.
+
+The configuration is taken dynamically so no need to restart anything,
+when your sketches are updated, your bots also ;-)
 
 ## Features
+All features are stored in the *feature* folder and they're loaded
+with the help of a common script.
+
+The non-exhaustive list is hereafter:
 - NLP provided by [LUIS](https://botkit.ai/docs/readme-middlewares.html) via the botkit feature
-- Google transaltion
+- Google translation
 - BigData connector (to send info/tracking/APM data or search)
 - CSV file management
 - autoreply (like echo)
 - button
+- ...
+
+To jump in the framework's logic, follow this [doc](doc/logic.md).
+
+To develop new, follow this [doc](./doc/add_new.md)
 
 Don't hesitate to share yours ;-)
 
 ## Configuration
-Adapt the config file `config.js` and edit it according to your env.
-
-- Bot conf 
-- BigData collector
-- Configuration embeded for the following business messaging:
-  - Slack
-  - Cisco Jabber
-  - Cisco Webex Teams
-  ...
-- Features conf
-  - Translate (google)
-  - bigdata
-  - autoreply
-  ...
-
-Now just up to you to write your sketch.
-You can pickup some example as GetStarted and to be forked for your own ;-)
+Thanks to read this [configuration](./doc/configuration.md) doc.
 
 ## Installation
-Install and configure Redis-server as your needs and start prior to run the CoreBot
+Thanks to read this [installation](./doc/installation.md) doc.
 
-Get the project
-- ` git clone https://github.com/guillain/CoreBot-framework.git`
+## How to add new feature?
+Thanks to read the [HowTo add new](./doc/add_new.md) doc.
 
-Move into
-- `cd CoreBot-framework`
+If need you can complete your framework knowledge with the following
+ones:
 
-### Standalone server
-- Installation dependencies
-`npm install`
+1/ [Controller](./doc/controller.md)
 
-#### Node 
-Run it manually (debug/dev)
+2/ [Module](./doc/module.md)
 
-- `DEBUG=* node app/jabber.py`
-- `DEBUG=* node app/spark.py`
-- `DEBUG=* node app/slack.py`
-- `DEBUG=* node app/hangout.py`
-- `DEBUG=* node app/teams.py`
-
-`Control+C` to exit
-
-#### PM2
-Run as daemon (recommanded) 
-
-- `pm2 start app/jabber.py`
-- `pm2 start app/spark.py`
-- `pm2 start app/slack.py`
-- `pm2 start app/hangout.py`
-- `pm2 start app/teams.py`
-
-Status
-- `pm2 status`
-
-Stop
-- `pm2 stop jabber spark slack`
-
-Delete
-- `pm2 delete jabber spark slack`
-
-Masse operation
-- `pm2 start all`
-- `pm2 stop all`
-- `pm2 reset all`
-
-### Docker image
-The image is provided by AWS with specific account. 
-Thanks to request access before and use the `image` script to do that easily ;-)
-
-Login in your AWS env.
-`aws configure`
-
-Get the image
-- `./image get`
-
-Run the container with the image
-- `./image run`
-
-Get the status
-- `./image status`
+3/ [Component](./doc/component.md)
 
 ## Tips
-
 Redis local record issue
 - `redis-cli> config set stop-writes-on-bgsave-error no`
 
