@@ -1,0 +1,16 @@
+{
+    "controller": {
+        "on": {
+            "mention": {
+                "direct_mention": {
+                    "enable": true,
+                    "msg": {
+                        "help ": [
+                            "Direct mention event"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

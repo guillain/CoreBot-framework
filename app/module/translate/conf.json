@@ -1,0 +1,48 @@
+{
+    "module": {
+        "translate": {
+            "enable": false,
+            "default": {
+                "lang_in": "fr",
+                "lang_out": "en"
+            },
+            "msg": {
+                "on": "Auto translation _ON_",
+                "off": "Auto translation _OFF_",
+                "conf": "Auto translation configuration",
+                "conf_ok": "Configuration _SAVED_",
+                "conf_ko": "Issue to save the configuration",
+                "help ": [
+                    "Text translation online via chat bot",
+                    "# How to use the translation",
+                    "## Manually",
+                    "[lang in] [lang out] [*/phrase]",
+                    "- en fr I like it!",
+                    "- fr de J'ai un rendez-vous demain",
+                    "## Automatically",
+                    "[*/phrase] (the languages must be configured and activated before)",
+                    "- I like it!",
+                    "# Commands to configure auto translation",
+                    "- on - active the auto translation",
+                    "- off - deactive the auto translation",
+                    "- config - provide the current config",
+                    "- config [lang in] [lang out] - configure the auto translation",
+                    "- state - provide the current state (on/off)",
+                    "# Language",
+                    "Total: 107, in summary",
+                    "- en - English",
+                    "- es - Spanish",
+                    "- fr - French",
+                    "- de - German",
+                    "- ru - Russian",
+                    "- it - Italian",
+                    "- ja - Japanese",
+                    "- ar - Arabic",
+                    "- zh-CN - Chinese (Simplified)",
+                    "- zh-TW - Chinese (Traditional)",
+                    "Full list: https://cloud.google.com/conf/docs/languages"
+                ]
+            }
+        }
+    }
+}

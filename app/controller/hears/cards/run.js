@@ -1,5 +1,5 @@
 // Exports controller function as scenario
-exports.run = function(bot, message, controller, config) {
+exports.run = function(controller, config) {
     if (config.controller.hears.cards.enable === true) {
         controller.hears('cards', 'message_received', function (bot, message) {
             bot.reply(message, {

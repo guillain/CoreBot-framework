@@ -1,5 +1,5 @@
 // Exports controller function as scenario
-exports.run = function(bot, message, controller, config) {
+exports.run = function(controller, config) {
     if (config.controller.hears.convo.enable === true) {
         controller.hears('convo', 'message_received', function (bot, message) {
             bot.startConversation(message, function (err, convo) {

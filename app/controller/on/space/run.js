@@ -1,34 +1,28 @@
-// Configuration
-let config = require('../../config');
-
 // Load the required libraries
-let libloader = require('../../module/loader.js');
-let xml = require('@xmpp/xml');
+let mod_loader = require('../../../module/loader.js');
 
 // Exports controller function as scenario
-exports.run = function(controller) {
-    if (config.on.space.user_space_join === 1) {
+exports.run = function(controller, config) {
+    if (config.controller.on.space.user_space_join.enable === true) {
         controller.on('user_space_join', function (bot, message) {
             if (config.debug === 1) bot.reply(message, "::user_space_join:: " + message.user + " says " + message.text);
-            libloader.run(controller, 'user_space_join', message, bot)
+            mod_loader.run(controller, 'user_space_join', message, bot)
         });
     }
 
-    if (config.on.space.user_space_leave === 1) {
+    if (config.controller.on.space.user_space_leave.enable === true) {
         controller.on('user_space_leave', function (bot, message) {
             if (config.debug === 1) bot.reply(message, "::user_space_leave:: " + message.user + " says " + message.text);
-            libloader.run(controller, 'user_space_leave', message, bot)
+            mod_loader.run(controller, 'user_space_leave', message, bot)
         });
     }
 
-    if (config.on.space.bot_space_join === 1) {
+    if (config.controller.on.space.bot_space_join.enable === true) {
         controller.on('bot_space_join', function (bot, message) {
             if (config.debug === 1) bot.reply(message, "::bot_space_join:: " + message.user + " says " + message.text);
-            libloader.run(controller, 'bot_space_join', message, bot)
+            mod_loader.run(controller, 'bot_space_join', message, bot)
         });
     }
 
     return controller;
 };
-
-

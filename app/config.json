@@ -1,0 +1,136 @@
+{
+    "file": "CoreBot configuation",
+    "author": "guillain",
+    "license": "LGPL-3.0",
+    "description": [
+        "use this template to create your own chatbot scenario",
+        "nothing more is need if you dont need specific feature",
+        "For new feature, read the doc"
+    ],
+    "debug": true,
+    "log": true,
+    "botkit_token": "",
+    "db": {
+        "host": "",
+        "user": ""
+    },
+    "msg": {
+        "welcome": "Welcome in the CoreBot-framework tools",
+        "bye": "See you soon",
+        "join": "Thanks to join us"
+    },
+    "launcher": {
+        "slack": {
+            "name": "",
+            "token": ""
+        },
+        "jabber": {
+            "name": "CoreBot-framework",
+            "jid": "",
+            "password": "",
+            "store": "./bot_store/",
+            "ip": "",
+            "port": "5222"
+        },
+        "spark": {
+            "name": "CoreBot-framework",
+            "mail": "CoreBot-framework@webex.bot",
+            "botid": "Y2lzY29zcGFyazovL3VzL0FQUExJQ0FUSU9OL2Y5MDQ1OTJjLTFjZGItNDU5OS05MzA5LThhZWZhYzI3ZjU2OQ",
+            "url": "",
+            "port": "3000",
+            "access_token": "MzFiMDNkMWQtZGNjMS00NzIyLTk2NmItOTZmZGYzNTVkNTZlMThlMWM5ODktYTdj_PF84_0198f08a",
+            "secret": "3986489249882648140328301832813876395",
+            "webhook_name": "corebot-framework"
+        },
+        "teams": {
+            "clientId": "",
+            "clientSecret": "",
+            "hostname": "",
+            "port": "3001"
+        },
+        "hangouts": {
+            "endpoint": "",
+            "token": "",
+            "hostname": "",
+            "port": "3002"
+        }
+    },
+    "controller": {
+        "hears": {
+            "cards": {
+                "enable": false
+            },
+            "convo": {
+                "enable": false
+            },
+            "echotest": {
+                "enable": false
+            },
+            "thread": {
+                "enable": true
+            },
+            "whoami": {
+                "enable": true
+            }
+        },
+        "on": {
+            "mention": {
+                "mentidirect_mention": {
+                    "enable": true
+                }
+            },
+            "message": {
+                "message_received": {
+                    "enable": true
+                },
+                "direct_message": {
+                    "enable": true
+                },
+                "group_message": {
+                    "enable": true
+                }
+            },
+            "space": {
+                "user_space_join": {
+                    "enable": true
+                },
+                "user_space_leave": {
+                    "enable": true
+                },
+                "bot_space_join": {
+                    "enable": true
+                }
+            }
+        }
+    },
+    "module": {
+        "autoreply": {
+            "enable": false,
+            "delay": 1,
+            "file": "doc/local.csv"
+        },
+        "csv": {
+            "enable": false,
+            "file": "doc/csv.conf",
+            "storage": "csv"
+        },
+        "logstash": {
+            "enable": false,
+            "type": "tcp",
+            "port": "4055",
+            "auth": "",
+            "host": "",
+            "level": "info",
+            "framework": "botkit",
+            "log_type": "bot"
+        },
+        "translate": {
+            "enable": false,
+            "default": {
+                "lang_in": "fr",
+                "lang_out": "en"
+            }
+        }
+    }
+}
+        

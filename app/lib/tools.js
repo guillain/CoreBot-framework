@@ -1,8 +1,32 @@
-/**
- * @file Tools - Additionnal Jabber features
- * @author guillain <guillain.sanchez@dimensiondata.com>
- * @license LGPL-3.0
- */
+// Configuration
+let config = require('../config.json');
+
+// Load required lib
+let _ = require("underscore");
+let merge_json = require("merge-json");
+
+// Debug function
+exports.debug = function(severity, message, bot = '') {
+    if (config.debug === true) {
+        if (bot !== '') bot.reply(message);
+        console.log(message);
+    }
+};
+
+// Exports controller function as scenario
+exports.load_config = function(conf_file = '', bot = '') {
+    exports.debug("info", "local_config::"+conf_file);
+
+    let conf_merged = config;
+    if (conf_file !== ''){
+        let local_config = require(conf_file);
+        conf_merged = merge_json.merge(local_config, config);
+        exports.debug("debug", conf_merged[type][feature]);
+    } else {
+        exports.debug("debug", conf_merged);
+    }
+    return conf_merged;
+};
 
 exports.toUTCDateTimeString = function(date) {
     let yyyy = date.getUTCFullYear();

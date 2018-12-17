@@ -1,0 +1,19 @@
+{
+    "module": {
+        "logstash": {
+            "enable": false,
+            "type": "tcp",
+            "port": "4055",
+            "auth": "",
+            "host": "",
+            "level": "info",
+            "framework": "botkit",
+            "log_type": "bot",
+            "msg": {
+                "help": [
+                    "Used to s end message and event in Logstash service for Elasticsearch records"
+                ]
+            }
+        }
+    }
+}
