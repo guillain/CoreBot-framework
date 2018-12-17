@@ -8,7 +8,7 @@ let controller = Botkit.slackbot({
 });
 
 let bot = controller.spawn({
-    token: config.slack.token
+    token: config.launcher.slack.token
 }).startRTM();
 
 
