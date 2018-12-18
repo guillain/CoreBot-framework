@@ -1,8 +1,13 @@
+// Load tools library
+let tools = require(__basedir + 'lib/tools');
+
 // Requirements
 let fs = require('fs');
 
 // CSV
 exports.run = function(bot, message, config) {
+    tools.debug('debug', 'module csv run');
+
     // order action according to the message content
     let msg_arr = message.text.split(' ');
     if      (/^help$/i.test(msg_arr['0'])) bot.reply(message, config.module.csv.msg.help);
@@ -30,12 +35,16 @@ exports.run = function(bot, message, config) {
 
 // CSV functions loader
 exports.get_data = function(bot, message, file, config, cb){
+    tools.debug('debug', 'module csv get_data');
+
     get_csv_data(file, function(csv_data) {
         cb(csv_data);
     });
 };
 
 exports.load_in_db = function(bot, message, config){
+    tools.debug('debug', 'module csv load_in_db');
+
     // Parse CSV file and set value in redis
     fs.readFile(__basedir + config.module.csv.file, function(err, data) {
         if(err) throw err;
@@ -44,7 +53,6 @@ exports.load_in_db = function(bot, message, config){
         for(i = 0; i < array.length - 1; i++) {
             lineArr = array[i].split(';');
             strs.push(lineArr[0], lineArr[1]);
-            //console.log('>>> i:'+i+', key:'+lineArr[0]+', txt:'+lineArr[1]);
         }
         client.del(config.module.csv.storage, redis.print);
         client.hmset(config.module.csv.storage, strs, redis.print);
@@ -53,6 +61,8 @@ exports.load_in_db = function(bot, message, config){
 };
 
 exports.test_db_csv = function(bot, config) {
+    tools.debug('debug', 'module csv test_db_csv');
+
     exports.get_data(bot, message, __basedir + config.module.csv.file, config, function(csv_data) {
         let csv_data_length = 0;
         if (csv_data !== '') csv_data_length = csv_data.length;
@@ -70,9 +80,8 @@ exports.test_db_csv = function(bot, config) {
 };
 
 get_csv_data = function(file, cb) {
-    console.log('debug: get_csv_data file ' + file);
-    console.log(__basedir);
- 
+    tools.debug('debug', 'module csv get_csv_data ' + file);
+
     fs.readFile(file, function(err, data) {
         if(err) throw err;
         let strs = [];
@@ -84,3 +93,4 @@ get_csv_data = function(file, cb) {
         cb(strs)
     });
 };
+

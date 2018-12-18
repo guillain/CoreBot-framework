@@ -1,6 +1,13 @@
+// Load tools library
+let tools = require(__basedir + 'lib/tools');
+
+// Load required library
 let Run = require('logstash-client');
 
+// Run the function
 exports.run = function(evt, message, config) {
+    tools.debug("info", "module logstash run");
+
     let msg = message;
     delete msg["type"];
     msg['message_type'] = evt;

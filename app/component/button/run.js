@@ -1,4 +1,5 @@
-let tools = require(__basedir + 'lib/tool');
+// Load tools library
+let tools = require(__basedir + 'lib/tools');
 let xml = require('@xmpp/xml');
 
 controller.hears(['robot-button'], ['direct_mention', 'self_message', 'direct_message'], function (bot, message) {
@@ -70,7 +71,7 @@ controller.hears(['robot-submit'], ['direct_mention', 'self_message', 'direct_me
                     convo.stop();
                 }
                 catch (err) {
-                    console.log(err.message);
+                    tools.debug('error', 'component button run error ' + err.message);
                     convo.stop();
                 }
             });

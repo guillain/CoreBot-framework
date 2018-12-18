@@ -1,3 +1,6 @@
+// Load tools library
+let tools = require(__basedir + 'lib/tools');
+
 // Requirements
 let run = require('node-google-translate-skidz');
 let redis = require("redis");
@@ -6,22 +9,23 @@ let lang_list = ["af","sq","am","ar","hy","az","eu","be","bn","bs","bg","ca","ce
 
 // on connect
 client.on('connect', function() {
-    console.log('debug: db ', 'connected');
+    tools.debug('debug', 'module translate client on');
 });
 
 // on error
 client.on("error", function (err) {
-    console.log("error: db ", err);
+    tools.debug('debug', 'module translate client error ' + err);
 });
 
 // Translate 
 exports.run = function(bot, message, config) {
+  tools.debug('debug', 'module translate run');
+
   let data = [
     false,
     config.module.translate.default.lang_in,
     config.module.translate.default.lang_out
   ];
-  console.log(message);
 
   user = message.personEmail;
   if(user.indexOf("chat") > -1) user = message.from_jid;
@@ -80,7 +84,7 @@ exports.run = function(bot, message, config) {
                                     source: lang_in,
                                     target: lang_out
                             }, function(result) {
-                                    console.log('::run:: ('+lang_in+') '+msg_arr.join(' ')+' to ('+lang_out+') '+ result);
+                                    tools.debug('debug', 'module translate run manual ' + lang_in+') '+msg_arr.join(' ')+' to ('+lang_out+') '+ result);
                                     bot.reply(message, '_('+lang_in+' to '+lang_out+grp_msg+')_ ' + result);
                             });
                     }
@@ -92,7 +96,7 @@ exports.run = function(bot, message, config) {
     		source: data[1],
     		target: data[2]
     	}, function(result) {
-    		console.log('::auto run:: ('+data[1]+') '+message.text+' to ('+data[2]+') '+ result);
+    		tools.debug('debug', 'module translate run auto '+data[1]+') '+message.text+' to ('+data[2]+') '+ result);
     		bot.reply(message, '_('+data[1]+' to '+data[2]+grp_msg+')_ ' + result);
     	});
 

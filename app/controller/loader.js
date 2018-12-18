@@ -6,7 +6,7 @@ let _ = require("underscore");
 
 // Exports controller function as scenario
 exports.run = function(controller, config) {
-    tools.debug("info", "controller loader");
+    tools.debug("debug", "controller loader");
 
     let conf_merged = config;
 
@@ -19,18 +19,14 @@ exports.run = function(controller, config) {
     });
 
     // Run each controller
-    let i = 0;
     _.each(config.controller.hears, function (conf, index) {
-        console.log('>>>>', i++, index);
         if (conf_merged.controller.hears[index].enable === true) {
             tools.debug("info","controller loader hears " + index);
             let mod_run = require(__basedir + 'controller/hears/' + index + '/run.js');
             controller = mod_run.run(controller, conf_merged);
         } else tools.debug("debug","not controller loader hears " + index);
     });
-    i = 0;
     _.each(config.controller.on, function (conf, index) {
-        console.log('>>>>', i++, index);
         if (conf_merged.controller.on[index].enable === true) {
             tools.debug("debug","controller loader on " + index);
             let mod_run = require(__basedir + 'controller/on/' + index + '/run.js');

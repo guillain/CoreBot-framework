@@ -1,8 +1,13 @@
+// Load tools library
+let tools = require(__basedir + 'lib/tools');
+
 // Configuration
 var Botkit = require(__basedir + 'botkit/lib/Botkit.js');
 
 // Run the launcher
 exports.run = function(config) {
+  tools.debug('debug', 'launcher spark run');
+
   // Bot initialisation
   let controller = Botkit.sparkbot({
     debug: config.log.debug,
@@ -22,7 +27,7 @@ exports.run = function(config) {
   // Setup web server
   controller.setupWebserver(config.launcher.spark.port || 3000, function(err, webserver) {
     controller.createWebhookEndpoints(webserver, bot, function() {
-      console.log("Cisco Spark: Webhooks set up!");
+      tools.debug('info', 'launcher spark run ok');
     });
   });
 

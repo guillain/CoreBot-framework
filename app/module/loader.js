@@ -6,7 +6,7 @@ let _ = require("underscore");
 
 // Exports controller function as scenario
 exports.run = function(controller, message_type, message_content, bot, config) {
-    tools.debug("info", "controller loader " + " " + message_type);
+    tools.debug("debug", "module loader " + message_type);
 
     let conf_merged = config;
 
