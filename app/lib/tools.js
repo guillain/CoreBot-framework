@@ -29,6 +29,7 @@ exports.load_config = function(conf_file = '', config = '') {
     return conf_merged;
 };
 
+// Exports datetime string
 exports.toUTCDateTimeString = function(date) {
     let yyyy = date.getUTCFullYear();
     let mm = date.getUTCMonth() < 9 ? "0" + (date.getUTCMonth() + 1) : (date.getUTCMonth() + 1); // getMonth() is zero-based
@@ -39,6 +40,7 @@ exports.toUTCDateTimeString = function(date) {
     return "".concat(yyyy).concat('-').concat(mm).concat('-').concat(dd).concat('T').concat(hh).concat(':').concat(min).concat(':').concat(ss);
 };
 
+// Exports the Jids mentionned
 exports.ExtractMentionJids = function(message) {
     let direct_mention_reg = /href="xmpp:\s?(\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+)\s?"/ig;
     let email_reg = /\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+/i;
@@ -57,3 +59,4 @@ exports.ExtractMentionJids = function(message) {
     }
     return mention_jids;
 };
+

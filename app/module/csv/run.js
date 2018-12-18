@@ -3,6 +3,8 @@ let tools = require(__basedir + 'lib/tools');
 
 // Requirements
 let fs = require('fs');
+var redis = require("redis");
+let client = redis.createClient({detect_buffers: true});
 
 // CSV
 exports.run = function(bot, message, config) {
@@ -10,33 +12,43 @@ exports.run = function(bot, message, config) {
 
     // order action according to the message content
     let msg_arr = message.text.split(' ');
-    if      (/^help$/i.test(msg_arr['0'])) bot.reply(message, config.module.csv.msg.help);
-    else if (/^get$/i.test(msg_arr['0']))     {
-        exports.get_data(bot, message, file, config, function(csv_data) {
-            if (csv_data !== '') bot.reply(message, config.module.csv.msg.get.ok + csv_data.split('\n- '));
-            else bot.reply(message, config.module.csv.msg.get.ko);
-        });
-    }
-    else if (/^load$/i.test(msg_arr['0']))    {
-        let res = exports.load_in_db(bot, message, config);
-        if (res !== '')
-            bot.reply(message, config.module.csv.msg.load.ok + res.split('\n- '));
-        else
-            bot.reply(message, config.module.csv.msg.load.ko);
-    }
-    else if (/^test$/i.test(msg_arr['0']))    {
-        let res = exports.test_db_csv(bot, message, config);
-        if (res !== '')
-            bot.reply(message, config.module.csv.msg.test.ok + res.split('\n- '));
-        else
-            bot.reply(message, config.module.csv.msg.test.ko);
-    }
+
+    if (/^csv$/i.test(msg_arr['0'])) { msg_arr.shift(); }
+
+    if (/^help$/i.test(msg_arr['0'])) 
+        bot.reply(message, config.module.csv.msg.help.join('\n'));
+    else if (/^get$/i.test(msg_arr['0'])) 
+        exports.get_data(bot, message, config, __basedir + config.module.csv.file);
+    else if (/^load$/i.test(msg_arr['0'])) 
+        exports.load_in_db(bot, message, config);
+    else if (/^test$/i.test(msg_arr['0'])) 
+        exports.test_db_csv(bot, message, config);
+
 };
 
-// CSV functions loader
-exports.get_data = function(bot, message, file, config, cb){
+// DB functions
+// on connect
+client.on('connect', function() {
+    tools.debug('info', 'module csv client on connect');
+});
+
+// on error
+client.on("error", function (err) {
+    tools.debug('info', 'module csv client on error ' + err);
+});
+
+// CSV functions 
+exports.get_data = function(bot, message, config, file){
     tools.debug('debug', 'module csv get_data');
 
+    exports.get_csv_data_cb(bot, message, file, config, function(csv_data) {
+        if (csv_data !== '') res = config.module.csv.msg.get.ok;
+        else                 res = config.module.csv.msg.get.ko;
+        bot.reply(message, '\n\n- ' + csv_data.join("\n\n- "));
+    });
+};
+
+exports.get_csv_data_cb = function(bot, message, file, config, cb) {
     get_csv_data(file, function(csv_data) {
         cb(csv_data);
     });
@@ -55,26 +67,37 @@ exports.load_in_db = function(bot, message, config){
             strs.push(lineArr[0], lineArr[1]);
         }
         client.del(config.module.csv.storage, redis.print);
-        client.hmset(config.module.csv.storage, strs, redis.print);
-        bot.reply(message, 'Nb of row imported:'+i);
+        client.hmset(config.module.csv.storage, strs, redis.print, function (err, reply) {
+            if(err) {
+               tools.debug('error', 'module csv get_csv_data_cb ' + err);
+               throw err;
+            }
+        });
+
+        if (i>0) res = config.module.csv.msg.load.ok;
+        else     res = config.module.csv.msg.load.ko;
+        bot.reply(message, res + '\n\nNumber of row imported: ' + i);
     });
 };
 
-exports.test_db_csv = function(bot, config) {
+exports.test_db_csv = function(bot, message, config) {
     tools.debug('debug', 'module csv test_db_csv');
 
-    exports.get_data(bot, message, __basedir + config.module.csv.file, config, function(csv_data) {
+    exports.get_csv_data_cb(bot, message, __basedir + config.module.csv.file, config, function(csv_data) {
         let csv_data_length = 0;
         if (csv_data !== '') csv_data_length = csv_data.length;
 
-        client.get(csv_data_length, function (err, km) {
-            if (km) { bot.reply(message, '- Row ' + csv_data_length + ' found:' + km); }
-            else { bot.reply(message, '- Row ' + csv_data_length + ' not found'); }
-        });
-
-        client.hget(config.module.csv.storage, csv_data_length, function (err, kms) {
-            if (kms) { bot.reply(message, '- Row '+config.module.csv.storage+' found:'+kms); }
-            else { bot.reply(message, '- Row '+config.module.csv.storage+' not found'); }
+        client.get(config.module.csv.storage, function (err, km) {
+            console.log('>>>>>> err', err);
+            console.log('>>>>>>  km' , km);
+            if(err) {
+                 km = [];
+                 tools.debug('error', 'module csv test_db_csv ' + err);
+            }
+            if (csv_data_length !== km.length)
+                 res = config.module.csv.msg.test.ok;
+            else res = config.module.csv.msg.test.ko;
+            bot.reply(message, res + '\n\nFile: ' + csv_data_length + ' - Db: ' + km.length);
         });
     });
 };
@@ -90,7 +113,7 @@ get_csv_data = function(file, cb) {
             let lineArr = array[i].split(';');
             strs.push(lineArr);
         }
-        cb(strs)
+        cb(strs);
     });
 };
 

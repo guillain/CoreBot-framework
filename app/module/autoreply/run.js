@@ -8,14 +8,23 @@ let csv = require(__basedir + 'module/csv/run.js');
 exports.run = function(bot, message, config){
     tools.debug('debug', 'module autoreply run');
 
+    // ToDo: build global exception list
     if (message.user === config.launcher.spark.mail) {
         tools.debug("info", 'module autoreply run stop_bot_reply');
-
         return;
     }
 
+    // order action according to the message content
+    let msg_arr = message.text.split(' ');
+
+    if     (/^autoreply$/i.test(msg_arr['0'])) {
+        msg_arr.shift();
+        if (/^help$/i.test(msg_arr['0']))
+            bot.reply(message, config.module.autoreply.msg.help.join('\n'));
+    }
+
     // Get CSV file data
-    csv.get_data(bot, message, __basedir + config.module.autoreply.file, config, function(csv_data) {
+    csv.get_csv_data_cb(bot, message, __basedir + config.module.autoreply.file, config, function(csv_data) {
         tools.debug("info", 'module autoreply run csv_data  len ' + csv_data.length);
 
         // Pickup one entry

@@ -6,7 +6,11 @@
             "storage": "csv",
             "msg": {
                 "help": [
-                    "Used to load CSV file in local database"
+                    "Used to manage CSV file in the local database",
+                    "- **get**: to get the CSV file content",
+                    "- **load**: load CSV file in the db",
+                    "- **test**: test if the CSV file and the db are aligned\n",
+                    "_Example_: `csv get`, `csv load`, `csv test`"
                 ],
                 "get": {
                     "ok": "Data get successfully",

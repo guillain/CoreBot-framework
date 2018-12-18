@@ -7,7 +7,9 @@
             "msg": {
                 "help": [
                     "When message is sent to the bot",
-                    "the bot pickup one information from the CSV file and provide it after a delay of 2s"
+                    "the bot pickup one information from the CSV file and provide it after a delay of 2s. The CSV file content can be managed via the **CSV** module.",
+                    "- **help**: this help\n",
+                    "_Example_: `autoreply help`"
                 ]
             }
         }

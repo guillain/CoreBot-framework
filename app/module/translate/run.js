@@ -39,18 +39,19 @@ exports.run = function(bot, message, config) {
     if (reply) data = reply.split(',');
 
     // order action according to the message content
-    msg_arr = message.text.split(' ');
+    let msg_arr = message.text.split(' ');
+    if      (/^translate$/i.test(msg_arr['0'])) msg_arr.shift();
     if      (/^help$/i.test(msg_arr['0']))   { 
-    	bot.reply(message, config.module.translate.msg.help);
+    	bot.reply(message, config.module.translate.msg.help.joint('\n'));
     }
     else if (/^on$/i.test(msg_arr['0']))     { 
     	data[0] = 1; 
-                    client.set(user, data.join(','));
+        client.set(user, data.join(','));
     	bot.reply(message, config.module.translate.msg.on + grp_msg);
     }
     else if (/^off$/i.test(msg_arr['0']))    { 
     	data[0] = 0; 
-                    client.set(user, data.join(','));
+        client.set(user, data.join(','));
     	bot.reply(message, config.module.translate.msg.off + grp_msg);
     }
     else if (/^stat/i.test(msg_arr['0']))  { 
