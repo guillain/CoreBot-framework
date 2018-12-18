@@ -12,22 +12,22 @@
                 "conf": "Auto translation configuration",
                 "conf_ok": "Configuration _SAVED_",
                 "conf_ko": "Issue to save the configuration",
-                "help ": [
+                "help": [
                     "Text translation online via chat bot",
                     "Can be used to translate manually the text or can be done automatically. Use **settings** for that.",
                     "- **on** - active the auto translation",
                     "- **off** - deactive the auto translation",
                     "- **state** - current configuration state",
-                    "- **config - provide the current config",
-                    "- **config** [lang in] [lang out] - configure the auto translation\n",
+                    "- **config** - provide the current config",
+                    "- **config [lang in] [lang out]** - configure the auto translation\n",
                     "_Example_: `translate config fr en`, `translate fr en salut`, `translate on`",
                     "## Manual",
                     "translate [lang in] [lang out] [*/phrase]",
                     "- `translate en fr I like it!`",
-                    "- `translate fr de J'ai un rendez-vous demain`",
+                    "- `translate fr de J'ai un rendez-vous demain`\n",
                     "## Automatically",
                     "[*/phrase] (the languages must be configured and activated before)",
-                    "- `I like it!`",
+                    "- `I like it!`\n",
                     "## Language",
                     "Total: 107, in summary",
                     "- en - English",
@@ -39,7 +39,7 @@
                     "- ja - Japanese",
                     "- ar - Arabic",
                     "- zh-CN - Chinese (Simplified)",
-                    "- zh-TW - Chinese (Traditional)",
+                    "- zh-TW - Chinese (Traditional)\n",
                     "Full list: https://cloud.google.com/conf/docs/languages"
                 ]
             }

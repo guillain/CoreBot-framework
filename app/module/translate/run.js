@@ -2,9 +2,10 @@
 let tools = require(__basedir + 'lib/tools');
 
 // Requirements
+let fs = require('fs');
+var redis = require("redis");
+let client = redis.createClient({detect_buffers: true});
 let run = require('node-google-translate-skidz');
-let redis = require("redis");
-let client = redis.createClient();
 let lang_list = ["af","sq","am","ar","hy","az","eu","be","bn","bs","bg","ca","ceb","zh-CN","zh-TW","co","hr","cs","da","nl","en","eo","et","fi","fr","fy","gl","ka","de","el","gu","ht","ha","haw","he","hi","hmn","hu","is","ig","id","ga","it","ja","jw","kn","kk","km","ko","ku","ky","lo","la","lv","lt","lb","mk","mg","ms","ml","mt","mi","mr","mn","my","ne","no","ny","ps","fa","pl","pt","pa","ro","ru","sm","gd","sr","st","sn","sd","si","sk","sl","so","es","su","sw","sv","tl","tg","ta","te","th","tr","uk","ur","uz","vi","cy","xh","yi","yo","zu"];
 
 // on connect
@@ -27,22 +28,23 @@ exports.run = function(bot, message, config) {
     config.module.translate.default.lang_out
   ];
 
-  user = message.personEmail;
+  let user = message.user; //personEmail;
   if(user.indexOf("chat") > -1) user = message.from_jid;
   let usertmp = user.split('@');
-  let user = usertmp[0];
+  user = usertmp[0];
 
-  grp_msg = "";
+  let grp_msg = "";
   if (message.group === true) grp_msg = " for user " + user;
 
+  // Open user storage
   client.get(user, function(err, reply) {
     if (reply) data = reply.split(',');
 
     // order action according to the message content
     let msg_arr = message.text.split(' ');
-    if      (/^translate$/i.test(msg_arr['0'])) msg_arr.shift();
+    if      (/^translate$/i.test(msg_arr['0'])) { msg_arr.shift(); }
     if      (/^help$/i.test(msg_arr['0']))   { 
-    	bot.reply(message, config.module.translate.msg.help.joint('\n'));
+    	bot.reply(message, config.module.translate.msg.help.join('\n'));
     }
     else if (/^on$/i.test(msg_arr['0']))     { 
     	data[0] = 1; 
@@ -76,8 +78,8 @@ exports.run = function(bot, message, config) {
                         test.shift()
                     }
                     if (msg_arr.length > 2)    { //todo: check if langin/1 & langout/2 exist in the lang dict of the translator
-                            lang_in = msg_arr['0'];
-                            lang_out = msg_arr['1'];
+                            let lang_in = msg_arr['0'];
+                            let lang_out = msg_arr['1'];
                             msg_arr.splice(0,2);
 
                             run({
