@@ -9,7 +9,8 @@
                 "found": "Search result",
                 "notfound": "No result found",
                 "help": [
-                    "Search engine"
+                    "Search engine\n",
+                    "Compose your search request as you do on your web navigator"
                 ]
             }
         }

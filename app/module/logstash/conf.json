@@ -12,7 +12,8 @@
             "log_type": "bot",
             "msg": {
                 "help": [
-                    "Used to s end message and event in Logstash service for Elasticsearch records"
+                    "Used to send message and event in Logstash service for Elasticsearch records\n",
+                    "Perform a bigdata push on Elastic stack via logstach client"
                 ]
             }
         }

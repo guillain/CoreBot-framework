@@ -39,7 +39,6 @@ exports.run = function(bot, message, config) {
   // Open user storage
   client.get(user, function(err, reply) {
     if (reply) data = reply.split(',');
-    console.log('>>>>>', user, data);
 
     // Remove first pattern if: present + prefixed=true
     let msg_arr = message.text.split(' ');

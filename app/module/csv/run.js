@@ -10,11 +10,19 @@ let client = redis.createClient({detect_buffers: true});
 exports.run = function(bot, message, config) {
     tools.debug('debug', 'module csv run');
 
-    // order action according to the message content
+    // Remove first pattern if: present + prefixed=true
     let msg_arr = message.text.split(' ');
+    if (!(/^csv$/i.test(msg_arr['0'])) && (config.module.translate.prefixed === true)){
+        tools.debug('debug', 'module translate run return');
+        return;
+    }
 
-    if (/^csv$/i.test(msg_arr['0'])) { msg_arr.shift(); }
+    if (/^csv$/i.test(msg_arr['0'])) {
+        tools.debug('debug', 'module csv run mod-name-del');
+        msg_arr.shift();
+    }
 
+    // order action according to the message content   
     if (/^help$/i.test(msg_arr['0'])) 
         bot.reply(message, config.module.csv.msg.help.join('\n'));
     else if (/^get$/i.test(msg_arr['0'])) 
