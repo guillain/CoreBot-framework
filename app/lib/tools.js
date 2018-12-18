@@ -5,21 +5,39 @@ let config = require(__basedir + 'config.json');
 let _ = require("underscore");
 let merge_json = require("merge-json");
 
+let logger = require('node-logger').createLogger(); // logs to STDOUT
+logger.setLevel(config.log.verbosity);
+logger.format = function(level, date, message){ return level + ': ' + message;}
+
+let log_file = require('node-logger').createLogger(__basedir + config.log.file);
+log_file.setLevel(config.log.verbosity);
+log_file.format = function(level, date, message){ return date + ': ' + level +': ' + message; }
+
 // Debug function
 exports.debug = function(severity, message, bot = '') {
     if (config.log.debug === true) {
-        if (bot !== '') bot.reply(message);
+        if (bot !== '') bot.reply('_'+severity+'_ '+message);
 
-        if ((config.log.verbosity === "info") && (severity === "info"))
-            console.log("info: " + message);
-        else if (severity === "debug")
-            console.log("debug: " + message);
+        if      (severity === "debug") logger.debug(message);
+        else if (severity === "info")  logger.info(message);
+        else if (severity === "warn")  logger.warn(message);
+        else if (severity === "error") logger.error(message);
+        else if (severity === "fatal") logger.fatal(message);
+
+        // console.log(severity + ': ' + message);
+    }
+    if (config.log.file === '') {
+        if      (severity === "debug") log_file.debug(message);
+        else if (severity === "info")  log_file.info(message);
+        else if (severity === "warn")  log_file.warn(message);
+        else if (severity === "error") log_file.error(message);
+        else if (severity === "fatal") log_file.fatal(message);
     }
 };
 
 // Exports controller function as scenario
 exports.load_config = function(conf_file = '', config = '') {
-    //exports.debug("info", "local_config "+conf_file);
+    exports.debug("debug", "local_config "+conf_file);
 
     let conf_merged = config;
     if (conf_file !== ''){
@@ -28,6 +46,11 @@ exports.load_config = function(conf_file = '', config = '') {
     }
     return conf_merged;
 };
+
+// Export user or '' if it's the bot
+exports.get_ser = function(){
+
+}
 
 // Exports datetime string
 exports.toUTCDateTimeString = function(date) {

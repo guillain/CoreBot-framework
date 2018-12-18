@@ -1,0 +1,18 @@
+{
+    "module": {
+        "search": {
+            "enable": false,
+            "prefixed": true,
+            "limit": 10,
+            "storage": "",
+            "msg": {
+                "found": "Search result",
+                "notfound": "No result found",
+                "help": [
+                    "Search engine"
+                ]
+            }
+        }
+    }
+}
+
