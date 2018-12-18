@@ -27,6 +27,10 @@ exports.run = function(bot, message, config) {
         bot.reply(message, config.module.csv.msg.help.join('\n'));
     else if (/^get$/i.test(msg_arr['0'])) 
         exports.get_data(bot, message, config, __basedir + config.module.csv.file);
+    else if (/^search$/i.test(msg_arr['0'])){
+        msg_arr.shift();
+        exports.search_data(bot, message, config, __basedir + config.module.csv.file, msg_arr.join(' '));
+    }
     else if (/^load$/i.test(msg_arr['0'])) 
         exports.load_in_db(bot, message, config);
     else if (/^test$/i.test(msg_arr['0'])) 
@@ -55,6 +59,31 @@ exports.get_data = function(bot, message, config, file){
         bot.reply(message, '\n\n- ' + csv_data.join("\n\n- "));
     });
 };
+
+exports.search_data = function(bot, message, config, file, data){
+    tools.debug('debug', 'module csv get_data');
+
+    exports.get_csv_data_cb(bot, message, file, config, function(csv_data) {
+        let to_say = config.module.csv.msg.search.ko;
+        let res = '';
+        if (csv_data !== ''){
+            let j = 0;
+            for (let i in csv_data) {
+                let re =  new RegExp('\\b'+ data + '\\b','i');
+                if(re.exec(csv_data[i])) {
+                    if (j < config.module.csv.search_limit) { res += '- '+csv_data[i]+'\n'; }
+                    j++;
+                }
+            }
+            if (j > 0) 
+                to_say = config.module.csv.msg.search.ok + ': ' + j;
+            if (j > config.module.csv.search_limit) 
+                to_say += ' but '+config.module.csv.search_limit+' displayed';
+        }
+        bot.reply(message, to_say + '\n' + res);
+    });
+};
+
 
 exports.get_csv_data_cb = function(bot, message, file, config, cb) {
     get_csv_data(file, function(csv_data) {
@@ -96,8 +125,6 @@ exports.test_db_csv = function(bot, message, config) {
         if (csv_data !== '') csv_data_length = csv_data.length;
 
         client.get(config.module.csv.storage, function (err, km) {
-            console.log('>>>>>> err', err);
-            console.log('>>>>>>  km' , km);
             if(err) {
                  km = [];
                  tools.debug('error', 'module csv test_db_csv ' + err);

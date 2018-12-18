@@ -5,10 +5,12 @@
             "prefixed": true,
             "file": "doc/csv.conf",
             "storage": "csv",
+            "search_limit": 10,
             "msg": {
                 "help": [
                     "Used to manage CSV file in the local database\n",
                     "- **get**: to get the CSV file content",
+                    "- **search**: search a text in the CSV file",
                     "- **load**: load CSV file in the db",
                     "- **test**: test if the CSV file and the db are aligned\n",
                     "_Example_: `csv get`, `csv load`, `csv test`"
@@ -16,6 +18,10 @@
                 "get": {
                     "ok": "Data get successfully",
                     "ko": "Issue to get the data"
+                },
+                "search": {
+                    "ok": "Text found",
+                    "ko": "Text not found"
                 },
                 "load": {
                     "ok": "Data loaded successfully",

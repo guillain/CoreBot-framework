@@ -1,0 +1,14 @@
+{
+    "controller": {
+        "hears": {
+            "help": {
+                "enable": true,
+                "msg": {
+                    "help ": [
+                        "Provide global help support\n"
+                    ]
+                }
+            }
+        }
+    }
+}
