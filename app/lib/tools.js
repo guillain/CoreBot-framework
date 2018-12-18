@@ -1,5 +1,5 @@
 // Configuration
-let config = require('../config.json');
+let config = require(__basedir + 'config.json');
 
 // Load required lib
 let _ = require("underscore");
@@ -18,8 +18,8 @@ exports.debug = function(severity, message, bot = '') {
 };
 
 // Exports controller function as scenario
-exports.load_config = function(conf_file = '', bot = '') {
-    exports.debug("info", "local_config "+conf_file);
+exports.load_config = function(conf_file = '', config = '') {
+    //exports.debug("info", "local_config "+conf_file);
 
     let conf_merged = config;
     if (conf_file !== ''){

@@ -1,4 +1,4 @@
-let tools = require('../lib/tool');
+let tools = require(__basedir + 'lib/tool');
 let xml = require('@xmpp/xml');
 
 controller.hears(['robot-button'], ['direct_mention', 'self_message', 'direct_message'], function (bot, message) {

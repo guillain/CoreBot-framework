@@ -23,6 +23,23 @@ configuration.
 The configuration is taken dynamically so no need to restart anything,
 when your sketches are updated, your bots also ;-)
 
+## Fast Run
+1/ Clone the project: `git clone https://github.com/guillain/CoreBot-framework.git`
+
+2/ Adapt the config file to your env and scenario: `vi CoreBot-framework/app/config.json`
+
+3/ Run it:
+ `
+  - If you run on docker: `cd CoreBot-framework && ./image build && ./image run`
+
+  - If you run localy: `cd CoreBot-framework && npm install & pm2 start app/CoreBot-framework.js`
+
+## Configuration
+Thanks to read this [configuration](./doc/configuration.md) doc.
+
+## Installation
+Thanks to read this [installation](./doc/installation.md) doc.
+
 ## Features
 All features are stored in the *feature* folder and they're loaded
 with the help of a common script.
@@ -41,12 +58,6 @@ To jump in the framework's logic, follow this [doc](doc/logic.md).
 To develop new, follow this [doc](./doc/add_new.md)
 
 Don't hesitate to share yours ;-)
-
-## Configuration
-Thanks to read this [configuration](./doc/configuration.md) doc.
-
-## Installation
-Thanks to read this [installation](./doc/installation.md) doc.
 
 ## How to add new feature?
 Thanks to read the [HowTo add new](./doc/add_new.md) doc.

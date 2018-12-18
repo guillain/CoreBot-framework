@@ -23,7 +23,7 @@ exports.help = function() {
 };
 
 // Search master fct
-exports.switcher = function(bot, message){
+exports.run = function(bot, message){
   let tosay = config.search.msg.found + '\n';
   console.log('>>> search: trigger.args.join(): ' + trigger.args.join(' '));
 

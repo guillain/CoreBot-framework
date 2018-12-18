@@ -1,5 +1,5 @@
 // Load the required libraries
-let stz = require('../../../component/stanza/run.js');
+let stz = require(__basedir + 'component/stanza/run.js');
 
 // Exports controller function as scenario
 exports.run = function(controller, config) {

@@ -1,22 +1,22 @@
 // Load tools library
-let tools = require('../lib/tools');
+let tools = require(__basedir + 'lib/tools');
 
 // Load required lib
 let _ = require("underscore");
 
 // Exports controller function as scenario
-exports.run = function(controller, message_type, message_content, bot) {
-    tools.debug("info", "controller loader " + " " + message_type + " " + message_content);
+exports.run = function(controller, message_type, message_content, bot, config) {
+    tools.debug("info", "controller loader " + " " + message_type);
 
-    let config = tools.load_config();
+    let conf_merged = config;
 
     _.each(config.module, function (conf, index) {
-        let conf_merged = tools.load_config("../module/" + index + "/conf.json");
+        conf_merged = tools.load_config(__basedir + 'module/' + index + '/conf.json', conf_merged);
 
         if (conf_merged.module[index].enable === true) {
             tools.debug("info", "module loader " + index);
-            let mod_run = require('./' + index + '/run.js');
-            mod_run.switcher(bot, message_content, config);
+            let mod_run = require(__basedir + 'module/' + index + '/run.js');
+            mod_run.run(bot, message_content, conf_merged);
         } else tools.debug("debug", "not module loader " + index);
     });
     return controller;

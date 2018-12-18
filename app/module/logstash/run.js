@@ -1,6 +1,6 @@
 let Run = require('logstash-client');
 
-exports.switcher = function(evt, message, config) {
+exports.run = function(evt, message, config) {
     let msg = message;
     delete msg["type"];
     msg['message_type'] = evt;

@@ -20,7 +20,7 @@ exports.help = function(table) {
 }
 
 // Internal segmentation of the request
-exports.switcher = function(bot, trigger, id, table) {
+exports.run = function(bot, trigger, id, table) {
   if      (/^list$/i.test(trigger.args['1']))    { module.exports.list(bot, trigger, table); }
   else if (/^update$/i.test(trigger.args['1']))  { module.exports.update(bot, trigger, id, trigger.args, table); }
   else if (/^create$/i.test(trigger.args['1']))  { module.exports.create(bot, trigger, trigger.args['2'], trigger.args, table, callback()); }  

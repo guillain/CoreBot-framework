@@ -1,26 +1,20 @@
 // Configuration
-var config = require('../../config');
-var Botkit = require('../../botkit/lib/Botkit.js');
+var Botkit = require(__basedir + 'botkit/lib/Botkit.js');
 
-// Check if this BM is required
-if (config.web.enable == false) {
-    if (config.log.debug == 1) {
-        console.log('>>> csv_data - len: ' + csv_data.length + ' - data: ' + csv_data);
-    }
-    return false;
-}
-
-let controller = Botkit.web({
+exports.run = function(config) {
+  let controller = Botkit.web({
     debug: config.log.debug,
     studio_token: config.botkit_token
-});
+  });
 
-let bot = controller.spawn({
+  let bot = controller.spawn({
     token: config.web.token
-}).startRTM();
+  }).startRTM();
 
 
-// Scenario declarations
-let scenario = require('../../controller/loader.js');
-controller = scenario.run(controller);
+  // Scenario declarations
+  let scenario = require(__basedir + 'controller/loader.js');
+  controller = scenario.run(controller);
+  return controller;
+};
 

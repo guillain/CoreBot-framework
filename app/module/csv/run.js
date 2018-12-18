@@ -2,7 +2,7 @@
 let fs = require('fs');
 
 // CSV
-exports.switcher = function(bot, message, config) {
+exports.run = function(bot, message, config) {
     // order action according to the message content
     let msg_arr = message.text.split(' ');
     if      (/^help$/i.test(msg_arr['0'])) bot.reply(message, config.module.csv.msg.help);
@@ -37,7 +37,7 @@ exports.get_data = function(bot, message, file, config, cb){
 
 exports.load_in_db = function(bot, message, config){
     // Parse CSV file and set value in redis
-    fs.readFile(config.module.csv.file, function(err, data) {
+    fs.readFile(__basedir + config.module.csv.file, function(err, data) {
         if(err) throw err;
         var strs = [];
         var array = data.toString().split("\n");
@@ -53,7 +53,7 @@ exports.load_in_db = function(bot, message, config){
 };
 
 exports.test_db_csv = function(bot, config) {
-    exports.get_data(bot, message, config.module.csv.file, config, function(csv_data) {
+    exports.get_data(bot, message, __basedir + config.module.csv.file, config, function(csv_data) {
         let csv_data_length = 0;
         if (csv_data !== '') csv_data_length = csv_data.length;
 

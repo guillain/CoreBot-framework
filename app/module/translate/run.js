@@ -15,13 +15,15 @@ client.on("error", function (err) {
 });
 
 // Translate 
-exports.switcher = function(bot, message, config) {
+exports.run = function(bot, message, config) {
   let data = [
     false,
     config.module.translate.default.lang_in,
     config.module.translate.default.lang_out
   ];
-  user = message.user;
+  console.log(message);
+
+  user = message.personEmail;
   if(user.indexOf("chat") > -1) user = message.from_jid;
   let usertmp = user.split('@');
   let user = usertmp[0];

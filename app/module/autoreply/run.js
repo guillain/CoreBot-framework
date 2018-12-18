@@ -1,10 +1,17 @@
 // Requirements
-let csv = require('../csv/run.js');
+let csv = require(__basedir + 'module/csv/run.js');
 
 // AutoReply loader
-exports.switcher = function(bot, message, config){
+exports.run = function(bot, message, config){
+    console.log('>>>>', message.user);
+    if (message.user === config.launcher.spark.mail) {
+        console.log('stop chain, reply from the bot');
+
+        return;
+    }
+
     // Get CSV file data
-    csv.get_data(bot, message, config.module.autoreply.file, function(csv_data) {
+    csv.get_data(bot, message, __basedir + config.module.autoreply.file, config, function(csv_data) {
         console.log('>>> csv_data - len: ' + csv_data.length);
         if (config.log.debug === 1) {
             console.log('>>> csv_data - len: ' + csv_data.length + ' - data: ' + csv_data);

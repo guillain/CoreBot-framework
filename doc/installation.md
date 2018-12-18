@@ -12,8 +12,10 @@ Move into
 - Installation NodeJS dependencies: `npm install app/package.json`
 
 #### Node
-Run it manually (debug/dev)
+Run it manually (debug/dev):
+- `DEBUG=* node app/CoreBot-framework.js`
 
+Or one by one:
 - `DEBUG=* node app/launcher/jabber.py`
 - `DEBUG=* node app/launcher/spark.py`
 - `DEBUG=* node app/launcher/slack.py`
@@ -24,7 +26,9 @@ Run it manually (debug/dev)
 
 #### PM2
 Run as daemon (recommanded)
+- `pm2 start app/CoreBot-framework.js`
 
+Or one by one:
 - `pm2 start app/launcher/jabber.py`
 - `pm2 start app/launcher/spark.py`
 - `pm2 start app/launcher/slack.py`
@@ -35,6 +39,8 @@ Status
 - `pm2 status`
 
 Stop
+- `pm2 stop CoreBot-framework`
+
 - `pm2 stop jabber spark slack`
 
 Delete

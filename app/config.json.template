@@ -7,8 +7,12 @@
         "nothing more is need if you dont need specific feature",
         "For new feature, read the doc"
     ],
-    "debug": true,
-    "log": true,
+    "log": {
+        "debug": true,
+        "verbosity": "info",
+        "file": "log/CoreBot.log"
+    },
+    "stats_optout": true,
     "botkit_token": "",
     "db": {
         "host": "",
@@ -22,7 +26,7 @@
     "launcher": {
         "slack": {
             "enable": false,
-            "name": "",
+            "name": "CoreBot-framework",
             "token": ""
         },
         "jabber": {
@@ -30,34 +34,37 @@
             "name": "CoreBot-framework",
             "jid": "",
             "password": "",
-            "store": "./bot_store/",
+            "store": "data/jabber/",
             "ip": "",
             "port": "5222"
         },
         "spark": {
-            "enable": false,
+            "enable": true,
             "name": "CoreBot-framework",
             "mail": "CoreBot-framework@webex.bot",
             "botid": "",
             "url": "",
-            "port": "3000",
+            "port": "4001",
             "access_token": "",
             "secret": "",
-            "webhook_name": "corebot-framework"
+            "webhook_name": "corebot-framework",
+            "store": "./data/spark/"
         },
         "teams": {
             "enable": false,
+            "name": "CoreBot-framework",
             "clientId": "",
             "clientSecret": "",
             "hostname": "",
-            "port": "3001"
+            "port": "4002"
         },
         "hangouts": {
             "enable": false,
+            "name": "CoreBot-framework",
             "endpoint": "",
             "token": "",
             "hostname": "",
-            "port": "3002"
+            "port": "4003"
         }
     },
     "controller": {
@@ -75,12 +82,12 @@
                 "enable": true
             },
             "whoami": {
-                "enable": true
+                "enable": false
             }
         },
         "on": {
             "mention": {
-                "mentidirect_mention": {
+                "direct_mention": {
                     "enable": true
                 }
             },
@@ -112,11 +119,11 @@
         "autoreply": {
             "enable": false,
             "delay": 1,
-            "file": "doc/local.csv"
+            "file": "data/autoreply.csv"
         },
         "csv": {
             "enable": false,
-            "file": "doc/csv.conf",
+            "file": "data/csv.conf",
             "storage": "csv"
         },
         "logstash": {

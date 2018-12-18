@@ -18,7 +18,7 @@ exports.help = function() {
 }
 
 // Internal segmentation of the request
-exports.switcher = function(bot, trigger, id) {
+exports.run = function(bot, trigger, id) {
   // Get back the fash message from the local db if exist
   var flash = bot.recall(config.flash.db);
   if(!flash)      { flash = bot.store(config.flash.db,{}); } 

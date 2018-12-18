@@ -1,23 +1,26 @@
 // Configuration
-let config = require('../../config');
-let Botkit = require('../../botkit/lib/Botkit.js');
+let Botkit = require(__basedir + 'botkit/lib/Botkit.js');
 
 // Controller
-let controller = Botkit.googlehangoutsbot({
+exports.run = function(config) {
+  let controller = Botkit.googlehangoutsbot({
     endpoint: config.launcher.hangouts.endpoint,
     token: config.launcher.hangouts.token,
     debug: config.log.debug,
     studio_token: config.botkit_token
-});
+  });
 
-let bot = controller.spawn({})
+  let bot = controller.spawn({})
 
-controller.setupWebserver(config.launcher.hangouts.port || 3002, function (err, webserver) {
+  controller.setupWebserver(config.launcher.hangouts.port || 3002, function (err, webserver) {
     controller.createWebhookEndpoints(webserver, bot, function () {
-        console.log("Google Hangouts: Webhooks set up!");
+      console.log("Google Hangouts: Webhooks set up!");
     });
-});
+  });
 
-// Scenario declarations
-let scenario = require('../../controller/loader.js');
-controller = scenario.run(controller);
+  // Scenario declarations
+  let scenario = require(__basedir + 'controller/loader.js');
+  controller = scenario.run(controller);
+  return controller;
+};
+
