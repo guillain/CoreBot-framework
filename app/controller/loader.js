@@ -19,21 +19,23 @@ exports.run = function(controller, config) {
     });
 
     // Run each controller
+    let i = 0;
     _.each(config.controller.hears, function (conf, index) {
+        console.log('>>>>', i++, index);
         if (conf_merged.controller.hears[index].enable === true) {
             tools.debug("info","controller loader hears " + index);
             let mod_run = require(__basedir + 'controller/hears/' + index + '/run.js');
             controller = mod_run.run(controller, conf_merged);
         } else tools.debug("debug","not controller loader hears " + index);
     });
+    i = 0;
     _.each(config.controller.on, function (conf, index) {
-        _.each(conf, function (sub_conf, sub_index) {
-          if (conf_merged.controller.on[index][sub_index].enable === true) {
-              tools.debug("debug","controller loader on " + index);
-              let mod_run = require(__basedir + 'controller/on/' + index + '/run.js');
-              controller = mod_run.run(controller, conf_merged);
-          } else tools.debug("debug","not controller loader on " + index + " " + sub_index);
-        });
+        console.log('>>>>', i++, index);
+        if (conf_merged.controller.on[index].enable === true) {
+            tools.debug("debug","controller loader on " + index);
+            let mod_run = require(__basedir + 'controller/on/' + index + '/run.js');
+            controller = mod_run.run(controller, conf_merged);
+        } else tools.debug("debug","not controller loader on " + index);
     });
 
     return controller;

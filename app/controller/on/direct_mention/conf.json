@@ -1,11 +1,11 @@
 {
     "controller": {
         "on": {
-            "botkitstudio": {
-                "enable": false,
+            "direct_mention": {
+                "enable": true,
                 "msg": {
                     "help ": [
-                        "Provide botkit studio connection for advanced feature like NLP"
+                        "Direct mention event"
                     ]
                 }
             }

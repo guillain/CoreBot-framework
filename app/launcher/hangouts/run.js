@@ -7,7 +7,7 @@ exports.run = function(config) {
     endpoint: config.launcher.hangouts.endpoint,
     token: config.launcher.hangouts.token,
     debug: config.log.debug,
-    studio_token: config.botkit_token
+    studio_token: config.controller.on.botkit.token
   });
 
   let bot = controller.spawn({})

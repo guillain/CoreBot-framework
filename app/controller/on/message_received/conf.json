@@ -1,0 +1,15 @@
+{
+    "controller": {
+        "on": {
+            "message_received": {
+                "enable": true,
+                "msg": {
+                    "help ": [
+                        "Message received event"
+                    ]
+                }
+            }
+        }
+    }
+}
+

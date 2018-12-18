@@ -1,0 +1,15 @@
+{
+    "controller": {
+        "on": {
+            "direct_message": {
+                "enable": true,
+                "msg": {
+                    "help ": [
+                        "Direct message event"
+                    ]
+                }
+            }
+        }
+    }
+}
+

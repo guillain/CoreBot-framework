@@ -4,7 +4,7 @@ var Botkit = require(__basedir + 'botkit/lib/Botkit.js');
 exports.run = function(config) {
   let controller = Botkit.web({
     debug: config.log.debug,
-    studio_token: config.botkit_token
+    studio_token: config.controller.on.botkit.token
   });
 
   let bot = controller.spawn({

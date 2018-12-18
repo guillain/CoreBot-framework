@@ -1,0 +1,14 @@
+{
+    "controller": {
+        "on": {
+            "user_space_join": {
+                "enable": true,
+                "msg": {
+                    "help ": [
+                        "Event when user joins a space"
+                    ]
+                }
+            }
+        }
+    }
+}

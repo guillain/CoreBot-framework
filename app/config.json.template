@@ -13,7 +13,6 @@
         "file": "log/CoreBot.log"
     },
     "stats_optout": true,
-    "botkit_token": "",
     "db": {
         "host": "",
         "user": ""
@@ -86,32 +85,30 @@
             }
         },
         "on": {
-            "mention": {
-                "direct_mention": {
-                    "enable": true
-                }
+            "direct_mention": {
+                "enable": true
             },
-            "message": {
-                "message_received": {
-                    "enable": true
-                },
-                "direct_message": {
-                    "enable": true
-                },
-                "group_message": {
-                    "enable": true
-                }
+            "message_received": {
+                "enable": true
             },
-            "space": {
-                "user_space_join": {
-                    "enable": true
-                },
-                "user_space_leave": {
-                    "enable": true
-                },
-                "bot_space_join": {
-                    "enable": true
-                }
+            "direct_message": {
+                "enable": true
+            },
+            "group_message": {
+                "enable": true
+            },
+            "user_space_join": {
+                "enable": true
+            },
+            "user_space_leave": {
+                "enable": true
+            },
+            "bot_space_join": {
+                "enable": true
+            },
+            "botkit": {
+                "enable": false,
+                "token": ""
             }
         }
     },

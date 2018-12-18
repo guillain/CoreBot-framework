@@ -1,0 +1,15 @@
+{
+    "controller": {
+        "on": {
+            "group_message": {
+                "enable": true,
+                "msg": {
+                    "help ": [
+                        "Group message event"
+                    ]
+                }
+            }
+        }
+    }
+}
+

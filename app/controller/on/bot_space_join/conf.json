@@ -1,0 +1,14 @@
+{
+    "controller": {
+        "on": {
+            "bot_space_join": {
+                "enable": true,
+                "msg": {
+                    "help ": [
+                        "Event when the bot joins a space"
+                    ]
+                }
+            }
+        }
+    }
+}

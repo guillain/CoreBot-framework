@@ -1,0 +1,14 @@
+{
+    "controller": {
+        "on": {
+            "user_space_leave": {
+                "enable": true,
+                "msg": {
+                    "help ": [
+                        "Event when user leaves a space"
+                    ]
+                }
+            }
+        }
+    }
+}

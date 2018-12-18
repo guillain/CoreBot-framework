@@ -9,7 +9,7 @@ exports.run = function(config) {
     log: config.log.file,
     public_address: config.launcher.spark.url,
     ciscospark_access_token: config.launcher.spark.access_token,
-    studio_token: config.botkit_token,
+    studio_token: config.controller.on.botkit.token,
     secret: config.launcher.spark.secret,
     webhook_name: config.launcher.spark.name,
     // ToDo

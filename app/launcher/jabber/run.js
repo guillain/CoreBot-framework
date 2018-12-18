@@ -7,7 +7,7 @@ exports.run = function(config) {
   let controller = Botkit({
     json_file_store: config.launcher.jabber.store,
     debug: config.log.debug,
-    studio_token: config.botkit_token
+    studio_token: config.controller.on.botkit.token
   });
   let bot = controller.spawn({
     client: {

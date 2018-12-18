@@ -5,7 +5,7 @@ exports.run = function(config) {
   var controller = Botkit.teamsbot({
     clientId: config.launcher.teams.clientId,
     clientSecret: config.launcher.teams.clientSecret,
-    studio_token: config.botkit_token
+    studio_token: config.controller.on.botkit.token
   });
 
   controller.setupWebserver(config.launcher.teams.port || 3001, function(err, webserver) {
