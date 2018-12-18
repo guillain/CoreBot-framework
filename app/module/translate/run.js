@@ -23,9 +23,9 @@ exports.run = function(bot, message, config) {
   tools.debug('debug', 'module translate run');
 
   let data = [
-    false,
-    config.module.translate.default.lang_in,
-    config.module.translate.default.lang_out
+      'manual',
+      config.module.translate.default.lang_in,
+      config.module.translate.default.lang_out
   ];
 
   let user = message.user; //personEmail;
@@ -39,70 +39,82 @@ exports.run = function(bot, message, config) {
   // Open user storage
   client.get(user, function(err, reply) {
     if (reply) data = reply.split(',');
+    console.log('>>>>>', user, data);
+
+    // Remove first pattern if: present + prefixed=true
+    let msg_arr = message.text.split(' ');
+    if ((data[0] !== 'automatic') && !(/^translate$/i.test(msg_arr['0'])) && (config.module.translate.prefixed === true)){
+        tools.debug('debug', 'module translate run return');
+        return;
+    }
+
+    if (/^translate$/i.test(msg_arr['0'])) { 
+        tools.debug('debug', 'module translate run mod-name-del');
+        msg_arr.shift();
+    }
 
     // order action according to the message content
-    let msg_arr = message.text.split(' ');
-    if      (/^translate$/i.test(msg_arr['0'])) { msg_arr.shift(); }
-    if      (/^help$/i.test(msg_arr['0']))   { 
+    if  (/^help$/i.test(msg_arr['0'])) 
     	bot.reply(message, config.module.translate.msg.help.join('\n'));
-    }
     else if (/^on$/i.test(msg_arr['0']))     { 
-    	data[0] = 1; 
+    	data[0] = 'automatic'; 
         client.set(user, data.join(','));
     	bot.reply(message, config.module.translate.msg.on + grp_msg);
     }
     else if (/^off$/i.test(msg_arr['0']))    { 
-    	data[0] = 0; 
+    	data[0] = 'manual';
         client.set(user, data.join(','));
     	bot.reply(message, config.module.translate.msg.off + grp_msg);
     }
     else if (/^stat/i.test(msg_arr['0']))  { 
-    	if (data[0] === 1) bot.reply(message, config.module.translate.msg.on + grp_msg);
+    	if (data[0] === 'automatic') bot.reply(message, config.module.translate.msg.on + grp_msg);
     	else bot.reply(message, config.module.translate.msg.off + grp_msg);
     }
     else if (/^config/i.test(msg_arr['0'])) {
-    	if      (msg_arr.length === 1)    {
-    		bot.reply(message, config.module.translate.msg.conf + grp_msg + '\n- In _' + data[1] + '_\n- Out _' + data[2] + '_');
-    	}
-    	else if (msg_arr.length === 3)    { //todo: check if langin/1 & langout/2 exist in the lang dict of the translator
-    		data[1] = msg_arr['1'];
-    		data[2] = msg_arr['2'];
-    		msg_arr.splice(0,3);
-    		client.set(user, data.join(','));
-    		bot.reply(message, config.module.translate.msg.conf_ok + grp_msg);
-    	}
-    	else {  bot.reply(message, config.module.translate.msg.help); }
-    }
-            else if (/^translate/i.test(msg_arr['0']) || ((lang_list.indexOf(msg_arr['0']) > -1) && (lang_list.indexOf(msg_arr['1']) > -1))) {
-                    if (/^translate/i.test(msg_arr['0'])) {
-                        test.shift()
-                    }
-                    if (msg_arr.length > 2)    { //todo: check if langin/1 & langout/2 exist in the lang dict of the translator
-                            let lang_in = msg_arr['0'];
-                            let lang_out = msg_arr['1'];
-                            msg_arr.splice(0,2);
-
-                            run({
-                                    text: msg_arr.join(' '),
-                                    source: lang_in,
-                                    target: lang_out
-                            }, function(result) {
-                                    tools.debug('debug', 'module translate run manual ' + lang_in+') '+msg_arr.join(' ')+' to ('+lang_out+') '+ result);
-                                    bot.reply(message, '_('+lang_in+' to '+lang_out+grp_msg+')_ ' + result);
-                            });
-                    }
-                    else {  bot.reply(message, config.module.translate.msg.help); }
+    	if (msg_arr.length === 1){ 
+            let msg = '\n- State _' + data[0] + '_\n- In _' + data[1] + '_\n- Out _' + data[2] + '_';
+            bot.reply(message, config.module.translate.msg.conf + grp_msg + msg);
+        }
+    	else if (msg_arr.length === 3)    {
+            if ((lang_list.indexOf(msg_arr['1']) > -1) && (lang_list.indexOf(msg_arr['2']) > -1)){
+              data[1] = msg_arr['1'];
+              data[2] = msg_arr['2'];
+              client.set(user, data.join(','));
+              bot.reply(message, config.module.translate.msg.conf_ok + grp_msg);
             }
-    else if (data[0] === 1) { // Translate if state = 1
+            else { bot.reply(message, config.module.translate.msg.wrong_lang); }
+    	}
+    	else bot.reply(message, config.module.translate.msg.help);
+    }
+    // Manual translate
+    else if ((msg_arr.length > 2) && (data[0] === 'manual')){
+        if ((lang_list.indexOf(msg_arr['0']) > -1) && (lang_list.indexOf(msg_arr['1']) > -1)){
+            let lang_in = msg_arr['0'];
+            let lang_out = msg_arr['1'];
+            msg_arr.splice(0,2);
+            msg_arr[0] = data[0];
+            run({
+                text: msg_arr.join(' '),
+                source: lang_in,
+                target: lang_out
+            }, function(result) {
+                tools.debug('debug', 'module translate run manual ' + lang_in+') '+msg_arr.join(' ')+' to ('+lang_out+') '+ result);
+                bot.reply(message, '_('+lang_in+' to '+lang_out+grp_msg+')_ ' + result);
+            });
+        }
+        else {  bot.reply(message, config.module.translate.msg.wrong_lang); }
+    }
+    // Request to ranslate
+    else if (data[0] === 'automatic') {
     	run({
-    		text: message.text,
-    		source: data[1],
-    		target: data[2]
+            text: message.text,
+            source: data[1],
+            target: data[2]
     	}, function(result) {
-    		tools.debug('debug', 'module translate run auto '+data[1]+') '+message.text+' to ('+data[2]+') '+ result);
-    		bot.reply(message, '_('+data[1]+' to '+data[2]+grp_msg+')_ ' + result);
+            tools.debug('debug', 'module translate run automatic '+data[1]+') '+message.text+' to ('+data[2]+') '+ result);
+            bot.reply(message, '_('+data[1]+' to '+data[2]+grp_msg+')_ ' + result);
     	});
-
     }
   });
 };
+

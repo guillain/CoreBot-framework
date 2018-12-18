@@ -2,6 +2,7 @@
     "module": {
         "logstash": {
             "enable": false,
+            "prefixed": false,
             "type": "tcp",
             "port": "4055",
             "auth": "",

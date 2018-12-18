@@ -2,6 +2,7 @@
     "module": {
         "translate": {
             "enable": false,
+            "prefixed": true,
             "default": {
                 "lang_in": "fr",
                 "lang_out": "en"
@@ -12,6 +13,7 @@
                 "conf": "Auto translation configuration",
                 "conf_ok": "Configuration _SAVED_",
                 "conf_ko": "Issue to save the configuration",
+                "wrong_lang": "Thanks to choose the appropriate lang or conul the **help**",
                 "help": [
                     "Text translation online via chat bot",
                     "Can be used to translate manually the text or can be done automatically. Use **settings** for that.",
