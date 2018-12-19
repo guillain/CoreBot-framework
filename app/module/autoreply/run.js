@@ -8,8 +8,8 @@ let csv = require(__basedir + 'module/csv/run.js');
 exports.run = function(bot, message, config){
     tools.debug('debug', 'module autoreply run');
 
-    // ToDo: build global exception list
-    if (message.user === config.launcher.spark.mail) {
+    // Reject bot message
+    if (message.user === config.user) {
         tools.debug("info", 'module autoreply run stop_bot_reply');
         return;
     }

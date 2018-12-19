@@ -78,13 +78,13 @@
                 "enable": false
             },
             "thread": {
-                "enable": true
+                "enable": false
             },
             "whoami": {
                 "enable": false
             },
             "help": {
-                "enable": false
+                "enable": true
             }
         },
         "on": {

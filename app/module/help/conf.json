@@ -1,6 +1,5 @@
 {
-    "controller": {
-        "hears": {
+    "module": {
             "help": {
                 "enable": false,
                 "msg": {
@@ -13,6 +12,5 @@
                     ]
                 }
             }
-        }
     }
 }

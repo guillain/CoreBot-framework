@@ -8,6 +8,9 @@ var Botkit = require(__basedir + 'botkit/lib/Botkit.js');
 exports.run = function(config) {
   tools.debug('debug', 'launcher spark run');
 
+  // Set Spark bot user
+  config.user = config.launcher.spark.mail;
+
   // Bot initialisation
   let controller = Botkit.sparkbot({
     debug: config.log.debug,
