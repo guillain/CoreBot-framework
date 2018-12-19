@@ -1,5 +1,17 @@
 {
-  "enable": false,
-  "name": "botkit-translator",
-  "token": ""
+    "launcher": {
+        "slack": {
+            "enable": false,
+            "name": "corebot-framework",
+            "token": "",
+            "msg": {
+                "help": [
+                    "Slack launcher\n",
+                    "- enable: true or false, active or not the launcher",
+                    "- name: chatbot name",
+                    "- token: Slack API token"
+                ]
+            }
+        }
+    }
 }

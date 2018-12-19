@@ -1,11 +1,12 @@
-/**
- * @file Chatbot configuration
- * @author guillain <guillain.sanchez@dimensiondata.com>
- * @license LGPL-3.0
-*/
+{
+    "enable": 0,
+    "name": "corebot-framework",
+    "clientSecret": "",
+    "hostname": "",
+    "port": 3001
+}
 
-// Conf
-conf = {};
+{
 conf.enable = false;
 conf.name = 'corebot-framework';
 conf.token = '';
