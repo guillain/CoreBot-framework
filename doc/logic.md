@@ -2,10 +2,10 @@
 The idea here is to describe the framework logic and how globally it
 works.
 
-Basically, the following order is apply on a scenario:
-1/ Launcher
-2/ Controller
-3/ Component
+Basically, the following order is applied on a scenario:
+1/ Launcher: start the daemon for a specific Business Messaging
+2/ Controller: loaded during the start-up
+3/ Component: loaded when triggered (new msg)
 
 ## Launcher
 The starter comes with the *launcher* (app/launcher) and it's use to run

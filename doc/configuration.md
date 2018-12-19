@@ -1,8 +1,11 @@
 # Configuration
 
-Each Launcher, Module and Component have them dedicated json
+Each Launcher, Module, Controller and Component have them dedicated json
 configuration file. These file contain the exhaustive configuration
 capabilities of the  Launcher, Module or Component.
+
+Tips: each Launcher, Module, Controller and Component have them config
+file that include the **help**...
 
 To provide an easy method to configure the bot as we wish, one global
 configuration file cna be used to overload part or all configuration

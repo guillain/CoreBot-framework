@@ -10,5 +10,3 @@ exports.run = function(controller, config) {
     }
     return controller;
 };
-
-
