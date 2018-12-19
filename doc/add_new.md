@@ -12,7 +12,7 @@ configuration in the main configuration file [config.js](app/config.js).
 ## Understand the logic
 - [Logic](./doc/logic.md)
 
-## What can be feature?
+## What can be features?
 Feature can be:
 - [Launcher](./doc/launcher.md)
 - [Controller](./doc/controller.md)

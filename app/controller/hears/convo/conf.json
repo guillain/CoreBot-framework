@@ -7,7 +7,7 @@
                 "open_link": "https://botkit.ai/docs/",
                 "msg": {
                     "help ": [
-                        "Provide menu dialog feature"
+                        "Provide menu dialog feature\n"
                     ],
                     "ask": "You want to know more about Botkit?",
                     "say": {

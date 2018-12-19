@@ -5,7 +5,10 @@
                 "enable": true,
                 "msg": {
                     "help ": [
-                        "Provide global help support\n"
+                        "Provide global help support\n",
+                        "- **detail**: provide all details",
+                        "- _**module name**_: provide details for the considered module\n",
+                        "_Example_: `help`, `help detail`, `help help`"
                     ]
                 }
             }

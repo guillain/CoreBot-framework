@@ -82,6 +82,9 @@
             },
             "whoami": {
                 "enable": false
+            },
+            "help": {
+                "enable": false
             }
         },
         "on": {

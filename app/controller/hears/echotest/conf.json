@@ -5,7 +5,7 @@
                 "enable": false,
                 "msg": {
                     "help ": [
-                        "Repeat the incoming message"
+                        "Repeat the incoming message\n"
                     ]
                 }
             }
