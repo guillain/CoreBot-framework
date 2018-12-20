@@ -1,5 +1,5 @@
 # CoreBot as chatbot framework
-Chatbot framework based on **botkit**.
+Chatbot framework based on **[botkit](https://botkit.ai/)**.
 
 The idea is to provide a simple package compatible with the most of
 business messaging.
@@ -14,10 +14,9 @@ solution:
 - Cisco Webex Teams (Cisco Spark)
 - Microsoft Teams
 - Slack
-- Google Chat
-- Hangout
+- Google Hangout
 
-Standard library to be reused with plug-and-conf mode.
+Standard libraries to be reused with plug-and-conf mode.
 
 All configurations, feature activation included, in the single file
 [config.json](app/config.json) who overload each single feature
