@@ -4,7 +4,7 @@
             "thread": {
                 "enable": false,
                 "msg": {
-                    "help ": [
+                    "help": [
                         "Thread management for the scenario"
                     ],
                     "welcome": "Hello ! this is a new thread",

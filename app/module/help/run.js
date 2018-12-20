@@ -40,21 +40,26 @@ exports.run = function(bot, message, config){
                 to_say += ' - ' + config.module[index].msg.help[0] + '\n';
             }
             else if (detail >= 0) {
-                to_say += '# '+index+'\n';
-                to_say += 'State: _'+ config.module[index].enable + '_\n\n';
-                to_say += config.module[index].msg.help.join('\n\n') + '\n\n';
+                if (!((all < 0) && (config.module[index].enable === false))) {
+                    to_say += '# '+index+'\n';
+                    if (all >= 0) to_say += 'State: _'+ config.module[index].enable + '_\n\n';
+                    to_say += config.module[index].msg.help.join('\n\n') + '\n\n';
+                }
             }
         });
+        if (to_say) to_say = config.module.help.msg.modulefound + '\n' + to_say;
+        else        to_say = config.module.help.msg.modulenotfound;
+
     }
     // Help of a module is requested (it includes detail)
-    else if ((msg_arr.length > 1) && (all >= 0)) {
+    else if ((msg_arr.length > 1) && (all < 0)) {
         let res = _.each(config.module, function (conf, index) {
             if (msg_arr.indexOf(index) >= 0) found = index;
         });
         if (found !== '')
             to_say = config.module[found].msg.help.join('\n');
         else
-            to_say = config.module.help.msg.nomodule;
+            to_say = config.module.help.msg.modulenotfound;
     }
 
     if (to_say) bot.reply(message, to_say);

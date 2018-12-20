@@ -4,7 +4,7 @@
             "echotest": {
                 "enable": false,
                 "msg": {
-                    "help ": [
+                    "help": [
                         "Repeat the incoming message\n"
                     ]
                 }

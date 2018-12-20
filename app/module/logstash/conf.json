@@ -13,7 +13,9 @@
             "msg": {
                 "help": [
                     "Used to send message and event in Logstash service for Elasticsearch records\n",
-                    "Perform a bigdata push on Elastic stack via logstach client"
+                    "- _No argument_",
+                    "Perform a bigdata push on Elastic stack via logstach client. It uses to store log, events and message of chatbot activity.",
+                    "The data can be usedas syslog data source or for example to optimize Q&A, create reco mode (NLP)..."
                 ]
             }
         }

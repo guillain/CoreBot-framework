@@ -3,7 +3,8 @@
             "help": {
                 "enable": false,
                 "msg": {
-                    "nomodule": "No module found",
+                    "modulefound": "Module list",
+                    "modulenotfound": "No module found",
                     "help": [
                         "Provide global help support\n",
                         "- **all**: provide a list of all modules",

@@ -4,7 +4,7 @@
             "whoami": {
                 "enable": false,
                 "msg": {
-                    "help ": [
+                    "help": [
                         "Provide information on the request owner"
                     ]
                 }

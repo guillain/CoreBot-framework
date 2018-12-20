@@ -4,7 +4,7 @@
             "direct_mention": {
                 "enable": true,
                 "msg": {
-                    "help ": [
+                    "help": [
                         "Direct mention event"
                     ]
                 }

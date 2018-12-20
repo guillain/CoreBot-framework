@@ -10,7 +10,9 @@
                 "notfound": "No result found",
                 "help": [
                     "Search engine\n",
-                    "Compose your search request as you do on your web navigator"
+                    "- _No argument_\n",
+                    "_Example_: `search password reset`",
+                    "Compose your search request as you do on your web browser"
                 ]
             }
         }

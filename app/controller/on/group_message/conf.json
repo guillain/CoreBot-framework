@@ -4,7 +4,7 @@
             "group_message": {
                 "enable": true,
                 "msg": {
-                    "help ": [
+                    "help": [
                         "Group message event"
                     ]
                 }

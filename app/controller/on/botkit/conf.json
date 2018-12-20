@@ -5,7 +5,7 @@
                 "enable": false,
                 "token": "",
                 "msg": {
-                    "help ": [
+                    "help": [
                         "Provide botkit studio connection for advanced feature like NLP"
                     ]
                 }

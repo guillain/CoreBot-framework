@@ -4,7 +4,7 @@
             "bot_space_join": {
                 "enable": true,
                 "msg": {
-                    "help ": [
+                    "help": [
                         "Event when the bot joins a space"
                     ]
                 }

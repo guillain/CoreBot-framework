@@ -4,7 +4,7 @@
             "user_space_leave": {
                 "enable": true,
                 "msg": {
-                    "help ": [
+                    "help": [
                         "Event when user leaves a space"
                     ]
                 }

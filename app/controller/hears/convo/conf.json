@@ -4,7 +4,7 @@
             "convo": {
                 "enable": false,
                 "msg": {
-                    "help ": [
+                    "help": [
                         "Provide menu dialog feature\n"
                     ],
                     "ask": "You want to know more about Botkit?",

@@ -4,12 +4,16 @@
             "help": {
                 "enable": false,
                 "msg": {
-                    "nomodule": "No module found",
-                    "help ": [
+                    "modulefound": "Module list",
+                    "modulenotfound": "No module found",
+                    "help": [
                         "Provide global help support\n",
+                        "- **all**: provide a list of all modules",
                         "- **detail**: provide all details",
-                        "- _**module name**_: provide details for the considered module\n",
-                        "_Example_: `help`, `help detail`, `help help`"
+                        "- _**module name**_: provide help for the considered module\n",
+                        "_Example_: `help`, `help all`, `help help detail`",
+                        "This help command provides an access on all help pages.",
+                        "You can request all modules or only a specific one with or without detail."
                     ]
                 }
             }
