@@ -28,7 +28,7 @@ exports.run = function(bot, message, config){
     else if (msg_arr.length === 1){
         _.each(config.module, function (conf, index) {
             if (config.module[index].enable === true)
-                to_say += '- '+index+' - '+config.module[index].msg.help[0] + '\n';
+                to_say += '- '+index+' - '+config.module[index].msg.help[0];
         });
     }
     // If all help are requested
@@ -37,13 +37,13 @@ exports.run = function(bot, message, config){
             if (detail < 0) {
                 to_say += '- '  + index;
                 if (all >= 0) to_say += ' - state:_' + config.module[index].enable + '_';
-                to_say += ' - ' + config.module[index].msg.help[0] + '\n';
+                to_say += ' - ' + config.module[index].msg.help[0];
             }
             else if (detail >= 0) {
                 if (!((all < 0) && (config.module[index].enable === false))) {
                     to_say += '# '+index+'\n';
-                    if (all >= 0) to_say += 'State: _'+ config.module[index].enable + '_\n\n';
-                    to_say += config.module[index].msg.help.join('\n\n') + '\n\n';
+                    if (all >= 0) to_say += 'State: _'+ config.module[index].enable + '_\n';
+                    to_say += config.module[index].msg.help.join('\n') + '\n';
                 }
             }
         });
