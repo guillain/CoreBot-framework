@@ -3,8 +3,7 @@
 
     var Botkit = {
       config: {
-        //ws_url: (location.protocol === 'https:' ? 'wss' : 'ws') + '://' + location.host,
-        ws_url: 'https://corebot-framework.eu-ddlab.com',
+        ws_url: (location.protocol === 'https:' ? 'wss' : 'ws') + '://' + location.host,
         reconnect_timeout: 3000,
         max_reconnect: 5
       },

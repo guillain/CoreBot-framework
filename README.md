@@ -15,6 +15,7 @@ solution:
 - Microsoft Teams
 - Slack
 - Google Hangout
+- Web
 
 Standard libraries to be reused with plug-and-conf mode.
 
