@@ -23,6 +23,11 @@
         "join": "Thanks to join us"
     },
     "launcher": {
+        "web": {
+            "enable": false,
+            "name": "corebot-framework",
+            "port": 4000
+        },
         "slack": {
             "enable": false,
             "name": "CoreBot-framework",
