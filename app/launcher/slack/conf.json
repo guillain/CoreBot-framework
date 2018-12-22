@@ -4,6 +4,7 @@
             "enable": false,
             "name": "corebot-framework",
             "token": "",
+            "store": "data/slack",
             "msg": {
                 "help": [
                     "Slack launcher\n",

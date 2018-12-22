@@ -5,7 +5,7 @@
             "name": "corebot-framework",
             "jid": "",
             "password": "",
-            "store": "data/jabber/",
+            "store": "data/jabber",
             "ip": "",
             "port": 5222,
             "msg": {

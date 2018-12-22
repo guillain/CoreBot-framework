@@ -2,7 +2,7 @@
 let tools = require(__basedir + 'lib/tools');
 
 // Configuration
-var Botkit = require(__basedir + 'botkit/lib/Botkit.js');
+let Botkit = require('botkit');
 
 // Run the launcher
 exports.run = function(config) {
@@ -15,6 +15,7 @@ exports.run = function(config) {
   let controller = Botkit.sparkbot({
     debug: config.log.debug,
     log: config.log.file,
+    json_file_store: __basedir + config.launcher.spark.store,
     public_address: config.launcher.spark.url,
     ciscospark_access_token: config.launcher.spark.access_token,
     studio_token: config.controller.on.botkit.token,

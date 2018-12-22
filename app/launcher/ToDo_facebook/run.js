@@ -1,5 +1,5 @@
 // Configuration
-var Botkit = require(__basedir + 'botkit/lib/Botkit.js');
+let Botkit = require('botkit');
 
 exports.run = function(config) {
   let controller = Botkit.facebook({

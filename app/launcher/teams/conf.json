@@ -7,6 +7,7 @@
             "clientSecret": "",
             "hostname": "",
             "port": 3001,
+            "store": "data/teams",
             "msg": {
                 "help": [
                     "Microsoft Teams launcher\n",

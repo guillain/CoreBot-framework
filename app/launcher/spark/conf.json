@@ -10,6 +10,7 @@
             "access_token": "",
             "secret": "",
             "webhook_name": "",
+            "store": "data/spark",
             "msg": {
                 "help": [
                     "Cisco Webex Teams (Spark) launcher\n",
