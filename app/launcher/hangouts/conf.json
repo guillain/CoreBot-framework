@@ -3,10 +3,11 @@
         "hangouts": {
             "enable": false,
             "name": "corebot-framework",
+            "json_cred": "",
             "endpoint": "",
             "token": "",
-            "hostname": "",
             "port": 3002,
+            "store": "data/hangouts",
             "msg": {
                 "help": [
                     "Google Hangout launcher\n",
