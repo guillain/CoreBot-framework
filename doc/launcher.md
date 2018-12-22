@@ -25,6 +25,15 @@ following files:
 
 They are located in the './module' folder.
 
+## Editors' url to get doc & token
+
+- Google hangout chatbot
+  - https://developers.google.com/hangouts/chat/how-tos/bots-publish
+  - https://console.developers.google.com/apis/library/chat.googleapis.com
+- Cisco Webex Teams
+  - https://developer.webex.com/my-apps
+
+
 ## Example
 ### run.jss
 ```

@@ -11,7 +11,7 @@ To provide an easy method to configure the bot as we wish, one global
 configuration file cna be used to overload part or all configuration
 preset of the Launcher, Module or Component.
 
-So just you need to adapt the config file `config.json` and edit it
+So just you need to adapt the config file `conf/config.json` and edit it
 according to your env.
 
 ## Configuration file summary

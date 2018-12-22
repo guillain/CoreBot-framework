@@ -4,8 +4,11 @@ Install and configure Redis-server as your needs and start prior to run the Core
 Get the project
 - ` git clone https://github.com/guillain/CoreBot-framework.git`
 
-Move into
-- `cd CoreBot-framework`
+Move into the application folder
+- `cd CoreBot-framework/app`
+
+Install packagaes
+- `npm install`
 
 ### Standalone server
 - Redis server installation: https://redis.io/topics/quickstart
@@ -13,27 +16,13 @@ Move into
 
 #### Node
 Run it manually (debug/dev):
-- `DEBUG=* node app/CoreBot-framework.js`
-
-Or one by one:
-- `DEBUG=* node app/launcher/jabber.py`
-- `DEBUG=* node app/launcher/spark.py`
-- `DEBUG=* node app/launcher/slack.py`
-- `DEBUG=* node app/launcher/hangout.py`
-- `DEBUG=* node app/launcher/teams.py`
+- `DEBUG=* node CoreBot-framework.js`
 
 `Control+C` to exit
 
 #### PM2
 Run as daemon (recommanded)
-- `pm2 start app/CoreBot-framework.js`
-
-Or one by one:
-- `pm2 start app/launcher/jabber.py`
-- `pm2 start app/launcher/spark.py`
-- `pm2 start app/launcher/slack.py`
-- `pm2 start app/launcher/hangout.py`
-- `pm2 start app/launcher/teams.py`
+- `pm2 start CoreBot-framework.js`
 
 Status
 - `pm2 status`
@@ -41,10 +30,8 @@ Status
 Stop
 - `pm2 stop CoreBot-framework`
 
-- `pm2 stop jabber spark slack`
-
 Delete
-- `pm2 delete jabber spark slack`
+- `pm2 delete CoreBot-framework`
 
 Mass operation
 - `pm2 start all`
