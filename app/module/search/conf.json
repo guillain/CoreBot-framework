@@ -4,10 +4,13 @@
             "enable": false,
             "prefixed": true,
             "limit": 10,
+            "sub_limit": 2,
+            "key_length": 2,
             "storage": "",
             "msg": {
                 "found": "Search result",
                 "notfound": "No result found",
+                "too_short": "Your text to search is too short",
                 "help": [
                     "Search engine\n",
                     "- _No argument_\n",

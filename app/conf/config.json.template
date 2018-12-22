@@ -146,6 +146,16 @@
                 "lang_in": "fr",
                 "lang_out": "en"
             }
+        },
+        "search": {
+            "enable": true,
+            "prefixed": true,
+            "limit": 10,
+            "key_length": 3,
+            "storage": "km"
+        },
+        "help": {
+            "enable": true
         }
     }
 }
