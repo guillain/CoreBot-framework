@@ -1,6 +1,5 @@
 // Load tools library
 let tools = require(__basedir + 'lib/tools');
-//let server = require(__basedir + 'launcher/web/server.js');
 
 // Configuration
 let Botkit = require('botkit');
@@ -13,7 +12,7 @@ exports.run = function(config) {
   config.user = config.launcher.web.name;
 
   // Bot initialisation
-  let controller = Botkit.anywhere({
+  let controller = Botkit.socketbot({
     debug: config.log.debug,
     log: config.log.file,
     json_file_store: __basedir + config.launcher.web.store,
@@ -22,17 +21,18 @@ exports.run = function(config) {
     typingDelayFactor: config.launcher.web.typingDelayFactor || 1.2
   });
 
-  let bot = controller.spawn({});
+  // Set up an Express-powered webserver to expose oauth and webhook endpoints
+  controller = require(__dirname + '/express_webserver.js')(controller, config);
 
-  // Setup web server
-  controller.setupWebserver(config.launcher.web.port || 3000, function(err, webserver) {
-    //controller.createWebhookEndpoints(webserver, bot, function() {
-      tools.debug('info', 'launcher web run ok');
-    //});
-  });
+  // Open the web socket server
+  controller.openSocketServer(controller.httpserver);
 
   // Scenario declarations
   let scenario = require(__basedir + 'controller/loader.js');
   controller = scenario.run(controller, config);
+
+  // Start the bot brain in motion!!
+  controller.startTicking();
+
   return controller;
 };
