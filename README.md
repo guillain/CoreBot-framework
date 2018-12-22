@@ -19,7 +19,7 @@ solution:
 Standard libraries to be reused with plug-and-conf mode.
 
 All configurations, feature activation included, in the single file
-[config.json](app/config.json) who overload each single feature
+[config.json](app/conf/config.json) who overload each single feature
 configuration.
 
 The configuration is taken dynamically so no need to restart anything,
@@ -30,7 +30,7 @@ when your sketches are updated, your bots also ;-)
 `git clone https://github.com/guillain/CoreBot-framework.git`
 
 2/ Adapt the config file to your env and scenario:
-`vi CoreBot-framework/app/config.json`
+`vi CoreBot-framework/app/conf/config.json`
 
 3/ Run it:
  `
@@ -38,7 +38,7 @@ when your sketches are updated, your bots also ;-)
   `cd CoreBot-framework && ./image build && ./image run`
 
   - If you run locally:
-  `cd CoreBot-framework && npm install & pm2 start app/CoreBot-framework.js`
+  `cd CoreBot-framework/app && npm install & pm2 start CoreBot-framework.js`
 
 ## Configuration
 Thanks to read this [configuration](./doc/configuration.md) doc.
@@ -62,21 +62,22 @@ via the botkit feature
 
 To jump in the framework's logic, follow this [doc](doc/logic.md).
 
-To develop new, follow this [doc](./doc/add_new.md)
-
-Don't hesitate to share yours ;-)
-
 ## How to add new feature?
-Thanks to read the [HowTo add new](./doc/add_new.md) doc.
+Thanks to read the [HowTo add new](./doc/add_new.md) doc to have get
+the complete details of the standard and template to use.
 
 If need you can complete your framework knowledge with the following
 ones:
+
+0/ [Framework Logic](doc/logic.md)
 
 1/ [Controller](./doc/controller.md)
 
 2/ [Module](./doc/module.md)
 
 3/ [Component](./doc/component.md)
+
+Don't hesitate to share yours creation ;-)
 
 ## Tips
 Redis local record issue

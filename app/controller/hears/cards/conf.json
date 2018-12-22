@@ -7,9 +7,9 @@
                 "open_link": "https://botkit.ai/docs/",
                 "msg": {
                     "help": [
-                        "provide contact card representation"
+                        "Provide card representation\n"
                     ],
-                    "test": "Get Started"
+                    "text": "Get cards"
                 }
             }
         }

@@ -1,5 +1,5 @@
 // Configuration
-let config = require(__basedir + 'config.json');
+let config = require(__basedir + 'conf/config.json');
 
 // Load required lib
 let _ = require("underscore");

@@ -13,4 +13,7 @@ package-lock.json
 .env
 coverage
 db/
+data/*
+conf/*.json
+
 __test__
