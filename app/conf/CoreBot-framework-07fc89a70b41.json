@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "corebot-framework-226217",
+  "private_key_id": "07fc89a70b411d2b0b0b36b2b1aa211e06fe7781",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCZ3qbZ8DHTyKvv\n9XzHhi400Fmlm6sgZAsu6UItQ3Moo0oa3SLPR3Uy2jIAIfeA4WpJFP0HPapSSzxA\np3kpuAvKXt/EOcURm92birot0CgD/b9AJtrOFOXxnI5CLVxtw7jfWYcoaw0mFiD+\ndIt6EtCPkIrIX5Oyfta3d/NpMpRiZxNovo4M0ax+kCAuPAbyWXFpC+1UcYvRbJm9\n9IsV5kHl/ggrW0rY9DhiJsWdVWr9B08SOl5HVe8xKNUcjX6zk2xCrLWGVLHAMgKO\nTjvkx3Ujr8c0I+Btesu5Dsg/yKdGfSpJSFeHIkP6I8GddQ3S54MzY0rTc+ErD7k0\njnhyH72XAgMBAAECggEAEmlkCbwGGlNuz33OeomByewMbhaceXm/JNPgiU4C35/6\nZBCF88uXKIiXZxCpbxCKCUirpkwor0Q1Z38irm1Ja+PCXtaS0DKYZ95HvOelgiTA\n18pOcE5r3WdgVmbbIn9DBebOl3WH00DendQQRIEv153yHVvibn9i7f06cSIOQ1/m\ngYDrTeVoaF5ePcZfXZWtTUBsaCXDQ2mTmlVKFrCNH4ILK08lrI8G5HnF+t71wc8r\nn+lluzYiqyI3Yg4ES5ocrZF2T44OzkT9KUbkGDjXZ4JKsGnLVEUJ7+lS2asYRfcR\nfnphaicaWznBm1y8AlhkfSeQPiOUuUAkH9hDfoflQQKBgQDVVTMfvHiqNeh6P1ln\nP0HYzFex7Qmxm8wVPqN4SV8q0zVFr81rdXqd3/+rYD2r4E4T5h3tvw9cW3aNgwJ7\nogq5ouKM30slbsrB0Ta3d6szlOwfCKUGAaBn/oEB/JhkeBti89ynNxlLTKTf7qta\np6FEU7/DO2VaCUe1dFLlN575cQKBgQC4pOXUmIjbLsZhLb0s/MUbSpQvohhqEbC9\n0w3Pv1F+XAA7z8RsKYpV58llsTZIEHvxXCF6gHH+t4D4IjalhWjTzToA7FzYgAbW\nw+FY+O4LGEYZSyUnZT8wk3g0Pim74i+nbAPREg72HuZWlGZZjoBTdF3R9+hOLCJU\nlGkrMkvjhwKBgCWAqdEdb9T0Tx8WfeABpdC3836q3fZkHhdqAJDHzTwZDxdmFWWb\nrGeOlkKJU64ga3liDcbavJeO2KN98XTMgrgpo0wCgRJejLRP1B+ioO0bc/rsqR4K\nMSm2+vTfc+bNmnrlxdd7fy3WlnFrYqI4L8h0NJTcny+ZzAphHaWABqlxAoGAAvJu\n0KPWm1j1xZtLR6qJItRf5Rq7NQYvQfhaYhR1ooSpZEr+oZNQJ+rZJgxcB25r7ABC\ncIgYSa54Gn3BTYcBk0/VOyqKmNICSe86a4cdlYO/qquuXiCZj5bq9jp/xAXqKMvq\ni620G22G057uu0Mw/SQAU1eXl5fQvHTZ8NyOpYUCgYEAuFOBd2cbuw+l7UMisqVO\nSBUGaidOds8UbsDXZtvHCEbRtWwNUEW8T+aZvoNI2I/830kOVNkxkSehSeIySrXc\nZ0ueZls4RHDv/ZZh/XXhKQIwywAYrLbmpE1ra716h418e+m/qEbh2et9VAusmO7h\nJJ3gUGVhcESolEEWng/IpQE=\n-----END PRIVATE KEY-----\n",
+  "client_email": "corebot-framework@corebot-framework-226217.iam.gserviceaccount.com",
+  "client_id": "105552953035274758837",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/corebot-framework%40corebot-framework-226217.iam.gserviceaccount.com"
+}
+
