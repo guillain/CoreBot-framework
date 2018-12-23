@@ -1,7 +1,7 @@
 {
     "controller": {
         "hears": {
-            "echotest": {
+            "echo": {
                 "enable": false,
                 "msg": {
                     "help": [

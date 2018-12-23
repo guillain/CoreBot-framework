@@ -21,17 +21,17 @@ exports.run = function(controller, config) {
     // Run each controller
     _.each(config.controller.hears, function (conf, index) {
         if (conf_merged.controller.hears[index].enable === true) {
-            tools.debug("info","controller loader hears " + index);
-            let mod_run = require(__basedir + 'controller/hears/' + index + '/stanza.js');
+            tools.debug("info","controller hears loaded " + index);
+            let mod_run = require(__basedir + 'controller/hears/' + index + '/run.js');
             controller = mod_run.run(controller, conf_merged);
-        } else tools.debug("debug","not controller loader hears " + index);
+        } else tools.debug("debug","controller hears not loaded " + index);
     });
     _.each(config.controller.on, function (conf, index) {
         if (conf_merged.controller.on[index].enable === true) {
-            tools.debug("debug","controller loader on " + index);
-            let mod_run = require(__basedir + 'controller/on/' + index + '/stanza.js');
+            tools.debug("debug","controller on loaded " + index);
+            let mod_run = require(__basedir + 'controller/on/' + index + '/run.js');
             controller = mod_run.run(controller, conf_merged);
-        } else tools.debug("debug","not controller loader on " + index);
+        } else tools.debug("debug","controller on not loaded " + index);
     });
 
     return controller;

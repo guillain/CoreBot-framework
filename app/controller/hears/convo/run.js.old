@@ -3,7 +3,7 @@ let tools = require(__basedir + 'lib/tools');
 
 // Exports controller function as scenario
 exports.run = function(controller, config) {
-    tools.debug('debug', 'controller hears convo');
+    tools.debug('debug', __dirname + '/' + __filename);
 
     if (config.controller.hears.convo.enable === true) {
         //controller.hears('convo', 'message_received', function (bot, message) {

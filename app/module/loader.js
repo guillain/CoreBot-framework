@@ -14,10 +14,10 @@ exports.run = function(controller, message_type, message_content, bot, config) {
         conf_merged = tools.load_config(__basedir + 'module/' + index + '/conf.json', conf_merged);
 
         if (conf_merged.module[index].enable === true) {
-            tools.debug("info", "module loader " + index);
-            let mod_run = require(__basedir + 'module/' + index + '/stanza.js');
+            tools.debug("info", "module loaded " + index);
+            let mod_run = require(__basedir + 'module/' + index + '/run.js');
             mod_run.run(bot, message_content, conf_merged);
-        } else tools.debug("debug", "not module loader " + index);
+        } else tools.debug("debug", "module not loaded " + index);
     });
     return controller;
 };

@@ -3,13 +3,13 @@
     "author": "guillain",
     "license": "LGPL-3.0",
     "description": [
-        "use this template to create your own chatbot scenario",
+        "Use this template to create your own chatbot scenario",
         "nothing more is need if you don't need specific feature",
         "and for new feature, read the appropriate doc"
     ],
     "log": {
         "debug": true,
-        "verbosity": "info",
+        "verbosity": "debug",
         "file": "log/CoreBot.log"
     },
     "stats_optout": true,
@@ -24,13 +24,13 @@
     },
     "launcher": {
         "web": {
-            "enable": false,
+            "enable": true,
             "name": "corebot-framework",
             "port": 4000
         },
         "slack": {
-            "enable": false,
-            "name": "CoreBot-framework",
+            "enable": true,
+            "name": "corebot-framework",
             "token": ""
         },
         "jabber": {
@@ -67,27 +67,34 @@
             "name": "CoreBot-framework",
             "endpoint": "",
             "token": "",
+            "hostname": "corebot-framework-google.eu-ddlabcom",
             "port": "4003"
         }
     },
     "controller": {
         "hears": {
+            "button": {
+                "enable": true
+            },
             "cards": {
-                "enable": false
+                "enable": true
             },
             "convo": {
-                "enable": false
+                "enable": true
             },
-            "echotest": {
-                "enable": false
-            },
-            "thread": {
-                "enable": false
-            },
-            "whoami": {
-                "enable": false
+            "echo": {
+                "enable": true
             },
             "help": {
+                "enable": false
+            },
+            "menu": {
+                "enable": true
+            },
+            "thread": {
+                "enable": true
+            },
+            "who-am-i": {
                 "enable": true
             }
         },
@@ -122,41 +129,43 @@
     "module": {
         "auto-reply": {
             "enable": false,
+            "prefixed": true,
             "delay": 1,
-            "file": "data/autoreply.csv"
+            "file": "data/auto-reply.csv"
         },
         "csv": {
-            "enable": false,
-            "file": "data/csv.conf",
-            "storage": "csv"
+            "enable": true,
+            "prefixed": true,
+            "file": "data/km.csv",
+            "search_limit": 10,
+            "storage": "km"
+        },
+        "help": {
+            "enable": true
         },
         "logstash": {
             "enable": false,
             "type": "tcp",
-            "port": "4055",
+            "port": "",
             "auth": "",
             "host": "",
-            "level": "info",
+            "level": "",
             "framework": "corebot",
             "log_type": "bot"
-        },
-        "translate": {
-            "enable": false,
-            "default": {
-                "lang_in": "fr",
-                "lang_out": "en"
-            }
         },
         "search": {
             "enable": true,
             "prefixed": true,
             "limit": 10,
-            "key_length": 3,
             "storage": "km"
         },
-        "help": {
-            "enable": true
+        "translate": {
+            "enable": true,
+            "prefixed": true,
+            "default": {
+                "lang_in": "fr",
+                "lang_out": "en"
+            }
         }
     }
 }
-        

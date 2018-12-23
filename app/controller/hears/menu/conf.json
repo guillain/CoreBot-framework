@@ -1,0 +1,27 @@
+{
+    "module": {
+        "menu": {
+            "enable": false,
+            "prefixed": true,
+            "storage": "",
+            "delay": 3,
+            "msg": {
+                "question": "Do you like cheese?",
+                "reply": {
+                    "yes": "You said yes! How wonderfuls",
+                    "no": "You said no, that is too bad",
+                    "bad": "Sorry I did not understand"
+                },
+                "end": "End of menu",
+                "timeout": "Oh no! The time limit has expired",
+                "help": [
+                    "Menu provides an conversation workflow\n",
+                    "- _No argument_\n",
+                    "_Example_: `menu`",
+                    "Dialog with the bot and navigate  in the menu"
+                ]
+            }
+        }
+    }
+}
+
