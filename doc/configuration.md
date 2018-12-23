@@ -1,15 +1,15 @@
 # Configuration
 
-Each Launcher, Module, Controller and Component have them dedicated json
-configuration file. These file contain the exhaustive configuration
-capabilities of the  Launcher, Module or Component.
+Each Launcher, Module and Controller have them dedicated json
+configuration file. These files contain the exhaustive configuration
+capabilities of the  Launcher, Module or Controller.
 
-Tips: each Launcher, Module, Controller and Component have them config
+Tips: each Launcher, Module and Controller have them config
 file that include the **help**...
 
 To provide an easy method to configure the bot as we wish, one global
 configuration file cna be used to overload part or all configuration
-preset of the Launcher, Module or Component.
+preset of the Launcher , Module or Controller.
 
 So just you need to adapt the config file `conf/config.json` and edit it
 according to your env.
@@ -24,7 +24,7 @@ according to your env.
 - Module: Extra features
   - Translate (google)
   - bigdata
-  - autoreply
+  - auto-reply
   ...
 - Controller: How can I manage my event
   - on
@@ -36,10 +36,6 @@ according to your env.
     - convo
     - thread
     ...
-- Component: Add cosmetic form
-  - button
-  - menu
-  - stanza
 
 Now just up to you to write your sketch by configuring the json file
 and if need add your own feature.

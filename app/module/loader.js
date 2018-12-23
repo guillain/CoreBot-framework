@@ -15,7 +15,7 @@ exports.run = function(controller, message_type, message_content, bot, config) {
 
         if (conf_merged.module[index].enable === true) {
             tools.debug("info", "module loader " + index);
-            let mod_run = require(__basedir + 'module/' + index + '/run.js');
+            let mod_run = require(__basedir + 'module/' + index + '/stanza.js');
             mod_run.run(bot, message_content, conf_merged);
         } else tools.debug("debug", "not module loader " + index);
     });

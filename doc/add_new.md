@@ -1,7 +1,7 @@
 # Add new
 To add a new feature it needs to create the appropriate folder
 (the folder name is the feature name) with the following files:
-- run.js: that's the NodeJS code to perform your wishes
+- stanza.js: that's the NodeJS code to perform your wishes
 - conf.json: that's the configuration file of your feature
 
 To be accessible from the main configuration file, it can be also

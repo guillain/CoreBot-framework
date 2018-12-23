@@ -57,11 +57,11 @@ via the botkit feature
 - Google translation
 - BigData connector (to send info/tracking/APM data or search)
 - CSV file management
-- autoreply (like echo)
+- auto-reply (like echo)
 - button
 - ...
 
-To jump in the framework's logic, follow this [doc](doc/logic.md).
+To jump in the framework's logic, follow this [doc](./doc/logic.md).
 
 ## How to add new feature?
 Thanks to read the [HowTo add new](./doc/add_new.md) doc to have get
@@ -70,13 +70,12 @@ the complete details of the standard and template to use.
 If need you can complete your framework knowledge with the following
 ones:
 
-0/ [Framework Logic](doc/logic.md)
+0/ [Framework Logic](./doc/logic.md)
 
 1/ [Controller](./doc/controller.md)
 
 2/ [Module](./doc/module.md)
 
-3/ [Component](./doc/component.md)
 
 Don't hesitate to share yours creation ;-)
 

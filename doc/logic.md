@@ -5,7 +5,6 @@ works.
 Basically, the following order is applied on a scenario:
 1/ Launcher: start the daemon for a specific Business Messaging
 2/ Controller: loaded during the start-up
-3/ Component: loaded when triggered (new msg)
 
 ## Launcher
 The starter comes with the *launcher* (app/launcher) and it's use to run
@@ -21,8 +20,3 @@ It will perform an analysis of the message context and bring it up to
 the corresponding *hears* or *on* actioner.
 
 [Module](./doc/module.md) doc may be also useful ;-)
-
-## Component
-It's usable form that can be used during the dialog.
-
-[Component](./doc/component.md) doc may be also useful ;-)

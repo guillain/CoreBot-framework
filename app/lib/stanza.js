@@ -1,9 +1,3 @@
-/**
- * @file Stanza - Format data in Stanza (xml) format
- * @author guillain <guillain.sanchez@dimensiondata.com>
- * @license LGPL-3.0
- */
-
 const xml = require('@xmpp/xml');
 
 exports.format = function(message, body) {

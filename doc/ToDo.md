@@ -24,8 +24,3 @@ manage message)
 # Module
 - service now: ITSM integration (scenario * to define)
 - contact: directory integration
-
-# Component
-- button: to finalize
-- menu: to finalize
-- stanza: to finalize

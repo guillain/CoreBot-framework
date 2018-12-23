@@ -25,7 +25,7 @@ or the backend.
 ## Composition
 They are define in dedicated folder and they need the following files:
 - Module name
-  - *run.js*: Scripts with the code
+  - *stanza.js*: Scripts with the code
   - *conf.js*: Default configuration file
 
 They are located in the './module' folder.

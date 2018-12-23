@@ -4,7 +4,7 @@
  * @license LGPL-3.0
  */
 // Load config
-var config = require('../../config');
+var config = require('../../conf/config');
 var request = require("request");
 
 // Help fct

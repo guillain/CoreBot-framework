@@ -1,6 +1,6 @@
 {
     "module": {
-        "autoreply": {
+        "auto-reply": {
             "enable": false,
             "prefixed": true,
             "delay": 1,

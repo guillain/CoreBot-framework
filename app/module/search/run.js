@@ -83,7 +83,7 @@ exports.run = function(bot, message, config){
                                     keys_words += ' '+msg_arr_key[i_key];
                                 }
                             }
-                            if (counter >= config.module.search.sub_limit){
+                            if (counter >= msg_arr_key_len){
                                 tools.debug('debug', 'module search run i_total ' + i_total + ' ' + msg_arr_key);
 
                                 if (i_total < config.module.search.limit) {

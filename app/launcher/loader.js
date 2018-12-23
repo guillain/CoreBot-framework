@@ -14,7 +14,7 @@ exports.run = function(config) {
         if (conf_merged.launcher[index].enable === true) {
             tools.debug("info", "launcher loader " + index);
 
-            let mod_run = require(__basedir + 'launcher/' + index + '/run.js');
+            let mod_run = require(__basedir + 'launcher/' + index + '/stanza.js');
             mod_run.run(conf_merged);
 
         } else tools.debug("debug", "not launcher loader " + index);
