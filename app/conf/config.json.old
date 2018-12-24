@@ -1,11 +1,11 @@
 {
-    "file": "CoreBot configuration",
+    "file": "CoreBot configuation",
     "author": "guillain",
     "license": "LGPL-3.0",
     "description": [
         "Use this template to create your own chatbot scenario",
-        "nothing more is need if you don't need specific feature",
-        "and for new feature, read the appropriate doc"
+        "nothing more is need if you dont need specific feature",
+        "For new feature, read the doc"
     ],
     "log": {
         "debug": true,
@@ -14,8 +14,8 @@
     },
     "stats_optout": true,
     "db": {
-        "host": "",
-        "user": ""
+        "host": "172.31.33.243",
+        "user": "user"
     },
     "msg": {
         "welcome": "Welcome in the CoreBot-framework tools",
@@ -31,8 +31,7 @@
         "slack": {
             "enable": true,
             "name": "corebot-framework",
-            "token": "",
-            "secret": ""
+            "token": "xoxb-269103432436-508522005488-1Umup0oOavSnPCuj0jme6Geq"
         },
         "jabber": {
             "enable": false,
@@ -47,11 +46,11 @@
             "enable": true,
             "name": "CoreBot-framework",
             "mail": "CoreBot-framework@webex.bot",
-            "botid": "",
-            "url": "",
+            "botid": "Y2lzY29zcGFyazovL3VzL0FQUExJQ0FUSU9OL2Y5MDQ1OTJjLTFjZGItNDU5OS05MzA5LThhZWZhYzI3ZjU2OQ",
+            "url": "https://corebot-framework-spark.eu-ddlab.com",
             "port": "4001",
-            "access_token": "",
-            "secret": "",
+            "access_token": "OGI1YWFhY2EtMzAzMS00NWY5LWFmOTktYWZiZWM5NGJjNmVkZjhkMWZjZTEtYjVh_PF84_0198f08a-3880-4871-b55e-4863ccf723d5",
+            "secret": "3986489249882648140328301832813876395",
             "webhook_name": "corebot-framework",
             "store": "./data/spark/"
         },
@@ -60,36 +59,27 @@
             "name": "CoreBot-framework",
             "clientId": "",
             "clientSecret": "",
-            "hostname": "",
+            "hostname": "corebot-framework-teams.eu-ddlab.com",
             "port": "4002"
         },
         "hangouts": {
-            "enable": false,
+            "enable": true,
             "name": "CoreBot-framework",
-            "endpoint": "",
-            "token": "",
-            "hostname": "corebot-framework-google.eu-ddlabcom",
+            "json_cred": "conf/CoreBot-framework-07fc89a70b41.json",
+            "endpoint": "https://corebot-framework-google.eu-ddlab.com",
+            "token": "8F7mkoCRaBMUrgFhQhgMwSK35xB_jmOqcJWGX2uVakk=",
             "port": "4003"
         }
     },
     "controller": {
         "hears": {
-            "button": {
-                "enable": true
-            },
             "cards": {
                 "enable": true
             },
             "convo": {
                 "enable": true
             },
-            "echo": {
-                "enable": true
-            },
-            "help": {
-                "enable": false
-            },
-            "menu": {
+            "echotest": {
                 "enable": true
             },
             "thread": {
@@ -97,6 +87,9 @@
             },
             "whoami": {
                 "enable": true
+            },
+            "help": {
+                "enable": false
             }
         },
         "on": {
@@ -141,24 +134,15 @@
             "search_limit": 10,
             "storage": "km"
         },
-        "help": {
-            "enable": true
-        },
         "logstash": {
             "enable": false,
             "type": "tcp",
-            "port": "",
-            "auth": "",
-            "host": "",
-            "level": "",
+            "port": "4055",
+            "auth": "admin:admin",
+            "host": "172.31.39.72",
+            "level": "info",
             "framework": "corebot",
             "log_type": "bot"
-        },
-        "search": {
-            "enable": true,
-            "prefixed": true,
-            "limit": 10,
-            "storage": "km"
         },
         "translate": {
             "enable": true,
@@ -167,6 +151,17 @@
                 "lang_in": "fr",
                 "lang_out": "en"
             }
+        },
+        "search": {
+            "enable": true,
+            "prefixed": true,
+            "limit": 10,
+            "key_length": 3,
+            "storage": "km"
+        },
+        "help": {
+            "enable": true
         }
     }
 }
+        

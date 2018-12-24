@@ -13,7 +13,7 @@ let client = redis.createClient({detect_buffers: true});
 let fs = require('fs');
 
 // Search master fct
-exports.run = function(bot, message, config){
+module.exports = function(bot, message, config){
     tools.debug('debug', 'module search run');
 
     // Remove first pattern if: present + prefixed=true

@@ -5,7 +5,7 @@ let tools = require(__basedir + 'lib/tools');
 let _ = require("underscore");
 
 // Exports controller function as scenario
-exports.run = function(controller, config) {
+module.exports = function(controller, config) {
     if (config.controller.hears.help.enable === true) {
         controller.hears(['help', 'help *'] ['message_received', 'direct_message', 'direct_mention', 'group_message'], function (bot, message) {
 

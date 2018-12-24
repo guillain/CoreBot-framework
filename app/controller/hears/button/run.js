@@ -3,7 +3,7 @@ let tools = require(__basedir + 'lib/tools');
 let xml = require('@xmpp/xml');
 
 // Exports controller function as scenario
-exports.run = function(controller, config) {
+module.exports = function(controller, config) {
     tools.debug('debug', __dirname + '/' + __filename);
 
     if (config.controller.hears.button.enable === true) {
@@ -83,4 +83,6 @@ exports.run = function(controller, config) {
             });
         });
     }
+    return controller;
 };
+

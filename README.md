@@ -57,7 +57,7 @@ via the botkit feature
 - Google translation
 - BigData connector (to send info/tracking/APM data or search)
 - CSV file management
-- auto-reply (like echo)
+- autoreply (like echo)
 - button
 - ...
 

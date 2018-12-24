@@ -5,7 +5,7 @@ let tools = require(__basedir + 'lib/tools');
 let _ = require("underscore");
 
 // AutoReply loader
-exports.run = function(bot, message, config){
+module.exports = function(bot, message, config){
     tools.debug('debug', 'module help run');
 
     let found = '';

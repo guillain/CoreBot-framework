@@ -8,7 +8,7 @@ let client = redis.createClient({detect_buffers: true});
 let fullTextSearch = require('full-text-search');
 
 // CSV
-exports.run = function(bot, message, config) {
+module.exports = function(bot, message, config) {
     tools.debug('debug', 'module csv run');
 
     // Remove first pattern if: present + prefixed=true

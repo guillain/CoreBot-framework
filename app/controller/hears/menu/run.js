@@ -2,11 +2,11 @@
 let tools = require(__basedir + 'lib/tools');
 
 // Search master fct
-exports.run = function(bot, message, config) {
+module.exports = function(controller, config) {
     tools.debug('debug', 'controller hears menu run');
 
     if (config.controller.hears.menu.enable === true) {
-        controller.hears('menu', ['message_received'], function (bot, message) {
+        controller.hears('^menu', ['message_received', 'direct_message', 'direct_mention', 'group_message'], function (bot, message) {
             bot.createConversation(message, function (err, convo) {
 
                 // create a path for when a user says YES
@@ -30,13 +30,13 @@ exports.run = function(bot, message, config) {
                 // Create a yes/no question in the default thread...
                 convo.addQuestion(config.controller.hears.menu.msg.question, [
                     {
-                        pattern: 'yes',
+                        pattern: 'yes|oui|ya',
                         callback: function (response, convo) {
                             convo.gotoThread('yes_thread');
                         },
                     },
                     {
-                        pattern: 'no',
+                        pattern: 'no|non|nein',
                         callback: function (response, convo) {
                             convo.gotoThread('no_thread');
                         },
@@ -77,4 +77,6 @@ exports.run = function(bot, message, config) {
             });
         });
     }
+    return controller;
 };
+

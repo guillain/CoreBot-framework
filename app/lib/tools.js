@@ -3,7 +3,6 @@ let config = require(__basedir + 'conf/config.json');
 
 // Load required lib
 let _ = require("underscore");
-let merge_json = require("merge-json");
 
 let logger = require('node-logger').createLogger(); // logs to STDOUT
 logger.setLevel(config.log.verbosity);
@@ -34,23 +33,6 @@ exports.debug = function(severity, message, bot = '') {
         else if (severity === "fatal") log_file.fatal(message);
     }
 };
-
-// Exports controller function as scenario
-exports.load_config = function(conf_file = '', config = '') {
-    exports.debug("debug", "local_config "+conf_file);
-
-    let conf_merged = config;
-    if (conf_file !== ''){
-        let local_config = require(conf_file);
-        conf_merged = merge_json.merge(local_config, config);
-    }
-    return conf_merged;
-};
-
-// Export user or '' if it's the bot
-exports.get_ser = function(){
-
-}
 
 // Exports datetime string
 exports.toUTCDateTimeString = function(date) {

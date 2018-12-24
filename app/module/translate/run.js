@@ -19,7 +19,7 @@ client.on("error", function (err) {
 });
 
 // Translate 
-exports.run = function(bot, message, config) {
+module.exports = function(bot, message, config) {
   tools.debug('debug', 'module translate run');
 
   let data = [

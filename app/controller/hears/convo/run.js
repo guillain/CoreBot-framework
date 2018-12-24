@@ -2,7 +2,7 @@
 let tools = require(__basedir + 'lib/tools');
 
 // Exports controller function as scenario
-exports.run = function(controller, config) {
+module.exports = function(controller, config) {
     tools.debug('debug', 'controller hears convo');
 
     if (config.controller.hears.convo.enable === true) {

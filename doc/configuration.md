@@ -24,7 +24,7 @@ according to your env.
 - Module: Extra features
   - Translate (google)
   - bigdata
-  - auto-reply
+  - autoreply
   ...
 - Controller: How can I manage my event
   - on

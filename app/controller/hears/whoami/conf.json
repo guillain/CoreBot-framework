@@ -1,7 +1,7 @@
 {
     "controller": {
         "hears": {
-            "who-am-i": {
+            "whoami": {
                 "enable": false,
                 "msg": {
                     "help": [

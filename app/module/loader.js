@@ -5,19 +5,20 @@ let tools = require(__basedir + 'lib/tools');
 let _ = require("underscore");
 
 // Exports controller function as scenario
-exports.run = function(controller, message_type, message_content, bot, config) {
+module.exports = function(controller, message_type, message_content, bot, config) {
     tools.debug("debug", "module loader " + message_type);
 
-    let conf_merged = config;
-
     _.each(config.module, function (conf, index) {
-        conf_merged = tools.load_config(__basedir + 'module/' + index + '/conf.json', conf_merged);
 
-        if (conf_merged.module[index].enable === true) {
-            tools.debug("info", "module loaded " + index);
-            let mod_run = require(__basedir + 'module/' + index + '/run.js');
-            mod_run.run(bot, message_content, conf_merged);
-        } else tools.debug("debug", "module not loaded " + index);
+        if (config.module[index].enable === true) {
+
+            let mod_run = require(__basedir + 'module/' + index + '/run.js')(bot, message_content, config);
+
+            tools.debug("info", "module " + index + " enable");
+
+        } else tools.debug("debug", "module " + index + " disable");
+
     });
+
     return controller;
 };

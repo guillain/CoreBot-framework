@@ -1,5 +1,5 @@
 // Exports controller function as scenario
-exports.run = function(controller, config) {
+module.exports = function(controller, config) {
     if (config.controller.hears.thread.enable === true) {
         controller.hears('new thread', 'message_received', function (bot, message) {
             bot.replyAsNewThread(message, config.controller.hears.thread.msg.welcome);
