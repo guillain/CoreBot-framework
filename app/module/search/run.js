@@ -26,7 +26,7 @@ module.exports = function(bot, message, config){
     let tosay = config.module.search.msg.notfound;
 
     if (!(/^search$/i.test(msg_arr['0'])) && (config.module.search.prefixed === true)){
-        tools.debug('debug', 'module search run return');
+        tools.debug('debug', 'module search run stop_no_command');
         return;
     }
     if (/^search$/i.test(msg_arr['0'])) {

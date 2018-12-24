@@ -14,7 +14,7 @@ module.exports = function(bot, message, config) {
     // Remove first pattern if: present + prefixed=true
     let msg_arr = message.text.split(' ');
     if (!(/^csv$/i.test(msg_arr['0'])) && (config.module.translate.prefixed === true)){
-        tools.debug('debug', 'module translate run return');
+        tools.debug('debug', 'module translate run stop_no_command');
         return;
     }
 

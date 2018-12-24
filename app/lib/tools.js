@@ -14,8 +14,9 @@ log_file.format = function(level, date, message){ return date + ': ' + level +':
 
 // Debug function
 exports.debug = function(severity, message, bot = '') {
+    if (bot !== '') bot.reply('_'+severity+'_ '+message);
+
     if (config.log.debug === true) {
-        if (bot !== '') bot.reply('_'+severity+'_ '+message);
 
         if      (severity === "debug") logger.debug(message);
         else if (severity === "info")  logger.info(message);
@@ -25,6 +26,7 @@ exports.debug = function(severity, message, bot = '') {
 
         // console.log(severity + ': ' + message);
     }
+
     if (config.log.file === '') {
         if      (severity === "debug") log_file.debug(message);
         else if (severity === "info")  log_file.info(message);

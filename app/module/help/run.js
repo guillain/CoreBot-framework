@@ -17,12 +17,12 @@ module.exports = function(bot, message, config){
 
     // Reject if not Help command
     if (!/^help/i.test(message.text)) {
-        tools.debug("info", 'module help run stop_no_command');
+        tools.debug("debug", 'module help run stop_no_command');
     }
 
     // Reject bot message
     else if (message.user === config.user) {
-        tools.debug("info", 'module help run stop_bot_reply');
+        tools.debug("debug", 'module help run stop_bot_reply');
     }
     // If help summary is requested
     else if (msg_arr.length === 1){
