@@ -9,14 +9,13 @@
 - local NLP
 
 # Launcher
-- web
 - facebook
 - matermost
 
 # Controller
 ## Hears
-- help: provide global and local help access coming from the conf.json
-file
+- csv file mgt
+- help on controllers.hears
 - flash: print message as urgent and flash message (+ commands to
 manage message)
 ## On
