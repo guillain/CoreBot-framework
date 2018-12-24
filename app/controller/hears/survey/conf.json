@@ -1,0 +1,26 @@
+{
+    "controller": {
+        "hears": {
+            "survey": {
+                "enable": false,
+                "prefixed": true,
+                "storage": "",
+                "delay": 3,
+                "msg": {
+                    "intro": "Welcome on the survey",
+                    "end": "End of survey, thanks for your participation!",
+                    "timeout": "Oh no! The time limit has expired",
+                    "help": [
+                        "Survey provides a Q&A support generate with a CSV file and a report from the local db\n",
+                        "- **report**: to request the survey's report\n",
+                        "_Example_: `survey`",
+                        "The Q&A list is build from the CSV file with the first column as the question to ask. Separator is ';'.\n",
+                        "If present the second column is used are expected replies. Internal separato is ','.\n",
+                        "The replies are stored in the local db and provided with the help of the command `report`."
+                    ]
+                }
+            }
+        }
+    }
+}
+

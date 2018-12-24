@@ -29,7 +29,7 @@
             "port": 4000
         },
         "slack": {
-            "enable": true,
+            "enable": false,
             "name": "corebot-framework",
             "token": "",
             "secret": ""
@@ -44,7 +44,7 @@
             "port": "5222"
         },
         "spark": {
-            "enable": true,
+            "enable": false,
             "name": "CoreBot-framework",
             "mail": "CoreBot-framework@webex.bot",
             "botid": "",
@@ -81,7 +81,7 @@
                 "enable": true
             },
             "convo": {
-                "enable": true
+                "enable": false
             },
             "echo": {
                 "enable": true
@@ -90,13 +90,16 @@
                 "enable": false
             },
             "menu": {
-                "enable": true
+                "enable": false
+            },
+            "survey": {
+                "enable": false
             },
             "thread": {
-                "enable": true
+                "enable": false
             },
             "whoami": {
-                "enable": true
+                "enable": false
             }
         },
         "on": {
@@ -130,12 +133,12 @@
     "module": {
         "autoreply": {
             "enable": false,
-            "prefixed": true,
+            "prefixed": false,
             "delay": 1,
             "file": "data/autoreply.csv"
         },
         "csv": {
-            "enable": true,
+            "enable": false,
             "prefixed": true,
             "file": "data/km.csv",
             "search_limit": 10,
@@ -155,13 +158,13 @@
             "log_type": "bot"
         },
         "search": {
-            "enable": true,
+            "enable": false,
             "prefixed": true,
             "limit": 10,
             "storage": "km"
         },
         "translate": {
-            "enable": true,
+            "enable": false,
             "prefixed": true,
             "default": {
                 "lang_in": "fr",
