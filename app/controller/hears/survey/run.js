@@ -1,75 +1,81 @@
-// Load tools library
+// Load CoreBot libraries
 let tools = require(__basedir + 'lib/tools');
+let csv = require(__basedir + 'module/csv/run.js');
+
+// Requirements
+let fs = require('fs');
 
 // Survey controller hears
 module.exports = function(controller, config) {
     tools.debug('debug', 'controller hears survey run');
 
     if (config.controller.hears.survey.enable === true) {
+
+        // Create new controller hears
         controller.hears('^survey', ['message_received', 'direct_message', 'direct_mention', 'group_message'], function (bot, message) {
+            // Create new conversation
             bot.createConversation(message, function (err, convo) {
+                // Get the CSV data
+                tools.debug('debug', 'controller hears survey run get_csv_data');
+                fs.readFile(config.controller.hears.survey.file, function(err, data) {
+                    if(err) throw err;
 
-                convo.addMessage({
-                    text: config.controller.hears.survey.msg.reply.yes,
-                }, 'thread_1_yes');
+                    let i_line_arr = i_reply_arr = 0;
+                    let line_arr = reply_arr = [];
+                    let array = data.toString().split("\n");
 
-                convo.addMessage({
-                    text: config.controller.hears.survey.msg.reply.no,
-                }, 'thread_1_no');
-                convo.addMessage({
-                    text: config.controller.hears.survey.msg.reply.bad,
-                    action: 'default',
-                }, 'thread_1_bad_response');
+                    // Parse all CSV lines to generate one conversation by question
+                    for(i_line_arr = 0; i_line_arr < array.length - 1; i_line_arr++) {
+                        let line_arr = array[i_line_arr].split(';');
+                        let question = line_arr[0] +'\n';
+                        let pattern = '\w';
 
-                convo.addQuestion(config.controller.hears.survey.msg.question, [
-                    {
-                        pattern: '^y$|yes|oui|ya',
-                        callback: function (response, convo) {
-                            convo.gotoThread('thread_1_yes');
-                        },
-                    },
-                    {
-                        pattern: '^n$,no|non|nein',
-                        callback: function (response, convo) {
-                            convo.gotoThread('thread_1_no');
-                        },
-                    },
-                    {
-                        default: true,
-                        callback: function (response, convo) {
-                            convo.gotoThread('thread_1_bad_response');
-                        },
-                    }
-                ], {}, 'default');
+                        // Add each expected replies identified by digit in the question message
+                        if (line_arr.length > 1) {
+                            pattern = '[0-9]';
+                            let reply_arr = line_arr[1].split(',');
+                            for (i_reply_arr = 0; i_reply_arr < reply_arr.length; i_reply_arr++)
+                                question += '- ' + (i_reply_arr+1) + ' - ' + reply_arr[i_reply_arr] + '\n';
+                        }
 
-                convo.say({text: 'I waited 3 seconds to tell you this...',
-                            delay: config.controller.hears.survey.delay*1000});
+                        // Add Message for accepted replies
+                        convo.addMessage({
+                            text: config.controller.hears.survey.msg.reply_ok,
+                        }, 'reply_' + i_line_arr);
 
-                convo.on('end', function (convo) {
-                    if (convo.status === 'completed') {
-                        // do something useful with the users responses
-                        let res = convo.extractResponses();
+                        // Add Message for bad reply
+                        convo.addMessage({
+                            text: config.controller.hears.survey.msg.bad_reply,
+                            action: 'default_' + i_line_arr,
+                        }, 'bad_reply_' + i_line_arr);
 
-                        // reference a specific response by key
-                        let value = convo.extractResponse('key');
+                        // Add Question
+                        convo.addQuestion(question, [
+                            {
+                                pattern: pattern,
+                                callback: function (response, convo) {
+                                    convo.gotoThread('reply_' + i_line_arr);
+                                },
+                            },
+                            {
+                                default: true,
+                                callback: function (response, convo) {
+                                    convo.gotoThread('bad_reply_' + i_line_arr);
+                                },
+                            }
+                        ], {}, 'default_' + i_line_arr);
 
-                        // ... do more stuff...
-                        convo.say({text: config.controller.hears.survey.msg.end});
-                    } else {
-                        // something happened that caused the conversation to stop prematurely
+                        convo.onTimeout(function (convo) {
+                            convo.say(config.controller.hears.survey.msg.timeout);
+                            convo.next();
+                        });
+
+                        // now set the conversation in motion...
+                        convo.activate();
                     }
                 });
-
-                convo.onTimeout(function (convo) {
-                    convo.say(config.controller.hears.survey.msg.timeout);
-                    convo.next();
-                });
-
-                // now set the conversation in motion...
-                convo.activate();
             });
         });
     }
     return controller;
 };
-

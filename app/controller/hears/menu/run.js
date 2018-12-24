@@ -25,7 +25,7 @@ module.exports = function(controller, config) {
                 convo.addMessage({
                     text: config.controller.hears.menu.msg.reply.bad,
                     action: 'default',
-                }, 'bad_response');
+                }, 'bad_reply');
 
                 // Create a yes/no question in the default thread...
                 convo.addQuestion(config.controller.hears.menu.msg.question, [
@@ -44,7 +44,7 @@ module.exports = function(controller, config) {
                     {
                         default: true,
                         callback: function (response, convo) {
-                            convo.gotoThread('bad_response');
+                            convo.gotoThread('bad_reply');
                         },
                     }
                 ], {}, 'default');

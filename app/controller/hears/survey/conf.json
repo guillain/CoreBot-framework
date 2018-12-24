@@ -3,13 +3,16 @@
         "hears": {
             "survey": {
                 "enable": false,
-                "prefixed": true,
+                "file": "",
                 "storage": "",
                 "delay": 3,
                 "msg": {
                     "intro": "Welcome on the survey",
                     "end": "End of survey, thanks for your participation!",
                     "timeout": "Oh no! The time limit has expired",
+                    "free_text_ok": "Free text recorded",
+                    "reply_ok": "I've got it, thanks",
+                    "bad_reply": "Sorry I did not understand",
                     "help": [
                         "Survey provides a Q&A support generate with a CSV file and a report from the local db\n",
                         "- **report**: to request the survey's report\n",
