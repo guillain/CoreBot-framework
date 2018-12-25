@@ -36,6 +36,19 @@ exports.debug = function(severity, message, bot = '') {
     }
 };
 
+// Get User function
+exports.get_user = function(message){
+    exports.debug('debug', 'tools get_user user:' + message.user + ' jid:' + message.from_jid);
+
+    let user = message.user; //personEmail;
+    if(user.indexOf("chat") > -1) user = message.from_jid;
+    let usertmp = user.split('@');
+    user = usertmp[0];
+
+    exports.debug('debug', 'tools get_user user:' + user);
+    return user;
+}
+
 // Exports datetime string
 exports.toUTCDateTimeString = function(date) {
     let yyyy = date.getUTCFullYear();

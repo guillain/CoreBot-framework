@@ -1,6 +1,7 @@
 // Load CoreBot libraries
 let tools = require(__basedir + 'lib/tools');
 let csv = require(__basedir + 'module/csv/run.js');
+let redis = require(__basedir + 'lib/redis.js');
 
 // Requirements
 let fs = require('fs');
@@ -10,6 +11,13 @@ module.exports = function(controller, config) {
     tools.debug('debug', 'controller hears survey run');
 
     if (config.controller.hears.survey.enable === true) {
+        let user = tools.get_user(message);
+        let user_data = [];
+
+        // Open user storage
+        redis.get('survey_' + user, function(user_data_str) {
+           if (user_data_str) user_data = user_data_str.split(',');
+           else user_data = ['0',''];
 
         // Create new controller hears
         controller.hears('^survey', ['message_received', 'direct_message', 'direct_mention', 'group_message'], function (bot, message) {
@@ -98,6 +106,7 @@ module.exports = function(controller, config) {
                     }
                 });
             });
+        });
         });
     }
     return controller;
