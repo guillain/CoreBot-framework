@@ -47,29 +47,29 @@ module.exports = function(controller, config) {
                         // Add Message for accepted replies
                         convo.addMessage({
                             text: config.controller.hears.survey.msg.reply_ok,
-                        }, 'reply');
+                        }, 'reply_' + i_line_arr);
 
                         // Add Message for bad reply
                         convo.addMessage({
                             text: config.controller.hears.survey.msg.bad_reply,
                             action: 'default_' + i_line_arr,
-                        }, 'bad_reply');
+                        }, 'bad_reply_' + i_line_arr);
 
                         // Add Question
                         convo.addQuestion(question, [
                             {
                                 pattern: pattern,
                                 callback: function (response, convo) {
-                                    convo.gotoThread('reply');
+                                    convo.gotoThread('reply_' + i_line_arr);
                                 }
                             },
                             {
                                 default: true,
                                 callback: function (response, convo) {
-                                    convo.gotoThread('bad_reply');
+                                    convo.gotoThread('bad_reply_' + i_line_arr);
                                 }
                             }
-                        ], {}, 'default');
+                        ], {}, 'default_' + i_line_arr);
 
                         // Add ending handler
                         convo.on('end', function (convo) {

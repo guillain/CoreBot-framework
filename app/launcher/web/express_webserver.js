@@ -15,11 +15,11 @@ module.exports = function(controller, config) {
     webserver.use(bodyParser.urlencoded({ extended: true }));
 
     // set up handlebars ready for tabs
-    webserver.engine('hbs', hbs.express4({partialsDir: __basedir + 'views/partials'}));
+    webserver.engine('hbs', hbs.express4({partialsDir: __basedir + 'launcher/web/views/partials'}));
     webserver.set('view engine', 'hbs');
-    webserver.set('views', __basedir + 'views/');
+    webserver.set('views', __basedir + 'launcher/web/views/');
 
-    webserver.use(express.static('public'));
+    webserver.use(express.static(__basedir + 'launcher/web/public'));
 
     var server = http.createServer(webserver);
 

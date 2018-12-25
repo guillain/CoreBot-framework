@@ -19,7 +19,9 @@
                         "_Example_: `survey`",
                         "The Q&A list is build from the CSV file with the first column as the question to ask. Separator is ';'.\n",
                         "If present the second column is used are expected replies. Internal separato is ','.\n",
-                        "The replies are stored in the local db and provided with the help of the command `report`."
+                        "The replies are stored in the local db and provided with the help of the command `report`.\n",
+                        "Compose your CSV file as follow:\n",
+                        "```Question 1?;rep1,rep2,rep3\nDo you like it?;yes,no,maybe\nWhat is your preference?```"
                     ]
                 }
             }
