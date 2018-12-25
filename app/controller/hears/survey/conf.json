@@ -13,6 +13,9 @@
                     "free_text_ok": "Free text recorded",
                     "reply_ok": "I've got it, thanks",
                     "bad_reply": "Sorry I did not understand",
+                    "report": "Survey report",
+                    "no_report": "No report has been recorded",
+                    "already_done": "We already have recorded your survey, thanks for your participation!",
                     "help": [
                         "Survey provides a Q&A support generate with a CSV file and a report from the local db\n",
                         "- **report**: to request the survey's report\n",
