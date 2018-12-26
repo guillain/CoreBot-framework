@@ -3,6 +3,12 @@
         "hears": {
             "whoami": {
                 "enable": false,
+                "listener": {
+                    "whoami": {
+                        "pattern": ["whoami"],
+                        "from": ["direct_message", "direct_mention"]
+                    }
+                },
                 "msg": {
                     "help": [
                         "Provide information on the request owner\n",

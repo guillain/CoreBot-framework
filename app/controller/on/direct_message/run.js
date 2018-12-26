@@ -1,13 +1,7 @@
-// Load the required libraries
-let mod_loader = require(__basedir + 'module/loader.js');
+// Load require libraries
+let tools = require(__basedir + 'lib/tools');
 
 // Exports controller function as scenario
-module.exports = function(controller, config) {
-    if (config.controller.on.direct_message.enable === true) {
-        controller.on('direct_message', function (bot, message) {
-            require(__basedir + 'module/loader.js')(controller, 'direct_message', message, bot, config);
-        });
-    }
-    return controller;
+exports.direct_message = function(controller, bot, message, config) {
+    require(__basedir + 'module/loader.js')(controller, config.controller.on.direct_message.listener.direct_message.from, message, bot, config);
 };
-

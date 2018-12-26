@@ -3,6 +3,11 @@
         "on": {
             "user_space_join": {
                 "enable": true,
+                "listener": {
+                    "user_space_join": {
+                        "from": "user_space_join"
+                    }
+                },
                 "msg": {
                     "help": [
                         "Event when user joins a space"

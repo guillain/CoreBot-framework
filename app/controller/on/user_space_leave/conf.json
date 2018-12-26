@@ -3,6 +3,11 @@
         "on": {
             "user_space_leave": {
                 "enable": true,
+                "listener": {
+                    "user_space_leave": {
+                        "from": "user_space_leave"
+                    }
+                },
                 "msg": {
                     "help": [
                         "Event when user leaves a space"

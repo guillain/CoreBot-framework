@@ -1,14 +1,10 @@
+// Load CoreBot libraries
+let tools = require(__basedir + 'lib/tools');
+
 // Exports controller function as scenario
-module.exports = function(controller, config) {
-    if (config.controller.hears['whoami'].enable === true) {
-        controller.hears('^whoami$', ['direct_message', 'direct_mention'], function (bot, message) {
-            bot.reply(message,
-                'You are ' + message.user
-                + ' and your email is ' + message.data.personEmail
-                + ' and your user id is ' + message.data.personId);
-        });
-    }
-    return controller;
+exports.whoami= function(bot, message, config) {
+    bot.reply(message,
+        'You are ' + message.user
+        + ' and your email is ' + message.data.personEmail
+        + ' and your user id is ' + message.data.personId);
 };
-
-

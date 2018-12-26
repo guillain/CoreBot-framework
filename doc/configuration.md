@@ -24,7 +24,6 @@ according to your env.
 - Module: Extra features
   - Translate (google)
   - bigdata
-  - autoreply
   ...
 - Controller: How can I manage my event
   - on
@@ -35,6 +34,7 @@ according to your env.
   - hears
     - convo
     - thread
+    - autoreply
     ...
 
 Now just up to you to write your sketch by configuring the json file

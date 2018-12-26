@@ -6,6 +6,24 @@
                 "file": "",
                 "storage": "",
                 "delay": 3,
+                "listener": {
+                    "survey": {
+                        "pattern": ["^survey$"],
+                        "from": ["message_received", "direct_message", "direct_mention", "group_message"]
+                    },
+                    "reset": {
+                        "pattern": ["^survey reset$"],
+                        "from": ["message_received", "direct_message", "direct_mention", "group_message"]
+                    },
+                    "report": {
+                        "pattern": ["^survey report$"],
+                        "from": ["message_received", "direct_message", "direct_mention", "group_message"]
+                    },
+                    "report_user": {
+                        "pattern": ["^survey report user"],
+                        "from": ["message_received", "direct_message", "direct_mention", "group_message"]
+                    }
+                },
                 "msg": {
                     "intro": "Welcome on the survey",
                     "end": "End of survey, thanks for your participation!",

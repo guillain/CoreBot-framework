@@ -3,6 +3,12 @@
         "hears": {
             "help": {
                 "enable": false,
+                "listener": {
+                    "help": {
+                        "pattern": ["help", "help *"],
+                        "from": ["message_received", "direct_message", "direct_mention", "group_message"]
+                    }
+                },
                 "msg": {
                     "modulefound": "Module list",
                     "modulenotfound": "No module found",

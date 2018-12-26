@@ -3,6 +3,12 @@
         "hears": {
             "echo": {
                 "enable": false,
+                "listener":{
+                    "echo": {
+                        "pattern":["^echo *"],
+                        "from": ["direct_mention", "direct_message", "self_message"]
+                    }
+                },
                 "msg": {
                     "help": [
                         "Repeat the incoming message\n",

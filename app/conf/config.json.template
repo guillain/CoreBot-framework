@@ -102,6 +102,22 @@
             },
             "whoami": {
                 "enable": false
+            },
+            "autoreply": {
+                "enable": false,
+                "delay": 1,
+                "file": "data/autoreply.csv"
+            },
+            "csv": {
+                "enable": false,
+                "file": "data/km.csv",
+                "search_limit": 10,
+                "storage": "km"
+            },
+            "search": {
+                "enable": false,
+                "limit": 10,
+                "storage": "km"
             }
         },
         "on": {
@@ -133,19 +149,6 @@
         }
     },
     "module": {
-        "autoreply": {
-            "enable": false,
-            "prefixed": false,
-            "delay": 1,
-            "file": "data/autoreply.csv"
-        },
-        "csv": {
-            "enable": false,
-            "prefixed": true,
-            "file": "data/km.csv",
-            "search_limit": 10,
-            "storage": "km"
-        },
         "logstash": {
             "enable": false,
             "type": "tcp",
@@ -155,12 +158,6 @@
             "level": "",
             "framework": "corebot",
             "log_type": "bot"
-        },
-        "search": {
-            "enable": false,
-            "prefixed": true,
-            "limit": 10,
-            "storage": "km"
         },
         "translate": {
             "enable": false,

@@ -3,6 +3,17 @@
         "hears": {
             "thread": {
                 "enable": false,
+                "key": "",
+                "listener":{
+                    "thread_new": {
+                        "pattern": ["^thread convo"],
+                        "from": ["message_received", "direct_message", "direct_mention", "group_message"]
+                    },
+                    "thread_key": {
+                        "pattern": ["^thread key"],
+                        "from": ["message_received", "direct_message", "direct_mention", "group_message"]
+                    }
+                },
                 "msg": {
                     "help": [
                         "Thread management for the scenario\n",

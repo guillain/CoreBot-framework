@@ -3,7 +3,12 @@
         "hears": {
             "menu": {
                 "enable": false,
-                "prefixed": true,
+                "listener": {
+                    "menu": {
+                        "pattern": ["^menu"],
+                        "from": ["message_received", "direct_message", "direct_mention", "group_message"]
+                    }
+                },
                 "storage": "",
                 "delay": 3,
                 "msg": {

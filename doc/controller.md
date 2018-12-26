@@ -29,14 +29,12 @@ They are located in the './controller' folder.
 #### run.js
 ```
 // Exports controller function as scenario
-exports.run = function(controller, config) {
-    controller.hears('who am i', ['direct_message', 'direct_mention'], function (bot, message) {
-        bot.reply(message,
-            'You are ' + message.user
-            + ' and your email is ' + message.data.personEmail
-            + ' and your user id is ' + message.data.personId);
-    });
-    return controller;
+exports.MyCtrHears = function(controller, bot, message, config) {
+    bot.reply(message,
+        'You are ' + message.user
+        + ' and your email is ' + message.data.personEmail
+        + ' and your user id is ' + message.data.personId);
+    )
 };
 ```
 #### conf.json
@@ -44,8 +42,14 @@ exports.run = function(controller, config) {
 {
     "controller": {
         "hears":
-            "MyHearsController": {
+            "MyCtrHears": {
                 "enable": true,
+                "listerner": {
+                    "MyCtrHears": {
+                        "pattern": ["MyMessage"],
+                        "from": ["direct_message"]
+                    }
+                },
                 "msg": {
                     "help": [
                         "MyHearsController help"
@@ -59,18 +63,13 @@ exports.run = function(controller, config) {
 ### On
 #### run.js
 ```
-// Load the required libraries
-let mod_loader = require(__basedir + 'module/loader.js');
-
 // Exports controller function as scenario
-exports.run = function(controller, config) {
-    controller.on('direct_mention', function (bot, message) {
-        if (message.text['0'] === config.name) {
-            message.text.splice(0, 1);
-        }
-        mod_loader.run(controller, 'direct_mention', message, bot, config)
-    });
-    return controller;
+exports.MyCtrOn = function(controller, bot, message, config) {
+    bot.reply(message,
+        'You are ' + message.user
+        + ' and your email is ' + message.data.personEmail
+        + ' and your user id is ' + message.data.personId);
+    )
 };
 ```
 #### conf.json
@@ -78,8 +77,13 @@ exports.run = function(controller, config) {
 {
     "controller": {
         "on":
-            "MyOnController": {
+            "MyCtrOn": {
                 "enable": true,
+                "listerner": {
+                    "MyCtrOn": {
+                        "from": ["direct_message"]
+                    }
+                },
                 "msg": {
                     "help": [
                         "MyOnController help"

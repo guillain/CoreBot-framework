@@ -2,10 +2,27 @@
     "module": {
         "csv": {
             "enable": false,
-            "prefixed": true,
             "file": "doc/csv.conf",
             "storage": "csv",
             "search_limit": 10,
+            "listener": {
+                "get": {
+                    "pattern": ["^csv get"],
+                    "from": ["direct_message", "message_received"]
+                },
+                "search": {
+                    "pattern": ["^csv search *"],
+                    "from": ["direct_message", "message_received"]
+                },
+                "load": {
+                    "pattern": ["^csv load"],
+                    "from": ["direct_message", "message_received"]
+                },
+                "test": {
+                    "pattern": ["^csv test"],
+                    "from": ["direct_message", "message_received"]
+                }
+            },
             "msg": {
                 "help": [
                     "Used to manage CSV file in the local database\n",

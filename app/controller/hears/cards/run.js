@@ -1,32 +1,31 @@
+// Load tools library
+let tools = require(__basedir + 'lib/tools');
+
 // Exports controller function as scenario
-module.exports = function(controller, config) {
-    if (config.controller.hears.cards.enable === true) {
-        controller.hears('cards', ['direct_message', 'message_received'], function (bot, message) {
-            bot.reply(message, {
-                requestBody: {
-                    cards: [
+exports.cards = function(bot, message, config) {
+    bot.reply(message, {
+        requestBody: {
+            cards: [
+                {
+                    "sections": [
                         {
-                            "sections": [
+                            "widgets": [
                                 {
-                                    "widgets": [
+                                    "image": {
+                                        "imageUrl": config.controller.hears.cards.image_url
+                                    }
+                                },
+                                {
+                                    "buttons": [
                                         {
-                                            "image": {
-                                                "imageUrl": config.controller.hears.cards.image_url
-                                            }
-                                        },
-                                        {
-                                            "buttons": [
-                                                {
-                                                    "textButton": {
-                                                        "text": config.controller.hears.cards.msg.text,
-                                                        "onClick": {
-                                                            "openLink": {
-                                                                "url": config.controller.hears.cards.open_link
-                                                            }
-                                                        }
+                                            "textButton": {
+                                                "text": config.controller.hears.cards.msg.text,
+                                                "onClick": {
+                                                    "openLink": {
+                                                        "url": config.controller.hears.cards.open_link
                                                     }
                                                 }
-                                            ]
+                                            }
                                         }
                                     ]
                                 }
@@ -34,8 +33,7 @@ module.exports = function(controller, config) {
                         }
                     ]
                 }
-            });
-        });
-    }
-    return controller;
+            ]
+        }
+    });
 };

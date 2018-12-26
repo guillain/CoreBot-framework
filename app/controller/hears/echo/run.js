@@ -1,12 +1,9 @@
+// Load tools library
+let tools = require(__basedir + 'lib/tools');
 
 // Exports controller function as scenario
-module.exports = function(controller, config) {
-    if (config.controller.hears.echo.enable === true) {
-        controller.hears('^echo', ['direct_mention', 'direct_message', 'self_message'], function (bot, message) {
-            if (message.user !== config.user) {
-                bot.reply(message, message.text);
-            }
-        });
-    }
-    return controller;
+exports.echo = function(bot, message, config) {
+
+    bot.reply(message, message.text);
+
 };
