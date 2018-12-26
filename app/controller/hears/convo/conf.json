@@ -5,7 +5,10 @@
                 "enable": false,
                 "msg": {
                     "help": [
-                        "Provide menu dialog feature\n"
+                        "Provide simple conversation menu dialog\n",
+                        "- _No argument_\n",
+                        "_Example_: `convo`",
+                        "Dialog with the bot and navigate in a simple conversation"
                     ],
                     "ask": "You want to know more about Botkit?",
                     "say": {

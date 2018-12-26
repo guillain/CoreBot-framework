@@ -104,81 +104,82 @@ module.exports = function(controller, config) {
                 let survey = JSON.parse(survey_db);
                 tools.debug('debug', 'controller hears survey run survey ' + JSON.stringify(survey));
 
-                    // Create new conversation
-                    bot.createConversation(message, function (err, convo) {
-                        if ((survey.users === "") || (!survey.users[survey_user])) survey.users[survey_user] = {"step": 0};
+                // Create new conversation
+                bot.createConversation(message, function (err, convo) {
+                    if ((survey.users === "") || (!survey.users[survey_user])) survey.users[survey_user] = {"step": 0};
 
-                        let user_step = survey.users[survey_user].step;
-                        if (user_step >= (survey.nb_report-1)) {
-                            bot.reply(message, config.controller.hears.survey.msg.already_done);
-                            tools.debug('info', 'controller hears survey run user-already-done');
-                            return;
+                    let user_step = survey.users[survey_user].step;
+                    if (user_step >= (survey.nb_report-1)) {
+                        bot.reply(message, config.controller.hears.survey.msg.already_done);
+                        tools.debug('info', 'controller hears survey run user-already-done');
+                        return;
+                    }
+
+                    let pattern = '[0-9a-zA-Z]*';
+                    let question = survey.reports[user_step].name;
+                    let replies = '';
+                    tools.debug('info', 'controller hears survey run question ' + question);
+
+                    if (survey.reports[user_step].replies) {
+                        for (i_reply in survey.reports[user_step].replies) {
+                            replies += '- ' + (parseInt(i_reply,10)+1) + ' - ';
+                            replies += survey.reports[user_step].replies[i_reply].name + '\n';
                         }
+                    }
+                    tools.debug('info', 'controller hears survey run replies ' + replies);
 
-                        let pattern = '[0-9a-zA-Z]*';
-                        let question = survey.reports[user_step].name;
-                        let replies = '';
-                        tools.debug('info', 'controller hears survey run question ' + question);
+                    // Add Message for accepted replies
+                    convo.addMessage({
+                        text: config.controller.hears.survey.msg.reply_ok,
+                    }, 'reply');
 
-                        if (survey.reports[user_step].replies) {
-                            for (i_reply in survey.reports[user_step].replies) {
-                                replies += '- ' + (parseInt(i_reply,10)+1) + ' - ' + survey.reports[user_step].replies[i_reply].name + '\n';
+                    // Add Message for bad reply
+                    convo.addMessage({
+                        text: config.controller.hears.survey.msg.bad_reply,
+                        action: 'default',
+                    }, 'bad_reply');
+
+                    // Add Question
+                    convo.addQuestion(question + '\n' + replies, [
+                        {
+                            pattern: pattern,
+                            callback: function (response, convo) {
+                                // Increment values of user step and survey value
+                                survey.users[survey_user].step++;
+                                if (survey.reports[user_step].replies)
+                                    survey.reports[user_step].replies[parseInt(response.text,10)-1].value++;
+                                else if (survey.reports[user_step].text)
+                                    survey.reports[user_step].text.push(response.text);
+
+                                tools.debug('info', 'controller hears survey run records ' + JSON.stringify(survey));
+                                client.set(config.controller.hears.survey.storage, JSON.stringify(survey), () => {});
+                                convo.gotoThread('reply');
+                            }
+                        },
+                        {
+                            default: true,
+                            callback: function (response, convo) {
+                                convo.gotoThread('bad_reply');
                             }
                         }
-                        tools.debug('info', 'controller hears survey run replies ' + replies);
+                    ], {}, 'default');
 
-                            // Add Message for accepted replies
-                            convo.addMessage({
-                                text: config.controller.hears.survey.msg.reply_ok,
-                            }, 'reply');
+                    // Add ending handler
+                    convo.on('end', function (convo) {
+                        if ((convo.status === 'completed') && (survey.users[survey_user].step >= survey.reports.length)){
+                            convo.say({text: config.controller.hears.survey.msg.end});
+                        }
+                    });
 
-                            // Add Message for bad reply
-                            convo.addMessage({
-                                text: config.controller.hears.survey.msg.bad_reply,
-                                action: 'default',
-                            }, 'bad_reply');
+                    // Manage timeout
+                    convo.onTimeout(function (convo) {
+                        convo.say(config.controller.hears.survey.msg.timeout);
+                        convo.next();
+                    });
 
-                            // Add Question
-                            convo.addQuestion(question + '\n' + replies, [
-                                {
-                                    pattern: pattern,
-                                    callback: function (response, convo) {
-                                        // Increment values of user step and survey value
-                                        survey.users[survey_user].step++;
-                                        if (survey.reports[user_step].replies)
-                                            survey.reports[user_step].replies[parseInt(response.text,10)-1].value++;
-                                        else if (survey.reports[user_step].text)
-                                            survey.reports[user_step].text.push(response.text);
-
-                                        tools.debug('info', 'controller hears survey run records ' + JSON.stringify(survey));
-                                        client.set(config.controller.hears.survey.storage, JSON.stringify(survey), () => {});
-                                        convo.gotoThread('reply');
-                                    }
-                                },
-                                {
-                                    default: true,
-                                    callback: function (response, convo) {
-                                        convo.gotoThread('bad_reply');
-                                    }
-                                }
-                            ], {}, 'default');
-
-                            // Add ending handler
-                            convo.on('end', function (convo) {
-                                if ((convo.status === 'completed') && (survey.users[survey_user].step >= survey.reports.length)){
-                                    convo.say({text: config.controller.hears.survey.msg.end});
-                                }
-                            });
-
-                            // Manage timeout
-                            convo.onTimeout(function (convo) {
-                                convo.say(config.controller.hears.survey.msg.timeout);
-                                convo.next();
-                            });
-
-                            // now set the conversation in motion...
-                            convo.activate();
-                        });
+                    // now set the conversation in motion...
+                    convo.activate();
+                });
             });
         });
     }
@@ -186,50 +187,50 @@ module.exports = function(controller, config) {
 };
 
 survey_init = function(config){
-                    tools.debug('info', 'controller hears survey run init ');
+    tools.debug('info', 'controller hears survey run init ');
 
-                    // Initialization survey structur
-                    let survey = { "users": {}, "reports": {}};
+    // Initialization survey structur
+    let survey = { "users": {}, "reports": {}};
 
-                    // Get the CSV data
-                    tools.debug('debug', 'controller hears survey run init get_csv_data ' + __basedir + config.controller.hears.survey.file);
-                    let csv_data = fs.readFileSync(__basedir + config.controller.hears.survey.file);
-                    if (!csv_data) {
-                        tools.debug('error', 'controller hears survey run init no-csv-file ');
-                        return;
-                    }
+    // Get the CSV data
+    tools.debug('debug', 'controller hears survey run init get_csv_data ' + __basedir + config.controller.hears.survey.file);
+    let csv_data = fs.readFileSync(__basedir + config.controller.hears.survey.file);
+    if (!csv_data) {
+        tools.debug('error', 'controller hears survey run init no-csv-file ');
+        return;
+    }
 
-                    // Loop over each CSV line
-                    let csv_array = csv_data.toString().split("\n");
-                    survey['nb_report'] = csv_array.length;
+    // Loop over each CSV line
+    let csv_array = csv_data.toString().split("\n");
+    survey['nb_report'] = csv_array.length;
 
-                    for (let i_csv_arr=0; i_csv_arr<csv_array.length; i_csv_arr++) {
-                            tools.debug('debug', 'controller hears survey run init csv_array['+i_csv_arr+'] ' + csv_array[i_csv_arr]);
+    for (let i_csv_arr=0; i_csv_arr<csv_array.length; i_csv_arr++) {
+            tools.debug('debug', 'controller hears survey run init csv_array['+i_csv_arr+'] ' + csv_array[i_csv_arr]);
 
-                            // Get Question as first column in the CSV file
-                            let question = csv_array[i_csv_arr].split(';')[0];
-                            survey['reports'][i_csv_arr] = {"name":question};
-                            tools.debug('debug', 'controller hears survey run question ' + question);
+            // Get Question as first column in the CSV file
+            let question = csv_array[i_csv_arr].split(';')[0];
+            survey['reports'][i_csv_arr] = {"name":question};
+            tools.debug('debug', 'controller hears survey run question ' + question);
 
-                            // If second column, it's for the expected replies
-                            if (csv_array[i_csv_arr].split(';').length > 1) {
-                                survey.reports[i_csv_arr].replies = {};
+            // If second column, it's for the expected replies
+            if (csv_array[i_csv_arr].split(';').length > 1) {
+                survey.reports[i_csv_arr].replies = {};
 
-                                let reply_arr = csv_array[i_csv_arr].split(';')[1].split(',');
-                                tools.debug('debug', 'controller hears survey run init reply_arr ' + reply_arr);
+                let reply_arr = csv_array[i_csv_arr].split(';')[1].split(',');
+                tools.debug('debug', 'controller hears survey run init reply_arr ' + reply_arr);
 
-                                for (let i_reply_arr = 0; i_reply_arr < reply_arr.length; i_reply_arr++){
-                                    tools.debug('debug', 'controller hears survey run init reply_arr['+i_reply_arr+'] ' + reply_arr[i_reply_arr]);
-                                    survey.reports[i_csv_arr].replies[i_reply_arr] = {"name": reply_arr[i_reply_arr], "value": 0};
-                                }
-                            }
-                            else survey.reports[i_csv_arr].text = [];
-                            tools.debug('debug', 'controller hears survey run init survey ' + JSON.stringify(survey));
-                    }
+                for (let i_reply_arr = 0; i_reply_arr < reply_arr.length; i_reply_arr++){
+                    tools.debug('debug', 'controller hears survey run init reply_arr['+i_reply_arr+'] ' + reply_arr[i_reply_arr]);
+                    survey.reports[i_csv_arr].replies[i_reply_arr] = {"name": reply_arr[i_reply_arr], "value": 0};
+                }
+            }
+            else survey.reports[i_csv_arr].text = [];
+            tools.debug('debug', 'controller hears survey run init survey ' + JSON.stringify(survey));
+    }
 
-                    // Save the Survey in the db
-                    client.set(config.controller.hears.survey.storage, JSON.stringify(survey), () => {});
+    // Save the Survey in the db
+    client.set(config.controller.hears.survey.storage, JSON.stringify(survey), () => {});
 
-                    return survey;
+    return survey;
 };
 

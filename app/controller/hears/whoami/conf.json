@@ -5,7 +5,10 @@
                 "enable": false,
                 "msg": {
                     "help": [
-                        "Provide information on the request owner"
+                        "Provide information on the request owner\n",
+                        "- _No argument_\n",
+                        "_Example_: `whoami`",
+                        "Dialog with the bot and navigate  in the menu"
                     ]
                 }
             }

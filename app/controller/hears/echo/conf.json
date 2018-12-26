@@ -5,7 +5,10 @@
                 "enable": false,
                 "msg": {
                     "help": [
-                        "Repeat the incoming message\n"
+                        "Repeat the incoming message\n",
+                        "- _No argument_\n",
+                        "_Example_: `echo what you want to echo`",
+                        "Provide an text echo for simple ping-pong or validation (format...)"
                     ]
                 }
             }

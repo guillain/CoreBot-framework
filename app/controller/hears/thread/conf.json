@@ -5,7 +5,11 @@
                 "enable": false,
                 "msg": {
                     "help": [
-                        "Thread management for the scenario"
+                        "Thread management for the scenario\n",
+                        "- **new**: to start new thread",
+                        "- _**key**_: to join existing thread\n",
+                        "_Example_: `thread new`, `thread key`",
+                        "Provide thread feature to manipulate spaces."
                     ],
                     "welcome": "Hello ! this is a new thread",
                     "text": "Hi ! this message inside the same thread"

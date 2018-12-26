@@ -7,7 +7,10 @@
                 "open_link": "https://botkit.ai/docs/",
                 "msg": {
                     "help": [
-                        "Provide card representation\n"
+                        "Provide button feature (Cisco Jabber only)\n",
+                        "- _No argument_\n",
+                        "_Example_: `button *`",
+                        "Used to integrate action in button feature of Jabber conversation"
                     ],
                     "text": "Get cards"
                 }

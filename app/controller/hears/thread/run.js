@@ -1,10 +1,10 @@
 // Exports controller function as scenario
 module.exports = function(controller, config) {
     if (config.controller.hears.thread.enable === true) {
-        controller.hears('new thread', 'message_received', function (bot, message) {
+        controller.hears('^thread new', 'message_received', function (bot, message) {
             bot.replyAsNewThread(message, config.controller.hears.thread.msg.welcome);
         });
-        controller.hears('thread key', 'message_received', function (bot, message) {
+        controller.hears('^thread key', 'message_received', function (bot, message) {
             bot.replyWithThreadKey(message, {
                 threadKey: "YOUR_THREAD_KEY",
                 requestBody: {
