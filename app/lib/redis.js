@@ -17,17 +17,18 @@ client.on("error", function (err) {
 });
 
 // Get data 
-exports.get = function(user, cb) {
+exports.get = function(storage, cb) {
   tools.debug('debug', 'redis');
 
   // Open user storage
-  client.get(user, function(err, reply) {
+  client.get(storage, function(err, reply) {
     if (reply) cb(reply);
+    if (err) tools.debug('error', 'redis get');
   });
 };
 
 // Set data
-exports.set = function(user, data){
-    client.set(user, data.join(','));
+exports.set = function(storage, data){
+    client.set(storage, data);
 };
 
