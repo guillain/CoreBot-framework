@@ -1,0 +1,18 @@
+{
+    "controller": {
+        "action": {
+            "hello": {
+                "enable": false,
+                "msg": {
+                    "help": [
+                        "Hello message\n",
+                        "- _No argument_\n",
+                        "_Example_: ``",
+                        "Reply a Hello message"
+                    ],
+                    "text": "Hello"
+                }
+            }
+        }
+    }
+}

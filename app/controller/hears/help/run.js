@@ -5,7 +5,7 @@ let tools = require(__basedir + 'lib/tools');
 let _ = require("underscore");
 
 // Exports controller function as scenario
-exports.help = function(bot, message, config) {
+exports.help = function(controller, bot, message, config) {
     let found = 0;
     let to_say = '';
     let msg_arr = message.text.split(' ');

@@ -2,7 +2,7 @@
 let tools = require(__basedir + 'lib/tools');
 
 // Exports controller function as scenario
-exports.convo = function(bot, message, config) {
+exports.convo = function(controller, bot, message, config) {
     bot.startConversation(message, function (err, convo) {
         convo.ask(config.controller.hears.convo.msg.ask, [
             {

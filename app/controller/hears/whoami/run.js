@@ -2,7 +2,7 @@
 let tools = require(__basedir + 'lib/tools');
 
 // Exports controller function as scenario
-exports.whoami= function(bot, message, config) {
+exports.whoami= function(controller, bot, message, config) {
     bot.reply(message,
         'You are ' + message.user
         + ' and your email is ' + message.data.personEmail

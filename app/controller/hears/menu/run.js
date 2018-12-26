@@ -2,7 +2,7 @@
 let tools = require(__basedir + 'lib/tools');
 
 // Search master fct
-module.exports = function(bot, message, config) {
+module.exports = function(controller, bot, message, config) {
     // Create new conversation
     bot.createConversation(message, function (err, convo) {
 

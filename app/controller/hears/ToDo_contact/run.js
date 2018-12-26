@@ -4,7 +4,7 @@
  * @license LGPL-3.0
  */
 // Load config
-var config = require('../../conf/config');
+var config = require('../../../conf/config');
 
 var Spark = require('node-sparky');
 var spark = new Spark({ token: config.token  });

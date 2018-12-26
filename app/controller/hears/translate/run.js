@@ -19,13 +19,12 @@ client.on("error", function (err) {
 });
 
 // Translate 
-module.exports = function(bot, message, config) {
-  tools.debug('debug', 'module translate run');
+exports.translate = function(controller, bot, message, config) {
 
   let data = [
       'manual',
-      config.module.translate.default.lang_in,
-      config.module.translate.default.lang_out
+      config.controller.hears.translate.default.lang_in,
+      config.controller.hears.translate.default.lang_out
   ];
 
   let user = message.user; //personEmail;
@@ -42,7 +41,7 @@ module.exports = function(bot, message, config) {
 
     // Remove first pattern if: present + prefixed=true
     let msg_arr = message.text.split(' ');
-    if ((data[0] !== 'automatic') && !(/^translate$/i.test(msg_arr['0'])) && (config.module.translate.prefixed === true)){
+    if ((data[0] !== 'automatic') && !(/^translate$/i.test(msg_arr['0']))){
         tools.debug('debug', 'module translate run stop_no_command');
         return;
     }
@@ -54,36 +53,36 @@ module.exports = function(bot, message, config) {
 
     // order action according to the message content
     if  (/^help$/i.test(msg_arr['0'])) 
-    	bot.reply(message, config.module.translate.msg.help.join('\n'));
+    	bot.reply(message, config.controller.hears.translate.msg.help.join('\n'));
     else if (/^on$/i.test(msg_arr['0']))     { 
     	data[0] = 'automatic'; 
         client.set(user, data.join(','));
-    	bot.reply(message, config.module.translate.msg.on + grp_msg);
+    	bot.reply(message, config.controller.hears.translate.msg.on + grp_msg);
     }
     else if (/^off$/i.test(msg_arr['0']))    { 
     	data[0] = 'manual';
         client.set(user, data.join(','));
-    	bot.reply(message, config.module.translate.msg.off + grp_msg);
+    	bot.reply(message, config.controller.hears.translate.msg.off + grp_msg);
     }
     else if (/^stat/i.test(msg_arr['0']))  { 
-    	if (data[0] === 'automatic') bot.reply(message, config.module.translate.msg.on + grp_msg);
-    	else bot.reply(message, config.module.translate.msg.off + grp_msg);
+    	if (data[0] === 'automatic') bot.reply(message, config.controller.hears.translate.msg.on + grp_msg);
+    	else bot.reply(message, config.controller.hears.translate.msg.off + grp_msg);
     }
     else if (/^config/i.test(msg_arr['0'])) {
     	if (msg_arr.length === 1){ 
             let msg = '\n- State _' + data[0] + '_\n- In _' + data[1] + '_\n- Out _' + data[2] + '_';
-            bot.reply(message, config.module.translate.msg.conf + grp_msg + msg);
+            bot.reply(message, config.controller.hears.translate.msg.conf + grp_msg + msg);
         }
     	else if (msg_arr.length === 3)    {
             if ((lang_list.indexOf(msg_arr['1']) > -1) && (lang_list.indexOf(msg_arr['2']) > -1)){
               data[1] = msg_arr['1'];
               data[2] = msg_arr['2'];
               client.set(user, data.join(','));
-              bot.reply(message, config.module.translate.msg.conf_ok + grp_msg);
+              bot.reply(message, config.controller.hears.translate.msg.conf_ok + grp_msg);
             }
-            else { bot.reply(message, config.module.translate.msg.wrong_lang); }
+            else { bot.reply(message, config.controller.hears.translate.msg.wrong_lang); }
     	}
-    	else bot.reply(message, config.module.translate.msg.help);
+    	else bot.reply(message, config.controller.hears.translate.msg.help);
     }
     // Manual translate
     else if ((msg_arr.length > 2) && (data[0] === 'manual')){
@@ -101,7 +100,7 @@ module.exports = function(bot, message, config) {
                 bot.reply(message, '_('+lang_in+' to '+lang_out+grp_msg+')_ ' + result);
             });
         }
-        else {  bot.reply(message, config.module.translate.msg.wrong_lang); }
+        else {  bot.reply(message, config.controller.hears.translate.msg.wrong_lang); }
     }
     // Request to ranslate
     else if (data[0] === 'automatic') {

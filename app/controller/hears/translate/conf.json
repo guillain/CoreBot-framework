@@ -2,10 +2,15 @@
     "module": {
         "translate": {
             "enable": false,
-            "prefixed": true,
             "default": {
                 "lang_in": "fr",
                 "lang_out": "en"
+            },
+            "listener":{
+                "translate": {
+                    "pattern":["^translate *"],
+                    "from": ["message_received", "direct_message", "direct_mention", "group_message"]
+                }
             },
             "msg": {
                 "on": "Auto translation _ON_",

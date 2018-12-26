@@ -20,13 +20,13 @@ client.on("error", function (err) {
 
 
 // Survey report hears controller - to handle report
-exports.reset = function (bot, message, config) {
+exports.reset = function (controller, bot, message, config) {
     let survey = survey_init(config);
     bot.reply(message, config.controller.hears.survey.msg.reset_done);
 };
 
 // Survey report hears controller - to handle report
-exports.report = function (bot, message, config) {
+exports.report = function (bcontroller, ot, message, config) {
     let to_say = '';
     let survey_user = tools.get_user(message);
 
@@ -58,7 +58,7 @@ exports.report = function (bot, message, config) {
 };
 
 // Survey report hears controller - to handle report
-exports.report_user = function (bot, message, config) {
+exports.report_user = function (controller, bot, message, config) {
 
     let to_say = '';
     let survey_user = tools.get_user(message);
@@ -79,7 +79,7 @@ exports.report_user = function (bot, message, config) {
 };
 
 // Survey new hears controller - to handle each question
-exports.survey = function (bot, message, config) {
+exports.survey = function (controller, bot, message, config) {
 
     let survey = {};
     let to_say = '';

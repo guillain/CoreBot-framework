@@ -79,11 +79,9 @@ the complete details of the standard and template to use.
 If need you can complete your framework knowledge with the following
 ones:
 
-0/ [Framework Logic](./doc/logic.md)
+- [Framework Logic](./doc/logic.md)
 
-1/ [Controller](./doc/controller.md)
-
-2/ [Module](./doc/module.md)
+- [Controller](./doc/controller.md)
 
 
 Don't hesitate to share yours creation ;-)

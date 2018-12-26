@@ -5,6 +5,9 @@ works.
 Basically, the following order is applied on a scenario:
 1/ Launcher: start the daemon for a specific Business Messaging
 2/ Controller: loaded during the start-up
+  a) Hears: will listen text message/event
+  b) On: Will be triggered for a dedicated context
+  c) Action: Can be autonomous or dependent of the others controller
 
 ## Launcher
 The starter comes with the *launcher* (app/launcher) and it's use to run

@@ -3,7 +3,7 @@ let tools = require(__basedir + 'lib/tools');
 let xml = require('@xmpp/xml');
 
 // Exports controller function as scenario
-exports.button = function(bot, message, config) {
+exports.button = function(controller, bot, message, config) {
     let reply_message = {};
     let to = message.user;
     let type = message.group ? 'groupchat' : 'chat';
@@ -14,7 +14,7 @@ exports.button = function(bot, message, config) {
     bot.reply(message, reply_message);
 };
 
-exports.open_link = function(bot, message, config) {
+exports.open_link = function(controller, bot, message, config) {
     let reply_message = {};
     let to = message.user;
     let type = message.group ? 'groupchat' : 'chat';
@@ -25,7 +25,7 @@ exports.open_link = function(bot, message, config) {
     bot.reply(message, reply_message);
 };
 
-exports.execute_command= function(bot, message, config) {
+exports.execute_command= function(controller, bot, message, config) {
     let reply_message = {};
     let to = message.user;
     let type = message.group ? 'groupchat' : 'chat';
@@ -42,7 +42,7 @@ exports.execute_command= function(bot, message, config) {
     bot.reply(message, reply_message);
 };
 
-exports.submit = function(bot, message, config) {
+exports.submit = function(controller, bot, message, config) {
     let reply_message = {};
     let to = message.user;
     let type = message.group ? 'groupchat' : 'chat';
