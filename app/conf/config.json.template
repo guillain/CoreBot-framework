@@ -87,7 +87,7 @@
                 "enable": true
             },
             "help": {
-                "enable": false
+                "enable": true
             },
             "menu": {
                 "enable": false
@@ -145,9 +145,6 @@
             "file": "data/km.csv",
             "search_limit": 10,
             "storage": "km"
-        },
-        "help": {
-            "enable": true
         },
         "logstash": {
             "enable": false,

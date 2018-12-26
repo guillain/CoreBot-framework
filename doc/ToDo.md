@@ -15,7 +15,6 @@
 # Controller
 ## Hears
 - csv file mgt
-- help on controllers.hears
 - flash: print message as urgent and flash message (+ commands to
 manage message)
 ## On

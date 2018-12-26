@@ -8,25 +8,7 @@ let _ = require("underscore");
 module.exports = function(controller, config) {
     if (config.controller.hears.help.enable === false) return;
 
-    controller.hears('help', ['message_received', 'direct_message', 'direct_mention', 'group_message'], function (bot, message) {
-        tools.debug('debug', 'module help run ' + message.text);
-
-        let to_say = 'Module\n';
-        _.each(config.module, function (conf, index) {
-            if (config.module[index].enable === true)
-                to_say += '    - '+index+' - '+config.module[index].msg.help[0];
-        });
-
-        to_say += 'Controller\n';
-        _.each(config.controller.hears, function (conf, index) {
-            if (config.controller.hears[index].enable === true)
-                to_say += '    - '+index+' - '+config.controller.hears[index].msg.help[0];
-        });
-
-        bot.reply(message, to_say);
-    });
-
-    controller.hears(['help *'], ['message_received', 'direct_message', 'direct_mention', 'group_message'], function (bot, message) {
+    controller.hears(['help', 'help *'], ['message_received', 'direct_message', 'direct_mention', 'group_message'], function (bot, message) {
         tools.debug('debug', 'module help run ' + message.text);
 
         let found = 0;
@@ -41,7 +23,21 @@ module.exports = function(controller, config) {
         if (message.user === config.user) {
             tools.debug("debug", 'module help run stop_bot_reply');
         }
+        if (msg_arr.length === 1) {
+            to_say = 'Module\n';
+            _.each(config.module, function (conf, index) {
+                if (config.module[index].enable === true)
+                    to_say += '    - '+index+' - '+config.module[index].msg.help[0];
+            });
 
+            to_say += 'Controller\n';
+            _.each(config.controller.hears, function (conf, index) {
+                if (config.controller.hears[index].enable === true)
+                    to_say += '    - '+index+' - '+config.controller.hears[index].msg.help[0];
+            });
+
+            bot.reply(message, to_say);
+        }
         // If all help are requested
         else if ((msg_arr.length > 1) && ((all >= 0) || (detail >=0))){
             to_say += 'Module\n';
@@ -79,10 +75,10 @@ module.exports = function(controller, config) {
         }
 
         // Help of a module or controller.hears is requested (it includes detail)
-        else if ((msg_arr.length > 1) && (all < 0)) {
+        else if ((msg_arr.length > 1) && ((all < 0) || (detail < 0))) {
             // Search in Module
             _.each(config.module, function (conf, index) {
-                if (msg_arr.indexOf(index) >= 0) {
+                if (msg_arr[1].indexOf(index) >= 0) {
                     bot.reply(message, config.module[index].msg.help.join('\n'));
                     found++;
                 }
@@ -90,7 +86,7 @@ module.exports = function(controller, config) {
 
             // Search in Controller
             _.each(config.controller.hears, function (conf, index) {
-                if (msg_arr.indexOf(index) >= 0) {
+                if (msg_arr[1].indexOf(index) >= 0) {
                     bot.reply(message, config.controller.hears[index].msg.help.join('\n'));
                     found++;
                 }
