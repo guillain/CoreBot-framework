@@ -47,6 +47,7 @@ exports.get_user = function(message){
     user = usertmp[0];
 
     exports.debug('debug', 'tools get_user user:' + user);
+    
     return user;
 };
 

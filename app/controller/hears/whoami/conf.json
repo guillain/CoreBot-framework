@@ -5,7 +5,7 @@
                 "enable": false,
                 "listener": {
                     "whoami": {
-                        "pattern": ["whoami"],
+                        "pattern": ["^whoami$"],
                         "from": ["direct_message", "direct_mention"]
                     }
                 },

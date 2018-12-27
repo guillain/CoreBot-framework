@@ -5,19 +5,19 @@
                 "enable": false,
                 "listener":{
                     "button": {
-                        "pattern": ["button-button"],
+                        "pattern": ["^button-button$"],
                         "from": ["direct_mention", "self_message", "direct_message"]
                     },
                     "open_link": {
-                        "pattern": ["button-openlink"],
+                        "pattern": ["^button-openlink$"],
                         "from": ["direct_mention", "self_message", "direct_message"]
                     },
                     "execute_command": {
-                        "pattern": ["button-executecommand"],
+                        "pattern": ["^button-executecommand$"],
                         "from": ["direct_mention", "self_message", "direct_message"]
                     },
                     "submit": {
-                        "pattern": ["button-sbumit"],
+                        "pattern": ["^button-sbumit$"],
                         "from": ["direct_mention", "self_message", "direct_message"]
                     }
                 },

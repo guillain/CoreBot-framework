@@ -6,8 +6,6 @@ let Run = require('logstash-client');
 
 // Run the function
 module.exports = function(evt, message, config) {
-    tools.debug("info", "module logstash run");
-
     let msg = message;
     delete msg["type"];
     msg['message_type'] = evt;

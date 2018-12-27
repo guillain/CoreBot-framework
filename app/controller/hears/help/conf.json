@@ -5,18 +5,30 @@
                 "enable": false,
                 "listener": {
                     "help": {
-                        "pattern": ["help", "help *"],
+                        "pattern": ["^help$", "^help all$"],
+                        "from": ["message_received", "direct_message", "direct_mention", "group_message"]
+                    },
+                    "help_listener": {
+                        "pattern": ["^help listener$", "^help listener all$"],
+                        "from": ["message_received", "direct_message", "direct_mention", "group_message"]
+                    },
+                    "help_detail": {
+                        "pattern": ["^help detail$", "^help detail all$"],
+                        "from": ["message_received", "direct_message", "direct_mention", "group_message"]
+                    },
+                    "help_module": {
+                        "pattern": ["^help module *"],
                         "from": ["message_received", "direct_message", "direct_mention", "group_message"]
                     }
                 },
                 "msg": {
-                    "modulefound": "Module list",
-                    "modulenotfound": "No module found",
+                    "modulefound": "Controller list",
+                    "modulenotfound": "No controller found",
                     "help": [
                         "Provide global help support\n",
-                        "- **all**: provide a list of all modules",
-                        "- **detail**: provide all details",
-                        "- _**module name**_: provide help for the considered module\n",
+                        "- _**all**_: provide a list of all controllers",
+                        "- **detail** _**all**_: provide all details",
+                        "- **controller name**: provide help for the considered module\n",
                         "_Example_: `help`, `help all`, `help help detail`",
                         "This help command provides an access on all help pages.",
                         "You can request all modules or only a specific one with or without detail."
