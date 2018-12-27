@@ -5,11 +5,11 @@ let tools = require(__basedir + 'lib/tools');
 exports.botkit = function(controller, bot, message, config) {
     controller.studio.runTrigger(bot, message.text, message.user, message.channel).then(function(convo) {
         if (!convo) {
-            tools.debug('debug', 'controller on botkit run no-studio-match');
+            tools.debug('debug', 'controller on botkit no-studio-match');
         } else {
-            tools.debug('debug', 'controller on botkit run studio-match');
+            tools.debug('debug', 'controller on botkit studio-match');
         }
     }).catch(function(err) {
-        tools.debug('debug', 'controller on botkit run error' + err);
+        tools.debug('debug', 'controller on botkit error' + err);
     });
 };

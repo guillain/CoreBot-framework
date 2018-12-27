@@ -8,9 +8,9 @@ let _ = require("underscore");
 module.exports = function(controller, message_type, message_content, bot, config) {
     tools.debug("debug", "controller action " + message_type);
 
-    _.each(config.module, function (conf, index) {
+    _.each(config.controller.action, function (conf, index) {
 
-        if (config.module[index].enable === true) {
+        if (config.controller.action[index].enable === true) {
 
             let mod_run = require(__basedir + 'controller/action/' + index + '/run.js')(bot, message_content, config);
 

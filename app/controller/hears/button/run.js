@@ -71,7 +71,7 @@ exports.submit = function(controller, bot, message, config) {
                     bot.reply(message, replay_meeting_info);
                     convo.stop();
                 } catch (err) {
-                    tools.debug('error', 'component button run error ' + err.message);
+                    tools.debug('error', 'component button error ' + err.message);
                     convo.stop();
                 }
             });

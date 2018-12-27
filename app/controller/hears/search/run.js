@@ -106,7 +106,7 @@ exports.search = function(controller, bot, message, config){
             to_say = 'Found \n';
             for(var i in ids) { to_say += '- '+ids[i]+'\n'; }
             bot.say(to_say);
-        } else { bot.say(config.module.storage.msg.notfound); }
+        } else { bot.say(config.controller.hears.search.msg.notfound); }
     });
     */
 };

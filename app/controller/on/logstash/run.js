@@ -9,9 +9,9 @@ module.exports = function(evt, message, config) {
     let msg = message;
     delete msg["type"];
     msg['message_type'] = evt;
-    msg['level'] = config.module.logstash.level;
-    msg['type'] = config.module.logstash.log_type;
-    msg['framework'] = config.module.logstash.framework;
+    msg['level'] = config.controller.on.logstash.level;
+    msg['type'] = config.controller.on.logstash.log_type;
+    msg['framework'] = config.controller.on.logstash.framework;
 
     /*
     let msg = {
@@ -43,9 +43,9 @@ module.exports = function(evt, message, config) {
     */
 
     let logstash = new Run({
-      type: config.module.logstash.type,
-      host: config.module.logstash.host,
-      port: config.module.logstash.port
+      type: config.controller.on.logstash.type,
+      host: config.controller.on.logstash.host,
+      port: config.controller.on.logstash.port
     });
     logstash.send(msg);
 };
