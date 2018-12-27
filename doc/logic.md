@@ -2,11 +2,23 @@
 The idea here is to describe the framework logic and how globally it
 works.
 
-In summary:
+## In summary
 ```
 Main -> loader(launcher) -> loader(controller.hears) -> controller.hears[feature].listener[feature_function]
                          -> loader(controller.on)    -> loader(controller.action)
 ```
+
+## Loader
+Loader scripts are used for the following part:
+- launcher: `./app/launcher/loader.js`
+- controller: `./app/controller/loader.js`
+- controller.action: `./app/controller/action/loader.js`
+
+They have been create for:
+- mass treatment (loop over JSON definition = folder structure)
+- function template
+
+=> flexibility and scalability
 
 Basically, the following order is applied on a scenario:
 # 0/ Main

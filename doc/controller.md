@@ -1,35 +1,48 @@
-# Conroller
-They are used to add listener and have categorized event (bot/msg)
-
-It's here where you can allow only 1:1 dialog or maybe only group chat.
+# Controller
+They are used to add feature and create scenario based on hears, on and action controllers.
 
 To do that, three methods:
-- *hears*: message pattern and context validation, loaded during the init
-- *on*: group event categorization, loaded during the init
-- *action*: action to execute, loaded by the *on* controller
+- *hears*: 
+  - triggered by message
+  - message pattern and context validation
+  - loaded during the init by `./app/controller/loader.js`
+- *on*: 
+  - triggered by message
+  - group event categorization
+  - loaded during the init by `./app/controller/loader.js`
+- *action*: 
+  - triggered by *on* controller 
+  - action to execute
+  - loaded by the *on* controller by `./app/controller/action/loader.js`
 
 ## Loading
 The hears and on controllers are loaded during the bot initialization
-with the [loader](./controller/loader.js) script.
-The action controllers are loaded after an On controller evenet.
+with the `./app/controller/loader.js` script.
+The action controllers are loaded after an On controller event.
 
 The first check is to know if the controller is activate or not and
-depending of the global, specific or default configuration the controller
+depending of the global or default configuration the controller
 is loaded or not.
 
-## Composition
-They are define in dedicated folder and they need the following files:
+## Organization
+The controllers are define in dedicated folder and they need the following files:
 - Controller name
   - hears or on or action
-    - *run.js*: Scripts with the code
-    - *conf.js*: Default configuration file
+    - `run.js`: Scripts with the code
+    - `conf.js`: Default configuration file
 
-They are located in the './controller' folder.
+They are located in the `./app/controller` folder.
+
+The JSON configuration file associate define the default configuration of the
+feature and its standard parameters plus the default behaviors.
+This can be overloaded by the global settings.
+It also follow the folder structure and so the controller chain/path and 
+its declaration.
 
 ## Features
 ### Hears
 Check if the message match with the pattern and the context
-- ./app/controller/hears
+- `./app/controller/hears`
 
 Hears controller contains two specific options to be used by the loader the template:
 ```
@@ -80,7 +93,7 @@ exports.MyCtrHears_off = function(controller, bot, message, config) {
 ### On
 Will be triggered for a dedicated context and will call the *action* 
 loader main script.
-- ./app/controller/on
+- `./app/controller/on`
 
   On controller contains one specific option to be used by the loader the template:
 ```
@@ -125,10 +138,10 @@ exports.MyCtrOn = function(controller, bot, message, config) {
 
 ### Action
 Will be executed by the *on* controller.
-- ./app/controller/on
+- `./app/controller/action`
 
 They are loaded via a common script who provides also the function
-template: ./app/controller/action/loader.js
+template: `./app/controller/action/loader.js`
 
 #### run.js
 ```
