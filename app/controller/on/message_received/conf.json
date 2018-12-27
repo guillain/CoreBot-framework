@@ -10,7 +10,8 @@
                 },
                 "msg": {
                     "help": [
-                        "Message received event"
+                        "Message received event\n",
+                        "- _No argument_"
                     ]
                 }
             }

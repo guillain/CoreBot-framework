@@ -1,8 +1,8 @@
 {
-    "module": {
+    "controller": {
+      "on": {
         "logstash": {
             "enable": false,
-            "prefixed": false,
             "type": "tcp",
             "port": "4055",
             "auth": "",
@@ -10,6 +10,11 @@
             "level": "info",
             "framework": "botkit",
             "log_type": "bot",
+            "listener": {
+                "logstash": {
+                    "from": ["message_direct", "message_received"]
+                }
+            },
             "msg": {
                 "help": [
                     "Used to send message and event in Logstash service for Elasticsearch records\n",
@@ -19,5 +24,6 @@
                 ]
             }
         }
+      }
     }
 }

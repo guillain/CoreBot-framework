@@ -21,6 +21,7 @@ exports.search = function(controller, bot, message, config){
     let i_total = 0;
     let i_key = 0;
     let counter = 0;
+    let res = '';
     let keys_words = '';
     let msg_arr_key = [];
     let res_i_km = [];

@@ -11,7 +11,8 @@
                 },
                 "msg": {
                     "help": [
-                        "Provide botkit studio connection for advanced feature like NLP"
+                        "Provide botkit studio connection for advanced feature like NLP\n",
+                        "- _No argument_"
                     ]
                 }
             }

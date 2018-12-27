@@ -1,5 +1,6 @@
 {
-    "module": {
+    "controller": {
+      "hears": {
         "csv": {
             "enable": false,
             "file": "doc/csv.conf",
@@ -45,10 +46,11 @@
                     "ko": "Issue to load the data"
                 },
                 "test": {
-                    "ok": "Data sources mismatch",
-                    "ko": "Data sources match"
+                    "ok": "Data sources match",
+                    "ko": "Data sources mismatch"
                 }
             }
         }
+      }
     }
 }

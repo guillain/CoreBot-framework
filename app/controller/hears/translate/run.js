@@ -20,17 +20,15 @@ client.on("error", function (err) {
 
 // Translate 
 exports.translate = function(controller, bot, message, config) {
-
+  // Default user conf
   let data = [
       'manual',
       config.controller.hears.translate.default.lang_in,
       config.controller.hears.translate.default.lang_out
   ];
 
-  let user = message.user; //personEmail;
-  if(user.indexOf("chat") > -1) user = message.from_jid;
-  let usertmp = user.split('@');
-  user = usertmp[0];
+  // Get user ref
+  user = tools.get_user(message);
 
   let grp_msg = "";
   if (message.group === true) grp_msg = " for user " + user;
@@ -41,11 +39,10 @@ exports.translate = function(controller, bot, message, config) {
 
     // Remove first pattern if: present + prefixed=true
     let msg_arr = message.text.split(' ');
-    if ((data[0] !== 'automatic') && !(/^translate$/i.test(msg_arr['0']))){
+    /*if ((data[0] !== 'automatic') && !(/^translate$/i.test(msg_arr['0']))){
         tools.debug('debug', 'module translate run stop_no_command');
         return;
-    }
-
+    }*/
     if (/^translate$/i.test(msg_arr['0'])) { 
         tools.debug('debug', 'module translate run mod-name-del');
         msg_arr.shift();

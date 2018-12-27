@@ -1,5 +1,6 @@
 {
-    "module": {
+    "controller": {
+      "hears": {
         "translate": {
             "enable": false,
             "default": {
@@ -51,5 +52,6 @@
                 ]
             }
         }
+      }
     }
 }

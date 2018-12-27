@@ -10,7 +10,8 @@
                 },
                 "msg": {
                     "help": [
-                        "Group message event\n"
+                        "Group message event\n",
+                        "- _No argument_"
                     ]
                 }
             }

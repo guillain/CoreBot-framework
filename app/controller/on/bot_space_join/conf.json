@@ -10,7 +10,8 @@
                 },
                 "msg": {
                     "help": [
-                        "Event when the bot joins a space"
+                        "Event when the bot joins a space\n",
+                        "- _No argument_"
                     ]
                 }
             }

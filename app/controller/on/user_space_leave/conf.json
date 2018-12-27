@@ -10,7 +10,8 @@
                 },
                 "msg": {
                     "help": [
-                        "Event when user leaves a space"
+                        "Event when user leaves a space\n",
+                        "- _No argument_"
                     ]
                 }
             }

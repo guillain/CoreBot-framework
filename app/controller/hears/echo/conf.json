@@ -6,7 +6,7 @@
                 "listener":{
                     "echo": {
                         "pattern":["^echo *"],
-                        "from": ["direct_mention", "direct_message", "self_message"]
+                        "from": ["direct_mention", "direct_message"]
                     }
                 },
                 "msg": {

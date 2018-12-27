@@ -1,6 +1,5 @@
 // Load CoreBot libraries
 let tools = require(__basedir + 'lib/tools');
-let csv = require(__basedir + 'module/csv/run.js');
 //let redis = require(__basedir + 'lib/redis.js');
 
 // Requirements
@@ -26,7 +25,7 @@ exports.reset = function (controller, bot, message, config) {
 };
 
 // Survey report hears controller - to handle report
-exports.report = function (bcontroller, ot, message, config) {
+exports.report = function (bcontroller, bot, message, config) {
     let to_say = '';
     let survey_user = tools.get_user(message);
 

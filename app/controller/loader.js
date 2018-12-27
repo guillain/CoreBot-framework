@@ -12,11 +12,11 @@ module.exports = function(controller, config) {
     const controls = ['hears','on'];
     controls.forEach(function(control){
         // Loop over each controller's module
-        _.each(config['controller'][control], function (conf, index) {
+        _.each(config['controller'][control], function (conf, module) {
             tools.debug('debug', 'controller ' + control + ' ' + module);
 
             // Load or not the controller
-            if (config.controller[control][module].enable === false) {
+            if (config['controller'][control][module].enable === false) {
                 tools.debug("debug","controller " + control + " " + module + " disable");
                 return controller;
             }
@@ -27,15 +27,15 @@ module.exports = function(controller, config) {
             _.each(config['controller'][control][module].listener, function (conf, index) {
                 if (control === 'hears') {
                     controller.hears(
-                                    config.controller[control][module].listener[index].pattern,
-                                    config.controller[control][module].listener[index].from,
+                                    config['controller'][control][module].listener[index].pattern,
+                                    config['controller'][control][module].listener[index].from,
                                     function (bot, message) {
                         mod_run[index](controller, bot, message, config);
                     });
                 }
                 else if (control === 'on') {
                     controller.on(
-                                    config.controller[control][module].listener[index].from,
+                                    config['controller'][control][module].listener[index].from,
                                     function (bot, message) {
                         mod_run[index](controller, bot, message, config);
                     });

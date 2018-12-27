@@ -21,16 +21,13 @@ client.on("error", function (err) {
 // CSV functions 
 exports.get = function(controller, bot, message, config){
     // Get CSV file data
-    fs.readFile(__basedir + config.controller.hears.csv.file, function(err, csv_data) {
+    tools.get_csv_data(__basedir + config.controller.hears.csv.file, function(csv_data) {
         if (!csv_data) {
-            tools.debug('error', 'controller hears autoreply search get no-csv-file ');
+            tools.debug('error', 'controller hears csv search get no-csv-file ');
             return;
         }
-
-        if (csv_data !== '') res = config.controller.hears.csv.msg.get.ok;
-        else res = config.controller.hears.csv.msg.get.ko;
-
-        bot.reply(message, '\n\n- ' + csv_data.join("\n\n- "));
+        if (csv_data === '') bot.reply(message,config.controller.hears.csv.msg.get.ko);
+        else bot.reply(message, config.controller.hears.csv.msg.get.ok = '\n- ' + csv_data.join("\n- "));
     });
 };
 
@@ -46,14 +43,15 @@ exports.search = function(controller, bot, message, config){
     });
 
     // Get CSV file data
-    fs.readFile(__basedir + config.controller.hears.csv.file, function(err, csv_data) {
-        if (!csv_data) {
+    fs.readFile(__basedir + config.controller.hears.csv.file, function(err, data) {
+        if (!data) {
             tools.debug('error', 'controller hears autoreply search no-csv-file ');
             return;
         }
 
         let to_say = config.controller.hears.csv.msg.search.ko;
         let res = '';
+        let csv_data = data.toString().split('\n');
 
         for (let i in csv_data) search.add(csv_data[i]);
         res = search_data(search, data_arr);
@@ -103,11 +101,11 @@ search_data = function(search, pattern) {
     return [pos_one[1],pos_two[1],pos_three[1]];
 };
 
-exports.load = function(conroller, bot, message, config){
+exports.load = function(controller, bot, message, config){
     // Parse CSV file and set value in redis
     fs.readFile(__basedir + config.controller.hears.csv.file, function(err, data) {
         if (!data) {
-            tools.debug('error', 'controller hears autoreply load no-csv-file ');
+            tools.debug('error', 'controller hears csv load no-csv-file ');
             return;
         }
         var strs = [];
@@ -119,7 +117,7 @@ exports.load = function(conroller, bot, message, config){
         client.del(config.controller.hears.csv.storage, redis.print);
         client.hmset(config.controller.hears.csv.storage, strs, redis.print, function (err, reply) {
             if(err) {
-               tools.debug('error', 'module csv get_csv_data_cb ' + err);
+               tools.debug('error', 'controller hears csv load db ' + err);
                throw err;
             }
         });
@@ -130,25 +128,27 @@ exports.load = function(conroller, bot, message, config){
     });
 };
 
-exports.test = function(conroller, bot, message, config) {
+exports.test = function(controller, bot, message, config) {
     // Parse CSV file and compare value with redis
-    fs.readFile(__basedir + config.controller.hears.csv.file, function(err, csv_data) {
+    tools.get_csv_data(__basedir + config.controller.hears.csv.file, function(csv_data) {
         if (!csv_data) {
-            tools.debug('error', 'controller hears autoreply test no-csv-file ');
+            tools.debug('error', 'controller hears csv test no-csv-file ');
             return;
         }
         let csv_data_length = 0;
         if (csv_data !== '') csv_data_length = csv_data.length;
 
-        client.get(config.controller.hears.csv.storage, function (err, km) {
-            if(err) {
-                 km = [];
-                 tools.debug('error', 'module csv test_db_csv ' + err);
-            }
-            if (csv_data_length !== km.length)
+        client.hgetall(config.controller.hears.csv.storage, function (err, kms) {
+            if(err) tools.debug('error', 'controller hears csv test db ' + err);
+
+            let db_data_length = 0;
+            for (km in kms) db_data_length++;
+
+            if (csv_data_length === db_data_length)
                  res = config.controller.hears.csv.msg.test.ok;
             else res = config.controller.hears.csv.msg.test.ko;
-            bot.reply(message, res + '\n\nFile: ' + csv_data_length + ' - Db: ' + km.length);
+            bot.reply(message, res + '\n\nFile: ' + csv_data_length + ' - Db: ' + db_data_length);
         });
     });
 };
+
