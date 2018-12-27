@@ -28,6 +28,21 @@ a new sketch or by developing dedicated one.
 The configuration is taken dynamically so no need to restart anything,
 when your sketches are updated, your bots also ;-)
 
+## Features
+All features are stored in the *controller* folder and they're loaded
+with the help of a common script.
+
+The non-exhaustive list is hereafter:
+- NLP provided by [LUIS](https://botkit.ai/docs/readme-middlewares.html)
+via the botkit feature
+- Google translation
+- BigData connector (to send info/tracking/APM data or search)
+- CSV file management
+- autoreply (like echo)
+- survey
+- button
+- ...
+
 ## Pre requisites
 1/ Python
   - 2.7
@@ -39,7 +54,7 @@ when your sketches are updated, your bots also ;-)
 1/ Clone the project:
 `git clone https://github.com/guillain/CoreBot-framework.git`
 
-2/ Adapt the config file to your env and scenario:
+2/ Create the config file for your env and scenario:
 `vi CoreBot-framework/app/conf/config.json`
 
 3/ Run it:
@@ -51,24 +66,10 @@ when your sketches are updated, your bots also ;-)
   `cd CoreBot-framework/app && npm install & pm2 start CoreBot-framework.js`
 
 ## Configuration
-Thanks to read this [configuration](./doc/configuration.md) doc.
+Thanks to read this [doc of configuration](./doc/configuration.md).
 
 ## Installation
-Thanks to read this [installation](./doc/installation.md) doc.
-
-## Features
-All features are stored in the *feature* folder and they're loaded
-with the help of a common script.
-
-The non-exhaustive list is hereafter:
-- NLP provided by [LUIS](https://botkit.ai/docs/readme-middlewares.html)
-via the botkit feature
-- Google translation
-- BigData connector (to send info/tracking/APM data or search)
-- CSV file management
-- autoreply (like echo)
-- button
-- ...
+Thanks to read this [doc of installation](./doc/installation.md).
 
 To jump in the framework's logic, follow this [doc](./doc/logic.md).
 
