@@ -5,7 +5,9 @@
                 "enable": true,
                 "listener": {
                     "user_space_leave": {
-                        "from": "user_space_leave"
+                        "from": "user_space_leave",
+                        "privilege": ["user"],
+                        "access_list": ["*"]
                     }
                 },
                 "msg": {

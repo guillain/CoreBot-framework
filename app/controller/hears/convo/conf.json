@@ -6,7 +6,9 @@
                 "listener": {
                     "convo": {
                         "pattern": ["^convo"],
-                        "from": ["message_received", "direct_message", "direct_mention", "group_message"]
+                        "from": ["message_received", "direct_message", "direct_mention", "group_message"],
+                        "privilege": ["user"],
+                        "access_list": ["*"]
                     }
                 },
                 "msg": {

@@ -9,19 +9,27 @@
                 "listener": {
                     "survey": {
                         "pattern": ["^survey$"],
-                        "from": ["message_received", "direct_message", "direct_mention", "group_message"]
+                        "from": ["message_received", "direct_message", "direct_mention", "group_message"],
+                        "privilege": ["user"],
+                        "access_list": ["*"]
                     },
                     "reset": {
                         "pattern": ["^survey reset$"],
-                        "from": ["message_received", "direct_message", "direct_mention", "group_message"]
+                        "from": ["message_received", "direct_message", "direct_mention", "group_message"],
+                        "privilege": ["admin"],
+                        "access_list": ["*"]
                     },
                     "report": {
                         "pattern": ["^survey report$"],
-                        "from": ["message_received", "direct_message", "direct_mention", "group_message"]
+                        "from": ["message_received", "direct_message", "direct_mention", "group_message"],
+                        "privilege": ["user"],
+                        "access_list": ["*"]
                     },
                     "report_user": {
                         "pattern": ["^survey report user"],
-                        "from": ["message_received", "direct_message", "direct_mention", "group_message"]
+                        "from": ["message_received", "direct_message", "direct_mention", "group_message"],
+                        "privilege": ["admin"],
+                        "access_list": ["*"]
                     }
                 },
                 "msg": {

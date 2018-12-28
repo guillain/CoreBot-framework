@@ -5,7 +5,9 @@
                 "enable": true,
                 "listener": {
                     "direct_message": {
-                        "from": "direct_message"
+                        "from": "direct_message",
+                        "privilege": ["user"],
+                        "access_list": ["*"]
                     }
                 },
                 "msg": {

@@ -5,7 +5,9 @@
                 "enable": true,
                 "listener": {
                     "direct_mention": {
-                        "from": "direct_mention"
+                        "from": "direct_mention",
+                        "privilege": ["user"],
+                        "access_list": ["*"]
                     }
                 },
                 "msg": {

@@ -9,7 +9,9 @@
                 "listener": {
                     "search": {
                         "pattern": ["^search *"],
-                        "from": ["direct_message", "message_received"]
+                        "from": ["direct_message", "message_received"],
+                        "privilege": ["user"],
+                        "access_list": ["*"]
                     }
                 },
                 "msg": {

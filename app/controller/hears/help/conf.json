@@ -6,19 +6,27 @@
                 "listener": {
                     "help": {
                         "pattern": ["^help$", "^help all$"],
-                        "from": ["message_received", "direct_message", "direct_mention", "group_message"]
+                        "from": ["message_received", "direct_message", "direct_mention", "group_message"],
+                        "privilege": ["user"],
+                        "access_list": ["*"]
                     },
                     "help_listener": {
                         "pattern": ["^help listener$", "^help listener all$"],
-                        "from": ["message_received", "direct_message", "direct_mention", "group_message"]
+                        "from": ["message_received", "direct_message", "direct_mention", "group_message"],
+                        "privilege": ["user"],
+                        "access_list": ["*"]
                     },
                     "help_detail": {
                         "pattern": ["^help detail$", "^help detail all$"],
-                        "from": ["message_received", "direct_message", "direct_mention", "group_message"]
+                        "from": ["message_received", "direct_message", "direct_mention", "group_message"],
+                        "privilege": ["user"],
+                        "access_list": ["*"]
                     },
                     "help_module": {
                         "pattern": ["^help module *"],
-                        "from": ["message_received", "direct_message", "direct_mention", "group_message"]
+                        "from": ["message_received", "direct_message", "direct_mention", "group_message"],
+                        "privilege": ["user"],
+                        "access_list": ["*"]
                     }
                 },
                 "msg": {
