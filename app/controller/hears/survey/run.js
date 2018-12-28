@@ -1,6 +1,7 @@
 // Load CoreBot libraries
-let tools = require(__basedir + 'lib/tools');
-//let redis = require(__basedir + 'lib/redis.js');
+let Log = require(__basedir + 'lib/log');
+let User = require(__basedir + 'lib/user');
+//let Redis = require(__basedir + 'lib/redis');
 
 // Requirements
 let fs = require('fs');
@@ -9,12 +10,12 @@ let client = redis.createClient({detect_buffers: true});
 
 // on connect
 client.on('connect', function() {
-    tools.debug('debug', 'redis client on');
+    Log.debug('redis client on');
 });
 
 // on error
 client.on("error", function (err) {
-    tools.debug('debug', 'redis client error ' + err);
+    Log.debug('redis client error ' + err);
 });
 
 // Survey report hears controller - to handle report
@@ -26,12 +27,12 @@ exports.reset = function (controller, bot, message, config) {
 // Survey report hears controller - to handle report
 exports.report = function (bcontroller, bot, message, config) {
     let to_say = '';
-    let survey_user = tools.get_user(message);
+    let survey_user = User.get_user(message);
 
     // Open Redis survey storage
     client.get(config.controller.hears.survey.storage, function (err, survey_db) {
         let survey = JSON.parse(survey_db);
-        tools.debug('debug', 'controller hears survey survey ' + JSON.stringify(survey));
+        Log.debug('controller hears survey survey ' + JSON.stringify(survey));
 
         if (!survey.reports) bot.reply(message, config.controller.hears.survey.msg.no_report);
         else {
@@ -57,14 +58,13 @@ exports.report = function (bcontroller, bot, message, config) {
 
 // Survey report hears controller - to handle report
 exports.report_user = function (controller, bot, message, config) {
-
     let to_say = '';
-    let survey_user = tools.get_user(message);
+    let survey_user = User.get_user(message);
 
     // Open Redis survey storage
     client.get(config.controller.hears.survey.storage, function (err, survey_db) {
         let survey = JSON.parse(survey_db);
-        tools.debug('debug', 'controller hears survey survey ' + JSON.stringify(survey));
+        Log.debug('controller hears survey survey ' + JSON.stringify(survey));
 
         if (!survey.users) bot.reply(message, config.controller.hears.survey.msg.no_report);
         else {
@@ -78,15 +78,14 @@ exports.report_user = function (controller, bot, message, config) {
 
 // Survey new hears controller - to handle each question
 exports.survey = function (controller, bot, message, config) {
-
     let survey = {};
     let to_say = '';
-    let survey_user = tools.get_user(message);
+    let survey_user = User.get_user(message);
 
     // Open Redis survey storage
     client.get(config.controller.hears.survey.storage, function (err, survey_db) {
         let survey = JSON.parse(survey_db);
-        tools.debug('debug', 'controller hears survey survey ' + JSON.stringify(survey));
+        Log.debug('controller hears survey survey ' + JSON.stringify(survey));
 
         // Create new conversation
         bot.createConversation(message, function (err, convo) {
@@ -96,19 +95,19 @@ exports.survey = function (controller, bot, message, config) {
             // User already done with all steps
             if (user_step >= survey.nb_report) {
                 bot.reply(message, config.controller.hears.survey.msg.already_done);
-                tools.debug('info', 'controller hears survey user-already-done');
+                Log.info('controller hears survey user-already-done');
                 return;
             }
 
             // Loop over each question
             for (let i_report=0; i_report<survey.nb_report; i_report++){
-                tools.debug('info', 'controller hears survey i_report ' + i_report + ' - user_step ' + user_step);
+                Log.info('controller hears survey i_report ' + i_report + ' - user_step ' + user_step);
 
                 // User has not done all steps
                 if (user_step <= i_report) {
                     let pattern = '[0-9a-zA-Z]*';
                     let question = survey.reports[i_report].name;
-                    tools.debug('info', 'controller hears survey question ' + question);
+                    Log.info('controller hears survey question ' + question);
 
                     let replies = '';
                     if (survey.reports[i_report].replies) {
@@ -121,7 +120,7 @@ exports.survey = function (controller, bot, message, config) {
                         if (pattern_counter > 9) pattern = '[1-9][0-9]';
                         else pattern = '[1-' + pattern_counter + ']';
                     }
-                    tools.debug('info', 'controller hears survey replies ' + replies);
+                    Log.info('controller hears survey replies ' + replies);
 
                     // Prepare tag to manage the ask vs replies
                     let question_tag = 'default';
@@ -145,7 +144,7 @@ exports.survey = function (controller, bot, message, config) {
                                     survey.reports[i_report].text.push(response.text);
                                 survey.users[survey_user].step++;
  
-                                tools.debug('info', 'controller hears survey records ' + JSON.stringify(survey));
+                                Log.info('controller hears survey records ' + JSON.stringify(survey));
                                 client.set(config.controller.hears.survey.storage, JSON.stringify(survey), () => {});
 
                                 if (i_report < (survey.nb_report-1)) convo.gotoThread('question_' + (i_report+1));
@@ -180,16 +179,16 @@ exports.survey = function (controller, bot, message, config) {
 };
 
 survey_init = function(config){
-    tools.debug('info', 'controller hears survey init ');
+    Log.info('controller hears survey init ');
 
     // Initialization survey structur
     let survey = { "users": {}, "reports": {}};
 
     // Get the CSV data
-    tools.debug('debug', 'controller hears survey init get_csv_data ' + __basedir + config.controller.hears.survey.file);
+    Log.debug('controller hears survey init get_csv_data ' + __basedir + config.controller.hears.survey.file);
     let csv_data = fs.readFileSync(__basedir + config.controller.hears.survey.file);
     if (!csv_data) {
-        tools.debug('error', 'controller hears survey init no-csv-file ');
+        Log.error('controller hears survey init no-csv-file ');
         return;
     }
 
@@ -198,27 +197,27 @@ survey_init = function(config){
     survey['nb_report'] = csv_array.length-1;
 
     for (let i_csv_arr=0; i_csv_arr<csv_array.length-1; i_csv_arr++) {
-            tools.debug('debug', 'controller hears survey init csv_array['+i_csv_arr+'] ' + csv_array[i_csv_arr]);
+            Log.debug('controller hears survey init csv_array['+i_csv_arr+'] ' + csv_array[i_csv_arr]);
 
             // Get Question as first column in the CSV file
             let question = csv_array[i_csv_arr].split(';')[0];
             survey['reports'][i_csv_arr] = {"name":question};
-            tools.debug('debug', 'controller hears survey question ' + question);
+            Log.debug('controller hears survey question ' + question);
 
             // If second column, it's for the expected replies
             if (csv_array[i_csv_arr].split(';').length > 1) {
                 survey.reports[i_csv_arr].replies = {};
 
                 let reply_arr = csv_array[i_csv_arr].split(';')[1].split(',');
-                tools.debug('debug', 'controller hears survey init reply_arr ' + reply_arr);
+                Log.debug('controller hears survey init reply_arr ' + reply_arr);
 
                 for (let i_reply_arr = 0; i_reply_arr < reply_arr.length; i_reply_arr++){
-                    tools.debug('debug', 'controller hears survey init reply_arr['+i_reply_arr+'] ' + reply_arr[i_reply_arr]);
+                    Log.debug('controller hears survey init reply_arr['+i_reply_arr+'] ' + reply_arr[i_reply_arr]);
                     survey.reports[i_csv_arr].replies[i_reply_arr] = {"name": reply_arr[i_reply_arr], "value": 0};
                 }
             }
             else survey.reports[i_csv_arr].text = [];
-            tools.debug('debug', 'controller hears survey init survey ' + JSON.stringify(survey));
+            Log.debug('controller hears survey init survey ' + JSON.stringify(survey));
     }
 
     // Save the Survey in the db

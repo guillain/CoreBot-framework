@@ -4,7 +4,7 @@ They are used to start one daemon by business messaging desired.
 It's the starting point of the application!
 
 ## Loading
-The launcher are started with the [loader](./launcher/loader.js) script
+The launcher are started with the [loader](./lib/launcher.js) script
 during the main startup process.
 The first check is to know if the launcher is activate or not and
 depending of the global, specific or default configuration the launcher
@@ -38,7 +38,7 @@ They are located in the './module' folder.
 ### run.jss
 ```
 // Load tools library
-let tools = require(__basedir + 'lib/tools');
+let Log = require(__basedir + 'lib/log');
 
 // Load Botkit library
 var Botkit = require(__basedir + 'botkit/lib/Botkit.js');
@@ -56,7 +56,7 @@ exports.run = function(config) {
 
 
   // Scenario declarations
-  let scenario = require(__basedir + 'controller/loader.js');
+  let scenario = require(__basedir + 'lib/controller.js');
   controller = scenario.run(controller);
   return controller;
 };

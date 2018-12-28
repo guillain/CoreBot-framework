@@ -1,5 +1,5 @@
 // Load tools library
-let tools = require(__basedir + 'lib/tools');
+let Log = require(__basedir + 'lib/log');
 
 // Load required library
 let Run = require('logstash-client');

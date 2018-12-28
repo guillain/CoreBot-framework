@@ -1,15 +1,12 @@
 // Load tools library
-let tools = require(__basedir + 'lib/tools');
+let Log = require(__basedir + 'lib/log');
 
 // Configuration
 let Botkit = require('botkit');
 
 // Run the launcher
 module.exports = function(config) {
-  tools.debug('debug', 'launcher web run');
-
-  // Set Spark bot user
-  config.user = config.launcher.web.name;
+  Log.debug('launcher web run');
 
   // Bot initialisation
   let controller = Botkit.socketbot({
@@ -28,7 +25,7 @@ module.exports = function(config) {
   controller.openSocketServer(controller.httpserver);
 
   // Scenario declarations
-  controller = require(__basedir + 'controller/loader.js')(controller, config);
+  controller = require(__basedir + 'lib/controller.js')(controller, config);
 
   // Start the bot brain in motion!!
   controller.startTicking();

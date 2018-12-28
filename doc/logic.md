@@ -10,9 +10,9 @@ Main -> loader(launcher) -> loader(controller.hears) -> controller.hears[feature
 
 ## Loader
 Loader scripts are used for the following part:
-- launcher: `./app/launcher/loader.js`
-- controller: `./app/controller/loader.js`
-- controller.action: `./app/controller/action/loader.js`
+- launcher: `./app/lib/launcher.js`
+- controller: `./app/lib/controller.js`
+- controller.action: `./app/lib/controller_action.js`
 
 They have been create for:
 - mass treatment (loop over JSON definition = folder structure)
@@ -26,7 +26,7 @@ One script to execute the solution
 - ./app/CoreBot-framework.js
 
 It generates the global configuration and loads each launcher via
-a single script `./app/launcher/loader.js` with the configuration.
+a single script `./app/lib/launcher.js` with the configuration.
 
 # 1/ Launcher
 Start the daemon for a specific Business Messaging
@@ -37,13 +37,13 @@ Each launcher is describe with the help of the standard files
 following the `enable` option.
 
 Each launcher starts the hears and on contollers via a single
-script `./app/controller/loader.js`
+script `./app/lib/controller.js`
    
 # 2/ Controller: loaded during the start-up
 - ./app/controller/
 
 The hears and on controller are loaded via the script 
-`./app/controller/loader.js` who provides also a template to create
+`./app/lib/controller.js` who provides also a template to create
 the controllers. For example the ethod to load or not the controller,
 the pattern and form configuration...
 

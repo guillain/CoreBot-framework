@@ -5,19 +5,19 @@ To do that, three methods:
 - *hears*: 
   - triggered by message
   - message pattern and context validation
-  - loaded during the init by `./app/controller/loader.js`
+  - loaded during the init by `./app/lib/controller.js`
 - *on*: 
   - triggered by message
   - group event categorization
-  - loaded during the init by `./app/controller/loader.js`
+  - loaded during the init by `./app/lib/controller.js`
 - *action*: 
   - triggered by *on* controller 
   - action to execute
-  - loaded by the *on* controller by `./app/controller/action/loader.js`
+  - loaded by the *on* controller by `./app/lib/controller_action.js`
 
 ## Loading
 The hears and on controllers are loaded during the bot initialization
-with the `./app/controller/loader.js` script.
+with the `./app/lib/controller.js` script.
 The action controllers are loaded after an On controller event.
 
 The first check is to know if the controller is activate or not and
@@ -141,7 +141,7 @@ Will be executed by the *on* controller.
 - `./app/controller/action`
 
 They are loaded via a common script who provides also the function
-template: `./app/controller/action/loader.js`
+template: `./app/lib/controller_action.js`
 
 #### run.js
 ```
