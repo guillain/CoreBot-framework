@@ -12,7 +12,7 @@
 						"pattern":["^translate *"],
 						"from": ["message_received", "direct_message", "direct_mention", "group_message"],
 						"privilege": ["user"],
-						"access_list": ["*"]
+						"access_list": ["default"]
 					}
 				},
 				"msg": {

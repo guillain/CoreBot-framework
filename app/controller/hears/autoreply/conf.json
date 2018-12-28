@@ -10,7 +10,7 @@
                         "pattern": ["."],
                         "from": ["direct_message", "message_received"],
                         "privilege": ["user"],
-                        "access_list": ["*"]
+                        "access_list": ["default"]
                     }
                 },
                 "msg": {

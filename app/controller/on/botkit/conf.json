@@ -8,7 +8,7 @@
                     "botkit": {
                         "from": ["direct_message", "direct_mention"],
                         "privilege": ["user"],
-                        "access_list": ["*"]
+                        "access_list": ["default"]
                     }
                 },
                 "msg": {

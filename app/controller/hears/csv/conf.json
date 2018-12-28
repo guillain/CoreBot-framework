@@ -11,25 +11,25 @@
 						"pattern": ["^csv get"],
 						"from": ["direct_message", "message_received"],
 						"privilege": ["user"],
-						"access_list": ["*"]
+						"access_list": ["default"]
 					},
 					"search": {
 						"pattern": ["^csv search *"],
 						"from": ["direct_message", "message_received"],
 						"privilege": ["user"],
-                        "access_list": ["*"]
+                        "access_list": ["default"]
 					},
 					"load": {
 						"pattern": ["^csv load"],
 						"from": ["direct_message", "message_received"],
 						"privilege": ["admin"],
-                        "access_list": ["*"]
+                        "access_list": ["default"]
 					},
 					"test": {
 						"pattern": ["^csv test"],
 						"from": ["direct_message", "message_received"],
 						"privilege": ["admin"],
-                        "access_list": ["*"]
+                        "access_list": ["default"]
 					}
 				},
 				"msg": {

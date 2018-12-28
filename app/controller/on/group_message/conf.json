@@ -7,7 +7,7 @@
                     "group_message": {
                         "from": "group_message",
                         "privilege": ["user"],
-                        "access_list": ["*"]
+                        "access_list": ["default"]
                     }
                 },
                 "msg": {

@@ -39,16 +39,40 @@ exports.debug = function(severity, message, bot = '') {
 
 // Get User function
 exports.get_user = function(message){
-    exports.debug('debug', 'tools get_user user:' + message.user + ' jid:' + message.from_jid);
-
-    let user = message.user; //personEmail;
-    if(user.indexOf("chat") > -1) user = message.from_jid;
+    let user = message.user;
+    if (message.personEmail) user = message.personEmail;
+    if ((!user) || (user === "") || (user === "null")){
+        if (message.from_jid) user = message.from_jid;
+    }
     let usertmp = user.split('@');
     user = usertmp[0];
 
-    exports.debug('debug', 'tools get_user user:' + user);
-    
+    exports.debug('debug', 'lib user get_user ' + user);
     return user;
+};
+
+// Get the user privilege
+exports.privilege_user = function(config, my_user){
+    let res = false;
+    if (config.user[my_user])
+        res = config.user[my_user].privilege;
+    else
+        res = config.user.default.privilege;
+
+    exports.debug('debug', 'lib user privilege_user ' + my_user + ' ' + res);
+    return res;
+};
+
+// Check if ACL match
+exports.access_list = function(config, message, my_acl){
+	let res = false;
+	if (config.access_list[my_acl]){
+		if ((config.access_list[my_acl].permission === "allow")
+			&& (message.text.match('/' + config.access_list[my_acl].pattern + '/')))
+			res = true;
+	}
+	exports.debug('debug', 'lib user privilege_user ' + my_acl + ' ' + res);
+    return res;
 };
 
 // Get CSV data

@@ -7,7 +7,7 @@
                     "bot_space_join": {
                         "from": "bot_space_join",
                         "privilege": ["user"],
-                        "access_list": ["*"]
+                        "access_list": ["default"]
                     }
                 },
                 "msg": {

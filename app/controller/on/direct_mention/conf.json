@@ -7,7 +7,7 @@
                     "direct_mention": {
                         "from": "direct_mention",
                         "privilege": ["user"],
-                        "access_list": ["*"]
+                        "access_list": ["default"]
                     }
                 },
                 "msg": {

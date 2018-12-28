@@ -12,7 +12,7 @@ module.exports = function(controller, message_type, message_content, bot, config
 
         if (config.controller.action[index].enable === true) {
 
-            let mod_run = require(__basedir + 'controller/action/' + index + '/run.js')(bot, message_content, config);
+            let mod_run = require(__basedir + 'controller/action/' + index + '/run.js')(controller, bot, message_content, config);
 
             tools.debug("info", "controller action " + index + " enable");
 

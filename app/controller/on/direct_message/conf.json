@@ -7,7 +7,7 @@
                     "direct_message": {
                         "from": "direct_message",
                         "privilege": ["user"],
-                        "access_list": ["*"]
+                        "access_list": ["default"]
                     }
                 },
                 "msg": {

@@ -4,7 +4,7 @@
             "hello": {
                 "enable": false,
                 "privilege": ["user"],
-                "access_list": ["*"],
+                "access_list": ["default"],
                 "msg": {
                     "text": "Hello",
                     "help": [

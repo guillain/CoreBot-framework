@@ -11,6 +11,7 @@ module.exports = function(controller, config) {
     // Loop over each controller
     const controls = ['hears','on'];
     controls.forEach(function(control){
+
         // Loop over each controller's module
         _.each(config['controller'][control], function (conf, module) {
             tools.debug('debug', 'controller ' + control + ' ' + module);
@@ -22,7 +23,7 @@ module.exports = function(controller, config) {
             }
             tools.debug("info","controller " + control + " " + module + " enable");
 
-            // Load the controller
+            // Load the 'on' and 'hears' controllers
             let mod_run = require(__basedir + 'controller/' + control + '/' + module + '/run.js');
             _.each(config['controller'][control][module].listener, function (conf, index) {
                 if (control === 'hears') {

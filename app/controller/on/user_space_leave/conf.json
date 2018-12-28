@@ -7,7 +7,7 @@
                     "user_space_leave": {
                         "from": "user_space_leave",
                         "privilege": ["user"],
-                        "access_list": ["*"]
+                        "access_list": ["default"]
                     }
                 },
                 "msg": {

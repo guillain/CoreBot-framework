@@ -8,27 +8,29 @@ let client = redis.createClient({detect_buffers: true});
 
 // on connect
 client.on('connect', function() {
-    tools.debug('debug', 'redis client on');
+	tools.debug('debug', 'lib redis on connect');
 });
 
 // on error
 client.on("error", function (err) {
-    tools.debug('debug', 'redis client error ' + err);
+	tools.debug('debug', 'lib redis on error ' + err);
 });
 
 // Get data 
 exports.get = function(storage, cb) {
-  tools.debug('debug', 'redis');
+	tools.debug('debug', 'lib redis get ' + storage);
 
-  // Open user storage
-  client.get(storage, function(err, reply) {
-    if (reply) cb(reply);
-    if (err) tools.debug('error', 'redis get');
-  });
+	// Open user storage
+	client.hgetall(config.controller.hears.search.storage, function (err, reply) {
+		if (err) tools.debug('error', 'lib redis get ' + err);
+		cb(reply);
+	});
 };
 
 // Set data
 exports.set = function(storage, data){
-    client.set(storage, data);
+	tools.debug('debug', 'lib redis set ' + storage);
+
+	client.hmset(storage, data);
 };
 

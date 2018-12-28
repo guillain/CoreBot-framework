@@ -7,7 +7,7 @@
                     "user_space_join": {
                         "from": "user_space_join",
                         "privilege": ["user"],
-                        "access_list": ["*"]
+                        "access_list": ["default"]
                     }
                 },
                 "msg": {

@@ -7,7 +7,7 @@
                     "message_received": {
                         "from": "message_received",
                         "privilege": ["user"],
-                        "access_list": ["*"]
+                        "access_list": ["default"]
                     }
                 },
                 "msg": {

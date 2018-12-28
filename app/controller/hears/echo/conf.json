@@ -8,7 +8,7 @@
                         "pattern":["^echo *"],
                         "from": ["direct_mention", "direct_message"],
                         "privilege": ["user"],
-                        "access_list": ["*"]
+                        "access_list": ["default"]
                     }
                 },
                 "msg": {

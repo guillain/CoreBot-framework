@@ -14,7 +14,7 @@
 					"logstash": {
 						"from": ["message_direct", "message_received"],
 						"privilege": ["user"],
-						"access_list": ["*"]
+						"access_list": ["default"]
 					}
 				},
 				"msg": {
