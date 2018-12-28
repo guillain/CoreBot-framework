@@ -17,7 +17,6 @@ client.on("error", function (err) {
     tools.debug('debug', 'redis client error ' + err);
 });
 
-
 // Survey report hears controller - to handle report
 exports.reset = function (controller, bot, message, config) {
     let survey = survey_init(config);
@@ -92,77 +91,89 @@ exports.survey = function (controller, bot, message, config) {
         // Create new conversation
         bot.createConversation(message, function (err, convo) {
             if ((survey.users === "") || (!survey.users[survey_user])) survey.users[survey_user] = {"step": 0};
-
             let user_step = survey.users[survey_user].step;
-            if (user_step >= (survey.nb_report-1)) {
+
+            // User already done with all steps
+            if (user_step >= survey.nb_report) {
                 bot.reply(message, config.controller.hears.survey.msg.already_done);
                 tools.debug('info', 'controller hears survey user-already-done');
                 return;
             }
 
-            let pattern = '[0-9a-zA-Z]*';
-            let question = survey.reports[user_step].name;
-            let replies = '';
-            tools.debug('info', 'controller hears survey question ' + question);
+            // Loop over each question
+            for (let i_report=0; i_report<survey.nb_report; i_report++){
+                tools.debug('info', 'controller hears survey i_report ' + i_report + ' - user_step ' + user_step);
 
-            if (survey.reports[user_step].replies) {
-                for (i_reply in survey.reports[user_step].replies) {
-                    replies += '- ' + (parseInt(i_reply,10)+1) + ' - ';
-                    replies += survey.reports[user_step].replies[i_reply].name + '\n';
+                // User has not done all steps
+                if (user_step <= i_report) {
+                    let pattern = '[0-9a-zA-Z]*';
+                    let question = survey.reports[i_report].name;
+                    tools.debug('info', 'controller hears survey question ' + question);
+
+                    let replies = '';
+                    if (survey.reports[i_report].replies) {
+                        let pattern_counter = 0;
+                        for (i_reply in survey.reports[i_report].replies) {
+                            pattern_counter++;
+                            replies += '- ' + (parseInt(i_reply,10)+1) + ' - ';
+                            replies += survey.reports[i_report].replies[i_reply].name + '\n';
+                        }
+                        if (pattern_counter > 9) pattern = '[1-9][0-9]';
+                        else pattern = '[1-' + pattern_counter + ']';
+                    }
+                    tools.debug('info', 'controller hears survey replies ' + replies);
+
+                    // Prepare tag to manage the ask vs replies
+                    let question_tag = 'default';
+                    if (i_report > 0) question_tag = 'question_' + i_report;
+
+                    // Add Message for bad reply
+                    convo.addMessage({
+                        text: config.controller.hears.survey.msg.bad_reply,
+                        action: question_tag,
+                    }, 'bad_reply_' + i_report);
+
+                    // Add Question
+                    convo.addQuestion(question + '\n' + replies, [
+                        {
+                            pattern: pattern,
+                            callback: function (response, convo) {
+                                // Increment values of user step and survey value
+                                if (survey.reports[i_report].replies)
+                                    survey.reports[i_report].replies[parseInt(response.text,10)-1].value++;
+                                else if (survey.reports[i_report].text)
+                                    survey.reports[i_report].text.push(response.text);
+                                survey.users[survey_user].step++;
+ 
+                                tools.debug('info', 'controller hears survey records ' + JSON.stringify(survey));
+                                client.set(config.controller.hears.survey.storage, JSON.stringify(survey), () => {});
+
+                                if (i_report < (survey.nb_report-1)) convo.gotoThread('question_' + (i_report+1));
+                                else convo.gotoThread('end');
+                            }
+                        },
+                        {
+                            default: true,
+                            callback: function (response, convo) {
+                                convo.gotoThread('bad_reply_' + i_report);
+                            }
+                        }
+                    ], {}, question_tag);
                 }
             }
-            tools.debug('info', 'controller hears survey replies ' + replies);
-
+                   
             // Add Message for accepted replies
             convo.addMessage({
-                text: config.controller.hears.survey.msg.reply_ok,
-            }, 'reply');
-
-            // Add Message for bad reply
-            convo.addMessage({
-                text: config.controller.hears.survey.msg.bad_reply,
-                action: 'default',
-            }, 'bad_reply');
-
-            // Add Question
-            convo.addQuestion(question + '\n' + replies, [
-                {
-                    pattern: pattern,
-                    callback: function (response, convo) {
-                        // Increment values of user step and survey value
-                        survey.users[survey_user].step++;
-                        if (survey.reports[user_step].replies)
-                            survey.reports[user_step].replies[parseInt(response.text,10)-1].value++;
-                        else if (survey.reports[user_step].text)
-                            survey.reports[user_step].text.push(response.text);
-
-                        tools.debug('info', 'controller hears survey records ' + JSON.stringify(survey));
-                        client.set(config.controller.hears.survey.storage, JSON.stringify(survey), () => {});
-                        convo.gotoThread('reply');
-                    }
-                },
-                {
-                    default: true,
-                    callback: function (response, convo) {
-                        convo.gotoThread('bad_reply');
-                    }
-                }
-            ], {}, 'default');
-
-            // Add ending handler
-            convo.on('end', function (convo) {
-                if ((convo.status === 'completed') && (survey.users[survey_user].step >= survey.reports.length)){
-                    convo.say({text: config.controller.hears.survey.msg.end});
-                }
-            });
-
+                text: config.controller.hears.survey.msg.end,
+            }, 'end');
+ 
             // Manage timeout
             convo.onTimeout(function (convo) {
                 convo.say(config.controller.hears.survey.msg.timeout);
                 convo.next();
             });
 
-            // now set the conversation in motion...
+            // Activate the Convo
             convo.activate();
         });
     });
@@ -184,9 +195,9 @@ survey_init = function(config){
 
     // Loop over each CSV line
     let csv_array = csv_data.toString().split("\n");
-    survey['nb_report'] = csv_array.length;
+    survey['nb_report'] = csv_array.length-1;
 
-    for (let i_csv_arr=0; i_csv_arr<csv_array.length; i_csv_arr++) {
+    for (let i_csv_arr=0; i_csv_arr<csv_array.length-1; i_csv_arr++) {
             tools.debug('debug', 'controller hears survey init csv_array['+i_csv_arr+'] ' + csv_array[i_csv_arr]);
 
             // Get Question as first column in the CSV file
