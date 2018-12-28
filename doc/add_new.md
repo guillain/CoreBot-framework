@@ -16,7 +16,6 @@ configuration in the main configuration file [config.json](app/conf/config.json)
 Feature can be:
 - [Launcher](./doc/launcher.md)
 - [Controller](./doc/controller.md)
-- [Module](./doc/module.md)
 
 All are describes in the same way and respect the same format.
 

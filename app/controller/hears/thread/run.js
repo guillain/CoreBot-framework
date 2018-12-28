@@ -1,17 +1,16 @@
+// Load CoreBot libraries
+let tools = require(__basedir + 'lib/tools');
+
 // Exports controller function as scenario
-exports.run = function(controller, config) {
-    if (config.controller.hears.thread.enable === true) {
-        controller.hears('new thread', 'message_received', function (bot, message) {
-            bot.replyAsNewThread(message, config.controller.hears.thread.msg.welcome);
-        });
-        controller.hears('thread key', 'message_received', function (bot, message) {
-            bot.replyWithThreadKey(message, {
-                threadKey: "YOUR_THREAD_KEY",
-                requestBody: {
-                    text: config.controller.hears.thread.msg.text
-                }
-            });
-        });
-    }
-    return controller;
+exports.thread_new = function(controller, bot, message, config) {
+    bot.replyAsNewThread(message, config.controller.hears.thread.msg.welcome);
+};
+
+exports.thread_key = function(controller, bot, message, config) {
+    bot.replyWithThreadKey(message, {
+        threadKey: config.controller.hears.thread.key,
+        requestBody: {
+            text: config.controller.hears.thread.msg.text
+        }
+    });
 };

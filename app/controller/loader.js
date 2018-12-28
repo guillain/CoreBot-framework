@@ -5,34 +5,43 @@ let tools = require(__basedir + 'lib/tools');
 let _ = require("underscore");
 
 // Exports controller function as scenario
-exports.run = function(controller, config) {
+module.exports = function(controller, config) {
     tools.debug("debug", "controller loader");
 
-    let conf_merged = config;
+    // Loop over each controller
+    const controls = ['hears','on'];
+    controls.forEach(function(control){
+        // Loop over each controller's module
+        _.each(config['controller'][control], function (conf, module) {
+            tools.debug('debug', 'controller ' + control + ' ' + module);
 
-    // Merge and create one global conf
-    _.each(config.controller.hears, function (conf, index) {
-        conf_merged = tools.load_config(__basedir + 'controller/hears/' + index + "/conf.json", conf_merged);
-    });
-    _.each(config.controller.on, function (conf, index) {
-        conf_merged = tools.load_config(__basedir + 'controller/on/' + index + "/conf.json", conf_merged);
-    });
+            // Load or not the controller
+            if (config['controller'][control][module].enable === false) {
+                tools.debug("debug","controller " + control + " " + module + " disable");
+                return controller;
+            }
+            tools.debug("info","controller " + control + " " + module + " enable");
 
-    // Run each controller
-    _.each(config.controller.hears, function (conf, index) {
-        if (conf_merged.controller.hears[index].enable === true) {
-            tools.debug("info","controller loader hears " + index);
-            let mod_run = require(__basedir + 'controller/hears/' + index + '/run.js');
-            controller = mod_run.run(controller, conf_merged);
-        } else tools.debug("debug","not controller loader hears " + index);
+            // Load the controller
+            let mod_run = require(__basedir + 'controller/' + control + '/' + module + '/run.js');
+            _.each(config['controller'][control][module].listener, function (conf, index) {
+                if (control === 'hears') {
+                    controller.hears(
+                                    config['controller'][control][module].listener[index].pattern,
+                                    config['controller'][control][module].listener[index].from,
+                                    function (bot, message) {
+                        mod_run[index](controller, bot, message, config);
+                    });
+                }
+                else if (control === 'on') {
+                    controller.on(
+                                    config['controller'][control][module].listener[index].from,
+                                    function (bot, message) {
+                        mod_run[index](controller, bot, message, config);
+                    });
+                }
+            });
+        });
     });
-    _.each(config.controller.on, function (conf, index) {
-        if (conf_merged.controller.on[index].enable === true) {
-            tools.debug("debug","controller loader on " + index);
-            let mod_run = require(__basedir + 'controller/on/' + index + '/run.js');
-            controller = mod_run.run(controller, conf_merged);
-        } else tools.debug("debug","not controller loader on " + index);
-    });
-
     return controller;
 };

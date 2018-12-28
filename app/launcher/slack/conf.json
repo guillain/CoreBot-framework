@@ -4,6 +4,7 @@
             "enable": false,
             "name": "corebot-framework",
             "token": "",
+            "secret": "",
             "store": "data/slack",
             "msg": {
                 "help": [

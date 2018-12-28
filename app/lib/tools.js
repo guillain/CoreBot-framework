@@ -2,8 +2,8 @@
 let config = require(__basedir + 'conf/config.json');
 
 // Load required lib
+let fs = require('fs');
 let _ = require("underscore");
-let merge_json = require("merge-json");
 
 let logger = require('node-logger').createLogger(); // logs to STDOUT
 logger.setLevel(config.log.verbosity);
@@ -15,8 +15,9 @@ log_file.format = function(level, date, message){ return date + ': ' + level +':
 
 // Debug function
 exports.debug = function(severity, message, bot = '') {
+    if (bot !== '') bot.reply('_'+severity+'_ '+message);
+
     if (config.log.debug === true) {
-        if (bot !== '') bot.reply('_'+severity+'_ '+message);
 
         if      (severity === "debug") logger.debug(message);
         else if (severity === "info")  logger.info(message);
@@ -26,6 +27,7 @@ exports.debug = function(severity, message, bot = '') {
 
         // console.log(severity + ': ' + message);
     }
+
     if (config.log.file === '') {
         if      (severity === "debug") log_file.debug(message);
         else if (severity === "info")  log_file.info(message);
@@ -35,22 +37,34 @@ exports.debug = function(severity, message, bot = '') {
     }
 };
 
-// Exports controller function as scenario
-exports.load_config = function(conf_file = '', config = '') {
-    exports.debug("debug", "local_config "+conf_file);
+// Get User function
+exports.get_user = function(message){
+    exports.debug('debug', 'tools get_user user:' + message.user + ' jid:' + message.from_jid);
 
-    let conf_merged = config;
-    if (conf_file !== ''){
-        let local_config = require(conf_file);
-        conf_merged = merge_json.merge(local_config, config);
-    }
-    return conf_merged;
+    let user = message.user; //personEmail;
+    if(user.indexOf("chat") > -1) user = message.from_jid;
+    let usertmp = user.split('@');
+    user = usertmp[0];
+
+    exports.debug('debug', 'tools get_user user:' + user);
+    
+    return user;
 };
 
-// Export user or '' if it's the bot
-exports.get_ser = function(){
-
-}
+// Get CSV data
+exports.get_csv_data = function(file, cb) {
+    exports.debug('debug', 'tools get_csv_data ' + file);
+    fs.readFile(file, function(err, data) {
+        if(err) throw err;
+        let strs = [];
+        let array = data.toString().split("\n");
+        for(let i = 0; i < array.length - 1; i++) {
+            let lineArr = array[i].split(';');
+            strs.push(lineArr);
+        }
+        cb(strs);
+    });
+};
 
 // Exports datetime string
 exports.toUTCDateTimeString = function(date) {

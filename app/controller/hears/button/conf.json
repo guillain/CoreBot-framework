@@ -1,0 +1,38 @@
+{
+    "controller": {
+        "hears": {
+            "button": {
+                "enable": false,
+                "listener":{
+                    "button": {
+                        "pattern": ["^button-button$"],
+                        "from": ["direct_mention", "self_message", "direct_message"]
+                    },
+                    "open_link": {
+                        "pattern": ["^button-openlink$"],
+                        "from": ["direct_mention", "self_message", "direct_message"]
+                    },
+                    "execute_command": {
+                        "pattern": ["^button-executecommand$"],
+                        "from": ["direct_mention", "self_message", "direct_message"]
+                    },
+                    "submit": {
+                        "pattern": ["^button-sbumit$"],
+                        "from": ["direct_mention", "self_message", "direct_message"]
+                    }
+                },
+                "image_url": "https://image.slidesharecdn.com/botkitsignal-160526164159/95/build-a-bot-with-botkit-1-638.jpg?cb=1464280993",
+                "open_link": "https://botkit.ai/docs/",
+                "msg": {
+                    "help": [
+                        "Provide button feature (Cisco Jabber only)\n",
+                        "- _No argument_\n",
+                        "_Example_: `button *`",
+                        "Used to integrate action in button feature of Jabber conversation"
+                    ],
+                    "text": "Get cards"
+                }
+            }
+        }
+    }
+}

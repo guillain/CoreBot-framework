@@ -1,14 +1,7 @@
-// Load the required libraries
-let mod_loader = require(__basedir + 'module/loader.js');
+// Load require libraries
+let tools = require(__basedir + 'lib/tools');
 
 // Exports controller function as scenario
-exports.run = function(controller, config) {
-    if (config.controller.on.user_space_join.enable === true) {
-        controller.on('user_space_join', function (bot, message) {
-            if (config.log.debug === 1) bot.reply(message, "::user_space_join:: " + message.user + " says " + message.text);
-            mod_loader.run(controller, 'user_space_join', message, bot, config);
-        });
-    }
-    return controller;
+exports.message_received = function(controller, bot, message, config) {
+    require(__basedir + 'controller/action/loader.js')(controller, config.controller.on.user_space_join.listener.user_space_join.from, message, bot, config)
 };
-

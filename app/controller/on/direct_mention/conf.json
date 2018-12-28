@@ -3,9 +3,15 @@
         "on": {
             "direct_mention": {
                 "enable": true,
+                "listener": {
+                    "direct_mention": {
+                        "from": "direct_mention"
+                    }
+                },
                 "msg": {
                     "help": [
-                        "Direct mention event"
+                        "Direct mention event\n",
+                        "- _No argument_"
                     ]
                 }
             }

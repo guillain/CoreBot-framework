@@ -1,7 +1,7 @@
 // Configuration
 let Botkit = require('botkit');
 
-exports.run = function(config) {
+module.exports = function(config) {
   let controller = Botkit.web({
     debug: config.log.debug,
     studio_token: config.controller.on.botkit.token

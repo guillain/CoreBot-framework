@@ -4,7 +4,7 @@ let tools = require(__basedir + 'lib/tools');
 // Configuration
 let Botkit = require('botkit');
 
-exports.run = function(config) {
+module.exports = function(config) {
   tools.debug('debug', 'launcher teams run');
 
   var controller = Botkit.teamsbot({
@@ -21,8 +21,8 @@ exports.run = function(config) {
   });
 
   // Scenario declarations
-  var scenario = require(__basedir + 'controller/loader.js');
-  controller = scenario.run(controller,config);
+  controller = require(__basedir + 'controller/loader.js')(controller, config);
+
   return controller;
 };
 

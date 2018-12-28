@@ -1,5 +1,15 @@
 # Installation
-Install and configure Redis-server as your needs and start prior to run the CoreBot
+
+### Pre-requisite
+1/ Python
+  - 2.7
+  - 3.5
+
+2/ Redis server
+
+3/ Internet access (Business Messaging and additional API)
+
+### Get the Application
 
 Get the project
 - ` git clone https://github.com/guillain/CoreBot-framework.git`
@@ -7,12 +17,12 @@ Get the project
 Move into the application folder
 - `cd CoreBot-framework/app`
 
-Install packagaes
+Install packages
 - `npm install`
 
 ### Standalone server
 - Redis server installation: https://redis.io/topics/quickstart
-- Installation NodeJS dependencies: `npm install app/package.json`
+- Installation NodeJS dependencies: `npm install package.json`
 
 #### Node
 Run it manually (debug/dev):

@@ -1,24 +1,15 @@
-// Load tools library
+// Load require libraries
 let tools = require(__basedir + 'lib/tools');
 
 // Exports controller function as scenario
-exports.run = function(controller, config) {
-    tools.debug('debug', 'controller on botkit run');
-
-    if (config.controller.on.botkit.token !== '') {
-        controller.on('direct_message,direct_mention', function(bot, message) {
-            controller.studio.runTrigger(bot, message.text, message.user, message.channel).then(function(convo) {
-                if (!convo) {
-                    tools.debug('debug', 'controller on botkit run no-studio-match');
-                } else {
-                    tools.debug('debug', 'controller on botkit run studio-match');
-                }
-            }).catch(function(err) {
-                tools.debug('debug', 'controller on botkit run error' + err);
-            });
-        });
-    }
-    return controller;
+exports.botkit = function(controller, bot, message, config) {
+    controller.studio.runTrigger(bot, message.text, message.user, message.channel).then(function(convo) {
+        if (!convo) {
+            tools.debug('debug', 'controller on botkit no-studio-match');
+        } else {
+            tools.debug('debug', 'controller on botkit studio-match');
+        }
+    }).catch(function(err) {
+        tools.debug('debug', 'controller on botkit error' + err);
+    });
 };
-
-

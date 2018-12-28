@@ -3,9 +3,24 @@
         "hears": {
             "thread": {
                 "enable": false,
+                "key": "",
+                "listener":{
+                    "thread_new": {
+                        "pattern": ["^thread convo"],
+                        "from": ["message_received", "direct_message", "direct_mention", "group_message"]
+                    },
+                    "thread_key": {
+                        "pattern": ["^thread key"],
+                        "from": ["message_received", "direct_message", "direct_mention", "group_message"]
+                    }
+                },
                 "msg": {
                     "help": [
-                        "Thread management for the scenario"
+                        "Thread management for the scenario\n",
+                        "- **new**: to start new thread",
+                        "- _**key**_: to join existing thread\n",
+                        "_Example_: `thread new`, `thread key`",
+                        "Provide thread feature to manipulate spaces."
                     ],
                     "welcome": "Hello ! this is a new thread",
                     "text": "Hi ! this message inside the same thread"

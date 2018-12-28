@@ -1,42 +1,64 @@
-# Conroller
-They are used to add listener and have categorized event (bot/msg)
+# Controller
+They are used to add feature and create scenario based on hears, on and action controllers.
 
-It's here where you can allow only 1:1 dialog or maybe only group chat.
-
-To do that, two methods:
-- *hears*: specific message pattern
-- *on*: group event categorization
+To do that, three methods:
+- *hears*: 
+  - triggered by message
+  - message pattern and context validation
+  - loaded during the init by `./app/controller/loader.js`
+- *on*: 
+  - triggered by message
+  - group event categorization
+  - loaded during the init by `./app/controller/loader.js`
+- *action*: 
+  - triggered by *on* controller 
+  - action to execute
+  - loaded by the *on* controller by `./app/controller/action/loader.js`
 
 ## Loading
-The modules are loaded with the [loader](./controller/loader.js) script.
-The first check is to know if the module is activate or not and
-depending of the global, specific or default configuration the module is
-loaded or not.
+The hears and on controllers are loaded during the bot initialization
+with the `./app/controller/loader.js` script.
+The action controllers are loaded after an On controller event.
 
-## Execution
+The first check is to know if the controller is activate or not and
+depending of the global or default configuration the controller
+is loaded or not.
 
-## Composition
-They are define in dedicated folder and they need the following files:
+## Organization
+The controllers are define in dedicated folder and they need the following files:
 - Controller name
-  - hears or on
-    - *run.js*: Scripts with the code
-    - *conf.js*: Default configuration file
+  - hears or on or action
+    - `run.js`: Scripts with the code
+    - `conf.js`: Default configuration file
 
-They are located in the './controller' folder.
+They are located in the `./app/controller` folder.
 
-## Example
+The JSON configuration file associate define the default configuration of the
+feature and its standard parameters plus the default behaviors.
+This can be overloaded by the global settings.
+It also follow the folder structure and so the controller chain/path and 
+its declaration.
+
+## Features
 ### Hears
+Check if the message match with the pattern and the context
+- `./app/controller/hears`
+
+Hears controller contains two specific options to be used by the loader the template:
+```
+  "listener": {
+    "pattern": ["^myfeature$", "[0-9]*5"],
+    "from": ["direct_message", "group_message"]
+  }
+```
 #### run.js
 ```
 // Exports controller function as scenario
-exports.run = function(controller, config) {
-    controller.hears('who am i', ['direct_message', 'direct_mention'], function (bot, message) {
-        bot.reply(message,
-            'You are ' + message.user
-            + ' and your email is ' + message.data.personEmail
-            + ' and your user id is ' + message.data.personId);
-    });
-    return controller;
+exports.MyCtrHears_on = function(controller, bot, message, config) {
+    bot.reply(message, config.controller.on.MyCtrHears_on.msg.on);
+};
+exports.MyCtrHears_off = function(controller, bot, message, config) {
+    bot.reply(message, config.controller.on.MyCtrHears_on.msg.off);
 };
 ```
 #### conf.json
@@ -44,11 +66,23 @@ exports.run = function(controller, config) {
 {
     "controller": {
         "hears":
-            "MyHearsController": {
+            "MyCtrHears": {
                 "enable": true,
+                "listerner": {
+                    "MyCtrHears_on": {
+                        "pattern": ["^MyMessage on$"],
+                        "from": ["direct_message"]
+                    },
+                    "MyCtrHears_off": {
+                        "pattern": ["^MyMessage off$"],
+                        "from": ["direct_message"]
+                    }
+                },
                 "msg": {
+                    "on": "it's on on",
+                    "off": "it's on off",
                     "help": [
-                        "MyHearsController help"
+                        "MyCtrHears is to switch on off when on on and on on when on off"
                     ]
                 }
             }
@@ -57,20 +91,25 @@ exports.run = function(controller, config) {
 }
 ```
 ### On
+Will be triggered for a dedicated context and will call the *action* 
+loader main script.
+- `./app/controller/on`
+
+  On controller contains one specific option to be used by the loader the template:
+```
+  "listener": {
+    "from": ["direct_message", "group_message"]
+  }
+```
 #### run.js
 ```
-// Load the required libraries
-let mod_loader = require(__basedir + 'module/loader.js');
-
 // Exports controller function as scenario
-exports.run = function(controller, config) {
-    controller.on('direct_mention', function (bot, message) {
-        if (message.text['0'] === config.name) {
-            message.text.splice(0, 1);
-        }
-        mod_loader.run(controller, 'direct_mention', message, bot, config)
-    });
-    return controller;
+exports.MyCtrOn = function(controller, bot, message, config) {
+    bot.reply(message, config.controller.on.MyCtrOn.msg.text
+        + message.user
+        + ' and your email is ' + message.data.personEmail
+        + ' and your user id is ' + message.data.personId);
+    )
 };
 ```
 #### conf.json
@@ -78,9 +117,15 @@ exports.run = function(controller, config) {
 {
     "controller": {
         "on":
-            "MyOnController": {
+            "MyCtrOn": {
                 "enable": true,
+                "listerner": {
+                    "MyCtrOn": {
+                        "from": ["direct_message"]
+                    }
+                },
                 "msg": {
+                    "text": "hello",
                     "help": [
                         "MyOnController help"
                     ]
@@ -90,3 +135,36 @@ exports.run = function(controller, config) {
     }
 }
 ```
+
+### Action
+Will be executed by the *on* controller.
+- `./app/controller/action`
+
+They are loaded via a common script who provides also the function
+template: `./app/controller/action/loader.js`
+
+#### run.js
+```
+exports.MyCtrOn = function(controller, bot, message, config) {
+    bot.reply(message, config.controller.on.MyAction.msg.text);
+};
+```
+#### conf.json
+```
+{
+    "controller": {
+        "on":
+            "MyAction": {
+                "enable": true,
+                "msg": {
+                    "text": "hello",
+                    "help": [
+                        "MyAction help"
+                    ]
+                }
+            }
+        }
+    }
+}
+```
+

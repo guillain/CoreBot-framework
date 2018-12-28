@@ -7,7 +7,7 @@ const Botkit = require('./lib/JabberBot.js');
 
 let xml = require('@xmpp/xml');
 
-exports.run = function(config) {
+module.exports = function(config) {
   tools.debug('debug', 'launcher jabber run');
 
   // Bot initialisation
@@ -28,8 +28,8 @@ exports.run = function(config) {
   tools.debug('info', 'launcher jabber run ok');
 
   // Scenario declarations
-  let scenario = require(__basedir + 'controller/loader.js');
-  controller = scenario.run(controller, config);
+  controller = require(__basedir + 'controller/loader.js')(controller, config);
+
   return controller;
 };
 

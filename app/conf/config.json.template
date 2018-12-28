@@ -1,15 +1,15 @@
 {
-    "file": "CoreBot configuation",
+    "file": "CoreBot configuration",
     "author": "guillain",
     "license": "LGPL-3.0",
     "description": [
-        "use this template to create your own chatbot scenario",
-        "nothing more is need if you dont need specific feature",
-        "For new feature, read the doc"
+        "Use this template to create your own chatbot scenario",
+        "nothing more is need if you don't need specific feature",
+        "and for new feature, read the appropriate doc"
     ],
     "log": {
         "debug": true,
-        "verbosity": "info",
+        "verbosity": "debug",
         "file": "log/CoreBot.log"
     },
     "stats_optout": true,
@@ -24,14 +24,15 @@
     },
     "launcher": {
         "web": {
-            "enable": false,
+            "enable": true,
             "name": "corebot-framework",
             "port": 4000
         },
         "slack": {
             "enable": false,
-            "name": "CoreBot-framework",
-            "token": ""
+            "name": "corebot-framework",
+            "token": "",
+            "secret": ""
         },
         "jabber": {
             "enable": false,
@@ -43,7 +44,7 @@
             "port": "5222"
         },
         "spark": {
-            "enable": true,
+            "enable": false,
             "name": "CoreBot-framework",
             "mail": "CoreBot-framework@webex.bot",
             "botid": "",
@@ -67,19 +68,34 @@
             "name": "CoreBot-framework",
             "endpoint": "",
             "token": "",
+            "hostname": "corebot-framework-google.eu-ddlabcom",
             "port": "4003"
         }
     },
     "controller": {
         "hears": {
+            "button": {
+                "enable": true
+            },
             "cards": {
-                "enable": false
+                "enable": true
             },
             "convo": {
                 "enable": false
             },
-            "echotest": {
+            "echo": {
+                "enable": true
+            },
+            "help": {
+                "enable": true
+            },
+            "menu": {
                 "enable": false
+            },
+            "survey": {
+                "enable": false,
+                "file": "",
+                "storage": ""
             },
             "thread": {
                 "enable": false
@@ -87,8 +103,21 @@
             "whoami": {
                 "enable": false
             },
-            "help": {
-                "enable": true
+            "autoreply": {
+                "enable": false,
+                "delay": 1,
+                "file": "data/autoreply.csv"
+            },
+            "csv": {
+                "enable": false,
+                "file": "data/km.csv",
+                "search_limit": 10,
+                "storage": "km"
+            },
+            "search": {
+                "enable": false,
+                "limit": 10,
+                "storage": "km"
             }
         },
         "on": {
@@ -120,43 +149,23 @@
         }
     },
     "module": {
-        "autoreply": {
-            "enable": false,
-            "delay": 1,
-            "file": "data/autoreply.csv"
-        },
-        "csv": {
-            "enable": false,
-            "file": "data/csv.conf",
-            "storage": "csv"
-        },
         "logstash": {
             "enable": false,
             "type": "tcp",
-            "port": "4055",
+            "port": "",
             "auth": "",
             "host": "",
-            "level": "info",
+            "level": "",
             "framework": "corebot",
             "log_type": "bot"
         },
         "translate": {
             "enable": false,
+            "prefixed": true,
             "default": {
                 "lang_in": "fr",
                 "lang_out": "en"
             }
-        },
-        "search": {
-            "enable": true,
-            "prefixed": true,
-            "limit": 10,
-            "key_length": 3,
-            "storage": "km"
-        },
-        "help": {
-            "enable": true
         }
     }
 }
-        

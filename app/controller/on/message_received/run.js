@@ -1,13 +1,7 @@
-// Load the required libraries
-let mod_loader = require(__basedir + 'module/loader.js');
+// Load require libraries
+let tools = require(__basedir + 'lib/tools');
 
 // Exports controller function as scenario
-exports.run = function(controller, config) {
-    if (config.controller.on.message_received.enable === true) {
-        controller.on('message_received', function (bot, message) {
-            mod_loader.run(controller, 'message_received', message, bot, config);
-        });
-    }
-    return controller;
+exports.message_received = function(controller, bot, message, config) {
+    require(__basedir + 'controller/action/loader.js')(controller, config.controller.on.message_received.listener.message_received.from, message, bot, config)
 };
-

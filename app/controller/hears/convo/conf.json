@@ -3,15 +3,24 @@
         "hears": {
             "convo": {
                 "enable": false,
+                "listener": {
+                    "convo": {
+                        "pattern": ["^convo"],
+                        "from": ["message_received", "direct_message", "direct_mention", "group_message"]
+                    }
+                },
                 "msg": {
-                    "help": [
-                        "Provide menu dialog feature\n"
-                    ],
                     "ask": "You want to know more about Botkit?",
                     "say": {
                         "yes": "Take a look here https://botkit.ai/docs/",
                         "no": "No problem"
-                    }
+                    },
+                    "help": [
+                        "Provide simple conversation menu dialog\n",
+                        "- _No argument_\n",
+                        "_Example_: `convo`",
+                        "Dialog with the bot and navigate in a simple conversation"
+                    ]
                 }
             }
         }

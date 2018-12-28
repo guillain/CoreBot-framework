@@ -5,7 +5,7 @@ let tools = require(__basedir + 'lib/tools');
 let Botkit = require('botkit');
 
 // Launcher
-exports.run = function(config) {
+module.exports = function(config) {
   tools.debug('debug', 'launcher slack run');
 
   // Set Spark bot user
@@ -15,7 +15,8 @@ exports.run = function(config) {
   let controller = Botkit.slackbot({
     debug: config.log.debug,
     studio_token: config.controller.on.botkit.token,
-    json_file_store: __basedir + config.launcher.slack.store
+    json_file_store: __basedir + config.launcher.slack.store,
+    clientSigningSecret: __basedir + config.launcher.slack.secret
   });
 
   let bot = controller.spawn({
@@ -25,8 +26,8 @@ exports.run = function(config) {
   tools.debug('info', 'launcher slack run ok');
 
   // Scenario declarations
-  let scenario = require(__basedir + 'controller/loader.js');
-  controller = scenario.run(controller, config);
+  controller = require(__basedir + 'controller/loader.js')(controller, config);
+
   return controller;
 };
 

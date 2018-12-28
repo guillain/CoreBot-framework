@@ -1,15 +1,10 @@
-// Load the required libraries
-let mod_loader = require(__basedir + 'module/loader.js');
+// Load require libraries
+let tools = require(__basedir + 'lib/tools');
 
 // Exports controller function as scenario
-exports.run = function(controller, config) {
-    if (config.controller.on.direct_mention.enable === true) {
-        controller.on('direct_mention', function (bot, message) {
-            if (message.text['0'] === config.name) {
-                message.text.splice(0, 1);
-            }
-            mod_loader.run(controller, 'direct_mention', message, bot, config)
-        });
+exports.direct_mention = function(controller, bot, message, config) {
+    if (message.text['0'] === config.name) {
+        message.text.splice(0, 1);
     }
-    return controller;
+    require(__basedir + 'controller/action/loader.js')(controller, config.controller.on.direct_mention.listener.direct_mention.from, message, bot, config)
 };

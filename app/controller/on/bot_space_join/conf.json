@@ -3,9 +3,15 @@
         "on": {
             "bot_space_join": {
                 "enable": true,
+                "listener": {
+                    "bot_space_join": {
+                        "from": "bot_space_join"
+                    }
+                },
                 "msg": {
                     "help": [
-                        "Event when the bot joins a space"
+                        "Event when the bot joins a space\n",
+                        "- _No argument_"
                     ]
                 }
             }

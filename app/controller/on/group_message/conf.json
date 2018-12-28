@@ -3,9 +3,15 @@
         "on": {
             "group_message": {
                 "enable": true,
+                "listener": {
+                    "group_message": {
+                        "from": "group_message"
+                    }
+                },
                 "msg": {
                     "help": [
-                        "Group message event"
+                        "Group message event\n",
+                        "- _No argument_"
                     ]
                 }
             }

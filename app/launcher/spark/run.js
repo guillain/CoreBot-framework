@@ -5,7 +5,7 @@ let tools = require(__basedir + 'lib/tools');
 let Botkit = require('botkit');
 
 // Run the launcher
-exports.run = function(config) {
+module.exports = function(config) {
   tools.debug('debug', 'launcher spark run');
 
   // Set Spark bot user
@@ -36,7 +36,8 @@ exports.run = function(config) {
   });
 
   // Scenario declarations
-  let scenario = require(__basedir + 'controller/loader.js');
-  controller = scenario.run(controller, config);
+  controller = require(__basedir + 'controller/loader.js')(controller, config);
+
   return controller;
 };
+

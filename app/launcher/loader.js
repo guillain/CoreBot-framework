@@ -5,18 +5,19 @@ let tools = require(__basedir + 'lib/tools');
 let _ = require("underscore");
 
 // Exports launcher
-exports.run = function(config) {
-    tools.debug("info", "launcher loader ");
+exports.run = function(launcher) {
+    tools.debug("debug", "launcher loader ");
 
-    _.each(config.launcher, function (conf, index) {
-        let conf_merged = tools.load_config(__basedir + 'launcher/' + index + '/conf.json', config);
+    _.each(launcher, function (conf, index) {
+        // Get the appropriate configuration
+        let config = require(__basedir + 'lib/config.js')(index);
 
-        if (conf_merged.launcher[index].enable === true) {
-            tools.debug("info", "launcher loader " + index);
+        if (config.launcher[index].enable === true) {
 
-            let mod_run = require(__basedir + 'launcher/' + index + '/run.js');
-            mod_run.run(conf_merged);
+            let mod_run = require(__basedir + 'launcher/' + index + '/run.js')(config);
 
-        } else tools.debug("debug", "not launcher loader " + index);
+            tools.debug("info", "launcher " + index + " enable");
+
+        } else tools.debug("debug", "launcher " + index + " disable");
     });
 };
