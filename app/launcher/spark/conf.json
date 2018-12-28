@@ -1,0 +1,30 @@
+{
+    "launcher": {
+        "spark": {
+            "enable": 0,
+            "name": "corebot-framework",
+            "mail": "",
+            "botid": "",
+            "url": "",
+            "port": 3000,
+            "access_token": "",
+            "secret": "",
+            "webhook_name": "",
+            "store": "data/spark",
+            "msg": {
+                "help": [
+                    "Cisco Webex Teams (Spark) launcher\n",
+                    "- enable: true or false, active or not the launcher",
+                    "- name: chatbot name",
+                    "- mail: bot's email address",
+                    "- botid: bot's id",
+                    "- url: host url with htttp/https and port",
+                    "- port: local port",
+                    "- access_token: Cisco Webex Teams bot token",
+                    "- secret: specific secret (ie random)",
+                    "- webhook_name: the name of the webhook used to registered the bot in the Webex Teams cloud"
+                ]
+            }
+        }
+    }
+}

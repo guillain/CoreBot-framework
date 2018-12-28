@@ -1,0 +1,24 @@
+{
+    "launcher": {
+        "hangouts": {
+            "enable": false,
+            "name": "corebot-framework",
+            "json_cred": "",
+            "endpoint": "",
+            "token": "",
+            "port": 3002,
+            "store": "data/hangouts",
+            "msg": {
+                "help": [
+                    "Google Hangout launcher\n",
+                    "- enable: true or false, active or not the launcher",
+                    "- name: chatbot name",
+                    "- endpoint: Google API endpoint",
+                    "- token: Google API token",
+                    "- hostname: Public address of the host",
+                    "- port: Public port of the host"
+                ]
+            }
+        }
+    }
+}

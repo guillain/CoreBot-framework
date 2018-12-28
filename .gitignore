@@ -1,7 +1,6 @@
 config.js
+config.json
 node_modules/
-npm-debug.log
-log/
 *.log
 *.swp
 .idea/
@@ -12,4 +11,7 @@ package-lock.json
 .env
 coverage
 db/
+data/*
+app/conf/*.json
+
 __test__

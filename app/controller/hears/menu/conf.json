@@ -1,0 +1,34 @@
+{
+    "controller": {
+        "hears": {
+            "menu": {
+                "enable": false,
+                "listener": {
+                    "menu": {
+                        "pattern": ["^menu"],
+                        "from": ["message_received", "direct_message", "direct_mention", "group_message"]
+                    }
+                },
+                "storage": "",
+                "delay": 3,
+                "msg": {
+                    "question": "Do you like cheese?",
+                    "reply": {
+                        "yes": "You said yes! How wonderfuls",
+                        "no": "You said no, that is too bad",
+                        "bad": "Sorry I did not understand"
+                    },
+                    "end": "End of menu",
+                    "timeout": "Oh no! The time limit has expired",
+                    "help": [
+                        "Menu provides an conversation workflow\n",
+                        "- _No argument_\n",
+                        "_Example_: `menu`",
+                        "Dialog with the bot and navigate  in the menu"
+                    ]
+                }
+            }
+        }
+    }
+}
+

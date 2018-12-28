@@ -1,0 +1,19 @@
+{
+    "launcher": {
+        "slack": {
+            "enable": false,
+            "name": "corebot-framework",
+            "token": "",
+            "secret": "",
+            "store": "data/slack",
+            "msg": {
+                "help": [
+                    "Slack launcher\n",
+                    "- enable: true or false, active or not the launcher",
+                    "- name: chatbot name",
+                    "- token: Slack API token"
+                ]
+            }
+        }
+    }
+}

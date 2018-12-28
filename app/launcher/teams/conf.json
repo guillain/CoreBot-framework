@@ -1,0 +1,24 @@
+{
+    "launcher": {
+        "slack": {
+            "enable": false,
+            "name": "corebot-framework",
+            "clientId": "",
+            "clientSecret": "",
+            "hostname": "",
+            "port": 3001,
+            "store": "data/teams",
+            "msg": {
+                "help": [
+                    "Microsoft Teams launcher\n",
+                    "- enable: true or false, active or not the launcher",
+                    "- name: chatbot name",
+                    "- clientId: API ID",
+                    "- clientSecret: API Key",
+                    "- hostname: Public address of the host",
+                    "- port: Public port of the host"
+                ]
+            }
+        }
+    }
+}

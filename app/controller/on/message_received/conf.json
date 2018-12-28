@@ -1,0 +1,21 @@
+{
+    "controller": {
+        "on": {
+            "message_received": {
+                "enable": true,
+                "listener": {
+                    "message_received": {
+                        "from": "message_received"
+                    }
+                },
+                "msg": {
+                    "help": [
+                        "Message received event\n",
+                        "- _No argument_"
+                    ]
+                }
+            }
+        }
+    }
+}
+

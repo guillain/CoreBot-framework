@@ -1,115 +1,93 @@
 # CoreBot as chatbot framework
-Chatbot framework is based on botkit and writte in nodejs.
-The idea is to provide a simple package compatible with the most of business messaging.
-In that case the features and/or sketchs developped are fully compatible with all environments and made the devepoment reusable in the futurs integrations.
+Chatbot framework based on **[botkit](https://botkit.ai/)**.
+
+The idea is to provide a simple package compatible with the most of
+business messaging easy to deploy, set and maintain.
+In that case the features and/or sketches developed are fully
+compatible with all environments and made the development reusable in
+the futures integrations.
 
 ## Advantage
-Generic setup is done to support the following business messaging solution:
+Generic setup is done to support the following business messaging
+solution:
 - Jabber
 - Cisco Webex Teams (Cisco Spark)
 - Microsoft Teams
 - Slack
-- Google Chat
-- Hangout
+- Google Hangout
+- Web (web server included)
 
-Standard library to be reuse with plug-and-conf mode.
+Standard libraries to be reused with plug-and-conf mode.
 
-All configurations, feature activation included, in the single file [config.js](app/config.js)
+All configurations in a single file [config.json](app/conf/config.json)
+who overload each single feature configuration.
+
+You can create your own scenario by using existing module and compose
+a new sketch or by developing dedicated one.
+
+The configuration is taken dynamically so no need to restart anything,
+when your sketches are updated, your bots also ;-)
 
 ## Features
-- NLP provided by [LUIS](https://botkit.ai/docs/readme-middlewares.html) via the botkit feature
-- Google transaltion
+All features are stored in the *controller* folder and they're loaded
+with the help of a common script.
+
+The non-exhaustive list is hereafter:
+- NLP provided by [LUIS](https://botkit.ai/docs/readme-middlewares.html)
+via the botkit feature
+- Google translation
 - BigData connector (to send info/tracking/APM data or search)
 - CSV file management
 - autoreply (like echo)
+- survey
 - button
+- ...
 
-Don't hesitate to share yours ;-)
+## Pre requisites
+1/ Python
+  - 2.7
+  - 3.5
+2/ Redis server
+3/ Internet access (Business Messaging and additional API)
+
+## Fast Run
+1/ Clone the project:
+`git clone https://github.com/guillain/CoreBot-framework.git`
+
+2/ Create the config file for your env and scenario:
+`vi CoreBot-framework/app/conf/config.json`
+
+3/ Run it:
+ `
+  - If you run on docker:
+  `cd CoreBot-framework && ./image build && ./image run`
+
+  - If you run locally:
+  `cd CoreBot-framework/app && npm install & pm2 start CoreBot-framework.js`
 
 ## Configuration
-Adapt the config file `config.js` and edit it according to your env.
-
-- Bot conf 
-- BigData collector
-- Configuration embeded for the following business messaging:
-  - Slack
-  - Cisco Jabber
-  - Cisco Webex Teams
-  ...
-- Features conf
-  - Translate (google)
-  - bigdata
-  - autoreply
-  ...
-
-Now just up to you to write your sketch.
-You can pickup some example as GetStarted and to be forked for your own ;-)
+Thanks to read this [doc of configuration](./doc/configuration.md).
 
 ## Installation
-Install and configure Redis-server as your needs and start prior to run the CoreBot
+Thanks to read this [doc of installation](./doc/installation.md).
 
-Get the project
-- ` git clone https://github.com/guillain/CoreBot-framework.git`
+To jump in the framework's logic, follow this [doc](./doc/logic.md).
 
-Move into
-- `cd CoreBot-framework`
+## How to add new feature?
+Thanks to read the [HowTo add new](./doc/add_new.md) doc to have get
+the complete details of the standard and template to use.
 
-### Standalone server
-- Installation dependencies
-`npm install`
+If need you can complete your framework knowledge with the following
+ones:
 
-#### Node 
-Run it manually (debug/dev)
+- [Framework Logic](./doc/logic.md)
 
-- `DEBUG=* node app/jabber.py`
-- `DEBUG=* node app/spark.py`
-- `DEBUG=* node app/slack.py`
-- `DEBUG=* node app/hangout.py`
-- `DEBUG=* node app/teams.py`
+- [Controller](./doc/controller.md)
 
-`Control+C` to exit
 
-#### PM2
-Run as daemon (recommanded) 
-
-- `pm2 start app/jabber.py`
-- `pm2 start app/spark.py`
-- `pm2 start app/slack.py`
-- `pm2 start app/hangout.py`
-- `pm2 start app/teams.py`
-
-Status
-- `pm2 status`
-
-Stop
-- `pm2 stop jabber spark slack`
-
-Delete
-- `pm2 delete jabber spark slack`
-
-Masse operation
-- `pm2 start all`
-- `pm2 stop all`
-- `pm2 reset all`
-
-### Docker image
-The image is provided by AWS with specific account. 
-Thanks to request access before and use the `image` script to do that easily ;-)
-
-Login in your AWS env.
-`aws configure`
-
-Get the image
-- `./image get`
-
-Run the container with the image
-- `./image run`
-
-Get the status
-- `./image status`
+Don't hesitate to share yours creation ;-)
 
 ## Tips
-
 Redis local record issue
 - `redis-cli> config set stop-writes-on-bgsave-error no`
 

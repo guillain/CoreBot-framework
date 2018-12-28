@@ -1,0 +1,26 @@
+{
+    "controller": {
+        "hears": {
+            "cards": {
+                "enable": false,
+                "image_url": "https://image.slidesharecdn.com/botkitsignal-160526164159/95/build-a-bot-with-botkit-1-638.jpg?cb=1464280993",
+                "open_link": "https://botkit.ai/docs/",
+                "listener": {
+                    "cards": {
+                        "pattern": ["^cards"],
+                        "from": ["direct_message", "message_received"]
+                    }
+                },
+                "msg": {
+                    "help": [
+                        "Provide card representation\n",
+                        "- _No argument_\n",
+                        "_Example_: `cards`",
+                        "Text incrustation in image, create your own cards"
+                    ],
+                    "text": "Get cards"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "controller": {
+        "on": {
+            "direct_message": {
+                "enable": true,
+                "listener": {
+                    "direct_message": {
+                        "from": "direct_message"
+                    }
+                },
+                "msg": {
+                    "help": [
+                        "Direct message event\n",
+                        "- _No argument_"
+                    ]
+                }
+            }
+        }
+    }
+}
+

@@ -1,0 +1,21 @@
+{
+    "controller": {
+        "on": {
+            "botkit": {
+                "enable": false,
+                "token": "",
+                "listener": {
+                    "botkit": {
+                        "from": ["direct_message", "direct_mention"]
+                    }
+                },
+                "msg": {
+                    "help": [
+                        "Provide botkit studio connection for advanced feature like NLP\n",
+                        "- _No argument_"
+                    ]
+                }
+            }
+        }
+    }
+}
