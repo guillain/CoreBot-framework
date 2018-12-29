@@ -10,7 +10,7 @@ module.exports = function(config) {
   var controller = Botkit.teamsbot({
     clientId: config.launcher.teams.clientId,
     clientSecret: config.launcher.teams.clientSecret,
-    studio_token: config.controller.on.botkit.token
+    studio_token: config.controller.on.botkit.token,
     json_file_store: __basedir + config.launcher.teams.store
   });
 
