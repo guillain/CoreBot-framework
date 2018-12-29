@@ -1,24 +1,27 @@
-// Load tools library
-let Log = require(__basedir + 'lib/log');
-
 // Load required lib
+let Log = require(__basedir + 'lib/log');
+let Security = require(__basedir + 'lib/security');
 let _ = require("underscore");
 
 // Exports controller function as scenario
-module.exports = function(controller, message_type, message_content, bot, config) {
-    Log.debug("loader controller action ");
+module.exports = function(controller, message_type, message, bot, config) {
+    Log.debug("lib controller action ");
 
     // Loop over each controller's action
     _.each(config.controller.action, function (conf, module) {
 
         // Load or not the controller
         if (config.controller.action[module].enable === true) {
+            Log.info("lib controller action " + module + " enable");
 
-            let mod_run = require(__basedir + 'controller/action/' + module + '/run.js')(controller, bot, message_content, config);
+            if (Security.validation(
+                config,
+                message,
+                config['controller'][control][module].listener[index]
+            ))
+                require(__basedir + 'controller/action/' + module + '/run.js')(controller, bot, message, config);
 
-            Log.info("loader controller action " + module + " enable");
-
-        } else Log.debug("loader controller action " + module + " disable");
+        } else Log.debug("lib controller action " + module + " disable");
 
     });
 

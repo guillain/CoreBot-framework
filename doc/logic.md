@@ -4,8 +4,8 @@ works.
 
 ## In summary
 ```
-Main -> loader(launcher) -> loader(controller.hears) -> controller.hears[feature].listener[feature_function]
-                         -> loader(controller.on)    -> loader(controller.action)
+Main -> loader(launcher) -> ACL(loader(controller.hears)) -> controller.hears[feature].listener[feature_function]
+                         -> ACL(loader(controller.on))    -> ACL(loader(controller.action))
 ```
 
 ## Loader
@@ -42,10 +42,13 @@ script `./app/lib/controller.js`
 # 2/ Controller: loaded during the start-up
 - ./app/controller/
 
-The hears and on controller are loaded via the script 
-`./app/lib/controller.js` who provides also a template to create
-the controllers. For example the ethod to load or not the controller,
-the pattern and form configuration...
+The hears and on controllers are loaded via the script
+`./app/lib/controller.js`.
+The action controllers are loaded via the script
+`./app/lib/controller_action.js`.
+Both provide template to create the controllers or the action.
+For example the method to load or not the controller, the security and
+ACL, the pattern and form configuration...
 
 Each controller is describe with the help of the standard files
 (cf. [configuration](doc/configuration.md) and it is executed or not
@@ -56,4 +59,3 @@ b) On: Will be triggered for a dedicated context
     i. Action: Are ordered folowing an On controller event
 
 Complete doc can be found here [Controller](./doc/controller.md).
-      

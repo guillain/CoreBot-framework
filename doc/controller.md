@@ -44,13 +44,20 @@ its declaration.
 Check if the message match with the pattern and the context
 - `./app/controller/hears`
 
-Hears controller contains two specific options to be used by the loader the template:
+Hears controller contains four specific options to be used by the loader the template:
+- pattern: array of regular expression. It must match with the chat to trigger the controller
+- from: array of sources of message. It must match with the chat context to trigger the controller
+- privilege: array of privilege (role). It must be associated with existing people or with the default one
+- access_list: array of ACL. It must match with existing access_list declare in the global configuration file.
 ```
   "listener": {
     "pattern": ["^myfeature$", "[0-9]*5"],
-    "from": ["direct_message", "group_message"]
+    "from": ["direct_message", "group_message"],
+    "privilege": ["user"],
+    "access_list": ["default"]
   }
 ```
+
 #### run.js
 ```
 // Exports controller function as scenario
@@ -95,12 +102,18 @@ Will be triggered for a dedicated context and will call the *action*
 loader main script.
 - `./app/controller/on`
 
-  On controller contains one specific option to be used by the loader the template:
+On controller contains three specific options to be used by the loader the template:
+- from: array of sources of message. It must match with the chat context to trigger the controller
+- privilege: array of privilege (role). It must be associated with existing people or with the default one
+- access_list: array of ACL. It must match with existing access_list declared in the global configuration file.
 ```
   "listener": {
-    "from": ["direct_message", "group_message"]
+    "from": ["direct_message", "group_message"],
+    "privilege": ["user"],
+    "access_list": ["default"]
   }
 ```
+
 #### run.js
 ```
 // Exports controller function as scenario
@@ -121,7 +134,9 @@ exports.MyCtrOn = function(controller, bot, message, config) {
                 "enable": true,
                 "listerner": {
                     "MyCtrOn": {
-                        "from": ["direct_message"]
+                        "from": ["direct_message"],
+                        "privilege": ["user"],
+                        "access_list": ["default"],
                     }
                 },
                 "msg": {
@@ -143,6 +158,17 @@ Will be executed by the *on* controller.
 They are loaded via a common script who provides also the function
 template: `./app/lib/controller_action.js`
 
+- privilege: array of privilege (role). It must be associated with existing people or with the default one
+- access_list: array of ACL. It must match with existing access_list declare in the global configuration file.
+```
+  "MyAction": {
+    ...
+    "privilege": ["user"],
+    "access_list": ["default"]
+    ...
+  }
+```
+
 #### run.js
 ```
 exports.MyCtrOn = function(controller, bot, message, config) {
@@ -156,6 +182,8 @@ exports.MyCtrOn = function(controller, bot, message, config) {
         "on":
             "MyAction": {
                 "enable": true,
+                "privilege": ["user"],
+                "access_list": ["default"],
                 "msg": {
                     "text": "hello",
                     "help": [

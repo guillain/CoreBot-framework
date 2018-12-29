@@ -6,7 +6,7 @@ let _ = require("underscore");
 
 // Exports launcher
 exports.run = function(launcher) {
-    Log.debug("loader launcher ");
+    Log.debug("lib launcher ");
 
     // Loop over each controller's module
     _.each(launcher, function (conf, index) {
@@ -16,11 +16,10 @@ exports.run = function(launcher) {
 
         // Load or not the controller
         if (config.launcher[index].enable === true) {
+            Log.info("lib launcher " + index + " enable");
 
             let mod_run = require(__basedir + 'launcher/' + index + '/run.js')(config);
 
-            Log.info("loader launcher " + index + " enable");
-
-        } else Log.debug("loader launcher " + index + " disable");
+        } else Log.debug("lib launcher " + index + " disable");
     });
 };

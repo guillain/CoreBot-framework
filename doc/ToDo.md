@@ -1,9 +1,4 @@
 # Global
-- ACL
-    - User
-    - Admin
-    - Domain
-    - Bot
 - Functions for the command parsing (shift, get...)
 - openLDAP
 - local NLP

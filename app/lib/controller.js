@@ -1,12 +1,11 @@
-// Load tools library
-let Log = require(__basedir + 'lib/log');
-
 // Load required lib
+let Log = require(__basedir + 'lib/log');
+let Security = require(__basedir + 'lib/security');
 let _ = require("underscore");
 
 // Exports controller function as scenario
 module.exports = function(controller, config) {
-    Log.debug("loader controller ");
+    Log.debug("lib controller ");
 
     // Loop over each controller
     const controls = ['hears','on'];
@@ -17,7 +16,7 @@ module.exports = function(controller, config) {
 
             // Load or not the controller
             if (config['controller'][control][module].enable === true) {
-                Log.info("loader controller " + control + " " + module + " enable");
+                Log.info("lib controller " + control + " " + module + " enable");
 
                 // Load the 'on' and 'hears' controllers
                 let mod_run = require(__basedir + 'controller/' + control + '/' + module + '/run.js');
@@ -28,18 +27,33 @@ module.exports = function(controller, config) {
                             config['controller'][control][module].listener[index].pattern,
                             config['controller'][control][module].listener[index].from,
                             function (bot, message) {
-                                mod_run[index](controller, bot, message, config);
+
+                                // Security val (ACL, priv, perm)
+                                if (Security.validation(
+                                    config,
+                                    message,
+                                    config['controller'][control][module].listener[index]
+                                ))
+                                    mod_run[index](controller, bot, message, config);
                             });
-                    } else if (control === 'on') {
+                    }
+                    else if (control === 'on') {
                         controller.on(
                             config['controller'][control][module].listener[index].from,
                             function (bot, message) {
-                                mod_run[index](controller, bot, message, config);
+
+                                // Security val (ACL, priv, perm)
+                                if (Security.validation(
+                                    config,
+                                    message,
+                                    config['controller'][control][module].listener[index]
+                                ))
+                                    mod_run[index](controller, bot, message, config);
                             });
                     }
                 });
             }
-            else Log.debug("loader controller " + control + " " + module + " disable");
+            else Log.debug("lib controller " + control + " " + module + " disable");
         });
     });
     return controller;
