@@ -35,6 +35,7 @@ module.exports = function(controller, config) {
                                     config['controller'][control][module].listener[index]
                                 ))
                                     mod_run[index](controller, bot, message, config);
+                                else bot.reply(message, config.msg.user_not_allowed);
                             });
                     }
                     else if (control === 'on') {
@@ -49,6 +50,7 @@ module.exports = function(controller, config) {
                                     config['controller'][control][module].listener[index]
                                 ))
                                     mod_run[index](controller, bot, message, config);
+                                else bot.reply(message, config.msg.user_not_allowed);
                             });
                     }
                 });

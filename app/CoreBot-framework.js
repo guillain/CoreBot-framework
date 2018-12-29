@@ -1,14 +1,13 @@
 // Configuration
 global.__basedir = __dirname  + '/';
-let tools = require(global.__basedir + 'lib/tools');
-let conf = require(global.__basedir + 'conf/config.json');
+
+// Load required library
+let Log = require(global.__basedir + 'lib/log');
 
 Log.debug('main start');
-//var debug = require('debug')('CoreBot-framework:main');
 
 // Run the launchers
-let launcher = require(global.__basedir + 'lib/launcher.js');
-launcher.run(conf.launcher);
+require(global.__basedir + 'lib/launcher.js')();
 
 Log.debug('main done');
 

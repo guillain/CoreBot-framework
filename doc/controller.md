@@ -1,5 +1,6 @@
 # Controller
-They are used to add feature and create scenario based on hears, on and action controllers.
+They are used to add features and create scenario based on *hears*, *on* 
+and *action* controllers.
 
 To do that, three methods:
 - *hears*: 
@@ -11,31 +12,37 @@ To do that, three methods:
   - group event categorization
   - loaded during the init by `./app/lib/controller.js`
 - *action*: 
-  - triggered by *on* controller 
+  - triggered by *on* controller event
   - action to execute
   - loaded by the *on* controller by `./app/lib/controller_action.js`
 
 ## Loading
-The hears and on controllers are loaded during the bot initialization
+The *hears* and *on* controllers are loaded during the bot initialization
 with the `./app/lib/controller.js` script.
-The action controllers are loaded after an On controller event.
+The *action* controllers are loaded after an On controller event.
+
+They can be loaded from the global configuration file `config.json` or by
+the individual configuration file `controller.json`.
 
 The first check is to know if the controller is activate or not and
-depending of the global or default configuration the controller
-is loaded or not.
+depending of the configuration the controller is loaded or not.
 
 ## Organization
 The controllers are define in dedicated folder and they need the following files:
-- Controller name
-  - hears or on or action
-    - `run.js`: Scripts with the code
-    - `conf.js`: Default configuration file
+- `run.js`: Scripts with the code
+- `conf.json`: Default configuration file
 
 They are located in the `./app/controller` folder.
 
+The structure is:
+- Controller name
+  - hears or on or action
+    - `run.js`: Scripts with the controller's code
+    - `conf.json`: Default configuration file of the controller
+
 The JSON configuration file associate define the default configuration of the
-feature and its standard parameters plus the default behaviors.
-This can be overloaded by the global settings.
+controller and its standard parameters plus the default behaviors.
+This can be overloaded or completed by the global settings (`config.json`).
 It also follow the folder structure and so the controller chain/path and 
 its declaration.
 

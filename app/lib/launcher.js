@@ -5,14 +5,14 @@ let Log = require(__basedir + 'lib/log');
 let _ = require("underscore");
 
 // Exports launcher
-exports.run = function(launcher) {
+module.exports = function() {
     Log.debug("lib launcher ");
 
-    // Loop over each controller's module
-    _.each(launcher, function (conf, index) {
+    // Get the configuration
+    let config = require(__basedir + 'lib/config.js')();
 
-        // Get the appropriate configuration
-        let config = require(__basedir + 'lib/config.js')(index);
+    // Loop over each controller's module
+    _.each(config.launcher, function (conf, index) {
 
         // Load or not the controller
         if (config.launcher[index].enable === true) {

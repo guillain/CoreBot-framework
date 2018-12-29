@@ -9,8 +9,9 @@ interesting to overload the feature configuration in the main file.
 In that case you can just copy/paste the interesting part of your local
 configuration in the main configuration file [config.json](app/conf/config.json).
 
-## Understand the logic
+## Understand the logic and the security
 - [Logic](./doc/logic.md)
+- [Security](./doc/security.md)
 
 ## What can be features?
 Feature can be:

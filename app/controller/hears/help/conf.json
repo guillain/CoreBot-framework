@@ -13,7 +13,7 @@
                     "help_listener": {
                         "pattern": ["^help listener$", "^help listener all$"],
                         "from": ["message_received", "direct_message", "direct_mention", "group_message"],
-                        "privilege": ["user"],
+                        "privilege": ["block"],
                         "access_list": ["default"]
                     },
                     "help_detail": {
@@ -25,7 +25,7 @@
                     "help_module": {
                         "pattern": ["^help module *"],
                         "from": ["message_received", "direct_message", "direct_mention", "group_message"],
-                        "privilege": ["user"],
+                        "privilege": ["admin"],
                         "access_list": ["default"]
                     }
                 },
@@ -36,8 +36,9 @@
                         "Provide global help support\n",
                         "- _**all**_: provide a list of all controllers",
                         "- **detail** _**all**_: provide all details",
-                        "- **controller name**: provide help for the considered module\n",
-                        "_Example_: `help`, `help all`, `help help detail`",
+                        "- **module _name_**: provide help for the considered module\n",
+                        "- **module _name_ detail**: provide details for the considered module\n",
+                        "_Example_: `help`, `help all`, `help module help detail`",
                         "This help command provides an access on all help pages.",
                         "You can request all modules or only a specific one with or without detail."
                     ]

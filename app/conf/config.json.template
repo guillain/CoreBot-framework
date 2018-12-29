@@ -1,0 +1,27 @@
+{
+    "file": "CoreBot configuration",
+    "author": "guillain",
+    "license": "LGPL-3.0",
+    "description": [
+        "Use this template to create your own chatbot scenario",
+        "nothing more is need if you don't need specific feature",
+        "and for new feature, read the appropriate doc"
+    ],
+    "default_conf": true,
+    "log": {
+        "debug": true,
+        "verbosity": "debug",
+        "file": "log/CoreBot.log"
+    },
+    "stats_optout": true,
+    "db": {
+        "host": "",
+        "user": ""
+    },
+    "msg": {
+        "welcome": "Welcome in the CoreBot-framework tools",
+        "bye": "See you soon",
+        "join": "Thanks to join us",
+        "user_not_allowed": "Sorry but you don't the privilege to access to this ressource"
+    }
+}

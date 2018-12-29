@@ -1,5 +1,6 @@
 # Global
 - Functions for the command parsing (shift, get...)
+  - need to review all modules to clean shift
 - openLDAP
 - local NLP
 

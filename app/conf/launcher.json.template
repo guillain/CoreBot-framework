@@ -1,0 +1,65 @@
+{
+    "launcher": {
+        "hangouts": {
+            "enable": false,
+            "name": "CoreBot-framework",
+            "json_cred": "",
+            "endpoint": "",
+            "token": "",
+            "port": "4003",
+            "store": "data/hangouts",
+            "msg": {
+                "help": [
+                    "Google Hangout launcher\n",
+                    "- enable: true or false, active or not the launcher",
+                    "- name: chatbot name",
+                    "- endpoint: Google API endpoint",
+                    "- token: Google API token",
+                    "- hostname: Public address of the host",
+                    "- port: Public port of the host"
+                ]
+            },
+            "hostname": "corebot-framework-google.eu-ddlabcom"
+        },
+        "web": {
+            "enable": true,
+            "name": "corebot-framework",
+            "port": 4000
+        },
+        "slack": {
+            "enable": true,
+            "name": "corebot-framework",
+            "token": "",
+            "secret": ""
+        },
+        "jabber": {
+            "enable": false,
+            "name": "CoreBot-framework",
+            "jid": "",
+            "password": "",
+            "store": "data/jabber/",
+            "ip": "",
+            "port": "5222"
+        },
+        "spark": {
+            "enable": true,
+            "name": "CoreBot-framework",
+            "mail": "CoreBot-framework@webex.bot",
+            "botid": "",
+            "url": "",
+            "port": "4001",
+            "access_token": "",
+            "secret": "",
+            "webhook_name": "corebot-framework",
+            "store": "./data/spark/"
+        },
+        "teams": {
+            "enable": false,
+            "name": "CoreBot-framework",
+            "clientId": "",
+            "clientSecret": "",
+            "hostname": "corebot-framework-teams.eu-ddlab.com",
+            "port": "4002"
+        }
+    }
+}
