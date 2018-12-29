@@ -1,4 +1,5 @@
 # Global
+- split config file 
 - Functions for the command parsing (shift, get...)
 - openLDAP
 - local NLP

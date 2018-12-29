@@ -16,19 +16,19 @@ According to your need and deployment, it can be interesting to have a library m
 
 Example of configuration to filter on domains:
 ```
-	"access_list": {
-		"default": {
-			"pattern": ["*"],
-			"permission": "allow"
-		},
-		"domain_allowed": {
-			"pattern": ["@domain1.com", "@domain1.com"],
-			"permission": "allow"
-		},
+    "access_list": {
+        "default": {
+            "pattern": ["*"],
+            "permission": "allow"
+        },
+        "domain_allowed": {
+            "pattern": ["@domain1.com", "@domain1.com"],
+            "permission": "allow"
+        },
         "domain_blocked": {
-			"pattern": ["@domain3.com", "@domain4.com"],
-			"permission": "block"
-		}
+            "pattern": ["@domain3.com", "@domain4.com"],
+            "permission": "block"
+        }
     }
 ```
 
@@ -59,20 +59,20 @@ By default it assigns the *user* privilege (role) to all peoples (... not declar
 
 Example of a configuration to allow by default standard *user* role, *admin* to user1 ad *block* the user2:
 ```
-	"user": {
-		"default": {
-			"mail": "default@mail.com",
-			"privilege": "user"
-		},
-		"user1": {
-			"mail": "user1@mail.com",
-			"privilege": "admin"
-		},
-		"user2": {
-			"mail": "user2@mail.com",
-			"privilege": "block"
-		}
-	}
+    "user": {
+        "default": {
+            "mail": "default@mail.com",
+            "privilege": "user"
+        },
+        "user1": {
+            "mail": "user1@mail.com",
+            "privilege": "admin"
+        },
+        "user2": {
+            "mail": "user2@mail.com",
+            "privilege": "block"
+        }
+    }
 ```
 
 Now in the controller configuration we can declare which role is required to have the chance to run the listener of the controller:
