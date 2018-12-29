@@ -1,29 +1,31 @@
 {
-    "controller": {
-      "on": {
-        "logstash": {
-            "enable": false,
-            "type": "tcp",
-            "port": "4055",
-            "auth": "",
-            "host": "",
-            "level": "info",
-            "framework": "botkit",
-            "log_type": "bot",
-            "listener": {
-                "logstash": {
-                    "from": ["message_direct", "message_received"]
-                }
-            },
-            "msg": {
-                "help": [
-                    "Used to send message and event in Logstash service for Elasticsearch records\n",
-                    "- _No argument_",
-                    "Perform a bigdata push on Elastic stack via logstach client. It uses to store log, events and message of chatbot activity.",
-                    "The data can be usedas syslog data source or for example to optimize Q&A, create reco mode (NLP)..."
-                ]
-            }
-        }
-      }
-    }
+	"controller": {
+		"on": {
+			"logstash": {
+				"enable": false,
+				"type": "tcp",
+				"port": "4055",
+				"auth": "",
+				"host": "",
+				"level": "info",
+				"framework": "botkit",
+				"log_type": "bot",
+				"listener": {
+					"logstash": {
+						"from": ["message_direct", "message_received"],
+						"privilege": ["user"],
+						"access_list": ["default"]
+					}
+				},
+				"msg": {
+					"help": [
+						"Used to send message and event in Logstash service for Elasticsearch records\n",
+						"- _No argument_",
+						"Perform a bigdata push on Elastic stack via logstach client. It uses to store log, events and message of chatbot activity.",
+						"The data can be usedas syslog data source or for example to optimize Q&A, create reco mode (NLP)..."
+					]
+				}
+			}
+		}
+	}
 }

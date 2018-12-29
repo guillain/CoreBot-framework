@@ -6,7 +6,9 @@
                 "token": "",
                 "listener": {
                     "botkit": {
-                        "from": ["direct_message", "direct_mention"]
+                        "from": ["direct_message", "direct_mention"],
+                        "privilege": ["user"],
+                        "access_list": ["default"]
                     }
                 },
                 "msg": {

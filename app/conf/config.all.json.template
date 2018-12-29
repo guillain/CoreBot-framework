@@ -1,4 +1,64 @@
 {
+	"file": "CoreBot configuration",
+	"author": "guillain",
+	"license": "LGPL-3.0",
+	"description": [
+		"Use this template to create your own chatbot scenario",
+		"nothing more is need if you don't need specific feature",
+		"and for new feature, read the appropriate doc"
+	],
+	"log": {
+		"debug": true,
+		"verbosity": "debug",
+		"file": "log/CoreBot.log"
+	},
+	"stats_optout": true,
+	"db": {
+		"host": "",
+		"user": "user"
+	},
+	"msg": {
+		"welcome": "Welcome in the CoreBot-framework tools",
+		"bye": "See you soon",
+		"join": "Thanks to join us"
+	},
+	"access_list": {
+		"default": {
+			"pattern": ["*"],
+			"permission": "allow"
+		},
+		"user": {
+			"pattern": ["*"],
+			"permission": "allow"
+		},
+		"domain": {
+			"pattern": ["@domain.com"],
+			"permission": "block"
+		},
+		"specific": {
+			"pattern": ["chatbot"],
+			"permission": "block"
+		}
+	},
+	"user": {
+		"default": {
+			"mail": "default@mail.com",
+			"privilege": "user"
+		},
+		"user1": {
+			"mail": "user1@mail.com",
+			"privilege": "admin"
+		},
+		"user2": {
+			"mail": "user2@mail.com",
+			"privilege": "block"
+		}
+	},
+    "msg": {
+        "welcome": "Welcome in the CoreBot-framework tools",
+        "bye": "See you soon",
+        "join": "Thanks to join us"
+    },
 	"controller": {
 		"on": {
 			"logstash": {
@@ -739,29 +799,6 @@
 			"hostname": "",
 			"port": "4002"
 		}
-	},
-	"file": "CoreBot configuration",
-	"author": "guillain",
-	"license": "LGPL-3.0",
-	"description": [
-		"Use this template to create your own chatbot scenario",
-		"nothing more is need if you don't need specific feature",
-		"and for new feature, read the appropriate doc"
-	],
-	"log": {
-		"debug": true,
-		"verbosity": "debug",
-		"file": "log/CoreBot.log"
-	},
-	"stats_optout": true,
-	"db": {
-		"host": "",
-		"user": "user"
-	},
-	"msg": {
-		"welcome": "Welcome in the CoreBot-framework tools",
-		"bye": "See you soon",
-		"join": "Thanks to join us"
 	}
 }
 

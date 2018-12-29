@@ -1,15 +1,12 @@
 // Load tools library
-let tools = require(__basedir + 'lib/tools');
+let Log = require(__basedir + 'lib/log');
 
 // Configuration
 let Botkit = require('botkit');
 
 // Run the launcher
 module.exports = function(config) {
-  tools.debug('debug', 'launcher spark run');
-
-  // Set Spark bot user
-  config.user = config.launcher.spark.mail;
+  Log.debug('launcher spark run');
 
   // Bot initialisation
   let controller = Botkit.sparkbot({
@@ -31,12 +28,12 @@ module.exports = function(config) {
   // Setup web server
   controller.setupWebserver(config.launcher.spark.port || 3000, function(err, webserver) {
     controller.createWebhookEndpoints(webserver, bot, function() {
-      tools.debug('info', 'launcher spark run ok');
+      Log.info('launcher spark run ok');
     });
   });
 
   // Scenario declarations
-  controller = require(__basedir + 'controller/loader.js')(controller, config);
+  controller = require(__basedir + 'lib/controller.js')(controller, config);
 
   return controller;
 };

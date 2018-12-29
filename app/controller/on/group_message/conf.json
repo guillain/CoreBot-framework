@@ -5,7 +5,9 @@
                 "enable": true,
                 "listener": {
                     "group_message": {
-                        "from": "group_message"
+                        "from": "group_message",
+                        "privilege": ["user"],
+                        "access_list": ["default"]
                     }
                 },
                 "msg": {

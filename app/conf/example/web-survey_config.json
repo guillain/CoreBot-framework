@@ -1,0 +1,46 @@
+{
+    "file": "CoreBot configuration file for survey on web server",
+    "author": "guillain",
+    "license": "LGPL-3.0",
+    "description": [
+        "This example provides a chatbot on a web server.",
+        "The scenario is a survey about the chatbot solution."
+    ],
+    "log": {
+        "debug": true,
+        "verbosity": "debug",
+        "file": "log/CoreBot.log"
+    },
+    "stats_optout": true,
+    "db": {
+        "host": "localhost",
+        "user": "user"
+    },
+    "launcher": {
+        "web": {
+            "enable": true,
+            "name": "corebot-framework",
+            "port": 4000
+        }
+    },
+    "controller": {
+        "hears": {
+            "survey": {
+                "enable": true,
+                "file": "data/survey.csv",
+                "storage": "survey"
+            },
+            "csv": {
+                "enable": true,
+                "file": "data/survey.csv",
+                "search_limit": 10,
+                "storage": "survey"
+            },
+            "search": {
+                "enable": true,
+                "limit": 10,
+                "storage": "survey"
+            }
+        }
+    }
+}

@@ -1,5 +1,5 @@
 // Load tools library
-let tools = require(__basedir + 'lib/tools');
+let Log = require(__basedir + 'lib/log');
 
 // Search master fct
 exports.menu = function(controller, bot, message, config) {

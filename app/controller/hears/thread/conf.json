@@ -7,11 +7,15 @@
                 "listener":{
                     "thread_new": {
                         "pattern": ["^thread convo"],
-                        "from": ["message_received", "direct_message", "direct_mention", "group_message"]
+                        "from": ["message_received", "direct_message", "direct_mention", "group_message"],
+                        "privilege": ["user"],
+                        "access_list": ["default"]
                     },
                     "thread_key": {
                         "pattern": ["^thread key"],
-                        "from": ["message_received", "direct_message", "direct_mention", "group_message"]
+                        "from": ["message_received", "direct_message", "direct_mention", "group_message"],
+                        "privilege": ["user"],
+                        "access_list": ["default"]
                     }
                 },
                 "msg": {

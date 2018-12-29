@@ -1,5 +1,5 @@
 // Load tools library
-let tools = require(__basedir + 'lib/tools');
+let Log = require(__basedir + 'lib/log');
 let xml = require('@xmpp/xml');
 
 // Exports controller function as scenario
@@ -71,7 +71,7 @@ exports.submit = function(controller, bot, message, config) {
                     bot.reply(message, replay_meeting_info);
                     convo.stop();
                 } catch (err) {
-                    tools.debug('error', 'component button error ' + err.message);
+                    Log.error('component button error ' + err.message);
                     convo.stop();
                 }
             });

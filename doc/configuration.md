@@ -16,28 +16,34 @@ according to your env.
 
 ## Configuration file summary
 - Bot conf
+- access_list
+- user
 - Launcher: Configuration embedded for the following business messaging
   - Slack
   - Cisco Jabber
   - Cisco Webex Teams
   ...
-- Module: Extra features
-  - Translate (google)
-  - bigdata
-  ...
-- Controller: How can I manage my event
+- Controller: How can I manage my scenario
   - on
     - message
     - space
     - mention
     ...
   - hears
-    - convo
-    - thread
+    - tranlate
+    - survey
     - autoreply
     ...
 
 Now just up to you to write your sketch by configuring the json file
 and if need add your own feature.
 You can pickup some example as GetStarted and to be forked for your own ;-)
+
+## Controller
+Thanks to read the doc of the [controller](./doc/controller.md) for a
+complete details.
+
+## Launcher
+Thanks to read the doc of the [controller](./doc/launcher.md) for a
+complete details.
 

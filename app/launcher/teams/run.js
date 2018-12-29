@@ -1,11 +1,11 @@
 // Load tools library
-let tools = require(__basedir + 'lib/tools');
+let Log = require(__basedir + 'lib/log');
 
 // Configuration
 let Botkit = require('botkit');
 
 module.exports = function(config) {
-  tools.debug('debug', 'launcher teams run');
+  Log.debug('launcher teams run');
 
   var controller = Botkit.teamsbot({
     clientId: config.launcher.teams.clientId,
@@ -16,12 +16,12 @@ module.exports = function(config) {
 
   controller.setupWebserver(config.launcher.teams.port || 3001, function(err, webserver) {
     controller.createWebhookEndpoints(webserver, function() {
-      tools.debug('info', 'launcher teams run ok');
+      Log.info('launcher teams run ok');
     });
   });
 
   // Scenario declarations
-  controller = require(__basedir + 'controller/loader.js')(controller, config);
+  controller = require(__basedir + 'lib/controller.js')(controller, config);
 
   return controller;
 };

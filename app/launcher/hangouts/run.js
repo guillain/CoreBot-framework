@@ -1,12 +1,12 @@
 // Load tools library
-let tools = require(__basedir + 'lib/tools');
+let Log = require(__basedir + 'lib/log');
 
 // Configuration
 let Botkit = require('botkit');
 
 // Controller
 module.exports = function(config) {
-  tools.debug('debug', 'launcher hangouts run');
+  Log.debug('launcher hangouts run');
 
   process.env.GOOGLE_APPLICATION_CREDENTIALS = __basedir + config.launcher.hangouts.json_cred;
 
@@ -18,16 +18,16 @@ module.exports = function(config) {
     json_file_store: __basedir + config.launcher.hangouts.store
   });
 
-  let bot = controller.spawn({})
+  let bot = controller.spawn({});
 
   controller.setupWebserver(config.launcher.hangouts.port || 3002, function (err, webserver) {
     controller.createWebhookEndpoints(webserver, bot, function () {
-      tools.debug('info', 'launcher hangouts run ok');
+      Log.info('launcher hangouts run ok');
     });
   });
 
   // Scenario declarations
-  controller = require(__basedir + 'controller/loader.js')(controller, config);
+  controller = require(__basedir + 'lib/controller.js')(controller, config);
 
   return controller;
 };

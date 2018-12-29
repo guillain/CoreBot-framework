@@ -4,15 +4,15 @@ works.
 
 ## In summary
 ```
-Main -> loader(launcher) -> loader(controller.hears) -> controller.hears[feature].listener[feature_function]
-                         -> loader(controller.on)    -> loader(controller.action)
+Main -> loader(launcher) -> ACL(loader(controller.hears)) -> controller.hears[feature].listener[feature_function]
+                         -> ACL(loader(controller.on))    -> ACL(loader(controller.action))
 ```
 
 ## Loader
 Loader scripts are used for the following part:
-- launcher: `./app/launcher/loader.js`
-- controller: `./app/controller/loader.js`
-- controller.action: `./app/controller/action/loader.js`
+- launcher: `./app/lib/launcher.js`
+- controller: `./app/lib/controller.js`
+- controller.action: `./app/lib/controller_action.js`
 
 They have been create for:
 - mass treatment (loop over JSON definition = folder structure)
@@ -26,7 +26,7 @@ One script to execute the solution
 - ./app/CoreBot-framework.js
 
 It generates the global configuration and loads each launcher via
-a single script `./app/launcher/loader.js` with the configuration.
+a single script `./app/lib/launcher.js` with the configuration.
 
 # 1/ Launcher
 Start the daemon for a specific Business Messaging
@@ -37,15 +37,18 @@ Each launcher is describe with the help of the standard files
 following the `enable` option.
 
 Each launcher starts the hears and on contollers via a single
-script `./app/controller/loader.js`
+script `./app/lib/controller.js`
    
 # 2/ Controller: loaded during the start-up
 - ./app/controller/
 
-The hears and on controller are loaded via the script 
-`./app/controller/loader.js` who provides also a template to create
-the controllers. For example the ethod to load or not the controller,
-the pattern and form configuration...
+The hears and on controllers are loaded via the script
+`./app/lib/controller.js`.
+The action controllers are loaded via the script
+`./app/lib/controller_action.js`.
+Both provide template to create the controllers or the action.
+For example the method to load or not the controller, the security and
+ACL, the pattern and form configuration...
 
 Each controller is describe with the help of the standard files
 (cf. [configuration](doc/configuration.md) and it is executed or not
@@ -56,4 +59,3 @@ b) On: Will be triggered for a dedicated context
     i. Action: Are ordered folowing an On controller event
 
 Complete doc can be found here [Controller](./doc/controller.md).
-      

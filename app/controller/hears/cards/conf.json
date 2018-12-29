@@ -8,7 +8,9 @@
                 "listener": {
                     "cards": {
                         "pattern": ["^cards"],
-                        "from": ["direct_message", "message_received"]
+                        "from": ["direct_message", "message_received"],
+                        "privilege": ["user"],
+                        "access_list": ["default"]
                     }
                 },
                 "msg": {

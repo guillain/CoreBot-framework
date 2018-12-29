@@ -13,7 +13,7 @@ module.exports = function(config) {
 
 
   // Scenario declarations
-  let scenario = require(__basedir + 'controller/loader.js');
+  let scenario = require(__basedir + 'lib/controller.js');
   controller = scenario.run(controller);
   return controller;
 };

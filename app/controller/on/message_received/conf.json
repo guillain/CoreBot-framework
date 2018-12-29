@@ -5,7 +5,9 @@
                 "enable": true,
                 "listener": {
                     "message_received": {
-                        "from": "message_received"
+                        "from": "message_received",
+                        "privilege": ["user"],
+                        "access_list": ["default"]
                     }
                 },
                 "msg": {

@@ -6,7 +6,9 @@
                 "listener": {
                     "menu": {
                         "pattern": ["^menu"],
-                        "from": ["message_received", "direct_message", "direct_mention", "group_message"]
+                        "from": ["message_received", "direct_message", "direct_mention", "group_message"],
+                        "privilege": ["user"],
+                        "access_list": ["default"]
                     }
                 },
                 "storage": "",

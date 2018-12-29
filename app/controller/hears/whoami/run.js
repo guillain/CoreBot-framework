@@ -1,5 +1,5 @@
 // Load CoreBot libraries
-let tools = require(__basedir + 'lib/tools');
+let Log = require(__basedir + 'lib/log');
 
 // Exports controller function as scenario
 exports.whoami= function(controller, bot, message, config) {

@@ -1,21 +1,22 @@
 // Load tools library
-let tools = require(__basedir + 'lib/tools');
+let Log = require(__basedir + 'lib/log');
+let User = require(__basedir + 'lib/user');
 
 // Requirements
 let fs = require('fs');
 var redis = require("redis");
 let client = redis.createClient({detect_buffers: true});
-let = require('node-google-translate-skidz');
+let run = require('node-google-translate-skidz');
 let lang_list = ["af","sq","am","ar","hy","az","eu","be","bn","bs","bg","ca","ceb","zh-CN","zh-TW","co","hr","cs","da","nl","en","eo","et","fi","fr","fy","gl","ka","de","el","gu","ht","ha","haw","he","hi","hmn","hu","is","ig","id","ga","it","ja","jw","kn","kk","km","ko","ku","ky","lo","la","lv","lt","lb","mk","mg","ms","ml","mt","mi","mr","mn","my","ne","no","ny","ps","fa","pl","pt","pa","ro","ru","sm","gd","sr","st","sn","sd","si","sk","sl","so","es","su","sw","sv","tl","tg","ta","te","th","tr","uk","ur","uz","vi","cy","xh","yi","yo","zu"];
 
 // on connect
 client.on('connect', function() {
-    tools.debug('debug', 'module translate client on');
+    Log.debug('module translate client on');
 });
 
 // on error
 client.on("error", function (err) {
-    tools.debug('debug', 'module translate client error ' + err);
+    Log.debug('module translate client error ' + err);
 });
 
 // Translate 
@@ -28,7 +29,7 @@ exports.translate = function(controller, bot, message, config) {
   ];
 
   // Get user ref
-  user = tools.get_user(message);
+  let user = User.get_user(message);
 
   let grp_msg = "";
   if (message.group === true) grp_msg = " for user " + user;
@@ -40,11 +41,11 @@ exports.translate = function(controller, bot, message, config) {
     // Remove first pattern if: present + prefixed=true
     let msg_arr = message.text.split(' ');
     /*if ((data[0] !== 'automatic') && !(/^translate$/i.test(msg_arr['0']))){
-        tools.debug('debug', 'module translate stop_no_command');
+        Log.debug('module translate stop_no_command');
         return;
     }*/
     if (/^translate$/i.test(msg_arr['0'])) { 
-        tools.debug('debug', 'module translate mod-name-del');
+        Log.debug('module translate mod-name-del');
         msg_arr.shift();
     }
 
@@ -88,12 +89,12 @@ exports.translate = function(controller, bot, message, config) {
             let lang_out = msg_arr['1'];
             msg_arr.splice(0,2);
             msg_arr[0] = data[0];
-           ({
+           run({
                 text: msg_arr.join(' '),
                 source: lang_in,
                 target: lang_out
             }, function(result) {
-                tools.debug('debug', 'module translate manual ' + lang_in+') '+msg_arr.join(' ')+' to ('+lang_out+') '+ result);
+                Log.debug('module translate manual ' + lang_in+') '+msg_arr.join(' ')+' to ('+lang_out+') '+ result);
                 bot.reply(message, '_('+lang_in+' to '+lang_out+grp_msg+')_ ' + result);
             });
         }
@@ -106,7 +107,7 @@ exports.translate = function(controller, bot, message, config) {
             source: data[1],
             target: data[2]
     	}, function(result) {
-            tools.debug('debug', 'module translate automatic '+data[1]+') '+message.text+' to ('+data[2]+') '+ result);
+            Log.debug('module translate automatic '+data[1]+') '+message.text+' to ('+data[2]+') '+ result);
             bot.reply(message, '_('+data[1]+' to '+data[2]+grp_msg+')_ ' + result);
     	});
     }

@@ -2,12 +2,20 @@
 
 ### Pre-requisite
 1/ Python
+https://www.python.org/downloads/
   - 2.7
   - 3.5
 
 2/ Redis server
+https://redis.io/download
 
 3/ Internet access (Business Messaging and additional API)
+- https://github.com
+
+Depend on of your integration:
+- Microsoft LUIS
+- Google translate
+- APIs...
 
 ### Get the Application
 

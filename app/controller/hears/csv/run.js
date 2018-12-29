@@ -1,5 +1,5 @@
 // Load tools library
-let tools = require(__basedir + 'lib/tools');
+let Log = require(__basedir + 'lib/log');
 
 // Requirements
 let fs = require('fs');
@@ -10,12 +10,12 @@ let fullTextSearch = require('full-text-search');
 // DB functions
 // on connect
 client.on('connect', function() {
-    tools.debug('info', 'module csv client on connect');
+    Log.info('module csv client on connect');
 });
 
 // on error
 client.on("error", function (err) {
-    tools.debug('info', 'module csv client on error ' + err);
+    Log.info('module csv client on error ' + err);
 });
 
 // CSV functions 
@@ -23,7 +23,7 @@ exports.get = function(controller, bot, message, config){
     // Get CSV file data
     tools.get_csv_data(__basedir + config.controller.hears.csv.file, function(csv_data) {
         if (!csv_data) {
-            tools.debug('error', 'controller hears csv search get no-csv-file ');
+            Log.error('controller hears csv search get no-csv-file ');
             return;
         }
         if (csv_data === '') bot.reply(message,config.controller.hears.csv.msg.get.ko);
@@ -45,7 +45,7 @@ exports.search = function(controller, bot, message, config){
     // Get CSV file data
     fs.readFile(__basedir + config.controller.hears.csv.file, function(err, data) {
         if (!data) {
-            tools.debug('error', 'controller hears autoreply search no-csv-file ');
+            Log.error('controller hears autoreply search no-csv-file ');
             return;
         }
 
@@ -105,7 +105,7 @@ exports.load = function(controller, bot, message, config){
     // Parse CSV file and set value in redis
     fs.readFile(__basedir + config.controller.hears.csv.file, function(err, data) {
         if (!data) {
-            tools.debug('error', 'controller hears csv load no-csv-file ');
+            Log.error('controller hears csv load no-csv-file ');
             return;
         }
         var strs = [];
@@ -117,7 +117,7 @@ exports.load = function(controller, bot, message, config){
         client.del(config.controller.hears.csv.storage, redis.print);
         client.hmset(config.controller.hears.csv.storage, strs, redis.print, function (err, reply) {
             if(err) {
-               tools.debug('error', 'controller hears csv load db ' + err);
+               Log.error('controller hears csv load db ' + err);
                throw err;
             }
         });
@@ -132,14 +132,14 @@ exports.test = function(controller, bot, message, config) {
     // Parse CSV file and compare value with redis
     tools.get_csv_data(__basedir + config.controller.hears.csv.file, function(csv_data) {
         if (!csv_data) {
-            tools.debug('error', 'controller hears csv test no-csv-file ');
+            Log.error('controller hears csv test no-csv-file ');
             return;
         }
         let csv_data_length = 0;
         if (csv_data !== '') csv_data_length = csv_data.length;
 
         client.hgetall(config.controller.hears.csv.storage, function (err, kms) {
-            if(err) tools.debug('error', 'controller hears csv test db ' + err);
+            if(err) Log.error('controller hears csv test db ' + err);
 
             let db_data_length = 0;
             for (km in kms) db_data_length++;
