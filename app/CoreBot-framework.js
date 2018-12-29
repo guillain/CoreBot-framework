@@ -1,6 +1,6 @@
 // Configuration
 global.__basedir = __dirname  + '/';
-let tools = require(global.__basedir + 'lib/tools');
+let Log = require(global.__basedir + 'lib/log');
 let conf = require(global.__basedir + 'conf/config.json');
 
 Log.debug('main start');
