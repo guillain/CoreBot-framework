@@ -9,13 +9,15 @@ exports.help = function(controller, bot, message, config) {
     let to_say = '';
     let msg_arr = message.text.split(' ');
     _.each(config['controller'], function (conf, control) {
-        to_say += control + '\n';
+        to_say += control + '\n\n';
         _.each(config['controller'][control], function (conf, index) {
             if (/all/i.test(msg_arr)) 
                 to_say += '    - '+index+' - state: _'+config['controller'][control][index].enable+'_ - '+config['controller'][control][index].msg.help[0];
             else if (config['controller'][control][index].enable === true) 
                 to_say += '    - '+index+' - '+config['controller'][control][index].msg.help[0];
+            //to_say += '\n';
         });
+        to_say += '\n';
     });
     // Bot Reply
     if (to_say) bot.reply(message, to_say);
@@ -27,7 +29,7 @@ exports.help_listener = function(controller, bot, message, config) {
     let to_say = '';
     let msg_arr = message.text.split(' ');
     _.each(config['controller'], function (conf, control) {
-        to_say += control + '\n';
+        to_say += control + '\n\n';
         _.each(config['controller'][control], function (conf, index) {
             if (config['controller'][control][index].listener) {
                 to_say += '- ' + index + '\n';
@@ -44,30 +46,33 @@ exports.help_listener = function(controller, bot, message, config) {
                 });
             }
         });
+        to_say += '\n';
     });
     // Bot Reply
     if (to_say) bot.reply(message, to_say);
     else        bot.reply(message, config.controller.hears.help.msg.modulenotfound);
-}
+};
 
 // If detail help is requested: display the help of the controllers activated or all if requested
 exports.help_detail = function(controller, bot, message, config) {
     let to_say = '';
     let msg_arr = message.text.split(' ');
     _.each(config['controller'], function (conf, control) {
-        to_say += control + '\n';
+        to_say += '- ' + control + '\n';
         _.each(config['controller'][control], function (conf, index) {
             if ((/all/i.test(msg_arr)) || (config['controller'][control][index].enable === true)) {
-                to_say += '\n*' + index + '*\n';
-                if (/all/i.test(msg_arr)) to_say += 'State: _'+ config['controller'][control][index].enable + '_\n';
-                to_say += config['controller'][control][index].msg.help.join('\n') + '\n';
+                to_say += '    - ' + index;
+                if (/all/i.test(msg_arr)) to_say += ' - state: _'+ config['controller'][control][index].enable + '_\n';
+                else to_say += '\n';
+                to_say += '\n        ' + config['controller'][control][index].msg.help.join('\n        ') + '\n';
             }
         });
+        to_say += '\n';
     });
     // Bot Reply
     if (to_say) bot.reply(message, to_say);
     else        bot.reply(message, config.controller.hears.help.msg.modulenotfound);
-}
+};
 
 // Help of a module or controller.hears is requested (it includes detail)
 exports.help_module = function(controller, bot, message, config) {

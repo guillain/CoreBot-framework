@@ -66,11 +66,11 @@ exports.report_user = function (controller, bot, message, config) {
         let survey = JSON.parse(survey_db);
         Log.debug('controller hears survey survey ' + JSON.stringify(survey));
 
-        if (!survey.users) bot.reply(message, config.controller.hears.survey.msg.no_report);
+        if (!survey.user) bot.reply(message, config.controller.hears.survey.msg.no_report);
         else {
             to_say = 'Users' + '\n';
-            for (let i_user in survey.users)
-                to_say += '- _' + survey.users[i_user].step + '_ - ' + i_user + '\n';
+            for (let i_user in survey.user)
+                to_say += '- _' + survey.user[i_user].step + '_ - ' + i_user + '\n';
             bot.reply(message, to_say);
         }
     });
@@ -89,8 +89,8 @@ exports.survey = function (controller, bot, message, config) {
 
         // Create new conversation
         bot.createConversation(message, function (err, convo) {
-            if ((survey.users === "") || (!survey.users[survey_user])) survey.users[survey_user] = {"step": 0};
-            let user_step = survey.users[survey_user].step;
+            if ((survey.user === "") || (!survey.user[survey_user])) survey.user[survey_user] = {"step": 0};
+            let user_step = survey.user[survey_user].step;
 
             // User already done with all steps
             if (user_step >= survey.nb_report) {
@@ -142,7 +142,7 @@ exports.survey = function (controller, bot, message, config) {
                                     survey.reports[i_report].replies[parseInt(response.text,10)-1].value++;
                                 else if (survey.reports[i_report].text)
                                     survey.reports[i_report].text.push(response.text);
-                                survey.users[survey_user].step++;
+                                survey.user[survey_user].step++;
  
                                 Log.info('controller hears survey records ' + JSON.stringify(survey));
                                 client.set(config.controller.hears.survey.storage, JSON.stringify(survey), () => {});
@@ -182,7 +182,7 @@ survey_init = function(config){
     Log.info('controller hears survey init ');
 
     // Initialization survey structur
-    let survey = { "users": {}, "reports": {}};
+    let survey = { "user": {}, "reports": {}};
 
     // Get the CSV data
     Log.debug('controller hears survey init get_csv_data ' + __basedir + config.controller.hears.survey.file);
