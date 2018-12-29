@@ -47,6 +47,9 @@ its declaration.
 - Cisco Webex Teams
   - https://developer.webex.com/my-apps
 
+- Cisco Jabber
+  - https://www.cisco.com/c/en/us/td/docs/voice_ip_comm/jabber/10_5/CJAB_BK_D6497E98_00_deployment-installation-guide-ciscojabber/configure_voice_and_video_communication.html
+
 - Microsoft teams
   - https://portal.azure.com/#blade/HubsExtension/Resources/resourceType/Microsoft.BotService%2FbotServices
 

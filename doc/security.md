@@ -6,6 +6,8 @@ Both use the conjunction of:
 - the global configuration: provides a static list preset
 - the controller configuration: pickup preset according to the need
 
+Additionnaly *security* is in charge of removing bot reply, avoiding infinity loop.
+
 ## access_list
 In the global configuration, we declare all *access_list* can be used by our scenarios.
 
@@ -99,3 +101,18 @@ Now in the controller configuration we can declare which role is required to hav
 ```
 PS if you need to manage the full directory it can be easier to fork this feature for openLDAP integration
 (for example :-))
+
+## Bot reply elimination
+To avoid infinity loop in the scenario it's important to pay attention to who send the message 
+and the next analyze to perform on it.
+
+Even if *botkit* already provides a mechanism like that with the *self_messsage* from parameter 
+some time it's to light for our integration and we need more powerful features or the assurance 
+to avoid infinity loop (ie an production application can't be garantee and specifically when you 
+use hyperscaler provider...).
+
+To clean the messages, the framework use the field *name* of the *launcher controller* configuration.
+A list is build with all launcher configuration and all names are checked.
+In that case independently of your launcher editor you can set the dedicated name of the bot 
+deployed in specific environment or editor.
+
