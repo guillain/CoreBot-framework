@@ -36,8 +36,9 @@
                         "Provide global help support\n",
                         "- _**all**_: provide a list of all controllers",
                         "- **detail** _**all**_: provide all details",
-                        "- **controller name**: provide help for the considered module\n",
-                        "_Example_: `help`, `help all`, `help help detail`",
+                        "- **module _name_**: provide help for the considered module\n",
+                        "- **module _name_ detail**: provide details for the considered module\n",
+                        "_Example_: `help`, `help all`, `help module help detail`",
                         "This help command provides an access on all help pages.",
                         "You can request all modules or only a specific one with or without detail."
                     ]

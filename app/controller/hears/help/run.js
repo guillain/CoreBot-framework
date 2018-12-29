@@ -79,14 +79,15 @@ exports.help_module = function(controller, bot, message, config) {
                 // Add standard help message
                 to_say += config['controller'][control][index].msg.help.join('\n');
 
-                // Add listener information
-                if (config['controller'][control][index].listener) {
+                // Add listener information if requested
+                if ((msg_arr.toString().indexOf('detail') > -1) && (config['controller'][control][index].listener)) {
                     to_say += '\nListener \n';
                     _.each(config['controller'][control][index].listener, function (conf, listener) {
                         to_say += '- ' + listener + '\n';
 
                         _.each(config['controller'][control][index].listener[listener], function (conf, listener_param) {
                             to_say += '    - '+listener_param+': ' + config['controller'][control][index].listener[listener][listener_param] + '\n';
+                        });
                     });
                 }
             }
