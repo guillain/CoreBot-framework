@@ -6,33 +6,49 @@ It's the starting point of the application!
 ## Loading
 The launcher are started with the [loader](./lib/launcher.js) script
 during the main startup process.
+
+They can be loaded from the global configuration file `config.json` or by
+the individual configuration file `launcher.json`.
+
 The first check is to know if the launcher is activate or not and
 depending of the global, specific or default configuration the launcher
 is started or not.
 
 ## Execution
-After the start the launcher are autonomous and don't need specific
-attention.
 During the first execution steps, we can see in the log or the console
 the Controller loaded.
 
-## Composition
+After the start the launcher are autonomous and don't need specific
+attention.
+
+## Organization
 They are define in dedicated folder and they need at least the
 following files:
 - Module name
-  - *run.js*: Scripts with the code
-  - *conf.js*: Default configuration file
+  - *run.js*: Scripts with the launcher code
+  - *conf.json*: Default configuration file of the launcher
 
 They are located in the './module' folder.
 
+The JSON configuration file associate define the default configuration of the
+launcher and its standard parameters plus the default behaviors.
+This can be overloaded or completed by the global settings (`config.json`).
+It also follow the folder structure and so the launcher chain/path and
+its declaration.
+
 ## Editors' url to get doc & token
+- Slack
+  - https://guillain.slack.com/apps/manage/custom-integrations
 
 - Google hangout chatbot
   - https://developers.google.com/hangouts/chat/how-tos/bots-publish
   - https://console.developers.google.com/apis/library/chat.googleapis.com
+
 - Cisco Webex Teams
   - https://developer.webex.com/my-apps
 
+- Microsoft teams
+  - https://portal.azure.com/#blade/HubsExtension/Resources/resourceType/Microsoft.BotService%2FbotServices
 
 ## Example
 ### run.jss

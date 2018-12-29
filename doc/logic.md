@@ -4,8 +4,8 @@ works.
 
 ## In summary
 ```
-Main -> loader(launcher) -> ACL(loader(controller.hears)) -> controller.hears[feature].listener[feature_function]
-                         -> ACL(loader(controller.on))    -> ACL(loader(controller.action))
+1/ Main -> loader(launcher) -> loader(controller.hears) -> ACL(controller.hears[module].listener[feature_function])
+                            -> loader(controller.on)    -> ACL( loader(controller.action) ) -> ACL(controller.hears.action[module])
 ```
 
 ## Loader

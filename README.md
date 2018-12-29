@@ -1,42 +1,42 @@
 # CoreBot as chatbot framework
 Chatbot framework based on **[botkit](https://botkit.ai/)**.
 
-The idea is to provide a simple package compatible with the most of
-business messaging easy to deploy, set and maintain.
+The idea is to provide a simple solution compatible with the most of
+business messaging. This must be easy to deploy, set and maintain.
 In that case the features and/or sketches developed are fully
 compatible with all environments and made the development reusable in
 the futures integrations.
 
+Instead to code to create and deploy our chatbot with its own scenario,
+build it by configuration!
+
 ## Advantage
-Generic setup is done to support the following business messaging
-solution:
-- Jabber
-- Cisco Webex Teams (Cisco Spark)
-- Microsoft Teams
-- Slack
-- Google Hangout
-- Web (web server included)
-
-Standard libraries to be reused with plug-and-conf mode.
-
-All configurations in a single file [config.json](app/conf/config.json)
-who overload each single feature configuration.
-
-You can create your own scenario by using existing module and compose
-a new sketch or by developing dedicated one.
-
-The configuration is taken dynamically so no need to restart anything,
-when your sketches are updated, your bots also ;-)
+- Generic setup is done to support all environment and settings
+- Business messaging compatibilities:
+    - Web (web server included)
+    - Jabber
+    - Cisco Webex Teams (Cisco Spark)
+    - Microsoft Teams
+    - Slack
+    - Google Hangout
+- The security is natively integrated with access list and privilege
+management on controller and user level.
+- All features can be used on controller level (preload) or when event
+is triggered (loaded dynamically)
+- Standard libraries to create quickly and properly new feature
+- The configuration can be provided in a single file
+[config.json](app/conf/config.json) or in splitted files. The configuration
+can overload the default configuration of each feature.
 
 ## Features
-All features are stored in the *controller* folder and they're loaded
+All features are stored in the *controller* folders and they're loaded
 with the help of a common script.
 
 The non-exhaustive list is hereafter:
 - NLP provided by [LUIS](https://botkit.ai/docs/readme-middlewares.html)
 via the botkit feature
 - Google translation
-- BigData connector (to send info/tracking/APM data or search)
+- BigData connector (to send info/tracking/APM data to a datalake)
 - CSV file management
 - autoreply (like echo)
 - survey
@@ -83,6 +83,8 @@ ones:
 - [Framework Logic](./doc/logic.md)
 
 - [Controller](./doc/controller.md)
+
+- [Security](./doc/security.md)
 
 
 Don't hesitate to share yours creation ;-)
