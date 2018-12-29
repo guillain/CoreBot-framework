@@ -20,6 +20,7 @@ module.exports = function(controller, message_type, message, bot, config) {
                 config['controller'][control][module].listener[index]
             ))
                 require(__basedir + 'controller/action/' + module + '/run.js')(controller, bot, message, config);
+            else bot.reply(message, config.msg.user_not_allowed);
 
         } else Log.debug("lib controller action " + module + " disable");
 
