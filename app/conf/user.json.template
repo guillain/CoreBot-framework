@@ -1,0 +1,16 @@
+{
+    "user": {
+        "default": {
+            "mail": "default@mail.com",
+            "privilege": "user"
+        },
+        "user_admin": {
+            "mail": "admin@mail.com",
+            "privilege": "admin"
+        },
+        "user_block": {
+            "mail": "block@mail.com",
+            "privilege": "block"
+        }
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "access_list": {
+        "default": {
+            "pattern": ["*"],
+            "permission": "allow"
+        },
+        "user": {
+            "pattern": ["*"],
+            "permission": "allow"
+        },
+        "domain": {
+            "pattern": ["@domain.com"],
+            "permission": "block"
+        },
+        "specific": {
+            "pattern": ["chatbot"],
+            "permission": "block"
+        }
+    }
+}
