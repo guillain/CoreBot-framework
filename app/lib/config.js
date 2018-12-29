@@ -2,7 +2,7 @@
 let config = require(global.__basedir + 'conf/config.json');
 
 // Load tools library
-let tools = require(__basedir + 'lib/tools');
+let Log = require(__basedir + 'lib/log');
 
 // Load required lib
 let _ = require("underscore");
@@ -10,11 +10,11 @@ let merge_json = require("merge-json");
 
 // Get the configuration
 module.exports = function(launcher) {
-    tools.debug("debug", "config ");
+    Log.debug("config ");
 
     // Launcher
     let conf_merged = merge_json.merge(require(__basedir + 'launcher/' + launcher + '/conf.json') , config);
-    tools.debug("info", "config launcher " + launcher + " enable");
+    Log.info("config launcher " + launcher + " enable");
 
     // Controllers
     const controllers = ['action','hears','on'];
@@ -25,12 +25,12 @@ module.exports = function(launcher) {
             conf_merged = merge_json.merge(conf_mod, conf_merged);
 
             if (conf_merged.controller[controller][index].enable === true)
-                tools.debug("info", "config controller " + controller + " " + index + " enable");
-            else tools.debug("debug", "config controller " + controller + " " + index + " disable");
+                Log.info("config controller " + controller + " " + index + " enable");
+            else Log.debug("config controller " + controller + " " + index + " disable");
         });
     });
 
-    //tools.debug('debug', 'config conf_merged ' + JSON.stringify(conf_merged));
+    //Log.debug('config conf_merged ' + JSON.stringify(conf_merged));
 
     return conf_merged;
 };
