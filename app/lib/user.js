@@ -6,9 +6,13 @@ let _ = require("underscore");
 exports.get_user = function(message){
     let user = message.user;
 
-    if (message.personEmail) user = message.personEmail;
-    if ((!user) || (user === "") || (user === "null")){
-        if (message.from_jid) user = message.from_jid;
+    if (message.personEmail) {
+        user = message.personEmail;
+        Log.debug('lib user get_user personEmail ' + user);
+    }
+    else if (message.from_jid) {
+        user = message.from_jid;
+        Log.debug('lib user get_user from_jid ' + user);
     }
     let usertmp = user.split('@');
     user = usertmp[0];
