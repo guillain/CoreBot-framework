@@ -12,6 +12,7 @@ configuration in the main configuration file [config.json](app/conf/config.json)
 ## Understand the logic and the security
 - [Logic](./doc/logic.md)
 - [Security](./doc/security.md)
+- [Library](./doc/library.md)
 
 ## What can be features?
 Feature can be:

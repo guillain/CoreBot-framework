@@ -1,20 +1,14 @@
 {
     "controller": {
-        "hears": {
+        "action": {
             "translate": {
                 "enable": false,
                 "default": {
                     "lang_in": "fr",
                     "lang_out": "en"
                 },
-                "listener":{
-                    "translate": {
-                        "pattern":["^translate *"],
-                        "from": ["message_received", "direct_message", "direct_mention", "group_message"],
-                        "privilege": ["user"],
-                        "access_list": ["default"]
-                    }
-                },
+                "privilege": ["user"],
+                "access_list": ["default"],
                 "msg": {
                     "on": "Auto translation _ON_",
                     "off": "Auto translation _OFF_",
