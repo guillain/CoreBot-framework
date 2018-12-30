@@ -7,10 +7,11 @@ let _ = require("underscore");
 run = function(controller, bot, message, config, listener_name, listener, script){
     Log.debug("lib controller run " + listener_name);
     
-    // Security val (ACL, priv, perm)
+    // Security validation (ACL, priv, perm)
     if (Security.validation(config, message, listener)) {
         let mod_run = require(script);
-        mod_run[listener_name](controller, bot, message, config);
+        let message_tmp = exports.remove_pattern(config, message, listener);
+        mod_run[listener_name](controller, bot, message_tmp, config);
     }
     else bot.reply(message, config.msg.user_not_allowed);
 };
@@ -69,4 +70,18 @@ module.exports = function(controller, config, controls, message = '', bot = '') 
         });
     });
     return controller;
+};
+
+// Remove the configured pattern from the text message
+exports.remove_pattern = function(config, message, listener){
+    let bool_to_remove = (listener.remove_pattern) ? listener.remove_pattern : config.default_remove_pattern;
+    if (bool_to_remove !== true) return message;
+    
+    listener.pattern.forEach(function(pattern) {
+        let re = new RegExp(pattern,"g");
+        message.text = message.text.replace(re, '');
+    });
+    
+    Log.debug('lib controller remove_pattern ' + message.text);
+    return message;
 };

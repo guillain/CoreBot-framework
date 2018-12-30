@@ -47,26 +47,28 @@ It also follow the folder structure and so the controller chain/path and
 its declaration.
 
 ## Structures
-All hears, on and action controllers are define with the same JSON configuration template.
-They include the following structured fields.
+All hears, on and action controllers are define with the same JSON configuration template and 
+ they include the following structured fields.
 
 ### Listener
 ```
-  "listener": {
-    "from": ["direct_message", "group_message"],
-    "privilege": ["user"],
-    "access_list": ["default"],
-    "remove_pattern": true
-  }
+    "listener": {
+        "pattern": ["^myfeature$", "[0-9]*5"],
+        "from": ["direct_message", "group_message"],
+        "privilege": ["user"],
+        "access_list": ["default"],
+        "remove_pattern": true
+    }
 ```
 On controller contains three specific options to be used by the loader the template:
+- pattern: array of regular expression. It must match with the chat to trigger the *hears* controller
 - from: array of sources of message. It must match with the chat context to trigger the controller
 - privilege: array of privilege (role). It must be associated with existing people or with the default one
 - access_list: array of ACL. It must match with existing access_list declared in the global configuration file.
-- remove_pattern: to know if the prefix should be considered or not (ie removing the prefix from the chat message) 
+- remove_pattern: to know if the pattern should be considered or not (ie removing the pattern from the chat message) 
 
 ### Message
-A structured message fields is used to improve support features deliver to the enduser.
+A structured message fields is used to improve support features deliver to the end user.
 All bot messages are provided by the JSON configuration files and specific structure is applied for
 the help message.
 ```
@@ -84,20 +86,6 @@ the help message.
 ### Hears
 Check if the message match with the pattern and the context
 - `./app/controller/hears`
-
-Hears controller contains four specific options to be used by the loader the template:
-- pattern: array of regular expression. It must match with the chat to trigger the controller
-- from: array of sources of message. It must match with the chat context to trigger the controller
-- privilege: array of privilege (role). It must be associated with existing people or with the default one
-- access_list: array of ACL. It must match with existing access_list declare in the global configuration file.
-```
-  "listener": {
-    "pattern": ["^myfeature$", "[0-9]*5"],
-    "from": ["direct_message", "group_message"],
-    "privilege": ["user"],
-    "access_list": ["default"]
-  }
-```
 
 #### run.js
 ```
