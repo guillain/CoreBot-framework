@@ -9,13 +9,15 @@
                         "pattern": ["^thread convo"],
                         "from": ["message_received", "direct_message", "direct_mention", "group_message"],
                         "privilege": ["user"],
-                        "access_list": ["default"]
+                        "access_list": ["default"],
+                        "remove_pattern": false
                     },
                     "thread_key": {
                         "pattern": ["^thread key"],
                         "from": ["message_received", "direct_message", "direct_mention", "group_message"],
                         "privilege": ["user"],
-                        "access_list": ["default"]
+                        "access_list": ["default"],
+                        "remove_pattern": false
                     }
                 },
                 "msg": {

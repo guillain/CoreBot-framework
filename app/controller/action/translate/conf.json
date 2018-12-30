@@ -7,8 +7,14 @@
                     "lang_in": "fr",
                     "lang_out": "en"
                 },
-                "privilege": ["user"],
-                "access_list": ["default"],
+                "listener": {
+                    "translate": {
+                        "from": ["(.)"],
+                        "privilege": ["user"],
+                        "access_list": ["default"],
+                        "remove_pattern": false
+                    }
+                },
                 "msg": {
                     "on": "Auto translation _ON_",
                     "off": "Auto translation _OFF_",

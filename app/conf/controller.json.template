@@ -232,7 +232,7 @@
                         "Compose your search request as you do on your web browser"
                     ]
                 },
-                "prefixed": true
+                "remove_pattern": true
             },
             "csv": {
                 "enable": true,
@@ -327,7 +327,7 @@
                         "ko": "Data sources mismatch"
                     }
                 },
-                "prefixed": true
+                "remove_pattern": true
             },
             "autoreply": {
                 "enable": false,
@@ -357,7 +357,7 @@
                         "The bot pickup one information from the CSV file and provide it after a delay of 2s. The CSV file content can be managed via the **CSV** module."
                     ]
                 },
-                "prefixed": true
+                "remove_pattern": true
             },
             "whoami": {
                 "enable": true,
@@ -846,12 +846,13 @@
         "action": {
             "hello": {
                 "enable": false,
-                "privilege": [
-                    "user"
-                ],
-                "access_list": [
-                    "default"
-                ],
+                "listener": {
+                    "hello": {
+                        "privilege": ["user"],
+                        "access_list": ["default"],
+                        "remove_pattern": false
+                    }
+                },
                 "msg": {
                     "text": "Hello",
                     "help": [
@@ -868,8 +869,13 @@
                     "lang_in": "fr",
                     "lang_out": "en"
                 },
-                "privilege": ["user"],
-                "access_list": ["default"],
+                "listener": {
+                    "translate": {
+                        "privilege": ["user"],
+                        "access_list": ["default"],
+                        "remove_pattern": false
+                    }
+                },
                 "msg": {
                     "on": "Auto translation _ON_",
                     "off": "Auto translation _OFF_",
@@ -908,7 +914,7 @@
                         "Full list: https://cloud.google.com/conf/docs/languages"
                     ]
                 },
-                "prefixed": true
+                "remove_pattern": true
             }
         }
     }

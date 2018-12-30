@@ -28,7 +28,7 @@ module.exports = function(config) {
   Log.info('launcher jabber run ok');
 
   // Scenario declarations
-  controller = require(__basedir + 'lib/controller.js')(controller, config);
+  controller = require(__basedir + 'lib/controller.js')(controller, config, ['hears','on']);
 
   return controller;
 };

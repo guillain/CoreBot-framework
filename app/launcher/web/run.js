@@ -25,7 +25,7 @@ module.exports = function(config) {
   controller.openSocketServer(controller.httpserver);
 
   // Scenario declarations
-  controller = require(__basedir + 'lib/controller.js')(controller, config);
+  controller = require(__basedir + 'lib/controller.js')(controller, config, ['hears','on']);
 
   // Start the bot brain in motion!!
   controller.startTicking();

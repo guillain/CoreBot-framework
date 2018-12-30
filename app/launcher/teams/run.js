@@ -21,7 +21,7 @@ module.exports = function(config) {
   });
 
   // Scenario declarations
-  controller = require(__basedir + 'lib/controller.js')(controller, config);
+  controller = require(__basedir + 'lib/controller.js')(controller, config, ['hears','on']);
 
   return controller;
 };

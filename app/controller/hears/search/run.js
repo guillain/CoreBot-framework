@@ -4,7 +4,7 @@ let Redis = require(__basedir + 'lib/redis');
 
 // Search master fct
 exports.search = function(controller, bot, message, config){
-    // Remove first pattern if: present + prefixed=true
+    // Remove first pattern if: present + remove_pattern=true
     let msg_arr = message.text.split(' ');
 
     // Variables for the search engine

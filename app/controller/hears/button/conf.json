@@ -10,25 +10,29 @@
                         "pattern": ["^button-button$"],
                         "from": ["direct_mention", "self_message", "direct_message"],
                         "privilege": ["user"],
-                        "access_list": ["default"]
+                        "access_list": ["default"],
+                        "remove_pattern": false
                     },
                     "open_link": {
                         "pattern": ["^button-openlink$"],
                         "from": ["direct_mention", "self_message", "direct_message"],
                         "privilege": ["user"],
-                        "access_list": ["default"]
+                        "access_list": ["default"],
+                        "remove_pattern": false
                     },
                     "execute_command": {
                         "pattern": ["^button-executecommand$"],
                         "from": ["direct_mention", "self_message", "direct_message"],
                         "privilege": ["user"],
-                        "access_list": ["default"]
+                        "access_list": ["default"],
+                        "remove_pattern": false
                     },
                     "submit": {
                         "pattern": ["^button-sbumit$"],
                         "from": ["direct_mention", "self_message", "direct_message"],
                         "privilege": ["user"],
-                        "access_list": ["default"]
+                        "access_list": ["default"],
+                        "remove_pattern": false
                     }
                 },
                 "msg": {

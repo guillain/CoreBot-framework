@@ -7,7 +7,7 @@ To add a new feature it needs to create the appropriate folder
 To be accessible from the main configuration file, it can be also
 interesting to overload the feature configuration in the main file.
 In that case you can just copy/paste the interesting part of your local
-configuration in the main configuration file [config.json](app/conf/config.json).
+configuration in the main configuration file.
 
 ## Understand the logic and the security
 - [Logic](./doc/logic.md)

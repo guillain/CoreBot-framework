@@ -8,6 +8,7 @@
         "and for new feature, read the appropriate doc"
     ],
     "default_conf": true,
+    "default_remove_pattern": true,
     "log": {
         "debug": true,
         "verbosity": "debug",

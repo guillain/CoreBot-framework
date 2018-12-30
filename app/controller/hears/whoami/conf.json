@@ -8,7 +8,8 @@
                         "pattern": ["^whoami$"],
                         "from": ["direct_message", "direct_mention"],
                         "privilege": ["user"],
-                        "access_list": ["default"]
+                        "access_list": ["default"],
+                        "remove_pattern": true
                     }
                 },
                 "msg": {

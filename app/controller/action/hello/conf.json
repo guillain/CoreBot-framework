@@ -3,8 +3,14 @@
         "action": {
             "hello": {
                 "enable": false,
-                "privilege": ["user"],
-                "access_list": ["default"],
+                "listener": {
+                    "hello": {
+                        "from": ["(.)"],
+                        "privilege": ["user"],
+                        "access_list": ["default"],
+                        "remove_pattern": false
+                    }
+                },
                 "msg": {
                     "text": "Hello",
                     "help": [
