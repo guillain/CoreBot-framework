@@ -1,22 +1,10 @@
 // Load CoreBot libraries
 let Log = require(__basedir + 'lib/log');
 let User = require(__basedir + 'lib/user');
-//let Redis = require(__basedir + 'lib/redis');
+let Redis = require(__basedir + 'lib/redis');
 
 // Requirements
 let fs = require('fs');
-var redis = require("redis");
-let client = redis.createClient({detect_buffers: true});
-
-// on connect
-client.on('connect', function() {
-    Log.debug('redis client on');
-});
-
-// on error
-client.on("error", function (err) {
-    Log.debug('redis client error ' + err);
-});
 
 // Survey report hears controller - to handle report
 exports.reset = function (controller, bot, message, config) {
@@ -30,7 +18,7 @@ exports.report = function (bcontroller, bot, message, config) {
     let survey_user = User.get_user(message);
 
     // Open Redis survey storage
-    client.get(config.controller.hears.survey.storage, function (err, survey_db) {
+    Redis.get(config.controller.hears.survey.storage, function (survey_db) {
         let survey = JSON.parse(survey_db);
         Log.debug('controller hears survey survey ' + JSON.stringify(survey));
 
@@ -62,7 +50,7 @@ exports.report_user = function (controller, bot, message, config) {
     let survey_user = User.get_user(message);
 
     // Open Redis survey storage
-    client.get(config.controller.hears.survey.storage, function (err, survey_db) {
+    Redis.get(config.controller.hears.survey.storage, function (survey_db) {
         let survey = JSON.parse(survey_db);
         Log.debug('controller hears survey survey ' + JSON.stringify(survey));
 
@@ -83,7 +71,7 @@ exports.survey = function (controller, bot, message, config) {
     let survey_user = User.get_user(message);
 
     // Open Redis survey storage
-    client.get(config.controller.hears.survey.storage, function (err, survey_db) {
+    Redis.get(config.controller.hears.survey.storage, function (survey_db) {
         let survey = JSON.parse(survey_db);
         Log.debug('controller hears survey survey ' + JSON.stringify(survey));
 
@@ -145,7 +133,7 @@ exports.survey = function (controller, bot, message, config) {
                                 survey.user[survey_user].step++;
  
                                 Log.info('controller hears survey records ' + JSON.stringify(survey));
-                                client.set(config.controller.hears.survey.storage, JSON.stringify(survey), () => {});
+                                Redis.set_json(config.controller.hears.survey.storage, survey);
 
                                 if (i_report < (survey.nb_report-1)) convo.gotoThread('question_' + (i_report+1));
                                 else convo.gotoThread('end');
@@ -221,7 +209,7 @@ survey_init = function(config){
     }
 
     // Save the Survey in the db
-    client.set(config.controller.hears.survey.storage, JSON.stringify(survey), () => {});
+    Redis.set_json(config.controller.hears.survey.storage, survey);
 
     return survey;
 };

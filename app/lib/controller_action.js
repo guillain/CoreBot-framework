@@ -17,7 +17,7 @@ module.exports = function(controller, message_type, message, bot, config) {
             if (Security.validation(
                 config,
                 message,
-                config['controller'][control][module].listener[index]
+                config['controller']['action'][module]
             ))
                 require(__basedir + 'controller/action/' + module + '/run.js')(controller, bot, message, config);
             else bot.reply(message, config.msg.user_not_allowed);

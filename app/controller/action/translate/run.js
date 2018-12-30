@@ -1,31 +1,20 @@
 // Load tools library
 let Log = require(__basedir + 'lib/log');
 let User = require(__basedir + 'lib/user');
+let Redis = require(__basedir + 'lib/redis');
 
 // Requirements
 let fs = require('fs');
-var redis = require("redis");
-let client = redis.createClient({detect_buffers: true});
 let run = require('node-google-translate-skidz');
 let lang_list = ["af","sq","am","ar","hy","az","eu","be","bn","bs","bg","ca","ceb","zh-CN","zh-TW","co","hr","cs","da","nl","en","eo","et","fi","fr","fy","gl","ka","de","el","gu","ht","ha","haw","he","hi","hmn","hu","is","ig","id","ga","it","ja","jw","kn","kk","km","ko","ku","ky","lo","la","lv","lt","lb","mk","mg","ms","ml","mt","mi","mr","mn","my","ne","no","ny","ps","fa","pl","pt","pa","ro","ru","sm","gd","sr","st","sn","sd","si","sk","sl","so","es","su","sw","sv","tl","tg","ta","te","th","tr","uk","ur","uz","vi","cy","xh","yi","yo","zu"];
 
-// on connect
-client.on('connect', function() {
-    Log.debug('module translate client on');
-});
-
-// on error
-client.on("error", function (err) {
-    Log.debug('module translate client error ' + err);
-});
-
-// Translate 
-exports.translate = function(controller, bot, message, config) {
+// Translate
+module.exports = function(controller, bot, message, config) {
   // Default user conf
   let data = [
       'manual',
-      config.controller.hears.translate.default.lang_in,
-      config.controller.hears.translate.default.lang_out
+      config.controller.action.translate.default.lang_in,
+      config.controller.action.translate.default.lang_out
   ];
 
   // Get user ref
@@ -35,7 +24,7 @@ exports.translate = function(controller, bot, message, config) {
   if (message.group === true) grp_msg = " for user " + user;
 
   // Open user storage
-  client.get(user, function(err, reply) {
+  Redis.get(user, function(reply) {
     if (reply) data = reply.split(',');
 
     // Remove first pattern if: present + prefixed=true
@@ -51,36 +40,36 @@ exports.translate = function(controller, bot, message, config) {
 
     // order action according to the message content
     if  (/^help$/i.test(msg_arr['0'])) 
-        bot.reply(message, config.controller.hears.translate.msg.help.join('\n'));
+        bot.reply(message, config.controller.action.translate.msg.help.join('\n'));
     else if (/^on$/i.test(msg_arr['0']))     { 
         data[0] = 'automatic'; 
-        client.set(user, data.join(','));
-        bot.reply(message, config.controller.hears.translate.msg.on + grp_msg);
+        Redis.set(user, data.join(','));
+        bot.reply(message, config.controller.action.translate.msg.on + grp_msg);
     }
     else if (/^off$/i.test(msg_arr['0']))    { 
         data[0] = 'manual';
-        client.set(user, data.join(','));
-        bot.reply(message, config.controller.hears.translate.msg.off + grp_msg);
+        Redis.set(user, data.join(','));
+        bot.reply(message, config.controller.action.translate.msg.off + grp_msg);
     }
     else if (/^stat/i.test(msg_arr['0']))  { 
-        if (data[0] === 'automatic') bot.reply(message, config.controller.hears.translate.msg.on + grp_msg);
-        else bot.reply(message, config.controller.hears.translate.msg.off + grp_msg);
+        if (data[0] === 'automatic') bot.reply(message, config.controller.action.translate.msg.on + grp_msg);
+        else bot.reply(message, config.controller.action.translate.msg.off + grp_msg);
     }
     else if (/^config/i.test(msg_arr['0'])) {
         if (msg_arr.length === 1){ 
             let msg = '\n- State _' + data[0] + '_\n- In _' + data[1] + '_\n- Out _' + data[2] + '_';
-            bot.reply(message, config.controller.hears.translate.msg.conf + grp_msg + msg);
+            bot.reply(message, config.controller.action.translate.msg.conf + grp_msg + msg);
         }
         else if (msg_arr.length === 3)    {
             if ((lang_list.indexOf(msg_arr['1']) > -1) && (lang_list.indexOf(msg_arr['2']) > -1)){
               data[1] = msg_arr['1'];
               data[2] = msg_arr['2'];
-              client.set(user, data.join(','));
-              bot.reply(message, config.controller.hears.translate.msg.conf_ok + grp_msg);
+              Redis.set(user, data.join(','));
+              bot.reply(message, config.controller.action.translate.msg.conf_ok + grp_msg);
             }
-            else { bot.reply(message, config.controller.hears.translate.msg.wrong_lang); }
+            else { bot.reply(message, config.controller.action.translate.msg.wrong_lang); }
         }
-        else bot.reply(message, config.controller.hears.translate.msg.help);
+        else bot.reply(message, config.controller.action.translate.msg.help);
     }
     // Manual translate
     else if ((msg_arr.length > 2) && (data[0] === 'manual')){
@@ -88,7 +77,7 @@ exports.translate = function(controller, bot, message, config) {
             let lang_in = msg_arr['0'];
             let lang_out = msg_arr['1'];
             msg_arr.splice(0,2);
-            msg_arr[0] = data[0];
+            //msg_arr[0] = data[0];
            run({
                 text: msg_arr.join(' '),
                 source: lang_in,
@@ -98,7 +87,7 @@ exports.translate = function(controller, bot, message, config) {
                 bot.reply(message, '_('+lang_in+' to '+lang_out+grp_msg+')_ ' + result);
             });
         }
-        else {  bot.reply(message, config.controller.hears.translate.msg.wrong_lang); }
+        else {  bot.reply(message, config.controller.action.translate.msg.wrong_lang); }
     }
     // Request to ranslate
     else if (data[0] === 'automatic') {

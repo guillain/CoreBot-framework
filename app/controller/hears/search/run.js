@@ -1,16 +1,6 @@
-// Load tools library
+// Load framework libraries
 let Log = require(__basedir + 'lib/log');
-
-// Requirements
-let request = require("request");
-
-let redis = require("redis");
-let client = redis.createClient({detect_buffers: true});
-
-// let Search = require('redis-search');
-// let search = Search.createSearch(config.controller.hears.search.storage);
-
-let fs = require('fs');
+let Redis = require(__basedir + 'lib/redis');
 
 // Search master fct
 exports.search = function(controller, bot, message, config){
@@ -29,7 +19,7 @@ exports.search = function(controller, bot, message, config){
 
     msg_arr.shift();
 
-    client.hgetall(config.controller.hears.search.storage, function(err,kms){
+    Redis.hgetall(config.controller.hears.search.storage, function(kms){
         if (err) throw err;
 
         // Key array initialization
@@ -97,17 +87,5 @@ exports.search = function(controller, bot, message, config){
 
         bot.reply(message, to_say + '\n' + res);
     });
-    /*
-    search.query(phrase, function(err, ids){
-        if (err) throw err;
-        console.log('Search results for "%s":', phrase);
-        console.log(ids);
-        if (ids.length != 0) {
-            to_say = 'Found \n';
-            for(var i in ids) { to_say += '- '+ids[i]+'\n'; }
-            bot.say(to_say);
-        } else { bot.say(config.controller.hears.search.msg.notfound); }
-    });
-    */
 };
 
