@@ -50,6 +50,27 @@ All hears, on and action controllers are define with the same JSON configuration
  they include the following structured fields.
 
 ### Listener
+The controller contains parameters to be used by the loader and its template:
+- pattern 
+  - Array of regular expression. 
+  - It must match with the chat to trigger the *hears* controller
+   - ["^help", "tata", "*.json"]
+- from 
+  - Array of sources of message
+  - It must match with the chat context to trigger the controller
+  - ["direct_message", "group_message"]
+- privilege
+  - array of privilege (role)
+  - It must be associated with existing people or with the default one
+  - by default: user, admin, block ; other can be added if define in controller
+- access_list
+  - array of ACL
+  - It must match with existing access_list declared in the global configuration file
+  - by default: default, user, domain, block ; other can be added f define in access_list main config
+- remove_pattern
+  - to know if the pattern should be considered or not
+  - Ie removing the pattern from the chat message
+  - true/false
 ```
     "listener": {
         "pattern": ["^myfeature$", "[0-9]*5"],
@@ -58,13 +79,7 @@ All hears, on and action controllers are define with the same JSON configuration
         "access_list": ["default"],
         "remove_pattern": true
     }
-```
-On controller contains three specific options to be used by the loader the template:
-- pattern: array of regular expression. It must match with the chat to trigger the *hears* controller
-- from: array of sources of message. It must match with the chat context to trigger the controller
-- privilege: array of privilege (role). It must be associated with existing people or with the default one
-- access_list: array of ACL. It must match with existing access_list declared in the global configuration file.
-- remove_pattern: to know if the pattern should be considered or not (ie removing the pattern from the chat message) 
+``` 
 
 ### Message
 A structured message fields is used to improve support features deliver to the end user.

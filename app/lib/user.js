@@ -34,3 +34,20 @@ exports.privilege_user = function(config, message, my_user = ''){
     Log.debug('lib user privilege_user ' + my_user + ' ' + priv);
     return priv;
 };
+
+// Bot exception list, return boolean
+exports.is_bot = function(config, message, my_user = ''){
+    let bot_found = false;
+    if (my_user === '') my_user = User.get_user(message);
+    
+    // Loop over each launcher to get bot name
+    _.each(config.launcher, function (conf, index) {
+        //console.log('>>>>>>>', 'is_bot', 'my_user', my_user, 'conf.name', conf.name);
+        
+        if (conf.name.indexOf(my_user) > -1)
+            bot_found = true;
+    });
+    
+    Log.debug('lib security bot_exception ' + my_user + ' ' + bot_found);
+    return bot_found;
+};

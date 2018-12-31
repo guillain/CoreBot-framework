@@ -9,9 +9,9 @@
     "default": {
         "load_controller_conf": true,
         "load_controller_listener": true,
-        "remove_pattern": false
+        "remove_pattern": false,
+        "remove_botname": true
     },
-    "stats_optout": true,
     "file": {
         "access_list": "conf/access_list.json",
         "user": "conf/user.json",

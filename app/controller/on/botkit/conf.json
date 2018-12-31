@@ -1,6 +1,7 @@
 {
     "enable": false,
     "token": "",
+    "stats_optout": true,
     "msg": {
         "help": [
             "Provide botkit studio connection for advanced feature like NLP\n",

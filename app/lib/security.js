@@ -44,30 +44,13 @@ exports.access_list = function(config, message, listener){
     return is_ok;
 };
 
-// Bot exception list, return boolean
-exports.is_bot = function(config, message, my_user = ''){
-    let bot_found = false;
-    if (my_user === '') my_user = User.get_user(message);
-
-    // Loop over each launcher to get bot name
-    _.each(config.launcher, function (conf, index) {
-        console.log('>>>>>>>', 'is_bot', 'my_user', my_user, 'conf.name', conf.name);
-
-        if (conf.name.indexOf(my_user) > -1)
-            bot_found = true;
-    });
-
-    Log.debug('lib security bot_exception ' + my_user + ' ' + bot_found);
-    return bot_found;
-};
-
 // Study if message is allowed or not for this user and context, return boolean
 exports.validation = function(config, message, listener){
     let is_validate = true;
     let my_user = User.get_user(message);
 
     // REJECT if it's a bot
-    if (exports.is_bot(config, message, my_user)) is_validate = false;
+    if (User.is_bot(config, message, my_user)) is_validate = false;
 
     // REJECT if ACL block
     if (!exports.access_list(config, message, listener)) is_validate = false;

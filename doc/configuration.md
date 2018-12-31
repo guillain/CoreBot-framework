@@ -62,6 +62,7 @@ Controller
 ```
 {
     global configuration,
+    default: {...},
     access_list: {..},
     user: {...},
     launcher: {...},
@@ -77,8 +78,7 @@ Controller
 Provided by the file `config.json`, it set all global parameters need
 by the application.
 
-Some keay features explanation:
-- default.load_controller_listener: load or not the default conf (true/false)
+Some key features explanation:
 - log: logger settings
     - debug: activate the global debug mode
     - verbosity: set log verbosity
@@ -87,14 +87,12 @@ Some keay features explanation:
         - warn
         - error
         - critic
-    - stats_optout: output botkit statistic
-    - db: redis db info
-    - msg: standard default messages
+- db: redis db info
+- msg: standard default messages
 
 Example:
 ```
 {
-    "file": "CoreBot configuration",
     "author": "guillain",
     "license": "LGPL-3.0",
     "description": [
@@ -102,7 +100,6 @@ Example:
         "nothing more is need if you don't need specific feature",
         "and for new feature, read the appropriate doc"
     ],
-    "default.load_controller_listener": true,
     "log": {
         "debug": true,
         "verbosity": "debug",
@@ -118,6 +115,38 @@ Example:
         "bye": "See you soon",
         "join": "Thanks to join us"
     }
+}
+```
+
+## Default
+Default chapter is used to define the default behavior of the framework.
+
+We can found the following useful parameters:
+- load_controller_conf
+  - Load or not the default conf of the controllers 
+  - This conf can be overloaded by the conf `config.json` and `controller.json`
+  - Acceptable values: true/false
+- load_controller_listener 
+  - Load or not the default listener of the controller 
+  - Acceptable values: true/false
+- remove_pattern
+  - Remove the listener patterns in the text message
+  - This conf can be overloaded by the controller configurations 
+  - Acceptable values: true/false 
+- remove_botname 
+  - Remove the botname from the text message
+  - The botname comes from the list of name of all configured launcher
+  - Acceptable values: true/false
+
+Example:
+```
+{
+    "default": {
+        "load_controller_conf": true,
+        "load_controller_listener": true,
+        "remove_pattern": false,
+        "remove_botname": true
+    },
 }
 ```
 

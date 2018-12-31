@@ -1,14 +1,7 @@
 # Global
-- fix: replace shift() by splice(0, 1);
-  + if botname can be for a group chat and cmd...
-  
-- Functions for the command parsing (shift, get...)
-  - need to review all modules to clean shift
+- review all modules to clean shift due to the remove of botname & patterns 
 - openLDAP
 - local NLP
-
-??? adapt the framework to have generic modules for all controllers.
-Them configurations define if they should be controller on, hears or action.
 
 # Launcher
 - facebook
@@ -16,7 +9,6 @@ Them configurations define if they should be controller on, hears or action.
 - matermost
 
 # Controller
-cf. global chapter - ???
 
 ## Hears
 - csv file upload mgt
