@@ -14,15 +14,24 @@ To do that, three methods:
 - *action*: 
   - triggered after an *on* controller event
   - action to execute
-  - loaded by the *on* controller by `./app/lib/controller_action.js`
+  - loaded by the *on* controller by `./app/lib/controller.js`
 
 ## Loading
+### Configuration
+The configuration is generated during the program initialisation.
+For more detail on the configuration, thanks to consult the doc [configuration](./doc/configuration.md).
+
+The configuration is generated from (and by priority):
+- 1/ the global configuration file `./app/conf/config.json`
+- 2/ the global controller configuration file `./app/conf/controller.json`
+- 3/ the controller configuration files:
+  - a) for the listener `./app/controller/[hears,on,action]/[name]/default.json`
+  - b) for the conf `./app/controller/[hears,on,action]/[name]/conf.json`
+
+### Execution
 The *hears* and *on* controllers are loaded during the bot initialization.
 The *action* controllers are loaded after an On controller event.
 All are managed by the `./app/lib/controller.js` script.
-
-They can be loaded from the global configuration file `config.json` or by
-the individual configuration file `controller.json`.
 
 The first check is to know if the controller is activate or not and
 depending of the configuration the controller is loaded or not.
@@ -30,21 +39,11 @@ depending of the configuration the controller is loaded or not.
 ## Organization
 The controllers are define in dedicated folder and they need the following files:
 - `run.js`: Scripts with the code
-- `conf.json`: Default configuration file
+- `conf.json`: Default configuration file for the specific controller 
+- `default.json`: Default listener provide for support and example
 
 They are located in the `./app/controller` folder.
-
-The structure is:
-- Controller name
-  - Type of controller: hears, on or action
-    - `run.js`: Scripts with the controller's code
     - `conf.json`: Default configuration file of the controller
-
-The JSON configuration file associate define the default configuration of the
-controller and its standard parameters plus the default behaviors.
-This can be overloaded or completed by the global settings (`config.json`).
-It also follow the folder structure and so the controller chain/path and 
-its declaration.
 
 ## Structures
 All hears, on and action controllers are define with the same JSON configuration template and 
@@ -83,6 +82,13 @@ the help message.
 ```
 
 ## Control definition
+Provide an example of the diffrentes configurations that can be provided for each controller and each 
+script and configuration files possibilities:
+- run.js: the standard script
+- conf.js: the controller conf, useful to create new one
+- default: the controller listener, useful to create new one
+- config.json: all conf in one file, useful to reuse an existing one
+ 
 ### Hears
 Check if the message match with the pattern and the context
 - `./app/controller/hears`
@@ -98,6 +104,56 @@ exports.MyCtrHears_off = function(controller, bot, message, config) {
 };
 ```
 #### conf.json
+```
+{
+    "enable": true,
+    "msg": {
+        "on": "it's on on",
+        "off": "it's on off",
+        "help": [
+            "MyCtrHears is to switch on off when on on and on on when on off"
+        ]
+    }
+}
+```
+#### default.json
+```
+{
+    "controller": {
+        "hears":
+            "MyCtrHears": {
+                "enable": true,
+                "listerner": {
+                    "MyCtrHears_on": {
+                        "controller" "hears",
+                        "pattern": ["^MyMessage on$"],
+                        "from": ["direct_message"],
+                        "privilege": ["user"],
+                        "access_list": ["default"],
+                        "remove_pattern": true
+                    },
+                    "MyCtrHears_off": {
+                        "controller" "hears",
+                        "pattern": ["^MyMessage off$"],
+                        "from": ["direct_message"],
+                        "privilege": ["user"],
+                        "access_list": ["default"],
+                        "remove_pattern": true
+                    }
+                },
+                "msg": {
+                    "on": "it's on on",
+                    "off": "it's on off",
+                    "help": [
+                        "MyCtrHears is to switch on off when on on and on on when on off"
+                    ]
+                }
+            }
+        }
+    }
+}
+```
+#### config.json
 ```
 {
     "controller": {
@@ -151,6 +207,31 @@ exports.MyCtrOn = function(controller, bot, message, config) {
 #### conf.json
 ```
 {
+    "msg": {
+        "text": "hello",
+        "help": [
+            "MyOnController help"
+        ]
+    }
+}
+```
+#### default.json
+```
+{
+    "enable": true,
+    "listerner": {
+        "MyCtrOn": {
+            "controller" "on",
+            "from": ["direct_message"],
+            "privilege": ["user"],
+            "access_list": ["default"]
+        }
+    }
+}
+```
+#### config.json
+```
+{
     "controller": {
         "on":
             "MyCtrOn": {
@@ -173,7 +254,6 @@ exports.MyCtrOn = function(controller, bot, message, config) {
     }
 }
 ```
-
 ### Action
 Will be executed by the *on* controller.
 - `./app/controller/action`
@@ -185,6 +265,31 @@ exports.MyCtrOn = function(controller, bot, message, config) {
 };
 ```
 #### conf.json
+```
+{
+    "msg": {
+        "text": "hello",
+        "help": [
+            "MyAction help"
+        ]
+    }
+}
+```
+#### default.json
+```
+{
+    "enable": true,
+    "listerner": {
+        "MyAction": {
+            "controller" "action",
+            "privilege": ["user"],
+            "access_list": ["default"],
+            "remove_pattern": true
+        }
+    }
+}
+```
+#### config.json
 ```
 {
     "controller": {
@@ -209,4 +314,3 @@ exports.MyCtrOn = function(controller, bot, message, config) {
     }
 }
 ```
-

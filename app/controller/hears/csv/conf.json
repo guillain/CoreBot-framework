@@ -1,5 +1,5 @@
 {
-    "file": "doc/csv.conf",
+    "file": "data/km.conf",
     "storage": "csv",
     "search_limit": 10,
     "msg": {

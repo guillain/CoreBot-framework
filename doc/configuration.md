@@ -2,33 +2,63 @@
 The principle is to provide an easy method to set the expected 
 chatbot scenario and deploy it to production.
 
-## Info about the config files
-All configurations files are stored in the folder `./app/conf`.
+All configurations files that you need for your scenario are stored in the folder `./app/conf`.
 
-Two kinds of configuration files can be used to configure the
-chatbot with the expected behavior and scenario:
-- the default: 
-    - Each Launcher and Controller has a dedicated json
-configuration file
-    - These files contain the exhaustive configuration
-capabilities of the  Launcher or Controller
-    - They can be loaded or not with the help of the parameters 
-`default.load_controller_listener` in the `config.json` file
-- the specific(s):
-    - Each Launcher and Controller has a dedicated json
-configuration chapter who respect the structure/schema
-    - These files contain the exhaustive configuration
-capabilities of the  Launcher or Controller and can overload or add
-parameters to the default configuration files
-    - The main configuration file `config.json` is mandatory and
-can provide the full configuration or it can be split in the following
-files: 
-        - `user.json` 
-        - `access_list.json`
-        - `launcher.json`
-        - `controller.json`
+Each *controller* and *launcher* have also them dedicated configuration files.
+
+## Principle
+The script `./app/lib/config.js` is in charge to prepare the configuration in he following way:
+
+1/ Load the conf `./app/conf/config.json`. 
+This conf can be the full settings or only the main setting.  
+
+2/ Optionally load the referenced files from the previous conf.
+
+The optional files are used to split the initial `config.json` file.
+```
+    "file": {
+        "access_list": "conf/access_list.json",
+        "user": "conf/user.json",
+        "launcher": "conf/launcher.json",
+        "controller": "conf/controller.json"
+    }
+``` 
+
+3/ Optionally load all `default.json` files found in the `./app/controller` folder.
+
+These conf files are used to preset the listener of the controllers (hears, on and action).
+```
+    "default": {
+        "load_controller_listener": true
+    }
+```
+
+4/ Optionally load all `conf.json` files found in the `./app/controller` folder
+
+These conf files are used to configure the the controller (hears, on and action).
+It should *aways activated* instead if you rewrite or copy/paste all definitions.
+```
+    "default": {
+        "load_controller_conf": true
+    }
+```
+
+## Where to find the conf files
+My personnal and example
+- `./app/conf/[*].json`
+
+Launcher
+- `./app/launcher/[module name]/conf.json`
+
+Controller
+
+- Controller's global settings
+  - `./app/controller/[hears, on, action]/[module name]/conf.json`
+- Default listener configuration
+  - `./app/controller/[hears, on, action]/[module name]/default.json`
 
 ## Configuration file structure
+### Overview
 ```
 {
     global configuration,
@@ -108,7 +138,7 @@ complete details.
 Provided by the file `config.json` or `launcher.json`, it set the
 launcher parameters.
 
-Thanks to read the doc of the [controller](./doc/launcher.md) for a
+Thanks to read the doc of the [launcher](./doc/launcher.md) for a
 complete details.
 
 ## Controller

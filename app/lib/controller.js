@@ -4,14 +4,18 @@ let Security = require(__basedir + 'lib/security');
 let _ = require("underscore");
 
 // Run the controller listener
-run = function(controller, bot, message, config, listener_name, listener, script){
-    Log.debug("lib controller run " + listener_name);
+run = function(controller, bot, message, config, control, module, index){
+    Log.debug("lib controller run " + control + ' ' + module + ' ' + index);
+    
+    let listener = config['controller'][control][module].listener[index];
+    let script = __basedir + 'controller/' + control + '/' + module + '/run.js';
+    
     
     // Security validation (ACL, priv, perm)
     if (Security.validation(config, message, listener)) {
         let mod_run = require(script);
         let message_tmp = exports.remove_pattern(config, message, listener);
-        mod_run[listener_name](controller, bot, message_tmp, config);
+        mod_run[index](controller, bot, message_tmp, config, config.controller[control][module]);
     }
     else bot.reply(message, config.msg.user_not_allowed);
 };
@@ -38,30 +42,17 @@ module.exports = function(controller, config, controls, message = '', bot = '') 
                         controller.hears(
                             config['controller'][control][module].listener[index].pattern,
                             config['controller'][control][module].listener[index].from,
-                            function (bot, message) {
-                                run(controller, bot, message, config, index,
-                                            config['controller'][control][module].listener[index],
-                                            __basedir + 'controller/' + control + '/' + module + '/run.js'
-                                );
-                            }
+                            function (bot, message) { run(controller, bot, message, config, control, module, index);}
                         );
                     }
                     else if (control === 'on') {
                         controller.on(
                             config['controller'][control][module].listener[index].from,
-                            function (bot, message) {
-                                run(controller, bot, message, config, index,
-                                            config['controller'][control][module].listener[index],
-                                            __basedir + 'controller/' + control + '/' + module + '/run.js'
-                                );
-                            }
+                            function (bot, message) { run(controller, bot, message, config, control, module, index);}
                         );
                     }
                     else if (control === 'action') {
-                        run(controller, bot, message, config, index,
-                            config['controller'][control][module].listener[index],
-                            __basedir + 'controller/' + control + '/' + module + '/run.js'
-                        );
+                        run(controller, bot, message, config, control, module, index);
                     }
                     else Log.error('lib controller wrong control ' + control)
                 });
