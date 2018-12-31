@@ -7,20 +7,33 @@ All configurations files that you need for your scenario are stored in the folde
 Each *controller* and *launcher* have also them dedicated configuration files.
 
 ## Principle
-The script `./app/lib/config.js` is in charge to prepare the configuration in he following way:
+The script `./app/lib/config.js` is in charge to prepare the configuration in the following way:
 
-1/ Load the conf `./app/conf/config.json`. 
+1/ Load the conf of `./app/conf/config.json`. 
 This conf can be the full settings or only the main setting.  
 
 2/ Optionally load the referenced files from the previous conf.
 
 The optional files are used to split the initial `config.json` file.
+
+For example if you want to add your own:
 ```
     "file": {
         "access_list": "conf/access_list.json",
         "user": "conf/user.json",
         "launcher": "conf/launcher.json",
         "controller": "conf/controller.json"
+    }
+``` 
+
+
+Or if you want to use the default:
+```
+    "file": {
+        "access_list": "conf/default/access_list.json",
+        "user": "conf/default/user.json",
+        "launcher": "conf/default/launcher.json",
+        "controller": "conf/default/controller.json"
     }
 ``` 
 
