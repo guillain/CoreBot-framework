@@ -1,0 +1,37 @@
+{
+    "enable": false,
+    "listener": {
+        "survey": {
+            "controller": "hears",
+            "pattern": ["^survey$"],
+            "from": ["message_received", "direct_message", "direct_mention", "group_message"],
+            "privilege": ["user"],
+            "access_list": ["default"],
+            "remove_pattern": false
+        },
+        "reset": {
+            "controller": "hears",
+            "pattern": ["^survey reset$"],
+            "from": ["message_received", "direct_message", "direct_mention", "group_message"],
+            "privilege": ["user"],
+            "access_list": ["default"],
+            "remove_pattern": false
+        },
+        "report": {
+            "controller": "hears",
+            "pattern": ["^survey report$"],
+            "from": ["message_received", "direct_message", "direct_mention", "group_message"],
+            "privilege": ["user"],
+            "access_list": ["default"],
+            "remove_pattern": false
+        },
+        "report_user": {
+            "controller": "hears",
+            "pattern": ["^survey report user"],
+            "from": ["message_received", "direct_message", "direct_mention", "group_message"],
+            "privilege": ["user"],
+            "access_list": ["default"],
+            "remove_pattern": false
+        }
+    }
+}

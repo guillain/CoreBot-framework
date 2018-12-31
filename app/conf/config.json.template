@@ -1,5 +1,4 @@
 {
-    "file": "CoreBot configuration",
     "author": "guillain",
     "license": "LGPL-3.0",
     "description": [
@@ -7,14 +6,23 @@
         "nothing more is need if you don't need specific feature",
         "and for new feature, read the appropriate doc"
     ],
-    "default_conf": true,
-    "default_remove_pattern": true,
+    "default": {
+        "load_controller_conf": true,
+        "load_controller_listener": true,
+        "remove_pattern": false
+    },
+    "stats_optout": true,
+    "file": {
+        "access_list": "conf/access_list.json",
+        "user": "conf/user.json",
+        "launcher": "conf/launcher.json",
+        "controller": "conf/controller.json"
+    },
     "log": {
         "debug": true,
         "verbosity": "debug",
         "file": "log/CoreBot.log"
     },
-    "stats_optout": true,
     "db": {
         "host": "",
         "user": ""

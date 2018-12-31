@@ -6,12 +6,13 @@ let Run = require('logstash-client');
 
 // Run the function
 module.exports = function(evt, message, config) {
+exports.logstash = function(controller, bot, message, config, mod_conf) {
     let msg = message;
     delete msg["type"];
-    msg['message_type'] = evt;
-    msg['level'] = config.controller.on.logstash.level;
-    msg['type'] = config.controller.on.logstash.log_type;
-    msg['framework'] = config.controller.on.logstash.framework;
+    msg['message_type'] = message.type || mod_conf.framework;
+    msg['level'] = mod_conf.level;
+    msg['type'] = mod_conf.log_type;
+    msg['framework'] = mod_conf.framework;
 
     /*
     let msg = {
@@ -43,9 +44,9 @@ module.exports = function(evt, message, config) {
     */
 
     let logstash = new Run({
-      type: config.controller.on.logstash.type,
-      host: config.controller.on.logstash.host,
-      port: config.controller.on.logstash.port
+      type: mod_conf.type,
+      host: mod_conf.host,
+      port: mod_conf.port
     });
     logstash.send(msg);
 };

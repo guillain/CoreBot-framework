@@ -1,26 +1,10 @@
 {
-    "controller": {
-        "hears": {
-            "whoami": {
-                "enable": false,
-                "listener": {
-                    "whoami": {
-                        "pattern": ["^whoami$"],
-                        "from": ["direct_message", "direct_mention"],
-                        "privilege": ["user"],
-                        "access_list": ["default"],
-                        "remove_pattern": true
-                    }
-                },
-                "msg": {
-                    "help": [
-                        "Provide information on the request owner\n",
-                        "- _No argument_\n",
-                        "_Example_: `whoami`",
-                        "Dialog with the bot and navigate  in the menu"
-                    ]
-                }
-            }
-        }
+    "msg": {
+        "help": [
+            "Provide information on the request owner\n",
+            "- _No argument_\n",
+            "_Example_: `whoami`",
+            "Dialog with the bot and navigate  in the menu"
+        ]
     }
 }

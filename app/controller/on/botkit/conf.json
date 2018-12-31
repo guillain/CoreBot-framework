@@ -1,23 +1,10 @@
 {
-    "controller": {
-        "on": {
-            "botkit": {
-                "enable": false,
-                "token": "",
-                "listener": {
-                    "botkit": {
-                        "from": ["direct_message", "direct_mention"],
-                        "privilege": ["user"],
-                        "access_list": ["default"]
-                    }
-                },
-                "msg": {
-                    "help": [
-                        "Provide botkit studio connection for advanced feature like NLP\n",
-                        "- _No argument_"
-                    ]
-                }
-            }
-        }
+    "enable": false,
+    "token": "",
+    "msg": {
+        "help": [
+            "Provide botkit studio connection for advanced feature like NLP\n",
+            "- _No argument_"
+        ]
     }
 }

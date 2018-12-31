@@ -1,8 +1,8 @@
-// Load tools library
+// Load required library
 let Log = require(__basedir + 'lib/log');
-
-// Load required lib
+let File = require(__basedir + 'lib/file');
 let fs = require('fs');
+let path = require('path');
 let _ = require("underscore");
 let merge_json = require("merge-json");
 
@@ -11,44 +11,102 @@ module.exports = function() {
     Log.debug("lib config");
 
     // Get principal configuration file
-    let config = require(global.__basedir + 'conf/config.json');
+    let config = require(__basedir + 'conf/config.json');
 
-    // Check if optionnal file is present
-    const conf_files = ['access_list', 'user', 'launcher', 'controller'];
-    conf_files.forEach(function(conf_file){
-        if (fs.existsSync(__basedir + 'conf/' + conf_file + '.json')) {
-            config = merge_json.merge(require(__basedir + 'conf/' + conf_file + '.json') , config);
-            Log.info("lib config conf_file " + conf_file + " enable");
+    // Check if configuration files must be added
+    _.each(config.file, function(conf, index){
+        if (fs.existsSync(__basedir + conf)) {
+            config = merge_json.merge(require(__basedir + conf) , config);
+            Log.info("lib config conf " + conf + " enable");
         }
-        else Log.debug("lib config conf_file " + conf_file + " disable");
+        else Log.error("lib config conf " + conf + " disable");
     });
 
-    // Check if default conf must be loaded if not return conf
-    if (config.default_conf !== true) return config;
+    // Load default conf if validated in the config file
+    let load_controller_listener = {};
+    if (config.default.load_controller_listener === true) {
+        // Search all default.json files in the controller folder and load it
+        Log.debug('config controller load_controller_listener');
+        load_controller_listener = load_default_listener(__basedir + 'controller', 'default.json');
+        config = merge_json.merge(load_controller_listener, config);
+    }
+    
+    // Load controller conf conf if validated in the config file
+    let load_controller_conf = {};
+    if (config.default.load_controller_conf === true) {
+        // Search all default.json files in the controller folder and load it
+        Log.info('config controller load_controller_conf');
+        load_controller_conf = load_default_conf(config,__basedir + 'controller', 'conf.json');
+        config = merge_json.merge(load_controller_conf, config);
+    }
+    
+    //Log.debug('config\n' + JSON.stringify(config, null, 4));
+    /*
+    Log.debug('config user\n' + JSON.stringify(config.user, null, 4));
+    Log.debug('config access_list\n' + JSON.stringify(config.access_list, null, 4));
+    Log.debug('config launcher\n' + JSON.stringify(config.launcher, null, 4));
+    Log.debug('config controller\n' + JSON.stringify(config.controller, null, 4));
+    Log.debug('config load_controller_conf\n' + JSON.stringify(load_controller_conf, null, 4));
+    Log.debug('config load_controller_listener\n' + JSON.stringify(load_controller_listener, null, 4));
+    */
+    return config;
+};
 
-    // Launcher
-    _.each(config.launcher, function(conf, index){
-        config = merge_json.merge(require(__basedir + 'launcher/' + index + '/conf.json') , config);
-        if (config.launcher[index].enable === true)
-            Log.info("lib config launcher " + index + " enable");
-        else Log.debug("lib config launcher " + index + " disable");
+load_default_listener = function(folder, file){
+    let config = {
+        "controller": {
+            "hears": {},
+            "on": {},
+            "action": {}
+        }
+    };
+    
+    // Search all default.json files in the controller folder and load it
+    let re = new RegExp(file);
+    File.search_file(folder, re, function (filename) {
+        
+        let mod_name = path.dirname(filename).split(path.sep).pop();
+        let mod_file = require(filename);
+    
+        if (mod_file.listener) {
+            _.each(mod_file.listener, function (conf, index) {
+                Log.debug('lib config load_from_folder mod_name:' + mod_name + ' - index:' + index);
+                
+                let control = mod_file.listener[index].controller;
+                if (!control) Log.error('lib config controller listener is missing ' + index);
+                else {
+                    config.controller[control][mod_name] = mod_file;
+                    Log.info('lib config controller listener ' + control + ' ' + index);
+                }
+            });
+        }
+        else Log.error('lib config controller listener is missing ' + index);
     });
+    return config;
+};
 
-    // Controllers
-    const controllers = ['action','hears','on'];
-    controllers.forEach(function(controller){
-        _.each(config.controller[controller], function (conf, index) {
-
-            let conf_mod = require(__basedir + 'controller/' + controller + '/' + index + '/conf.json', config);
-            config = merge_json.merge(conf_mod, config);
-
-            if (config.controller[controller][index].enable === true)
-                Log.info("lib config controller " + controller + " " + index + " enable");
-            else Log.debug("lib config controller " + controller + " " + index + " disable");
+load_default_conf = function(config, folder, file){
+    let new_config = {
+        "controller": {
+            "hears": {},
+            "on": {},
+            "action": {}
+        }
+    };
+    
+    // Search all default.json files in the controller folder and load it
+    let re = new RegExp(file);
+    File.search_file(folder, re, function (filename) {
+        
+        let mod_name = path.dirname(filename).split(path.sep).pop();
+        let mod_file = require(filename);
+        _.each(config.controller, function (conf, control) {
+            if (config.controller[control][mod_name]) {
+                Log.debug('lib config load_default_conf mod_name:' + mod_name + ' - control:' + control);
+                
+                new_config.controller[control][mod_name] = mod_file;
+            }
         });
     });
-
-    //Log.debug('config config ' + JSON.stringify(config));
-
-    return config;
+    return new_config;
 };

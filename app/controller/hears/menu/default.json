@@ -1,0 +1,13 @@
+{
+    "enable": false,
+    "listener": {
+        "menu": {
+            "controller": "hears",
+            "pattern": ["^menu"],
+            "from": ["message_received", "direct_message", "direct_mention", "group_message"],
+            "privilege": ["user"],
+            "access_list": ["default"],
+            "remove_pattern": true
+        }
+    }
+}

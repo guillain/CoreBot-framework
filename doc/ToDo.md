@@ -1,4 +1,7 @@
 # Global
+- fix: replace shift() by splice(0, 1);
+  + if botname can be for a group chat and cmd...
+  
 - Functions for the command parsing (shift, get...)
   - need to review all modules to clean shift
 - openLDAP

@@ -1,0 +1,20 @@
+{
+    "enable": false,
+    "listener":{
+        "thread_new": {
+            "controller": "hears",
+            "pattern": ["^thread convo"],
+            "from": ["message_received", "direct_message", "direct_mention", "group_message"],
+            "privilege": ["user"],
+            "access_list": ["default"],
+            "remove_pattern": false
+        },
+        "thread_key": {"controller": "hears",
+            "pattern": ["^thread key"],
+            "from": ["message_received", "direct_message", "direct_mention", "group_message"],
+            "privilege": ["user"],
+            "access_list": ["default"],
+            "remove_pattern": false
+        }
+    }
+}

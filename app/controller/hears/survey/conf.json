@@ -1,67 +1,29 @@
 {
-    "controller": {
-        "hears": {
-            "survey": {
-                "enable": false,
-                "file": "",
-                "storage": "",
-                "delay": 3,
-                "listener": {
-                    "survey": {
-                        "pattern": ["^survey$"],
-                        "from": ["message_received", "direct_message", "direct_mention", "group_message"],
-                        "privilege": ["user"],
-                        "access_list": ["default"],
-                        "remove_pattern": false
-                    },
-                    "reset": {
-                        "pattern": ["^survey reset$"],
-                        "from": ["message_received", "direct_message", "direct_mention", "group_message"],
-                        "privilege": ["admin"],
-                        "access_list": ["default"],
-                        "remove_pattern": false
-                    },
-                    "report": {
-                        "pattern": ["^survey report$"],
-                        "from": ["message_received", "direct_message", "direct_mention", "group_message"],
-                        "privilege": ["user"],
-                        "access_list": ["default"],
-                        "remove_pattern": false
-                    },
-                    "report_user": {
-                        "pattern": ["^survey report user"],
-                        "from": ["message_received", "direct_message", "direct_mention", "group_message"],
-                        "privilege": ["admin"],
-                        "access_list": ["default"],
-                        "remove_pattern": false
-                    }
-                },
-                "msg": {
-                    "intro": "Welcome on the survey",
-                    "end": "End of survey, thanks for your participation!",
-                    "timeout": "Oh no! The time limit has expired",
-                    "free_text_ok": "Free text recorded",
-                    "reply_ok": "I've got it, thanks",
-                    "bad_reply": "Sorry I did not understand",
-                    "report": "Survey report",
-                    "no_report": "No report has been recorded",
-                    "already_done": "We already have recorded your survey, thanks for your participation!",
-                    "reset_done": "The reset command was successfully done",
-                    "help": [
-                        "Survey provides a Q&A support (generated with a CSV file) and a report from the local db\n",
-                        "- **report**: to request the survey's report",
-                        "- **report user**: to request the survey's report that include the user list and them steps",
-                        "- **reset**: to reset the collection\n",
-                        "_Example_: `survey`, `survey report`, `survey report user`, `survey reset`",
-                        "The Q&A list is build from the CSV file with the first column as the question to ask. Separator is ';'.\n",
-                        "If present the second column is used are expected replies. Internal separato is ','.\n",
-                        "The replies are stored in the local db and provided with the help of the command `report`.\n",
-                        "Compose your CSV file as follow:\n",
-                        "```Question 1?;rep1,rep2,rep3\nDo you like it?;yes,no,maybe\nWhat is your preference?```"
-                    ]
-                }
-            }
-        }
+    "file": "",
+    "storage": "",
+    "delay": 3,
+    "msg": {
+        "intro": "Welcome on the survey",
+        "end": "End of survey, thanks for your participation!",
+        "timeout": "Oh no! The time limit has expired",
+        "free_text_ok": "Free text recorded",
+        "reply_ok": "I've got it, thanks",
+        "bad_reply": "Sorry I did not understand",
+        "report": "Survey report",
+        "no_report": "No report has been recorded",
+        "already_done": "We already have recorded your survey, thanks for your participation!",
+        "reset_done": "The reset command was successfully done",
+        "help": [
+            "Survey provides a Q&A support (generated with a CSV file) and a report from the local db\n",
+            "- **report**: to request the survey's report",
+            "- **report user**: to request the survey's report that include the user list and them steps",
+            "- **reset**: to reset the collection\n",
+            "_Example_: `survey`, `survey report`, `survey report user`, `survey reset`",
+            "The Q&A list is build from the CSV file with the first column as the question to ask. Separator is ';'.\n",
+            "If present the second column is used are expected replies. Internal separato is ','.\n",
+            "The replies are stored in the local db and provided with the help of the command `report`.\n",
+            "Compose your CSV file as follow:\n",
+            "```Question 1?;rep1,rep2,rep3\nDo you like it?;yes,no,maybe\nWhat is your preference?```"
+        ]
     }
 }
-

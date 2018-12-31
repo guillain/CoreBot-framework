@@ -1,0 +1,11 @@
+{
+    "enable": true,
+    "listener": {
+        "message_received": {
+            "controller": "on",
+            "from": "message_received",
+            "privilege": ["user"],
+            "access_list": ["default"]
+        }
+    }
+}

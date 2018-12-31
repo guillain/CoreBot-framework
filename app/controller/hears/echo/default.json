@@ -1,0 +1,13 @@
+{
+    "enable": false,
+    "listener":{
+        "echo": {
+            "controller": "hears",
+            "pattern":["^echo *"],
+            "remove_pattern": false,
+            "from": ["direct_mention", "direct_message"],
+            "privilege": ["user"],
+            "access_list": ["default"]
+        }
+    }
+}

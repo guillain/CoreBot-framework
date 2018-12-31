@@ -1,0 +1,12 @@
+{
+    "enable": false,
+    "token": "",
+    "listener": {
+        "botkit": {
+            "controller": "on",
+            "from": ["direct_message", "direct_mention"],
+            "privilege": ["user"],
+            "access_list": ["default"]
+        }
+    }
+}

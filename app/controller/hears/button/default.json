@@ -1,0 +1,37 @@
+{
+    "enable": true,
+    "listener":{
+        "button": {
+            "controller": "hears",
+            "pattern": ["^button-button$"],
+            "from": ["direct_mention", "self_message", "direct_message"],
+            "privilege": ["user"],
+            "access_list": ["default"],
+            "remove_pattern": false
+        },
+        "open_link": {
+            "controller": "hears",
+            "pattern": ["^button-openlink$"],
+            "from": ["direct_mention", "self_message", "direct_message"],
+            "privilege": ["user"],
+            "access_list": ["default"],
+            "remove_pattern": false
+        },
+        "execute_command": {
+            "controller": "hears",
+            "pattern": ["^button-executecommand$"],
+            "from": ["direct_mention", "self_message", "direct_message"],
+            "privilege": ["user"],
+            "access_list": ["default"],
+            "remove_pattern": false
+        },
+        "submit": {
+            "controller": "hears",
+            "pattern": ["^button-sbumit$"],
+            "from": ["direct_mention", "self_message", "direct_message"],
+            "privilege": ["user"],
+            "access_list": ["default"],
+            "remove_pattern": false
+        }
+    }
+}

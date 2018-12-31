@@ -1,0 +1,11 @@
+{
+    "enable": true,
+    "listener": {
+        "group_message": {
+            "controller": "on",
+            "from": "group_message",
+            "privilege": ["user"],
+            "access_list": ["default"]
+        }
+    }
+}

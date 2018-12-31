@@ -1,26 +1,11 @@
 {
-    "controller": {
-        "action": {
-            "hello": {
-                "enable": false,
-                "listener": {
-                    "hello": {
-                        "from": ["(.)"],
-                        "privilege": ["user"],
-                        "access_list": ["default"],
-                        "remove_pattern": false
-                    }
-                },
-                "msg": {
-                    "text": "Hello",
-                    "help": [
-                        "Hello message\n",
-                        "- _No argument_\n",
-                        "_Example_: ``",
-                        "Reply a Hello message"
-                    ]
-                }
-            }
-        }
+    "msg": {
+        "text": "Hello",
+        "help": [
+            "Hello message\n",
+            "- _No argument_\n",
+            "_Example_: ``",
+            "Reply a Hello message"
+        ]
     }
 }

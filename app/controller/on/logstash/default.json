@@ -1,0 +1,11 @@
+{
+    "enable": false,
+    "listener": {
+        "logstash": {
+            "controller": "on",
+            "from": ["message_direct", "message_received"],
+            "privilege": ["user"],
+            "access_list": ["default"]
+        }
+    }
+}

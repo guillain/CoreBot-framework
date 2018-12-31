@@ -1,0 +1,11 @@
+{
+    "enable": true,
+    "listener": {
+        "direct_mention": {
+            "controller": "on",
+            "from": "direct_mention",
+            "privilege": ["user"],
+            "access_list": ["default"]
+        }
+    }
+}

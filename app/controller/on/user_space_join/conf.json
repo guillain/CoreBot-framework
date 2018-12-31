@@ -1,22 +1,8 @@
 {
-    "controller": {
-        "on": {
-            "user_space_join": {
-                "enable": true,
-                "listener": {
-                    "user_space_join": {
-                        "from": "user_space_join",
-                        "privilege": ["user"],
-                        "access_list": ["default"]
-                    }
-                },
-                "msg": {
-                    "help": [
-                        "Event when user joins a space\n",
-                        "- _No argument_"
-                    ]
-                }
-            }
-        }
+    "msg": {
+        "help": [
+            "Event when user joins a space\n",
+            "- _No argument_"
+        ]
     }
 }

@@ -1,23 +1,8 @@
 {
-    "controller": {
-        "on": {
-            "direct_message": {
-                "enable": true,
-                "listener": {
-                    "direct_message": {
-                        "from": "direct_message",
-                        "privilege": ["user"],
-                        "access_list": ["default"]
-                    }
-                },
-                "msg": {
-                    "help": [
-                        "Direct message event\n",
-                        "- _No argument_"
-                    ]
-                }
-            }
-        }
+    "msg": {
+        "help": [
+            "Direct message event\n",
+            "- _No argument_"
+        ]
     }
 }
-

@@ -1,0 +1,13 @@
+{
+    "enable": true,
+    "listener": {
+        "whoami": {
+            "controller": "hears",
+            "pattern": ["^whoami$"],
+            "from": ["direct_message", "direct_mention"],
+            "privilege": ["user"],
+            "access_list": ["default"],
+            "remove_pattern": true
+        }
+    }
+}

@@ -1,33 +1,30 @@
-// Load tools library
+// Load required library
 let Log = require(__basedir + 'lib/log');
-
-// Requirements
-let csv = require(__basedir + 'module/csv/run.js');
+let fs = require('fs');
 
 // AutoReply loader
-exports.autoreply = function(controller, bot, message, config){
+exports.autoreply = function(controller, bot, message, config, mod_conf){
     // Get CSV file data
-    let csv_data = fs.readFileSync(__basedir + config.controller.hears.autoreply.file);
+    let csv_data = fs.readFileSync(__basedir + mod_conf.file);
     if (!csv_data) {
-        Log.error('controller hears autoreply no-csv-file ');
+        Log.error('controller autoreply no-csv-file ');
         return;
     }
-
-    Log.info('controller hears autoreply csv_data  len ' + csv_data.length);
+    Log.debug('controller autoreply csv_data  len ' + csv_data.length);
 
     // Pickup one entry
     let index = Math.floor(Math.random() * csv_data.length);
     let csv_picked_up = csv_data[index];
-    Log.info('controller hears autoreply csv_picked_up index ' + index + ' csv_picked_up ' + csv_picked_up[0]);
+    Log.info('controller autoreply csv_picked_up index ' + index + ' csv_picked_up ' + csv_picked_up[0]);
 
     // Delay
-    Log.info('controller hears autoreply delay ' + config.controller.hears.autoreply.delay*1000);
+    Log.info('controller autoreply delay ' + mod_conf.delay*1000);
     setTimeout(function () {
         // Send reply
         let msg_to_send = csv_picked_up[0] + '\n' + csv_picked_up[2];
         //let msg_to_send = csv_picked_up[0] + '\n' + csv_picked_up[1] + '\n' + csv_picked_up[2];
         //let msg_to_send = '<a href="' + csv_picked_up[2] + '">' + csv_picked_up[0] + '</a>';
-        Log.debug('controller hears autoreply send_reply ' + msg_to_send);
+        Log.debug('controller autoreply send_reply ' + msg_to_send);
         bot.reply(message, msg_to_send);
-    }, config.controller.hears.autoreply.delay * 1000);
+    }, mod_conf.delay * 1000);
 };

@@ -1,0 +1,37 @@
+{
+    "enable": true,
+    "listener": {
+        "get": {
+            "controller": "hears",
+            "pattern": ["^csv get"],
+            "from": ["direct_message", "message_received"],
+            "privilege": ["user"],
+            "access_list": ["default"],
+            "remove_pattern": false
+        },
+        "search": {
+            "controller": "hears",
+            "pattern": ["^csv search *"],
+            "from": ["direct_message", "message_received"],
+            "privilege": ["user"],
+            "access_list": ["default"],
+            "remove_pattern": false
+        },
+        "load": {
+            "controller": "hears",
+            "pattern": ["^csv load"],
+            "from": ["direct_message", "message_received"],
+            "privilege": ["admin"],
+            "access_list": ["default"],
+            "remove_pattern": false
+        },
+        "test": {
+            "controller": "hears",
+            "pattern": ["^csv test"],
+            "from": ["direct_message", "message_received"],
+            "privilege": ["admin"],
+            "access_list": ["default"],
+            "remove_pattern": false
+        }
+    }
+}

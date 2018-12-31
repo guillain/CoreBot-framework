@@ -1,11 +1,9 @@
-// Load tools library
+// Load required library
 let Log = require(__basedir + 'lib/log');
-
-// Load required lib
 let _ = require("underscore");
 
 // Simple help request: list of activate controller instead if all is requested
-exports.help = function(controller, bot, message, config) {
+exports.help = function(controller, bot, message, config, mod_conf) {
     let to_say = '';
     let msg_arr = message.text.split(' ');
     _.each(config['controller'], function (conf, control) {
@@ -21,11 +19,11 @@ exports.help = function(controller, bot, message, config) {
     });
     // Bot Reply
     if (to_say) bot.reply(message, to_say);
-    else        bot.reply(message, config.controller.hears.help.msg.modulenotfound);
+    else        bot.reply(message, mod_conf.msg.module_not_found);
 };
 
 // If listener list is requested: display the listener of the controllers activate or all if requested
-exports.help_listener = function(controller, bot, message, config) {
+exports.help_listener = function(controller, bot, message, config, mod_conf) {
     let to_say = '';
     let msg_arr = message.text.split(' ');
     _.each(config['controller'], function (conf, control) {
@@ -50,11 +48,11 @@ exports.help_listener = function(controller, bot, message, config) {
     });
     // Bot Reply
     if (to_say) bot.reply(message, to_say);
-    else        bot.reply(message, config.controller.hears.help.msg.modulenotfound);
+    else        bot.reply(message, mod_conf.msg.module_not_found);
 };
 
 // If detail help is requested: display the help of the controllers activated or all if requested
-exports.help_detail = function(controller, bot, message, config) {
+exports.help_detail = function(controller, bot, message, config, mod_conf) {
     let to_say = '';
     let msg_arr = message.text.split(' ');
     _.each(config['controller'], function (conf, control) {
@@ -71,11 +69,11 @@ exports.help_detail = function(controller, bot, message, config) {
     });
     // Bot Reply
     if (to_say) bot.reply(message, to_say);
-    else        bot.reply(message, config.controller.hears.help.msg.modulenotfound);
+    else        bot.reply(message, mod_conf.msg.module_not_found);
 };
 
 // Help of a module or controller.hears is requested (it includes detail)
-exports.help_module = function(controller, bot, message, config) {
+exports.help_module = function(controller, bot, message, config, mod_conf) {
     let to_say = '';
     let msg_arr = message.text.split(' ');
     _.each(config['controller'], function (conf, control) {
@@ -100,7 +98,7 @@ exports.help_module = function(controller, bot, message, config) {
     });
     // Bot Reply
     if (to_say) bot.reply(message, to_say);
-    else        bot.reply(message, config.controller.hears.help.msg.modulenotfound);
+    else        bot.reply(message, mod_conf.msg.module_not_found);
 
 };
 

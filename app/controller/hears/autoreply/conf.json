@@ -1,27 +1,11 @@
 {
-    "controller": {
-        "hears": {
-            "autoreply": {
-                "enable": false,
-                "delay": 1,
-                "file": "doc/local.csv",
-                "listener": {
-                    "autoreply": {
-                        "pattern": ["."],
-                        "from": ["direct_message", "message_received"],
-                        "privilege": ["user"],
-                        "access_list": ["default"],
-                        "remove_pattern": false
-                    }
-                },
-                "msg": {
-                    "help": [
-                        "Random message when the chatbot received a message\n",
-                        "- _No argument_\n",
-                        "The bot pickup one information from the CSV file and provide it after a delay of 2s. The CSV file content can be managed via the **CSV** module."
-                    ]
-                }
-            }
-        }
+    "delay": 1,
+    "file": "conf/autoreply.csv",
+    "msg": {
+        "help": [
+            "Random message when the chatbot received a message\n",
+            "- _No argument_\n",
+            "The bot pickup one information from the CSV file and provide it after a delay of 2s. The CSV file content can be managed via the **CSV** module."
+        ]
     }
 }

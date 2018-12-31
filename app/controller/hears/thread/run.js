@@ -2,15 +2,15 @@
 let Log = require(__basedir + 'lib/log');
 
 // Exports controller function as scenario
-exports.thread_new = function(controller, bot, message, config) {
-    bot.replyAsNewThread(message, config.controller.hears.thread.msg.welcome);
+exports.thread_new = function(controller, bot, message, config, mod_conf) {
+    bot.replyAsNewThread(message, mod_conf.msg.welcome);
 };
 
-exports.thread_key = function(controller, bot, message, config) {
+exports.thread_key = function(controller, bot, message, config, mod_conf) {
     bot.replyWithThreadKey(message, {
-        threadKey: config.controller.hears.thread.key,
+        threadKey: mod_conf.key,
         requestBody: {
-            text: config.controller.hears.thread.msg.text
+            text: mod_conf.msg.text
         }
     });
 };

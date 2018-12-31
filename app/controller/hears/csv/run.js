@@ -8,19 +8,19 @@ let fs = require('fs');
 let fullTextSearch = require('full-text-search');
 
 // CSV functions 
-exports.get = function(controller, bot, message, config){
+exports.get = function(controller, bot, message, config, mod_conf){
     // Get CSV file data
-    Csv.get_csv_data(__basedir + config.controller.hears.csv.file, function(csv_data) {
+    Csv.get_csv_data(__basedir + mod_conf.file, function(csv_data) {
         if (!csv_data) {
-            Log.error('controller hears csv search get no-csv-file ');
+            Log.error('controller csv search get no-csv-file ');
             return;
         }
-        if (csv_data === '') bot.reply(message,config.controller.hears.csv.msg.get.ko);
-        else bot.reply(message, config.controller.hears.csv.msg.get.ok = '\n- ' + csv_data.join("\n- "));
+        if (csv_data === '') bot.reply(message,mod_conf.msg.get.ko);
+        else bot.reply(message, mod_conf.msg.get.ok = '\n- ' + csv_data.join("\n- "));
     });
 };
 
-exports.search = function(controller, bot, message, config){
+exports.search = function(controller, bot, message, config, mod_conf){
     let msg_arr = message.text.split(' ');
     if ("csv" === msg_arr[0]) msg_arr.shift();
     if ("search" === msg_arr[0]) msg_arr.shift();
@@ -31,13 +31,13 @@ exports.search = function(controller, bot, message, config){
     });
 
     // Get CSV file data
-    fs.readFile(__basedir + config.controller.hears.csv.file, function(err, data) {
+    fs.readFile(__basedir + mod_conf.file, function(err, data) {
         if (!data) {
-            Log.error('controller hears autoreply search no-csv-file ');
+            Log.error('controller autoreply search no-csv-file ');
             return;
         }
 
-        let to_say = config.controller.hears.csv.msg.search.ko;
+        let to_say = mod_conf.msg.search.ko;
         let res = '';
         let csv_data = data.toString().split('\n');
 
@@ -45,12 +45,12 @@ exports.search = function(controller, bot, message, config){
         res = search_data(search, msg_arr);
         if (res) {
             if (res.length > 0) {
-                to_say = config.controller.hears.csv.msg.search.ok + ': ' + res.length;
-                if (res.length > config.controller.hears.csv.search_limit)
-                    to_say += ' but ' + config.controller.hears.csv.search_limit + ' displayed';
+                to_say = mod_conf.msg.search.ok + ': ' + res.length;
+                if (res.length > mod_conf.search_limit)
+                    to_say += ' but ' + mod_conf.search_limit + ' displayed';
                 to_say += '\n- ' + res.join('\n- ');
             }
-            else to_say = config.controller.hears.csv.msg.search.ko;
+            else to_say = mod_conf.msg.search.ko;
         }
         bot.reply(message, to_say);
     });
@@ -85,11 +85,11 @@ search_data = function(search, pattern) {
     return [pos_one[1],pos_two[1],pos_three[1]];
 };
 
-exports.load = function(controller, bot, message, config){
+exports.load = function(controller, bot, message, config, mod_conf){
     // Parse CSV file and set value in redis
-    fs.readFile(__basedir + config.controller.hears.csv.file, function(err, data) {
+    fs.readFile(__basedir + mod_conf.file, function(err, data) {
         if (!data) {
-            Log.error('controller hears csv load no-csv-file ');
+            Log.error('controller csv load no-csv-file ');
             return;
         }
         var strs = [];
@@ -98,36 +98,35 @@ exports.load = function(controller, bot, message, config){
             lineArr = array[i].split(';');
             strs.push(lineArr[0], lineArr[1]);
         }
-        Redis.del(config.controller.hears.csv.storage);
-        Redis.hmset(config.controller.hears.csv.storage, strs);
+        Redis.del(mod_conf.storage);
+        Redis.hmset(mod_conf.storage, strs);
 
-        if (i>0) res = config.controller.hears.csv.msg.load.ok;
-        else     res = config.controller.hears.csv.msg.load.ko;
+        if (i>0) res = mod_conf.msg.load.ok;
+        else     res = mod_conf.msg.load.ko;
         bot.reply(message, res + '\n\nNumber of row imported: ' + i);
     });
 };
 
-exports.test = function(controller, bot, message, config) {
+exports.test = function(controller, bot, message, config, mod_conf) {
     // Parse CSV file and compare value with redis
-    Csv.get_csv_data(__basedir + config.controller.hears.csv.file, function(csv_data) {
+    Csv.get_csv_data(__basedir + mod_conf.file, function(csv_data) {
         if (!csv_data) {
-            Log.error('controller hears csv test no-csv-file ');
+            Log.error('controller csv test no-csv-file ');
             return;
         }
         let csv_data_length = 0;
         if (csv_data !== '') csv_data_length = csv_data.length;
 
-        Redis.hgetall(config.controller.hears.csv.storage, function (kms) {
-            if(!kms) Log.error('controller hears csv test db ' + err);
+        Redis.hgetall(mod_conf.storage, function (kms) {
+            if(!kms) Log.error('controller csv test db ' + err);
 
             let db_data_length = 0;
             for (km in kms) db_data_length++;
 
             if (csv_data_length === db_data_length)
-                 res = config.controller.hears.csv.msg.test.ok;
-            else res = config.controller.hears.csv.msg.test.ko;
+                 res = mod_conf.msg.test.ok;
+            else res = mod_conf.msg.test.ko;
             bot.reply(message, res + '\n\nFile: ' + csv_data_length + ' - Db: ' + db_data_length);
         });
     });
 };
-

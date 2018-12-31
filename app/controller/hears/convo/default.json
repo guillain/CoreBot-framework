@@ -1,0 +1,13 @@
+{
+    "enable": true,
+    "listener": {
+        "convo": {
+            "controller": "hears",
+            "pattern": ["^convo"],
+            "remove_pattern": true,
+            "from": ["message_received", "direct_message", "direct_mention", "group_message"],
+            "privilege": ["user"],
+            "access_list": ["default"]
+        }
+    }
+}

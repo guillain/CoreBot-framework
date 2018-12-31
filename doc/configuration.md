@@ -13,7 +13,7 @@ configuration file
     - These files contain the exhaustive configuration
 capabilities of the  Launcher or Controller
     - They can be loaded or not with the help of the parameters 
-`default_conf` in the `config.json` file
+`default.load_controller_listener` in the `config.json` file
 - the specific(s):
     - Each Launcher and Controller has a dedicated json
 configuration chapter who respect the structure/schema
@@ -48,7 +48,7 @@ Provided by the file `config.json`, it set all global parameters need
 by the application.
 
 Some keay features explanation:
-- default_conf: load or not the default conf (true/false)
+- default.load_controller_listener: load or not the default conf (true/false)
 - log: logger settings
     - debug: activate the global debug mode
     - verbosity: set log verbosity
@@ -72,7 +72,7 @@ Example:
         "nothing more is need if you don't need specific feature",
         "and for new feature, read the appropriate doc"
     ],
-    "default_conf": true,
+    "default.load_controller_listener": true,
     "log": {
         "debug": true,
         "verbosity": "debug",

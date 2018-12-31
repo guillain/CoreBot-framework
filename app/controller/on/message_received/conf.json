@@ -1,23 +1,8 @@
 {
-    "controller": {
-        "on": {
-            "message_received": {
-                "enable": true,
-                "listener": {
-                    "message_received": {
-                        "from": "message_received",
-                        "privilege": ["user"],
-                        "access_list": ["default"]
-                    }
-                },
-                "msg": {
-                    "help": [
-                        "Message received event\n",
-                        "- _No argument_"
-                    ]
-                }
-            }
-        }
+    "msg": {
+        "help": [
+            "Message received event\n",
+            "- _No argument_"
+        ]
     }
 }
-

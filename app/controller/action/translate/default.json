@@ -1,0 +1,12 @@
+{
+    "enable": false,
+    "listener": {
+        "translate": {
+            "controller": "action",
+            "from": ["(.)"],
+            "privilege": ["user"],
+            "access_list": ["default"],
+            "remove_pattern": true
+        }
+    }
+}

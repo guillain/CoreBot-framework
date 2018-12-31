@@ -2,7 +2,7 @@
 let Log = require(__basedir + 'lib/log');
 
 // Exports controller function as scenario
-exports.cards = function(controller, bot, message, config) {
+exports.cards = function(controller, bot, message, config, mod_conf) {
     bot.reply(message, {
         requestBody: {
             cards: [
@@ -12,17 +12,17 @@ exports.cards = function(controller, bot, message, config) {
                             "widgets": [
                                 {
                                     "image": {
-                                        "imageUrl": config.controller.hears.cards.image_url
+                                        "imageUrl": mod_conf.image_url
                                     }
                                 },
                                 {
                                     "buttons": [
                                         {
                                             "textButton": {
-                                                "text": config.controller.hears.cards.msg.text,
+                                                "text": mod_conf.msg.text,
                                                 "onClick": {
                                                     "openLink": {
-                                                        "url": config.controller.hears.cards.open_link
+                                                        "url": mod_conf.open_link
                                                     }
                                                 }
                                             }

@@ -1,22 +1,9 @@
 {
-    "controller": {
-        "on": {
-            "direct_mention": {
-                "enable": true,
-                "listener": {
-                    "direct_mention": {
-                        "from": "direct_mention",
-                        "privilege": ["user"],
-                        "access_list": ["default"]
-                    }
-                },
-                "msg": {
-                    "help": [
-                        "Direct mention event\n",
-                        "- _No argument_"
-                    ]
-                }
-            }
-        }
+
+    "msg": {
+        "help": [
+            "Direct mention event\n",
+            "- _No argument_"
+        ]
     }
 }

@@ -1,0 +1,13 @@
+{
+    "enable": false,
+    "listener": {
+        "search": {
+            "controller": "hears",
+            "pattern": ["^search *"],
+            "from": ["direct_message", "message_received"],
+            "privilege": ["user"],
+            "access_list": ["default"],
+            "remove_pattern": false
+        }
+    }
+}

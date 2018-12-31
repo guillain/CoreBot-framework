@@ -1,0 +1,37 @@
+{
+    "enable": false,
+    "listener": {
+        "help": {
+            "controller": "hears",
+            "pattern": ["^help$", "^help all$"],
+            "remove_pattern": false,
+            "from": ["message_received", "direct_message", "direct_mention", "group_message"],
+            "privilege": ["user"],
+            "access_list": ["default"]
+        },
+        "help_listener": {
+            "controller": "hears",
+            "pattern": ["^help listener$", "^help listener all$"],
+            "remove_pattern": false,
+            "from": ["message_received", "direct_message", "direct_mention", "group_message"],
+            "privilege": ["user"],
+            "access_list": ["default"]
+        },
+        "help_detail": {
+            "controller": "hears",
+            "pattern": ["^help detail$", "^help detail all$"],
+            "remove_pattern": false,
+            "from": ["message_received", "direct_message", "direct_mention", "group_message"],
+            "privilege": ["user"],
+            "access_list": ["default"]
+        },
+        "help_module": {
+            "controller": "hears",
+            "pattern": ["^help module *"],
+            "remove_pattern": false,
+            "from": ["message_received", "direct_message", "direct_mention", "group_message"],
+            "privilege": ["user"],
+            "access_list": ["default"]
+        }
+    }
+}
