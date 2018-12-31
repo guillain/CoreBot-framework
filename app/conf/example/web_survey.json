@@ -1,17 +1,29 @@
 {
-    "file": "CoreBot configuration file for survey on web server",
     "author": "guillain",
+    "version": 2.4,
     "license": "LGPL-3.0",
     "description": [
-        "This example provides a chatbot on a web server.",
-        "The scenario is a survey about the chatbot solution."
+        "This example provides a chatbot on a web server (http://localhost:4000).",
+        "The scenario is a survey about the chatbot solution that includes csv and search feature.",
+        "This require:",
+        "- Redis server running on the localhost",
+        "Adapt the security to your rules."
     ],
+    "default": {
+        "load_controller_conf": true,
+        "load_controller_listener": true,
+        "remove_pattern": false,
+        "remove_botname": true
+    },
+    "file": {
+        "access_list": "conf/default/access_list.json",
+        "user": "conf/default/user.json"
+    },
     "log": {
         "debug": true,
         "verbosity": "debug",
-        "file": "log/CoreBot.log"
+        "file": "log/CoreBot-demo-survey.log"
     },
-    "stats_optout": true,
     "db": {
         "host": "localhost",
         "user": "user"

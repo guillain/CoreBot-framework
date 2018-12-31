@@ -1,0 +1,38 @@
+{
+    "author": "guillain",
+    "version": 2.4,
+    "license": "LGPL-3.0",
+    "description": [
+        "This example provides a simple echo hello to a chat via a web server (http://localhost:4000).",
+        "This require nothing",
+        "Adapt the security to your rules."
+    ],
+    "default": {
+        "load_controller_conf": false,
+        "load_controller_listener": false,
+        "remove_pattern": false,
+        "remove_botname": false
+    },
+    "log": {
+        "debug": true,
+        "verbosity": "debug",
+        "file": "log/CoreBot-demo-simple-hello.log"
+    },
+    "launcher": {
+        "web": {
+            "enable": true,
+            "name": "corebot-framework",
+            "port": 4000
+        }
+    },
+    "controller": {
+        "action": {
+            "hello": {
+                "enable": true,
+                "msg": {
+                    "text": "Hello"
+                }
+            }
+        }
+    }
+}

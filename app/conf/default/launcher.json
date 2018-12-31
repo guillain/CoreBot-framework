@@ -1,0 +1,24 @@
+{
+    "launcher": {
+        "hangouts": {
+            "enable": false
+        },
+        "web": {
+            "enable": true,
+            "name": "corebot-framework",
+            "port": 4000
+        },
+        "slack": {
+            "enable": false
+        },
+        "jabber": {
+            "enable": false
+        },
+        "spark": {
+            "enable": false
+        },
+        "teams": {
+            "enable": false
+        }
+    }
+}

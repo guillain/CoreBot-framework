@@ -1,0 +1,130 @@
+{
+    "author": "guillain",
+    "version": 2.4,
+    "license": "LGPL-3.0",
+    "description": [
+        "This example provides a demo of almost all current chatbot feature provided on a web server (http://localhost:4000).",
+        "You'll have access on the list via the helpful `help` command",
+        "This require:",
+        "- Redis server running on the localhost",
+        "Adapt the security to your rules."
+    ],
+    "default": {
+        "load_controller_conf": true,
+        "load_controller_listener": true,
+        "remove_pattern": false,
+        "remove_botname": true
+    },
+    "file": {
+        "access_list": "conf/default/access_list.json",
+        "user": "conf/default/user.json"
+    },
+    "log": {
+        "debug": true,
+        "verbosity": "debug",
+        "file": "log/CoreBot-demo-survey.log"
+    },
+    "db": {
+        "host": "localhost",
+        "user": "user"
+    },
+    "launcher": {
+        "web": {
+            "enable": true,
+            "name": "corebot-framework",
+            "port": 4000
+        }
+    },
+    "controller": {
+        "on": {
+            "logstash": {
+                "enable": false
+            },
+            "botkit": {
+                "enable": false
+            },
+            "bot_space_join": {
+                "enable": true
+            },
+            "user_space_leave": {
+                "enable": true
+            },
+            "user_space_join": {
+                "enable": true
+            },
+            "group_message": {
+                "enable": true
+            },
+            "direct_message": {
+                "enable": true
+            },
+            "message_received": {
+                "enable": true
+            },
+            "direct_mention": {
+                "enable": true
+            }
+        },
+        "hears": {
+            "search": {
+                "enable": true,
+                "limit": 10,
+                "key_length": 2,
+                "storage": "km"
+            },
+            "csv": {
+                "enable": true,
+                "file": "data/km.csv",
+                "storage": "km",
+                "search_limit": 10
+            },
+            "autoreply": {
+                "enable": false,
+                "delay": 1,
+                "file": "data/autoreply.csv"
+            },
+            "whoami": {
+                "enable": true
+            },
+            "thread": {
+                "enable": true,
+                "key": ""
+            },
+            "survey": {
+                "enable": true,
+                "file": "data/survey.csv",
+                "storage": "survey",
+                "delay": 3
+            },
+            "menu": {
+                "enable": true,
+                "delay": 3
+            },
+            "help": {
+                "enable": true
+            },
+            "echo": {
+                "enable": true
+            },
+            "convo": {
+                "enable": true
+            },
+            "cards": {
+                "enable": true,
+                "image_url": "https://image.slidesharecdn.com/botkitsignal-160526164159/95/build-a-bot-with-botkit-1-638.jpg?cb=1464280993",
+                "open_link": "https://botkit.ai/docs/"
+            },
+            "button": {
+                "enable": true
+            }
+        },
+        "action": {
+            "hello": {
+                "enable": false
+            },
+            "translate": {
+                "enable": true
+            }
+        }
+    }
+}

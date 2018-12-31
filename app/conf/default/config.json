@@ -1,0 +1,37 @@
+{
+    "author": "guillain",
+    "version": 2.4,
+    "license": "LGPL-3.0",
+    "description": [
+        "Use this template to create your own chatbot scenario",
+        "nothing more is need if you don't need specific feature",
+        "and for new feature, read the appropriate doc"
+    ],
+    "default": {
+        "load_controller_conf": true,
+        "load_controller_listener": true,
+        "remove_pattern": false,
+        "remove_botname": true
+    },
+    "file": {
+        "access_list": "conf/default/access_list.json",
+        "user": "conf/default/user.json",
+        "launcher": "conf/default/launcher.json",
+        "controller": "conf/default/controller.json"
+    },
+    "log": {
+        "debug": true,
+        "verbosity": "debug",
+        "file": "log/CoreBot.log"
+    },
+    "db": {
+        "host": "localhost",
+        "user": "user"
+    },
+    "msg": {
+        "welcome": "Welcome in the CoreBot-framework tools",
+        "bye": "See you soon",
+        "join": "Thanks to join us",
+        "user_not_allowed": "Sorry but you don't have the privilege to access to this resource"
+    }
+}

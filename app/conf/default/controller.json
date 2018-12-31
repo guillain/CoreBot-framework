@@ -1,0 +1,94 @@
+{
+    "controller": {
+        "on": {
+            "logstash": {
+                "enable": false
+            },
+            "botkit": {
+                "enable": false
+            },
+            "bot_space_join": {
+                "enable": false
+            },
+            "user_space_leave": {
+                "enable": false
+            },
+            "user_space_join": {
+                "enable": false
+            },
+            "group_message": {
+                "enable": false
+            },
+            "direct_message": {
+                "enable": false
+            },
+            "message_received": {
+                "enable": false
+            },
+            "direct_mention": {
+                "enable": false
+            }
+        },
+        "hears": {
+            "search": {
+                "enable": false,
+                "limit": 10,
+                "key_length": 2,
+                "storage": "km"
+            },
+            "csv": {
+                "enable": false,
+                "file": "data/km.csv",
+                "storage": "km",
+                "search_limit": 10
+            },
+            "autoreply": {
+                "enable": false,
+                "delay": 1,
+                "file": "data/autoreply.csv"
+            },
+            "whoami": {
+                "enable": false
+            },
+            "thread": {
+                "enable": false,
+                "key": ""
+            },
+            "survey": {
+                "enable": false,
+                "file": "data/survey.csv",
+                "storage": "survey",
+                "delay": 3
+            },
+            "menu": {
+                "enable": false,
+                "delay": 3
+            },
+            "help": {
+                "enable": false
+            },
+            "echo": {
+                "enable": false
+            },
+            "convo": {
+                "enable": false
+            },
+            "cards": {
+                "enable": false,
+                "image_url": "https://image.slidesharecdn.com/botkitsignal-160526164159/95/build-a-bot-with-botkit-1-638.jpg?cb=1464280993",
+                "open_link": "https://botkit.ai/docs/"
+            },
+            "button": {
+                "enable": false
+            }
+        },
+        "action": {
+            "hello": {
+                "enable": false
+            },
+            "translate": {
+                "enable": false
+            }
+        }
+    }
+}

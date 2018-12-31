@@ -1,5 +1,6 @@
 {
     "author": "guillain",
+    "version": 2.4,
     "license": "LGPL-3.0",
     "description": [
         "Use this template to create your own chatbot scenario",
@@ -13,10 +14,10 @@
         "remove_botname": true
     },
     "file": {
-        "access_list": "conf/access_list.json",
-        "user": "conf/user.json",
-        "launcher": "conf/launcher.json",
-        "controller": "conf/controller.json"
+        "access_list": "conf/default/access_list.json",
+        "user": "conf/default/user.json",
+        "launcher": "conf/default/launcher.json",
+        "controller": "conf/default/controller.json"
     },
     "log": {
         "debug": true,

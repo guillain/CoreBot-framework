@@ -1,5 +1,10 @@
 {
     "launcher": {
+        "web": {
+            "enable": true,
+            "name": "corebot-framework",
+            "port": 4000
+        },
         "hangouts": {
             "enable": false,
             "name": "CoreBot-framework",
@@ -20,11 +25,6 @@
                 ]
             },
             "hostname": "corebot-framework-google.eu-ddlabcom"
-        },
-        "web": {
-            "enable": true,
-            "name": "corebot-framework",
-            "port": 4000
         },
         "slack": {
             "enable": true,

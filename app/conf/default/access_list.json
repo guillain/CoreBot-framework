@@ -12,7 +12,7 @@
             "pattern": ["@domain.com"],
             "permission": "block"
         },
-        "specific": {
+        "block": {
             "pattern": ["chatbot"],
             "permission": "block"
         }
