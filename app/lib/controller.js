@@ -64,7 +64,8 @@ module.exports = function(controller, config, controls, message = '', bot = '') 
 
 // Remove the configured pattern from the text message
 exports.remove_pattern = function(config, message, listener){
-    let bool_to_remove = (listener.remove_pattern) ? listener.remove_pattern : config.default.remove_pattern;
+    let bool_to_remove = (config.default.remove_pattern) ? config.default.remove_pattern : false;
+    bool_to_remove = (listener.remove_pattern) ? listener.remove_pattern : config.default.remove_pattern;
     if (bool_to_remove !== true) return message;
     
     listener.pattern.forEach(function(pattern) {
@@ -78,7 +79,8 @@ exports.remove_pattern = function(config, message, listener){
 
 // Remove the botname from the text message when it comes from a group space
 exports.remove_botname = function(config, message, listener){
-    if (config.default.remove_botname !== true) return message;
+    let remove_pattern = (config.default.remove_botname) ? config.default.remove_botname : false;
+    if (remove_pattern !== true) return message;
     
     // Loop over each launcher to get bot name
     _.each(config.launcher, function (conf, index) {
