@@ -21,10 +21,10 @@ exports.get = function(controller, bot, message, config, mod_conf){
 };
 
 exports.search = function(controller, bot, message, config, mod_conf){
-    let msg_arr = message.text.split(' ');
+    var msg_arr = message.text.split(' ');
     if ("csv" === msg_arr[0]) msg_arr.shift();
     if ("search" === msg_arr[0]) msg_arr.shift();
-    let search = new fullTextSearch({
+    var search = new fullTextSearch({
         ignore_case: true,   // default = true, Ignore case during all search queries
         index_amount: 12,     // default = 12, The more indexes you have, the faster can be your search but the slower the 'add' method  gets
         minimum_chars: 3      // default = 1, The less minimum chars you want to use for your search, the slower the 'add' method gets
@@ -37,11 +37,11 @@ exports.search = function(controller, bot, message, config, mod_conf){
             return;
         }
 
-        let to_say = mod_conf.msg.search.ko;
-        let res = '';
-        let csv_data = data.toString().split('\n');
+        var to_say = mod_conf.msg.search.ko;
+        var res = '';
+        var csv_data = data.toString().split('\n');
 
-        for (let i in csv_data) search.add(csv_data[i]);
+        for (var i in csv_data) search.add(csv_data[i]);
         res = search_data(search, msg_arr);
         if (res) {
             if (res.length > 0) {
@@ -57,12 +57,12 @@ exports.search = function(controller, bot, message, config, mod_conf){
 };
 
 search_data = function(search, pattern) {
-    let search_res = [];
-    let pos_one = pos_two = pos_three = [0,[]];
+    var search_res = [];
+    var pos_one = pos_two = pos_three = [0,[]];
     for (i_search=0; i_search<pattern.length; i_search++)
         search_res[i_search] = search.search(pattern[i_search]);
 
-    for (let i_search=0; i_search<search_res.length; i_search++) {
+    for (var i_search=0; i_search<search_res.length; i_search++) {
         if (search_res[i_search].length > pos_one[0]) {
             pos_three[0] = pos_two[0];
             pos_three[1] = pos_two[1];
@@ -114,13 +114,13 @@ exports.test = function(controller, bot, message, config, mod_conf) {
             Log.error('controller csv test no-csv-file ');
             return;
         }
-        let csv_data_length = 0;
+        var csv_data_length = 0;
         if (csv_data !== '') csv_data_length = csv_data.length;
 
         Redis.hgetall(mod_conf.storage, function (kms) {
             if(!kms) Log.error('controller csv test db ' + err);
 
-            let db_data_length = 0;
+            var db_data_length = 0;
             for (km in kms) db_data_length++;
 
             if (csv_data_length === db_data_length)

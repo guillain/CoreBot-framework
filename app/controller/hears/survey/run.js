@@ -8,18 +8,18 @@ var fs = require('fs');
 
 // Survey report hears controller - to handle report
 exports.reset = function (controller, bot, message, config, mod_conf) {
-    let survey = survey_init(config);
+    var survey = survey_init(config);
     bot.reply(message, mod_conf.msg.reset_done);
 };
 
 // Survey report hears controller - to handle report
 exports.report = function (bcontroller, bot, message, config, mod_conf) {
-    let to_say = '';
-    let survey_user = User.get_user(message);
+    var to_say = '';
+    var survey_user = User.get_user(message);
 
     // Open Redis survey storage
     Redis.get(mod_conf.storage, function (survey_db) {
-        let survey = JSON.parse(survey_db);
+        var survey = JSON.parse(survey_db);
         Log.debug('controller survey survey ' + JSON.stringify(survey));
 
         if (!survey.reports) bot.reply(message, mod_conf.msg.no_report);
@@ -46,18 +46,18 @@ exports.report = function (bcontroller, bot, message, config, mod_conf) {
 
 // Survey report hears controller - to handle report
 exports.report_user = function (controller, bot, message, config, mod_conf) {
-    let to_say = '';
-    let survey_user = User.get_user(message);
+    var to_say = '';
+    var survey_user = User.get_user(message);
 
     // Open Redis survey storage
     Redis.get(mod_conf.storage, function (survey_db) {
-        let survey = JSON.parse(survey_db);
+        var survey = JSON.parse(survey_db);
         Log.debug('controller survey report_uer ' + JSON.stringify(survey));
 
         if (!survey.user) bot.reply(message, mod_conf.msg.no_report);
         else {
             to_say = 'Users' + '\n';
-            for (let i_user in survey.user)
+            for (var i_user in survey.user)
                 to_say += '- _' + survey.user[i_user].step + '_ - ' + i_user + '\n';
             bot.reply(message, to_say);
         }
@@ -66,19 +66,19 @@ exports.report_user = function (controller, bot, message, config, mod_conf) {
 
 // Survey new hears controller - to handle each question
 exports.survey = function (controller, bot, message, config, mod_conf) {
-    let survey = {};
-    let to_say = '';
-    let survey_user = User.get_user(message);
+    var survey = {};
+    var to_say = '';
+    var survey_user = User.get_user(message);
 
     // Open Redis survey storage
     Redis.get(mod_conf.storage, function (survey_db) {
-        let survey = JSON.parse(survey_db);
+        var survey = JSON.parse(survey_db);
         Log.debug('controller survey survey ' + JSON.stringify(survey));
 
         // Create new conversation
         bot.createConversation(message, function (err, convo) {
             if ((survey.user === "") || (!survey.user[survey_user])) survey.user[survey_user] = {"step": 0};
-            let user_step = survey.user[survey_user].step;
+            var user_step = survey.user[survey_user].step;
 
             // User already done with all steps
             if (user_step >= survey.nb_report) {
@@ -88,18 +88,18 @@ exports.survey = function (controller, bot, message, config, mod_conf) {
             }
 
             // Loop over each question
-            for (let i_report=0; i_report<survey.nb_report; i_report++){
+            for (var i_report=0; i_report<survey.nb_report; i_report++){
                 Log.info('controller survey i_report ' + i_report + ' - user_step ' + user_step);
 
                 // User has not done all steps
                 if (user_step <= i_report) {
-                    let pattern = '[0-9a-zA-Z]*';
-                    let question = survey.reports[i_report].name;
+                    var pattern = '[0-9a-zA-Z]*';
+                    var question = survey.reports[i_report].name;
                     Log.info('controller survey question ' + question);
 
-                    let replies = '';
+                    var replies = '';
                     if (survey.reports[i_report].replies) {
-                        let pattern_counter = 0;
+                        var pattern_counter = 0;
                         for (i_reply in survey.reports[i_report].replies) {
                             pattern_counter++;
                             replies += '- ' + (parseInt(i_reply,10)+1) + ' - ';
@@ -111,7 +111,7 @@ exports.survey = function (controller, bot, message, config, mod_conf) {
                     Log.info('controller survey replies ' + replies);
 
                     // Prepare tag to manage the ask vs replies
-                    let question_tag = 'default';
+                    var question_tag = 'default';
                     if (i_report > 0) question_tag = 'question_' + i_report;
 
                     // Add Message for bad reply
@@ -170,25 +170,25 @@ survey_init = function(config){
     Log.info('controller survey init ');
 
     // Initialization survey structur
-    let survey = { "user": {}, "reports": {}};
+    var survey = { "user": {}, "reports": {}};
 
     // Get the CSV data
     Log.debug('controller survey init get_csv_data ' + __basedir + mod_conf.file);
-    let csv_data = fs.readFileSync(__basedir + mod_conf.file);
+    var csv_data = fs.readFileSync(__basedir + mod_conf.file);
     if (!csv_data) {
         Log.error('controller survey init no-csv-file ');
         return;
     }
 
     // Loop over each CSV line
-    let csv_array = csv_data.toString().split("\n");
+    var csv_array = csv_data.toString().split("\n");
     survey['nb_report'] = csv_array.length-1;
 
-    for (let i_csv_arr=0; i_csv_arr<csv_array.length-1; i_csv_arr++) {
+    for (var i_csv_arr=0; i_csv_arr<csv_array.length-1; i_csv_arr++) {
             Log.debug('controller survey init csv_array['+i_csv_arr+'] ' + csv_array[i_csv_arr]);
 
             // Get Question as first column in the CSV file
-            let question = csv_array[i_csv_arr].split(';')[0];
+            var question = csv_array[i_csv_arr].split(';')[0];
             survey['reports'][i_csv_arr] = {"name":question};
             Log.debug('controller survey question ' + question);
 
@@ -196,10 +196,10 @@ survey_init = function(config){
             if (csv_array[i_csv_arr].split(';').length > 1) {
                 survey.reports[i_csv_arr].replies = {};
 
-                let reply_arr = csv_array[i_csv_arr].split(';')[1].split(',');
+                var reply_arr = csv_array[i_csv_arr].split(';')[1].split(',');
                 Log.debug('controller survey init reply_arr ' + reply_arr);
 
-                for (let i_reply_arr = 0; i_reply_arr < reply_arr.length; i_reply_arr++){
+                for (var i_reply_arr = 0; i_reply_arr < reply_arr.length; i_reply_arr++){
                     Log.debug('controller survey init reply_arr['+i_reply_arr+'] ' + reply_arr[i_reply_arr]);
                     survey.reports[i_csv_arr].replies[i_reply_arr] = {"name": reply_arr[i_reply_arr], "value": 0};
                 }

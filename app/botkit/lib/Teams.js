@@ -17,8 +17,8 @@ function TeamsBot(configuration) {
             throw new Error(err);
         }
         //use the expires_in value, convert to ms and remove 10 mins in ms
-        let tokenExpiresIn = (configuration.token_expires_in || 3600) * 1000;
-        let expiryCheckDelta = 1000 * 60 * 10;
+        var tokenExpiresIn = (configuration.token_expires_in || 3600) * 1000;
+        var expiryCheckDelta = 1000 * 60 * 10;
         setTimeout(controller.api.getToken, (tokenExpiresIn - expiryCheckDelta), tokenHandler);
     };
     controller.api.getToken(tokenHandler);

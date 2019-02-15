@@ -5,17 +5,17 @@ var Redis = require(__basedir + 'lib/redis');
 // Search master fct
 exports.search = function(controller, bot, message, config, mod_conf){
     // Remove first pattern if: present + remove_pattern=true
-    let msg_arr = message.text.split(' ');
+    var msg_arr = message.text.split(' ');
 
     // Variables for the search engine
-    let i_total = 0;
-    let i_key = 0;
-    let counter = 0;
-    let res = '';
-    let keys_words = '';
-    let msg_arr_key = [];
-    let res_i_km = [];
-    let to_say = mod_conf.msg.notfound;
+    var i_total = 0;
+    var i_key = 0;
+    var counter = 0;
+    var res = '';
+    var keys_words = '';
+    var msg_arr_key = [];
+    var res_i_km = [];
+    var to_say = mod_conf.msg.notfound;
 
     msg_arr.shift();
 
@@ -23,18 +23,18 @@ exports.search = function(controller, bot, message, config, mod_conf){
         if (err) throw err;
 
         // Key array initialization
-        for (let i_arr in msg_arr)
+        for (var i_arr in msg_arr)
             if (msg_arr[i_arr].length >= mod_conf.key_length)
                 msg_arr_key[i_key++] = msg_arr[i_arr];
-        let msg_arr_key_len = msg_arr_key.length;
+        var msg_arr_key_len = msg_arr_key.length;
         Log.debug('controller search msg_arr ' + msg_arr);
 
         if (msg_arr_key_len !== 0) {
 
             // First search with all keys
-            //let re =  new RegExp('\\b'+ msg_arr_key.join('(.)*') + '\\b','i');
-            let re =  new RegExp(msg_arr_key.join('(.)*'),'i');
-            for (let i_km in kms) {
+            //var re =  new RegExp('\\b'+ msg_arr_key.join('(.)*') + '\\b','i');
+            var re =  new RegExp(msg_arr_key.join('(.)*'),'i');
+            for (var i_km in kms) {
                 if(re.exec(kms[i_km])) {
                     if (i_total < mod_conf.limit) {
                         Log.debug('controller search msg_arr_key.join ' + msg_arr_key.join(' '));
@@ -50,16 +50,16 @@ exports.search = function(controller, bot, message, config, mod_conf){
 
             // Complete the result with additionnal sub search
             if (i_total < mod_conf.limit){
-                for (let i_km in kms) {
+                for (var i_km in kms) {
                     Log.debug('controller search kms['+i_km+']' + kms[i_km]);
 
                     if (res_i_km.indexOf(i_km) < 0) {
                         keys_words = '';
                         counter = 0;
-                        for (let i_key=0; i_key < msg_arr_key_len; i_key++) {
+                        for (var i_key=0; i_key < msg_arr_key_len; i_key++) {
                             Log.debug('controller search msg_arr['+i_key+'] ' + msg_arr_key[i_key] + ' ' + i_km);
 
-                            let re =  new RegExp(msg_arr_key[i_key],'i');
+                            var re =  new RegExp(msg_arr_key[i_key],'i');
                             if (re.exec(kms[i_km])) {
                                 Log.debug('controller search FOUND');
                                 counter++;

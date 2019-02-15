@@ -58,7 +58,7 @@ This is a sample Slack bot built with Botkit and Typescript.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-declare let process: {
+declare var process: {
    env: {
        token: string;
    };

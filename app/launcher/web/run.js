@@ -9,7 +9,7 @@ module.exports = function(config) {
   Log.debug('launcher web run');
 
   // Bot initialisation
-  let controller = Botkit.socketbot({
+  var controller = Botkit.socketbot({
     debug: config.log.debug,
     log: config.log.file,
     json_file_store: __basedir + config.launcher.web.store,

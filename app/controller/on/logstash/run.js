@@ -7,7 +7,7 @@ var Run = require('logstash-client');
 // Run the function
 module.exports = function(evt, message, config) {
 exports.logstash = function(controller, bot, message, config, mod_conf) {
-    let msg = message;
+    var msg = message;
     delete msg["type"];
     msg['message_type'] = message.type || mod_conf.framework;
     msg['level'] = mod_conf.level;
@@ -15,7 +15,7 @@ exports.logstash = function(controller, bot, message, config, mod_conf) {
     msg['framework'] = mod_conf.framework;
 
     /*
-    let msg = {
+    var msg = {
       'timestamp': new Date(),
       'id': message.id,
       'namae': message.name,
@@ -43,7 +43,7 @@ exports.logstash = function(controller, bot, message, config, mod_conf) {
     };
     */
 
-    let logstash = new Run({
+    var logstash = new Run({
       type: mod_conf.type,
       host: mod_conf.host,
       port: mod_conf.port

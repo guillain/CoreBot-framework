@@ -7,13 +7,13 @@ var _ = require("underscore");
 run = function(controller, bot, message, config, control, module, index){
     Log.debug("lib controller run " + control + ' ' + module + ' ' + index);
     
-    let listener = config['controller'][control][module].listener[index];
-    let script = __basedir + 'controller/' + control + '/' + module + '/run.js';
+    var listener = config['controller'][control][module].listener[index];
+    var script = __basedir + 'controller/' + control + '/' + module + '/run.js';
     
     // Security validation (ACL, priv, perm)
     if (Security.validation(config, message, listener)) {
-        let mod_run = require(script);
-        let message_tmp = exports.remove_pattern(config, message, listener);
+        var mod_run = require(script);
+        var message_tmp = exports.remove_pattern(config, message, listener);
         mod_run[index](controller, bot, message_tmp, config, config.controller[control][module]);
     }
     else bot.reply(message, config.msg.user_not_allowed);
@@ -64,12 +64,12 @@ module.exports = function(controller, config, controls, message = '', bot = '') 
 
 // Remove the configured pattern from the text message
 exports.remove_pattern = function(config, message, listener){
-    let bool_to_remove = (config.default.remove_pattern) ? config.default.remove_pattern : false;
+    var bool_to_remove = (config.default.remove_pattern) ? config.default.remove_pattern : false;
     bool_to_remove = (listener.remove_pattern) ? listener.remove_pattern : config.default.remove_pattern;
     if (bool_to_remove !== true) return message;
     
     listener.pattern.forEach(function(pattern) {
-        let re = new RegExp(pattern,"g");
+        var re = new RegExp(pattern,"g");
         message.text = message.text.replace(re, '');
     });
     
@@ -79,13 +79,13 @@ exports.remove_pattern = function(config, message, listener){
 
 // Remove the botname from the text message when it comes from a group space
 exports.remove_botname = function(config, message, listener){
-    let remove_pattern = (config.default.remove_botname) ? config.default.remove_botname : false;
+    var remove_pattern = (config.default.remove_botname) ? config.default.remove_botname : false;
     if (remove_pattern !== true) return message;
     
     // Loop over each launcher to get bot name
     _.each(config.launcher, function (conf, index) {
         // console.log('>>>>>>>', 'is_bot', 'my_user', my_user, 'conf.name', conf.name);
-        let re = new RegExp(config.launcher.index.name,"g");
+        var re = new RegExp(config.launcher.index.name,"g");
         message.text = message.text.replace(re, '');
     });
     

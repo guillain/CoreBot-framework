@@ -4,8 +4,8 @@ var _ = require("underscore");
 
 // Simple help request: list of activate controller instead if all is requested
 exports.help = function(controller, bot, message, config, mod_conf) {
-    let to_say = '';
-    let msg_arr = message.text.split(' ');
+    var to_say = '';
+    var msg_arr = message.text.split(' ');
     _.each(config['controller'], function (conf, control) {
         to_say += control + '\n\n';
         _.each(config['controller'][control], function (conf, index) {
@@ -24,8 +24,8 @@ exports.help = function(controller, bot, message, config, mod_conf) {
 
 // If listener list is requested: display the listener of the controllers activate or all if requested
 exports.help_listener = function(controller, bot, message, config, mod_conf) {
-    let to_say = '';
-    let msg_arr = message.text.split(' ');
+    var to_say = '';
+    var msg_arr = message.text.split(' ');
     _.each(config['controller'], function (conf, control) {
         to_say += control + '\n\n';
         _.each(config['controller'][control], function (conf, index) {
@@ -53,8 +53,8 @@ exports.help_listener = function(controller, bot, message, config, mod_conf) {
 
 // If detail help is requested: display the help of the controllers activated or all if requested
 exports.help_detail = function(controller, bot, message, config, mod_conf) {
-    let to_say = '';
-    let msg_arr = message.text.split(' ');
+    var to_say = '';
+    var msg_arr = message.text.split(' ');
     _.each(config['controller'], function (conf, control) {
         to_say += '- ' + control + '\n';
         _.each(config['controller'][control], function (conf, index) {
@@ -74,8 +74,8 @@ exports.help_detail = function(controller, bot, message, config, mod_conf) {
 
 // Help of a module or controller.hears is requested (it includes detail)
 exports.help_module = function(controller, bot, message, config, mod_conf) {
-    let to_say = '';
-    let msg_arr = message.text.split(' ');
+    var to_say = '';
+    var msg_arr = message.text.split(' ');
     _.each(config['controller'], function (conf, control) {
         _.each(config['controller'][control], function (conf, index) {
             if (msg_arr[2].indexOf(index) >= 0) {

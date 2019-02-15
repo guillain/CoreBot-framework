@@ -2,18 +2,18 @@
 var Botkit = require('botkit');
 
 module.exports = function(config) {
-  let controller = Botkit.web({
+  var controller = Botkit.web({
     debug: config.log.debug,
     studio_token: config.controller.on.botkit.token
   });
 
-  let bot = controller.spawn({
+  var bot = controller.spawn({
     token: config.web.token
   }).startRTM();
 
 
   // Scenario declarations
-  let scenario = require(__basedir + 'lib/controller.js');
+  var scenario = require(__basedir + 'lib/controller.js');
   controller = scenario.run(controller);
   return controller;
 };

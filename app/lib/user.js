@@ -4,7 +4,7 @@ var _ = require("underscore");
 
 // Get User function
 exports.get_user = function(message){
-    let user = message.user;
+    var user = message.user;
 
     if (message.personEmail) {
         user = message.personEmail;
@@ -14,7 +14,7 @@ exports.get_user = function(message){
         user = message.from_jid;
         Log.debug('lib user get_user from_jid ' + user);
     }
-    let usertmp = user.split('@');
+    var usertmp = user.split('@');
     user = usertmp[0];
 
     Log.debug('lib user get_user ' + user);
@@ -23,7 +23,7 @@ exports.get_user = function(message){
 
 // Get the user privilege
 exports.privilege_user = function(config, message, my_user = ''){
-    let priv = false;
+    var priv = false;
     if (my_user === '') my_user = exports.get_user(message);
 
     if (config.user[my_user])
@@ -37,7 +37,7 @@ exports.privilege_user = function(config, message, my_user = ''){
 
 // Bot exception list, return boolean
 exports.is_bot = function(config, message, my_user = ''){
-    let bot_found = false;
+    var bot_found = false;
     if (my_user === '') my_user = User.get_user(message);
     
     // Loop over each launcher to get bot name

@@ -3,7 +3,7 @@ var Log = require(__basedir + 'lib/log');
 
 // Exports controller function as scenario
 exports.whoami= function(controller, bot, message, config, mod_conf) {
-    let to_say = 'You are ' + message.user;
+    var to_say = 'You are ' + message.user;
     if(message.team) to_say += ' in the team ' + message.team;
     if(message.channel) to_say += ' through the channel ' + message.channel;
     if(message.data){
