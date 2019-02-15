@@ -1,6 +1,6 @@
 // Load required library
-let Log = require(__basedir + 'lib/log');
-let fs = require('fs');
+var Log = require(__basedir + 'lib/log');
+var fs = require('fs');
 
 // AutoReply loader
 exports.autoreply = function(controller, bot, message, config, mod_conf){

@@ -1,11 +1,11 @@
 // Load tools library
-let Log = require(__basedir + 'lib/log');
+var Log = require(__basedir + 'lib/log');
 
 // Load the required libraries
 //let Botkit = require(__basedir + 'botkit/lib/JabberBot.js');
-const Botkit = require('./lib/JabberBot.js');
+var Botkit = require('./lib/JabberBot.js');
 
-let xml = require('@xmpp/xml');
+var xml = require('@xmpp/xml');
 
 module.exports = function(config) {
   Log.debug('launcher jabber run');

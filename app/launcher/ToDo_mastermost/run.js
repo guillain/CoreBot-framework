@@ -1,5 +1,5 @@
 // Configuration
-let Botkit = require('botkit');
+var Botkit = require('botkit');
 
 module.exports = function(config) {
   let controller = Botkit.web({

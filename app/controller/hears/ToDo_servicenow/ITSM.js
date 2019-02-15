@@ -5,7 +5,7 @@
 */
 
 // ITSM
-const ITSM = {};
+var ITSM = {};
 ITSM.enable = false;
 ITSM.url = '';
 ITSM.auth = '';

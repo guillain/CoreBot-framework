@@ -1,6 +1,6 @@
 // Load required lib
-let Log = require(__basedir + 'lib/log');
-let fs = require('fs');
+var Log = require(__basedir + 'lib/log');
+var fs = require('fs');
 
 // Get CSV data
 exports.get_csv_data = function(file, call_back) {

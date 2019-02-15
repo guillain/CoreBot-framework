@@ -1,6 +1,6 @@
 // Load tools library
-let Log = require(__basedir + 'lib/log');
-let xml = require('@xmpp/xml');
+var Log = require(__basedir + 'lib/log');
+var xml = require('@xmpp/xml');
 
 // Exports controller function as scenario
 exports.button = function(controller, bot, message, config, mod_conf) {

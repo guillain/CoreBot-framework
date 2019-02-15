@@ -5,7 +5,7 @@
 */
 
 // Flash
-const flash = {};
+var flash = {};
 flash.enable = false;
 flash.db = 'flash';
 flash.msg = {};

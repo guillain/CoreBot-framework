@@ -1,11 +1,11 @@
 // Load tools library
-let Log = require(__basedir + 'lib/log');
-let Csv = require(__basedir + 'lib/csv');
-let Redis = require(__basedir + 'lib/redis');
+var Log = require(__basedir + 'lib/log');
+var Csv = require(__basedir + 'lib/csv');
+var Redis = require(__basedir + 'lib/redis');
 
 // Requirements
-let fs = require('fs');
-let fullTextSearch = require('full-text-search');
+var fs = require('fs');
+var fullTextSearch = require('full-text-search');
 
 // CSV functions 
 exports.get = function(controller, bot, message, config, mod_conf){

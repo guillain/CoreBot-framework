@@ -1,7 +1,7 @@
 // Load required lib
-let Log = require(__basedir + 'lib/log');
-let User = require(__basedir + 'lib/user');
-let _ = require("underscore");
+var Log = require(__basedir + 'lib/log');
+var User = require(__basedir + 'lib/user');
+var _ = require("underscore");
 
 // Get the user privilege, return user's privilege
 exports.privilege = function(config, message, listener, my_user = ''){

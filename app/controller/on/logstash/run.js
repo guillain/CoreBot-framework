@@ -1,8 +1,8 @@
 // Load tools library
-let Log = require(__basedir + 'lib/log');
+var Log = require(__basedir + 'lib/log');
 
 // Load required library
-let Run = require('logstash-client');
+var Run = require('logstash-client');
 
 // Run the function
 module.exports = function(evt, message, config) {

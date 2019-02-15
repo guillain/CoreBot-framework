@@ -1,10 +1,10 @@
 // Load CoreBot libraries
-let Log = require(__basedir + 'lib/log');
-let User = require(__basedir + 'lib/user');
-let Redis = require(__basedir + 'lib/redis');
+var Log = require(__basedir + 'lib/log');
+var User = require(__basedir + 'lib/user');
+var Redis = require(__basedir + 'lib/redis');
 
 // Requirements
-let fs = require('fs');
+var fs = require('fs');
 
 // Survey report hears controller - to handle report
 exports.reset = function (controller, bot, message, config, mod_conf) {

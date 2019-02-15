@@ -1,5 +1,5 @@
 // Load tools library
-let Log = require(__basedir + 'lib/log');
+var Log = require(__basedir + 'lib/log');
 
 // Exports controller function as scenario
 exports.cards = function(controller, bot, message, config, mod_conf) {

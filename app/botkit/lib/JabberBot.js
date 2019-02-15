@@ -1,6 +1,6 @@
 var Botkit = require(__dirname + '/CoreBot.js');
-const Stanza = require('node-xmpp-client').Stanza;
-const GroupManager = require('./JabberGroupManager.js');
+var Stanza = require('node-xmpp-client').Stanza;
+var GroupManager = require('./JabberGroupManager.js');
 
 function JabberBot(configuration) {
     // Create a core botkit bot

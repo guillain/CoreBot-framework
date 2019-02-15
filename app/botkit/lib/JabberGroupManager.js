@@ -1,6 +1,6 @@
 
-const Stanza = require('node-xmpp-client').Stanza;
-const MD5 = require('md5');
+var Stanza = require('node-xmpp-client').Stanza;
+var MD5 = require('md5');
 
 var crypto = require('crypto')
     , Element = require('ltx').Element;

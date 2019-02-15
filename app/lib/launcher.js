@@ -1,8 +1,8 @@
 // Load tools library
-let Log = require(__basedir + 'lib/log');
+var Log = require(__basedir + 'lib/log');
 
 // Load required lib
-let _ = require("underscore");
+var _ = require("underscore");
 
 // Exports launcher
 module.exports = function() {

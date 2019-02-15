@@ -1,10 +1,10 @@
-let path = require('path');
+var path = require('path');
 
 // Configuration
 global.__basedir = __dirname  + path.sep;
 
 // Load required library
-let Log = require(global.__basedir + 'lib/log');
+var Log = require(global.__basedir + 'lib/log');
 
 Log.debug('main start');
 

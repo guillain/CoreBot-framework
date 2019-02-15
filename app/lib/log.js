@@ -1,14 +1,14 @@
 // Configuration
-let config = require(__basedir + 'conf/config.json');
+var config = require(__basedir + 'conf/config.json');
 
 // Load required lib
-let fs = require('fs');
+var fs = require('fs');
 
-let logger = require('node-logger').createLogger(); // logs to STDOUT
+var logger = require('node-logger').createLogger(); // logs to STDOUT
 logger.setLevel(config.log.verbosity);
 logger.format = function(level, date, message){ return level + ':' + message; };
 
-let log_file = require('node-logger').createLogger(__basedir + config.log.file);
+var log_file = require('node-logger').createLogger(__basedir + config.log.file);
 log_file.setLevel(config.log.verbosity);
 log_file.format = function(level, date, message){ return date + ': ' + level + ':' + message; };
 

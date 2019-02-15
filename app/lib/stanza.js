@@ -1,4 +1,4 @@
-const xml = require('@xmpp/xml');
+var xml = require('@xmpp/xml');
 
 exports.format = function(message, body) {
     let to = message.user;

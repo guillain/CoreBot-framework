@@ -1,5 +1,5 @@
 // Load required lib
-let Log = require(__basedir + 'lib/log');
+var Log = require(__basedir + 'lib/log');
 
 // Exports datetime string
 exports.toUTCDateTimeString = function(date) {

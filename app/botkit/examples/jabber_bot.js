@@ -1,5 +1,5 @@
-const Botkit = require('../lib/Botkit.js');
-const xml = require('@xmpp/xml');
+var Botkit = require('../lib/Botkit.js');
+var xml = require('@xmpp/xml');
 
 
 var controller = Botkit.jabberbot({

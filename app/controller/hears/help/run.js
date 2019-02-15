@@ -1,6 +1,6 @@
 // Load required library
-let Log = require(__basedir + 'lib/log');
-let _ = require("underscore");
+var Log = require(__basedir + 'lib/log');
+var _ = require("underscore");
 
 // Simple help request: list of activate controller instead if all is requested
 exports.help = function(controller, bot, message, config, mod_conf) {

@@ -1,6 +1,6 @@
 // Load framework libraries
-let Log = require(__basedir + 'lib/log');
-let Redis = require(__basedir + 'lib/redis');
+var Log = require(__basedir + 'lib/log');
+var Redis = require(__basedir + 'lib/redis');
 
 // Search master fct
 exports.search = function(controller, bot, message, config, mod_conf){

@@ -72,11 +72,11 @@ if (!process.env.token) {
   process.exit(1);
 }
 
-const controller = Botkit.slackbot({
+var controller = Botkit.slackbot({
     debug: true,
 });
 
-const bot = controller.spawn({
+var bot = controller.spawn({
     token: process.env.token
 }).startRTM();
 

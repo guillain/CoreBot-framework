@@ -1,10 +1,10 @@
 // Load required library
-let Log = require(__basedir + 'lib/log');
-let File = require(__basedir + 'lib/file');
-let fs = require('fs');
-let path = require('path');
-let _ = require("underscore");
-let merge_json = require("merge-json");
+var Log = require(__basedir + 'lib/log');
+var File = require(__basedir + 'lib/file');
+var fs = require('fs');
+var path = require('path');
+var _ = require("underscore");
+var merge_json = require("merge-json");
 
 // Get the configuration
 module.exports = function() {

@@ -1,6 +1,6 @@
 // Load required lib
-let Log = require(__basedir + 'lib/log');
-let _ = require("underscore");
+var Log = require(__basedir + 'lib/log');
+var _ = require("underscore");
 
 // Get User function
 exports.get_user = function(message){

@@ -1,7 +1,7 @@
 // Load required lib
-let Log = require(__basedir + 'lib/log');
-let Security = require(__basedir + 'lib/security');
-let _ = require("underscore");
+var Log = require(__basedir + 'lib/log');
+var Security = require(__basedir + 'lib/security');
+var _ = require("underscore");
 
 // Run the controller listener
 run = function(controller, bot, message, config, control, module, index){
