@@ -39,7 +39,7 @@ module.exports = function() {
         load_controller_conf = load_default_conf(config,__basedir + 'controller', 'conf.json');
         config = merge_json.merge(load_controller_conf, config);
     }
-    
+
     //Log.debug('config\n' + JSON.stringify(config, null, 4));
     /*
     Log.debug('config user\n' + JSON.stringify(config.user, null, 4));
