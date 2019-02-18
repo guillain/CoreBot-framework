@@ -10,14 +10,14 @@ In that case you can just copy/paste the interesting part of your local
 configuration in the main configuration file.
 
 ## Understand the logic and the security
-- [Logic](./doc/logic.md)
-- [Security](./doc/security.md)
-- [Library](./doc/library.md)
+- [Logic](./logic.md)
+- [Security](./security.md)
+- [Library](./library.md)
 
 ## What can be features?
 Feature can be:
-- [Launcher](./doc/launcher.md)
-- [Controller](./doc/controller.md)
+- [Launcher](./launcher.md)
+- [Controller](./controller.md)
 
 All are describes in the same way and respect the same format.
 
