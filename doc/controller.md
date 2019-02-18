@@ -19,7 +19,7 @@ To do that, three methods:
 ## Loading
 ### Configuration
 The configuration is generated during the program initialisation.
-For more detail on the configuration, thanks to consult the doc [configuration](./doc/configuration.md).
+For more detail on the configuration, thanks to consult the doc [configuration](./configuration.md).
 
 The configuration is generated from (and by priority):
 - 1/ the global configuration file `./app/conf/config.json`
