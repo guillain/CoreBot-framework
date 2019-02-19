@@ -1,6 +1,6 @@
 // Load required lib
-let Log = require(__basedir + 'lib/log');
-let fs = require('fs');
+var Log = require(__basedir + 'lib/log');
+var fs = require('fs');
 
 // Get CSV data
 exports.get_csv_data = function(file, call_back) {
@@ -12,15 +12,15 @@ exports.get_csv_data = function(file, call_back) {
 };
 
 exports.get_csv_data_sync = function(file){
-    let data = fs.readFileSync(file);
-    let array = data.toString().split("\n");
+    var data = fs.readFileSync(file);
+    var array = data.toString().split("\n");
 };
 
 exports.csv_extract = function(data){
-    let strs = [];
-    let array = data.toString().split("\n");
-    for(let i = 0; i < array.length - 1; i++) {
-        let lineArr = array[i].split(';');
+    var strs = [];
+    var array = data.toString().split("\n");
+    for(var i = 0; i < array.length - 1; i++) {
+        var lineArr = array[i].split(';');
         strs.push(lineArr);
     }
     return strs;

@@ -1,5 +1,5 @@
 // Load tools library
-let Log = require(__basedir + 'lib/log');
+var Log = require(__basedir + 'lib/log');
 
 // Search master fct
 exports.menu = function(controller, bot, message, config, mod_conf) {
@@ -52,10 +52,10 @@ exports.menu = function(controller, bot, message, config, mod_conf) {
         convo.on('end', function (convo) {
             if (convo.status === 'completed') {
                 // do something useful with the users responses
-                let res = convo.extractResponses();
+                var res = convo.extractResponses();
 
                 // reference a specific response by key
-                let value = convo.extractResponse('key');
+                var value = convo.extractResponse('key');
 
                 // ... do more stuff...
                 convo.say({text: mod_conf.msg.end});

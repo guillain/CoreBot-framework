@@ -1,15 +1,15 @@
 // Load tools library
-let Log = require(__basedir + 'lib/log');
+var Log = require(__basedir + 'lib/log');
 
 // Configuration
-let Botkit = require('botkit');
+var Botkit = require('botkit');
 
 // Run the launcher
 module.exports = function(config) {
   Log.debug('launcher spark run');
 
   // Bot initialisation
-  let controller = Botkit.sparkbot({
+  var controller = Botkit.sparkbot({
     debug: config.log.debug,
     log: config.log.file,
     json_file_store: __basedir + config.launcher.spark.store,
@@ -23,7 +23,7 @@ module.exports = function(config) {
     // limit_to_org: 'my_cisco_org_id',
   });
 
-  let bot = controller.spawn({});
+  var bot = controller.spawn({});
 
   // Setup web server
   controller.setupWebserver(config.launcher.spark.port || 3000, function(err, webserver) {

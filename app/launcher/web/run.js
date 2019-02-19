@@ -1,15 +1,16 @@
 // Load tools library
-let Log = require(__basedir + 'lib/log');
+var Log = require(__basedir + 'lib/log');
 
 // Configuration
-let Botkit = require('botkit');
+var Botkit = require('botkit');
 
 // Run the launcher
 module.exports = function(config) {
   Log.debug('launcher web run');
 
   // Bot initialisation
-  let controller = Botkit.socketbot({
+  //var controller = Botkit.socketbot({
+  var controller = Botkit.anywhere({
     debug: config.log.debug,
     log: config.log.file,
     json_file_store: __basedir + config.launcher.web.store,

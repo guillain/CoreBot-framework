@@ -1,6 +1,6 @@
 var Botkit = require(__dirname + '/CoreBot.js');
-const Stanza = require('node-xmpp-client').Stanza;
-const GroupManager = require('./JabberGroupManager.js');
+var Stanza = require('node-xmpp-client').Stanza;
+var GroupManager = require('./JabberGroupManager.js');
 
 function JabberBot(configuration) {
     // Create a core botkit bot
@@ -41,7 +41,7 @@ function JabberBot(configuration) {
         GroupManager(config, xmpp, bot, controller);
 
         function request_roster() {
-            let roster_stanza = new Stanza('iq', { 'from': config.client, 'type': 'get'});
+            var roster_stanza = new Stanza('iq', { 'from': config.client, 'type': 'get'});
             roster_stanza.c('query', { xmlns: 'jabber:iq:roster'});
             xmpp.conn.send(roster_stanza);
         }
@@ -88,7 +88,7 @@ function JabberBot(configuration) {
         }
 
         function IsBotMentioned(message) {
-            let mention_jids = extractMentionJids(message);
+            var mention_jids = extractMentionJids(message);
             if (mention_jids.find(findBotJid)) {
                 return true;
             }
@@ -96,15 +96,15 @@ function JabberBot(configuration) {
         }
 
         function extractMentionJids(message) {
-            let direct_mention_reg = /href="xmpp:\s?(\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+)\s?"/ig;
-            let email_reg = /\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+/i;
-            let match = message.stanza.toString().match(direct_mention_reg);
-            let mention_jids = [];
+            var direct_mention_reg = /href="xmpp:\s?(\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+)\s?"/ig;
+            var email_reg = /\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+/i;
+            var match = message.stanza.toString().match(direct_mention_reg);
+            var mention_jids = [];
             if (match) {
-                for (let i = 0; i < match.length; i++) {
-                    let jid_match = match[i].match(email_reg);
+                for (var i = 0; i < match.length; i++) {
+                    var jid_match = match[i].match(email_reg);
                     if (jid_match) {
-                        let jid = jid_match[0];
+                        var jid = jid_match[0];
                         mention_jids.push(jid);
                     }
                 }
@@ -153,17 +153,17 @@ function JabberBot(configuration) {
                 } else if (stanza.attrs.type == 'groupchat') {
                     var body = stanza.getChild('body');
                     if (body) {
-                        let message = body.getText();
-                        let from = stanza.attrs.from;
-                        let from_split = from.split('/');
-                        let conference = from_split[0];
-                        let from_jid = null;
+                        var message = body.getText();
+                        var from = stanza.attrs.from;
+                        var from_split = from.split('/');
+                        var conference = from_split[0];
+                        var from_jid = null;
                         if (from_split.length > 1)
                             from_jid = from_split[1];
                         if (!from_jid)
                             return;
 
-                        let history_reg = /xmlns="http:\/\/www.jabber.com\/protocol\/muc#history"/i;
+                        var history_reg = /xmlns="http:\/\/www.jabber.com\/protocol\/muc#history"/i;
                         if (history_reg.test(stanza.toString()))
                             return false;
 

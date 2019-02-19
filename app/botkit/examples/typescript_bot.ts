@@ -58,7 +58,7 @@ This is a sample Slack bot built with Botkit and Typescript.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-declare let process: {
+declare var process: {
    env: {
        token: string;
    };
@@ -72,11 +72,11 @@ if (!process.env.token) {
   process.exit(1);
 }
 
-const controller = Botkit.slackbot({
+var controller = Botkit.slackbot({
     debug: true,
 });
 
-const bot = controller.spawn({
+var bot = controller.spawn({
     token: process.env.token
 }).startRTM();
 

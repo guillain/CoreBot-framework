@@ -1,7 +1,7 @@
 // Load required library
-let Log = require(__basedir + 'lib/log');
-let path = require('path');
-let fs = require('fs');
+var Log = require(__basedir + 'lib/log');
+var path = require('path');
+var fs = require('fs');
 
 exports.search_file = function(startPath, filter, callback){
     Log.debug("lib file " + startPath + ' ' + filter);
@@ -23,8 +23,8 @@ exports.search_file = function(startPath, filter, callback){
 };
 
 /*
-let v = 'default.json';
-let re = new RegExp(v);
+var v = 'default.json';
+var re = new RegExp(v);
 exports.search_file('../controller', re, function (filename) {
     console.log(filename);
 });

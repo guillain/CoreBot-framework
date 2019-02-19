@@ -1,8 +1,8 @@
 // Load tools library
-let Log = require(__basedir + 'lib/log');
+var Log = require(__basedir + 'lib/log');
 
 // Configuration
-let Botkit = require('botkit');
+var Botkit = require('botkit');
 
 // Controller
 module.exports = function(config) {
@@ -10,7 +10,7 @@ module.exports = function(config) {
 
   process.env.GOOGLE_APPLICATION_CREDENTIALS = __basedir + config.launcher.hangouts.json_cred;
 
-  let controller = Botkit.googlehangoutsbot({
+  var controller = Botkit.googlehangoutsbot({
     endpoint: config.launcher.hangouts.endpoint,
     token: config.launcher.hangouts.token,
     debug: config.log.debug,
@@ -18,7 +18,7 @@ module.exports = function(config) {
     json_file_store: __basedir + config.launcher.hangouts.store
   });
 
-  let bot = controller.spawn({});
+  var bot = controller.spawn({});
 
   controller.setupWebserver(config.launcher.hangouts.port || 3002, function (err, webserver) {
     controller.createWebhookEndpoints(webserver, bot, function () {

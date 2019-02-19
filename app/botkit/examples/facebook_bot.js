@@ -86,7 +86,7 @@ var os = require('os');
 var commandLineArgs = require('command-line-args');
 var localtunnel = require('localtunnel');
 
-const ops = commandLineArgs([
+var ops = commandLineArgs([
       {name: 'lt', alias: 'l', args: 1, description: 'Use localtunnel.me to make your bot available on the web.',
       type: Boolean, defaultValue: false},
       {name: 'ltsubdomain', alias: 's', args: 1,

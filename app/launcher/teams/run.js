@@ -1,8 +1,8 @@
 // Load tools library
-let Log = require(__basedir + 'lib/log');
+var Log = require(__basedir + 'lib/log');
 
 // Configuration
-let Botkit = require('botkit');
+var Botkit = require('botkit');
 
 module.exports = function(config) {
   Log.debug('launcher teams run');

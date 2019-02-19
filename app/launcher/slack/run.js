@@ -1,22 +1,22 @@
 // Load tools library
-let Log = require(__basedir + 'lib/log');
+var Log = require(__basedir + 'lib/log');
 
 // Configuration
-let Botkit = require('botkit');
+var Botkit = require('botkit');
 
 // Launcher
 module.exports = function(config) {
   Log.debug('launcher slack run');
 
   // Bot initialisation
-  let controller = Botkit.slackbot({
+  var controller = Botkit.slackbot({
     debug: config.log.debug,
     studio_token: config.controller.on.botkit.token,
     json_file_store: __basedir + config.launcher.slack.store,
     clientSigningSecret: __basedir + config.launcher.slack.secret
   });
 
-  let bot = controller.spawn({
+  var bot = controller.spawn({
     token: config.launcher.slack.token
   }).startRTM();
 

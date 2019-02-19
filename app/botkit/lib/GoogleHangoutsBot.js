@@ -18,7 +18,7 @@ function GoogleHangoutsBot(configuration) {
 
         bot.send = function (message, cb) {
 
-            const chat = google.chat({version: api_version, auth: bot.authClient});
+            var chat = google.chat({version: api_version, auth: bot.authClient});
 
             chat.spaces.messages.create(message)
                 .then(res => {
@@ -152,7 +152,7 @@ function GoogleHangoutsBot(configuration) {
 
     google_hangouts_botkit.middleware.spawn.use(function (worker, next) {
 
-        let params = {
+        var params = {
             scopes: 'https://www.googleapis.com/auth/chat.bot'
         };
 

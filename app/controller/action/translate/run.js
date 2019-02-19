@@ -1,26 +1,26 @@
 // Load tools library
-let Log = require(__basedir + 'lib/log');
-let User = require(__basedir + 'lib/user');
-let Redis = require(__basedir + 'lib/redis');
+var Log = require(__basedir + 'lib/log');
+var User = require(__basedir + 'lib/user');
+var Redis = require(__basedir + 'lib/redis');
 
 // Requirements
-let fs = require('fs');
-let run = require('node-google-translate-skidz');
-let lang_list = ["af","sq","am","ar","hy","az","eu","be","bn","bs","bg","ca","ceb","zh-CN","zh-TW","co","hr","cs","da","nl","en","eo","et","fi","fr","fy","gl","ka","de","el","gu","ht","ha","haw","he","hi","hmn","hu","is","ig","id","ga","it","ja","jw","kn","kk","km","ko","ku","ky","lo","la","lv","lt","lb","mk","mg","ms","ml","mt","mi","mr","mn","my","ne","no","ny","ps","fa","pl","pt","pa","ro","ru","sm","gd","sr","st","sn","sd","si","sk","sl","so","es","su","sw","sv","tl","tg","ta","te","th","tr","uk","ur","uz","vi","cy","xh","yi","yo","zu"];
+var fs = require('fs');
+var run = require('node-google-translate-skidz');
+var lang_list = ["af","sq","am","ar","hy","az","eu","be","bn","bs","bg","ca","ceb","zh-CN","zh-TW","co","hr","cs","da","nl","en","eo","et","fi","fr","fy","gl","ka","de","el","gu","ht","ha","haw","he","hi","hmn","hu","is","ig","id","ga","it","ja","jw","kn","kk","km","ko","ku","ky","lo","la","lv","lt","lb","mk","mg","ms","ml","mt","mi","mr","mn","my","ne","no","ny","ps","fa","pl","pt","pa","ro","ru","sm","gd","sr","st","sn","sd","si","sk","sl","so","es","su","sw","sv","tl","tg","ta","te","th","tr","uk","ur","uz","vi","cy","xh","yi","yo","zu"];
 
 // Translate
 exports.translate = function(controller, bot, message, config, mod_conf) {
   // Default user conf
-  let data = [
+  var data = [
       'manual',
       mod_conf.default.lang_in,
       mod_conf.default.lang_out
   ];
 
   // Get user ref
-  let user = User.get_user(message);
+  var user = User.get_user(message);
 
-  let grp_msg = "";
+  var grp_msg = "";
   if (message.group === true) grp_msg = " for user " + user;
 
   // Open user storage
@@ -28,7 +28,7 @@ exports.translate = function(controller, bot, message, config, mod_conf) {
     if (reply) data = reply.split(',');
 
     // Remove first pattern if: present + remove_pattern=true
-    let msg_arr = message.text.split(' ');
+    var msg_arr = message.text.split(' ');
     /*if ((data[0] !== 'automatic') && !(/^translate$/i.test(msg_arr['0']))){
         Log.debug('controller translate stop_no_command');
         return;
@@ -57,7 +57,7 @@ exports.translate = function(controller, bot, message, config, mod_conf) {
     }
     else if (/^config/i.test(msg_arr['0'])) {
         if (msg_arr.length === 1){ 
-            let msg = '\n- State _' + data[0] + '_\n- In _' + data[1] + '_\n- Out _' + data[2] + '_';
+            var msg = '\n- State _' + data[0] + '_\n- In _' + data[1] + '_\n- Out _' + data[2] + '_';
             bot.reply(message, mod_conf.msg.conf + grp_msg + msg);
         }
         else if (msg_arr.length === 3)    {
@@ -74,8 +74,8 @@ exports.translate = function(controller, bot, message, config, mod_conf) {
     // Manual translate
     else if ((msg_arr.length > 2) && (data[0] === 'manual')){
         if ((lang_list.indexOf(msg_arr['0']) > -1) && (lang_list.indexOf(msg_arr['1']) > -1)){
-            let lang_in = msg_arr['0'];
-            let lang_out = msg_arr['1'];
+            var lang_in = msg_arr['0'];
+            var lang_out = msg_arr['1'];
             msg_arr.splice(0,2);
             //msg_arr[0] = data[0];
            run({

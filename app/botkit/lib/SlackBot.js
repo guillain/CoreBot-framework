@@ -194,20 +194,20 @@ function Slackbot(configuration) {
 
         // is this an verified request from slack?
         if (slack_botkit.config.clientSigningSecret && req.rawBody) {
-            let timestamp = req.header('X-Slack-Request-Timestamp');
-            let body = req.rawBody;
+            var timestamp = req.header('X-Slack-Request-Timestamp');
+            var body = req.rawBody;
 
-            let signature = [
+            var signature = [
                 'v0',
                 timestamp, // slack request timestamp
                 body // request body
             ];
-            let basestring = signature.join(':');
+            var basestring = signature.join(':');
 
-            const hash = 'v0=' + crypto.createHmac('sha256', slack_botkit.config.clientSigningSecret)
+            var hash = 'v0=' + crypto.createHmac('sha256', slack_botkit.config.clientSigningSecret)
                   .update(basestring)
                   .digest('hex');
-            let retrievedSignature = req.header('X-Slack-Signature');
+            var retrievedSignature = req.header('X-Slack-Signature');
 
             if (hash !== retrievedSignature) {
                 slack_botkit.debug('Signature verification failed, Ignoring message');

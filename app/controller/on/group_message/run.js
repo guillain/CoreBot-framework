@@ -1,5 +1,5 @@
 // Load require libraries
-let Log = require(__basedir + 'lib/log');
+var Log = require(__basedir + 'lib/log');
 
 // Exports controller function as scenario
 exports.group_message = function(controller, bot, message, config, mod_conf) {

@@ -1,16 +1,15 @@
 {
-  "name": "corebot",
+  "name": "CoreBot-framework",
   "version": "0.0.1",
   "description": "Building blocks for Building vendor agnostic Bots, thanks to botkit",
-  "main": "lib/Botkit.js",
-  "types": "lib/Botkit.d.ts",
+  "main": "app/CoreBot-framework.js",
   "dependencies": {
     "@xmpp/xml": "^0.3.0",
     "async": "^2.1.5",
     "back": "^1.0.1",
     "body-parser": "^1.18.3",
     "botbuilder": "^3.15.0",
-    "botkit": "file:botkit",
+    "botkit": "^0.7.2",
     "botkit-studio-sdk": "^1.0.8",
     "ciscospark": "^1.26.0",
     "clone": "2.1.1",
@@ -57,26 +56,17 @@
     "sinon": "^2.1.0",
     "winston": "^2.3.1"
   },
-  "scripts": {
-    "pretest": "jscs ./lib/ ./__test__ --fix",
-    "test": "jest --coverage",
-    "test-legacy": "mocha ./tests/*.js",
-    "test-watch": "jest --watch"
-  },
-  "bin": {
-    "botkit": "./bin/cli.js"
-  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/howdyai/botkit.git"
+    "url": "https://github.com/guillain/CoreBot-framework.git"
   },
   "bugs": {
-    "url": "https://github.com/howdyai/botkit/issues"
+    "url": "https://github.com/guillain/CoreBot-framework/issues"
   },
-  "homepage": "http://howdy.ai/botkit",
+  "homepage": "https://github.com/guillain/CoreBot-framework",
   "keywords": [
-    "bots",
-    "chatbots",
+    "bot",
+    "chatbot",
     "slack",
     "cisco spark",
     "cisco jabber",
@@ -86,7 +76,7 @@
     "twilio ipm",
     "microsoft bot framework"
   ],
-  "author": "ben@howdy.ai",
+  "author": "Guillain",
   "license": "LGPL-3.0",
   "jest": {
     "testEnvironment": "node"
