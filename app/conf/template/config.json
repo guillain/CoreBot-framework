@@ -32,6 +32,6 @@
         "welcome": "Welcome in the CoreBot-framework tools",
         "bye": "See you soon",
         "join": "Thanks to join us",
-        "user_not_allowed": "Sorry but you don't the privilege to access to this ressource"
+        "user_not_allowed": "Sorry but you don't have the privilege to access to this ressource"
     }
 }
