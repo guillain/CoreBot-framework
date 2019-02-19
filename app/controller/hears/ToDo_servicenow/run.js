@@ -89,7 +89,7 @@ exports.list = function(bot, trigger, table) {
       var jres = to_json(response);
       if ((!jres.body.result) || ((jres.body.result) && (jres.body.result.length == 0))) { bot.say(config.ITSM.msg.notfound); }
       else {
-        for (var i = 0; i < jres.body.result.length; i++) {
+        for (let i = 0; i < jres.body.result.length; i++) {
           bot.say(get_summary(jres.body.result[i], table));
         }
         bot.say(config.ITSM.msg.nbrtotalfound + ': **' + jres.body.result.length + '**');

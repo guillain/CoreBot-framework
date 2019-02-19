@@ -8,7 +8,7 @@ let fs = require('fs');
 
 // Survey report hears controller - to handle report
 exports.reset = function (controller, bot, message, config, mod_conf) {
-    let survey = survey_init(config);
+    let survey = survey_init(config, mod_conf);
     bot.reply(message, mod_conf.msg.reset_done);
 };
 
@@ -166,7 +166,7 @@ exports.survey = function (controller, bot, message, config, mod_conf) {
     });
 };
 
-survey_init = function(config){
+survey_init = function(config, mod_conf){
     Log.info('controller survey init ');
 
     // Initialization survey structur

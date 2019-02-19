@@ -300,7 +300,7 @@
         var name = cname + "=";
         var decodedCookie = decodeURIComponent(document.cookie);
         var ca = decodedCookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
+        for (let i = 0; i < ca.length; i++) {
           var c = ca[i];
           while (c.charAt(0) == ' ') {
             c = c.substring(1);
@@ -401,7 +401,7 @@
             var list = document.createElement('ul');
 
             var elements = [];
-            for (var r = 0; r < message.quick_replies.length; r++) {
+            for (let r = 0; r < message.quick_replies.length; r++) {
               (function(reply) {
 
                 var li = document.createElement('li');
@@ -425,7 +425,7 @@
             // uncomment this code if you want your quick replies to scroll horizontally instead of stacking
             // var width = 0;
             // // resize this element so it will scroll horizontally
-            // for (var e = 0; e < elements.length; e++) {
+            // for (let e = 0; e < elements.length; e++) {
             //     width = width + elements[e].offsetWidth + 18;
             // }
             // list.style.width = width + 'px';
@@ -442,7 +442,7 @@
 
         that.on('history_loaded', function(history) {
           if (history) {
-            for (var m = 0; m < history.length; m++) {
+            for (let m = 0; m < history.length; m++) {
               that.renderMessage({
                 text: history[m].text,
                 type: history[m].type == 'message_received' ? 'outgoing' : 'incoming', // set appropriate CSS class
