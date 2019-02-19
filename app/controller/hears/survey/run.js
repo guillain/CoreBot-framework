@@ -8,7 +8,7 @@ var fs = require('fs');
 
 // Survey report hears controller - to handle report
 exports.reset = function (controller, bot, message, config, mod_conf) {
-    var survey = survey_init(config);
+    var survey = survey_init(config, mod_conf);
     bot.reply(message, mod_conf.msg.reset_done);
 };
 
@@ -57,7 +57,7 @@ exports.report_user = function (controller, bot, message, config, mod_conf) {
         if (!survey.user) bot.reply(message, mod_conf.msg.no_report);
         else {
             to_say = 'Users' + '\n';
-            for (var i_user in survey.user)
+            for (let i_user in survey.user)
                 to_say += '- _' + survey.user[i_user].step + '_ - ' + i_user + '\n';
             bot.reply(message, to_say);
         }
@@ -88,7 +88,7 @@ exports.survey = function (controller, bot, message, config, mod_conf) {
             }
 
             // Loop over each question
-            for (var i_report=0; i_report<survey.nb_report; i_report++){
+            for (let i_report=0; i_report<survey.nb_report; i_report++){
                 Log.info('controller survey i_report ' + i_report + ' - user_step ' + user_step);
 
                 // User has not done all steps
@@ -166,7 +166,7 @@ exports.survey = function (controller, bot, message, config, mod_conf) {
     });
 };
 
-survey_init = function(config){
+survey_init = function(config, mod_conf){
     Log.info('controller survey init ');
 
     // Initialization survey structur
@@ -184,7 +184,7 @@ survey_init = function(config){
     var csv_array = csv_data.toString().split("\n");
     survey['nb_report'] = csv_array.length-1;
 
-    for (var i_csv_arr=0; i_csv_arr<csv_array.length-1; i_csv_arr++) {
+    for (let i_csv_arr=0; i_csv_arr<csv_array.length-1; i_csv_arr++) {
             Log.debug('controller survey init csv_array['+i_csv_arr+'] ' + csv_array[i_csv_arr]);
 
             // Get Question as first column in the CSV file
@@ -199,7 +199,7 @@ survey_init = function(config){
                 var reply_arr = csv_array[i_csv_arr].split(';')[1].split(',');
                 Log.debug('controller survey init reply_arr ' + reply_arr);
 
-                for (var i_reply_arr = 0; i_reply_arr < reply_arr.length; i_reply_arr++){
+                for (let i_reply_arr = 0; i_reply_arr < reply_arr.length; i_reply_arr++){
                     Log.debug('controller survey init reply_arr['+i_reply_arr+'] ' + reply_arr[i_reply_arr]);
                     survey.reports[i_csv_arr].replies[i_reply_arr] = {"name": reply_arr[i_reply_arr], "value": 0};
                 }
