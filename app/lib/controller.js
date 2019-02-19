@@ -1,5 +1,6 @@
 // Load required lib
 var Log = require(__basedir + 'lib/log');
+var User = require(__basedir + 'lib/user');
 var Security = require(__basedir + 'lib/security');
 var _ = require("underscore");
 
@@ -9,14 +10,16 @@ run = function(controller, bot, message, config, control, module, index){
     
     var listener = config['controller'][control][module].listener[index];
     var script = __basedir + 'controller/' + control + '/' + module + '/run.js';
-    
+   
     // Security validation (ACL, priv, perm)
     if (Security.validation(config, message, listener)) {
         var mod_run = require(script);
         var message_tmp = exports.remove_pattern(config, message, listener);
         mod_run[index](controller, bot, message_tmp, config, config.controller[control][module]);
     }
-    else bot.reply(message, config.msg.user_not_allowed);
+    else if (!User.is_bot(config, message, User.get_user(message))) {
+      bot.reply(message, config.msg.user_not_allowed);
+    }
 };
 
 // Run the on and hears controller
