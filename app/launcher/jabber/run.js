@@ -2,8 +2,8 @@
 var Log = require(__basedir + 'lib/log');
 
 // Load the required libraries
-//var Botkit = require(__basedir + 'botkit/lib/JabberBot.js');
-var Botkit = require('./lib/JabberBot.js');
+var Botkit = require(__basedir + 'botkit/lib/JabberBot.js');
+//var Botkit = require('./lib/JabberBot.js');
 
 var xml = require('@xmpp/xml');
 

@@ -1,10 +1,10 @@
 {
-    "enable": true,
+    "enable": false,
     "listener": {
         "user_space_join": {
             "controller": "on",
             "from": "user_space_join",
-            "privilege": ["user"],
+            "privilege": ["user","admin"],
             "access_list": ["default"]
         }
     }

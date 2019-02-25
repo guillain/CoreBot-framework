@@ -4,7 +4,7 @@
         "direct_mention": {
             "controller": "on",
             "from": "direct_mention",
-            "privilege": ["user"],
+            "privilege": ["user","admin"],
             "access_list": ["default"]
         }
     }

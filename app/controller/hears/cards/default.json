@@ -6,7 +6,7 @@
             "pattern": ["^cards"],
             "remove_pattern": false,
             "from": ["direct_message", "message_received"],
-            "privilege": ["user"],
+            "privilege": ["user","admin"],
             "access_list": ["default"]
         }
     }
