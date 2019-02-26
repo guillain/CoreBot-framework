@@ -42,7 +42,7 @@ exports.is_bot = function(config, message, my_user = ''){
     
     // Loop over each launcher to get bot name
     _.each(config.launcher, function (conf, index) {
-        console.log('>>>>>>>', 'is_bot', 'my_user', my_user, 'conf.name', conf.name);
+        // console.log('>>>>>>>', 'is_bot', 'my_user', my_user, 'conf.name', conf.name);
         
         if (conf.name && conf.name.indexOf(my_user) > -1)
             bot_found = true;

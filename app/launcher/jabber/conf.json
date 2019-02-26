@@ -13,8 +13,8 @@
                     "Cisco Jabber launcher\n",
                     "- enable: true or false, active or not the launcher",
                     "- name: chatbot name",
-                    "- jid: JID's user as application user of the chatbot",
-                    "- password: Application user's password",
+                    "- jid: JID's user of the chatbot (CSF)",
+                    "- password: user's password",
                     "- store: where to store the space and people data",
                     "- ip: CUPS / IM&P address",
                     "- port: CUPS / IM&P port"
