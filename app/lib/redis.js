@@ -1,10 +1,13 @@
 // Load tools library
 var Log = require(__basedir + 'lib/log');
 
+// Configuration
+var config = require(__basedir + 'conf/config.json');
+
 // Requirements
 var fs = require('fs');
 var redis = require("redis");
-var client = redis.createClient({detect_buffers: true});
+var client = redis.createClient({host: config.db.host, detect_buffers: true});
 
 // on connect
 client.on('connect', function() {
