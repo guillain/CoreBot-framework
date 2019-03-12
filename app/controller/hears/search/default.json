@@ -1,5 +1,6 @@
 {
     "enable": false,
+    "controller": "search",
     "listener": {
         "search": {
             "controller": "hears",

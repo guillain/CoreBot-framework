@@ -1,5 +1,6 @@
 {
     "enable": false,
+    "controller": "survey",
     "listener": {
         "survey": {
             "controller": "hears",
