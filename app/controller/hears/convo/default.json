@@ -1,5 +1,6 @@
 {
     "enable": false,
+    "controller": "convo",
     "listener": {
         "convo": {
             "controller": "hears",

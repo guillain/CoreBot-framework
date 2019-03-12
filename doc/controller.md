@@ -36,6 +36,8 @@ All are managed by the `./app/lib/controller.js` script.
 The first check is to know if the controller is activate or not and
 depending of the configuration the controller is loaded or not.
 
+Controllers can also be configured to point to another controller with the configuration key `"controller"`. This is useful if you need several controllers with the same features but with different settings. It defaults to the controller's name.
+
 ## Organization
 The controllers are define in dedicated folder and they need the following files:
 - `run.js`: Scripts with the code

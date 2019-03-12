@@ -1,5 +1,6 @@
 {
     "enable": true,
+    "controller": "csv",
     "listener": {
         "get": {
             "controller": "hears",
