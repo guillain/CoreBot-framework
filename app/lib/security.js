@@ -9,7 +9,7 @@ exports.privilege = function(config, message, listener, my_user = ''){
     if (my_user === '') my_user = User.get_user(message);
     var user_priv = User.privilege_user(config, message, my_user);
  
-    if (listener.privilege.toString().indexOf(user_priv) > -1) is_ok = true;
+    if (user_priv.indexOf(listener.privilege.toString()) > -1) is_ok = true;
 
     Log.debug('lib security privilege_user ' + my_user + ' ' + is_ok);
     return is_ok;
