@@ -1,5 +1,6 @@
 // Load tools library
 var Log = require(__basedir + 'lib/log');
+var User = require(__basedir + 'lib/user');
 
 // Configuration
 var Botkit = require('botkit');
@@ -34,6 +35,12 @@ module.exports = function(config) {
 
   // Scenario declarations
   controller = require(__basedir + 'lib/controller.js')(controller, config, ['hears','on']);
+
+  if(config.launcher.spark.user_presence){
+      User.user_presence_delete();
+      let user_presence_delay = config.launcher.spark.user_presence_delay;
+      setInterval(User.user_presence_webex, user_presence_delay*1000, controller);
+  }
 
   return controller;
 };

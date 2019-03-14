@@ -11,6 +11,8 @@
             "secret": "",
             "webhook_name": "",
             "store": "data/spark",
+            "user_presence": false,
+            "user_presence_delay": 10,
             "msg": {
                 "help": [
                     "Cisco Webex Teams (Spark) launcher\n",
@@ -22,6 +24,8 @@
                     "- port: local port",
                     "- access_token: Cisco Webex Teams bot token",
                     "- secret: specific secret (ie random)",
+                    "- user_presence: info on user presence for Webex",
+                    "- user_presence_delay: seconds between checks of presence",
                     "- webhook_name: the name of the webhook used to registered the bot in the Webex Teams cloud"
                 ]
             }
