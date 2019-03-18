@@ -20,8 +20,6 @@ exports.search = function(controller, bot, message, config, mod_conf){
     msg_arr.shift();
 
     Redis.hgetall(mod_conf.storage, function(kms){
-        if (err) throw err;
-
         // Key array initialization
         for (var i_arr in msg_arr)
             if (msg_arr[i_arr].length >= mod_conf.key_length)
