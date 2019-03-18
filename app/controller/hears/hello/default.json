@@ -1,0 +1,13 @@
+{
+    "enable": false,
+    "listener":{
+        "hello": {
+            "controller": "hears",
+            "pattern":["^(h(e(llo|y)|i)|bonjour|good morning) *"],
+            "remove_pattern": true,
+            "from": ["message_received", "direct_mention", "direct_message"],
+            "privilege": ["user","admin"],
+            "access_list": ["default"]
+        }
+    }
+}

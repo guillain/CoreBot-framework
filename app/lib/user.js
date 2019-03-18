@@ -22,6 +22,36 @@ exports.get_user = function(message){
     return user;
 };
 
+// Get all details from User function
+exports.get_user_details = async function(controller, message, cb) {
+  var user = message.user;
+
+  // Spark User
+  if (controller.api.sessionId.slice(0,5) == "spark") {
+    controller.api.people.get(message.userId).then(function(people) {
+      cb({
+        "displayName": people.displayName,
+        "nickName": people.nickName,
+        "firstName": people.firstName,
+        "lastName": people.lastName,
+        "emails": people.emails
+      })
+    })
+  // Local User
+  } else if (message.personEmail) {
+    var user = message.personEmail.split('@')[0]
+    cb({
+      "displayName": user,
+      "emails": user
+    })
+  } else if (message.from_jid) {
+    var user = message.from_jid.split('@')[0]
+    cb({
+      "displayName": user,
+      "emails": user
+    })
+  }
+};
 
 // Get User function
 exports.get_user_id = function(message){
@@ -58,15 +88,15 @@ exports.privilege_user = function(config, message, my_user = ''){
 exports.is_bot = function(config, message, my_user = ''){
     var bot_found = false;
     if (my_user === '') my_user = User.get_user(message);
-    
+
     // Loop over each launcher to get bot name
     _.each(config.launcher, function (conf, index) {
         // console.log('>>>>>>>', 'is_bot', 'my_user', my_user, 'conf.name', conf.name);
-        
+
         if (conf.name && conf.name.indexOf(my_user) > -1)
             bot_found = true;
     });
-    
+
     Log.debug('lib user bot_exception ' + my_user + ' ' + bot_found);
     return bot_found;
 };
