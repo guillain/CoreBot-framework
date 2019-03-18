@@ -51,6 +51,7 @@
     "jest-cli": "^20.0.1",
     "jscs": "^3.0.7",
     "mocha": "^3.2.0",
+    "nyc": "^13.3.0",
     "should": "^11.2.1",
     "should-sinon": "0.0.5",
     "sinon": "^2.1.0",
@@ -79,6 +80,7 @@
   "author": "Guillain",
   "license": "LGPL-3.0",
   "scripts": {
+    "coverage": "nyc --reporter=text mocha --recursive \"./{,!(node_modules)/**}/*.unittest.js\"",
     "test": "mocha --colors --recursive \"./{,!(node_modules)/**}/*.unittest.js\""
   },
   "jest": {

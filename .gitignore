@@ -11,5 +11,6 @@ coverage
 db/
 data/*
 app/conf/*.json
+app/.nyc_output/*
 
 __test__
