@@ -78,6 +78,9 @@
   ],
   "author": "Guillain",
   "license": "LGPL-3.0",
+  "scripts": {
+    "test": "mocha --colors --recursive \"./{,!(node_modules)/**}/*.unittest.js\""
+  },
   "jest": {
     "testEnvironment": "node"
   }
