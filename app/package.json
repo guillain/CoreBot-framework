@@ -94,6 +94,8 @@
       "**/*.js"
     ],
     "exclude": [
+      "coverage",
+      "botkit",
       "**/*test.js"
     ]
   },
