@@ -80,8 +80,22 @@
   "author": "Guillain",
   "license": "LGPL-3.0",
   "scripts": {
-    "coverage": "nyc --reporter=text mocha --recursive \"./{,!(node_modules)/**}/*.unittest.js\"",
+    "coverage": "nyc mocha --recursive \"./{,!(node_modules)/**}/*.unittest.js\"",
     "test": "mocha --colors --recursive \"./{,!(node_modules)/**}/*.unittest.js\""
+  },
+  "nyc": {
+    "all": true,
+    "reporter": [
+      "text",
+      "html",
+      "text-summary"
+    ],
+    "include": [
+      "**/*.js"
+    ],
+    "exclude": [
+      "**/*test.js"
+    ]
   },
   "jest": {
     "testEnvironment": "node"
