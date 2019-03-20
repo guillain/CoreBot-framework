@@ -45,21 +45,21 @@ exports.get_user_details = async function(controller, message, cb) {
   }
   // Local User
   if (message.personEmail) {
-    var user = message.personEmail.split('@')[0]
     cb({
-      "displayName": user,
-      "emails": user
+      "displayName": message.personEmail
+        .split('@')[0] // we don't need the domain of the email
+        .split('.') // email often begins with firstname.lastname
+        .map((word) => (word.replace(word[0], word[0].toUpperCase()))) // capitalize each word
+        .join(' '), // join to make a string
+      "emails": [message.personEmail]
     })
   } else if (message.from_jid) {
-    var user = message.from_jid.split('@')[0]
     cb({
-      "displayName": user,
-      "emails": user
+      "displayName": message.from_jid.split('@')[0]
     })
   } else if (message.user) {
-    var user = message.user.split('@')[0]
     cb({
-      "userId": user
+      "userId": message.user.split('@')[0]
     })
   } else {
     cb({})
