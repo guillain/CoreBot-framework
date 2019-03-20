@@ -1,8 +1,8 @@
 {
     "msg": {
         "help": [
-            "When a user enters a greetings \n",
-            "(\"Hello\", \"Hi\", \"Bonjour\", \"Hey\", ...),\n",
+            "When a user enters a greetings (",
+            "\"Hello\", \"Hi\", \"Bonjour\", \"Hey\", ...),\n",
             "the bot answers with a welcoming phrase.\n",
             "- _No argument_\n"
         ]

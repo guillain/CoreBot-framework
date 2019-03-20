@@ -26,19 +26,25 @@ exports.get_user = function(message){
 exports.get_user_details = async function(controller, message, cb) {
   var user = message.user;
 
-  // Spark User
-  if (controller.api.sessionId.slice(0,5) == "spark") {
-    controller.api.people.get(message.userId).then(function(people) {
-      cb({
-        "displayName": people.displayName,
-        "nickName": people.nickName,
-        "firstName": people.firstName,
-        "lastName": people.lastName,
-        "emails": people.emails
+  // Channel with an API
+  if (controller.api) {
+    // Spark User
+    if (controller.api.sessionId.slice(0,5) == "spark") {
+      controller.api.people.get(message.userId).then(function(people) {
+        cb({
+          "userId": people.id,
+          "displayName": people.displayName,
+          "nickName": people.nickName,
+          "firstName": people.firstName,
+          "lastName": people.lastName,
+          "emails": people.emails
+        })
       })
-    })
+      return
+    }
+  }
   // Local User
-  } else if (message.personEmail) {
+  if (message.personEmail) {
     var user = message.personEmail.split('@')[0]
     cb({
       "displayName": user,
@@ -50,6 +56,13 @@ exports.get_user_details = async function(controller, message, cb) {
       "displayName": user,
       "emails": user
     })
+  } else if (message.user) {
+    var user = message.user.split('@')[0]
+    cb({
+      "userId": user
+    })
+  } else {
+    cb({})
   }
 };
 
