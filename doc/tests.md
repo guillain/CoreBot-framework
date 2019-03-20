@@ -7,6 +7,7 @@ We defined the following test levels.
 All unit tests should be regrouped in files named `*.unittest.js`.
 
 Running `npm run test` will then launch all the defined unit tests.
+If you want to only test some components, you may use the command `npm run test -- -f keyword` with *keyword* allowing to filter on the test names. 
 
 ### Coverage
 
