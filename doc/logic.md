@@ -50,7 +50,7 @@ Start the daemon for a specific Business Messaging
 - ./app/launcher/
 
 Each launcher is describe with the help of the standard files 
-(cf. [configuration](doc/configuration.md) and it is executed or not 
+(cf. [configuration](./configuration.md) and it is executed or not 
 following the `enable` option.
 
 Each launcher starts the hears and on contollers via a single
@@ -70,7 +70,7 @@ For example the method to load or not the controller, the security and
 ACL, the pattern and form configuration...
 
 Each controller is describe with the help of the standard files
-(cf. [configuration](doc/configuration.md) and it is executed or not
+(cf. [configuration](./configuration.md) and it is executed or not
 following the `enable` option.
 
 a) Hears: Check if the message match with the pattern and the context
@@ -78,4 +78,4 @@ a) Hears: Check if the message match with the pattern and the context
 b) On: Will be triggered for a dedicated context
     i. Action: Are ordered folowing an On controller event
 
-Complete doc can be found here [Controller](./doc/controller.md).
+Complete doc can be found here [Controller](./controller.md).
