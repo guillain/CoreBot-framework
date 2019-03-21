@@ -9,8 +9,12 @@ run = function(controller, bot, message, config, control, module, index){
     Log.debug("lib controller run " + control + ' ' + module + ' ' + index);
     
     var listener = config['controller'][control][module].listener[index];
-    var script = __basedir + 'controller/' + control + '/' + module + '/run.js';
-   
+    if (config['controller'][control][module].controller) {
+      var script = __basedir + 'controller/' + control + '/' + config['controller'][control][module].controller + '/run.js';
+    } else {
+      var script = __basedir + 'controller/' + control + '/' + module + '/run.js';
+    }
+
     // Security validation (ACL, priv, perm)
     if (Security.validation(config, message, listener)) {
         var mod_run = require(script);

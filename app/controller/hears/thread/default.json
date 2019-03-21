@@ -1,5 +1,6 @@
 {
     "enable": false,
+    "controller": "thread",
     "listener":{
         "thread_new": {
             "controller": "hears",
