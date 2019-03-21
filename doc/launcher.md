@@ -4,7 +4,7 @@ They are used to start one daemon by business messaging desired.
 It's the starting point of the application!
 
 ## Loading
-The launcher are started with the [loader](./lib/launcher.js) script
+The launcher are started with the [loader](../app/lib/launcher.js) script
 during the main startup process.
 
 They can be loaded from the global configuration file `config.json` or by

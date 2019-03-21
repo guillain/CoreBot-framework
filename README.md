@@ -25,7 +25,7 @@ management on controller and user level.
 is triggered (loaded dynamically)
 - Standard libraries to create quickly and properly new feature
 - The configuration can be provided in a single file
-[config.json](app/conf/config.json) or in splitted files. The configuration
+[config.json](app/conf/default/config.json) or in splitted files. The configuration
 can overload the default configuration of each feature.
 
 ## Features
