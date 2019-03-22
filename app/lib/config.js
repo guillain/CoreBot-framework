@@ -49,8 +49,11 @@ module.exports = function() {
     Log.debug('config load_controller_conf\n' + JSON.stringify(load_controller_conf, null, 4));
     Log.debug('config load_controller_listener\n' + JSON.stringify(load_controller_listener, null, 4));
     */
-    if (!config.controller.on.hasOwnProperty('botkit').token) {
+    if (!config.controller.on.hasOwnProperty('botkit')) {
       config.controller.on.botkit = {};
+      config.controller.on.botkit.enable = false;
+    }
+    if (!config.controller.on.botkit.hasOwnProperty('token')) {
       config.controller.on.botkit.token = '';
     }
 
