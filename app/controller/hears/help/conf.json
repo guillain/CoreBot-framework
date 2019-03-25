@@ -3,6 +3,7 @@
         "module_found": "Controller list",
         "module_not_found": "No controller found",
         "error": "Sorry but apparently you made an error in the command, thanks to read the **help module help** support",
+        "help_user": ["This commands displays the present help menu. "],
         "help": [
             "Provide global help support\n",
             "- _**all**_: provide a list of all controllers",
