@@ -28,11 +28,11 @@ module.exports = function() {
     if (config.default.load_controller_listener === true) {
         // Search all default.json files in the controller folder and load it
         Log.debug('config controller load_controller_listener');
-        load_controller_listener = load_default_listener(__basedir + 'controller', 'default.json');
+        load_controller_listener = load_default_listener(__basedir + 'controller', 'default.json', config['controller']);
         config = merge_json.merge(load_controller_listener, config);
     }
-    
-    // Load controller conf conf if validated in the config file
+
+    // Load controller conf if validated in the config file
     var load_controller_conf = {};
     if (config.default.load_controller_conf === true) {
         // Search all default.json files in the controller folder and load it
@@ -55,6 +55,7 @@ module.exports = function() {
 
     //Log.debug('config\n' + JSON.stringify(config, null, 4));
     /*
+    Log.debug('@@@@@@@@@@@@config\n' + JSON.stringify(config.controller.hears));
     Log.debug('config user\n' + JSON.stringify(config.user, null, 4));
     Log.debug('config access_list\n' + JSON.stringify(config.access_list, null, 4));
     Log.debug('config launcher\n' + JSON.stringify(config.launcher, null, 4));
@@ -66,7 +67,7 @@ module.exports = function() {
     return config;
 };
 
-load_default_listener = function(folder, file){
+load_default_listener = function(folder, file, config_controllers){
     var config = {
         "controller": {
             "hears": {},
@@ -74,18 +75,21 @@ load_default_listener = function(folder, file){
             "action": {}
         }
     };
-    
+
     // Search all default.json files in the controller folder and load it
     var re = new RegExp(file);
     File.search_file(folder, re, function (filename) {
-        
-        var mod_name = path.dirname(filename).split(path.sep).pop();
-        var mod_file = require(filename);
-    
+
+        // Retrieve "hear" controller priority or set it to default value
+		var p = path.dirname(filename).split(path.sep)
+        var mod_name = p.pop();
+		var controller_type = p.pop();
+		var mod_file = require(filename);
+
         if (mod_file.listener) {
             _.each(mod_file.listener, function (conf, index) {
                 Log.debug('lib config load_from_folder mod_name:' + mod_name + ' - index:' + index);
-                
+
                 var control = mod_file.listener[index].controller;
                 if (!control) Log.error('lib config controller listener is missing ' + index);
                 else {
@@ -93,8 +97,13 @@ load_default_listener = function(folder, file){
                     Log.info('lib config controller listener ' + control + ' ' + index);
                 }
             });
+        } else Log.error('lib default.json controller listener is missing ' + index);
+
+        // Set default value from template
+        if (controller_type === "hears") {
+		    var template_controllers_hears = require(__basedir + 'conf/default/template_controllers_hears.json');
+		    config.controller[controller_type][mod_name] = merge_json.merge(template_controllers_hears, config.controller[controller_type][mod_name])
         }
-        else Log.error('lib config controller listener is missing ' + index);
     });
     return config;
 };
@@ -107,17 +116,17 @@ load_default_conf = function(config, folder, file){
             "action": {}
         }
     };
-    
+
     // Search all default.json files in the controller folder and load it
     var re = new RegExp(file);
     File.search_file(folder, re, function (filename) {
-        
+
         var mod_name = path.dirname(filename).split(path.sep).pop();
         var mod_file = require(filename);
         _.each(config.controller, function (conf, control) {
             if (config.controller[control][mod_name]) {
                 Log.debug('lib config load_default_conf mod_name:' + mod_name + ' - control:' + control);
-                
+
                 new_config.controller[control][mod_name] = mod_file;
             }
         });

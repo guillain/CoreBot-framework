@@ -30,6 +30,8 @@ run = function(controller, bot, message, config, control, module, index){
 module.exports = function(controller, config, controls, message = '', bot = '') {
     Log.debug("lib controller on_hears ");
 
+    var controller_hears = new Array();
+
     // Loop over each controller
     // ie : controls = ['hears','on'];
     controls.forEach(function(control){
@@ -41,15 +43,15 @@ module.exports = function(controller, config, controls, message = '', bot = '') 
             if (config['controller'][control][module].enable === true) {
                 Log.info("lib controller " + control + " " + module + " enable");
 
+                // Build array of "hears" controllers to be sorted by priority
+                if (control === 'hears') {
+                    controller_hears.push({"name": module, "priority": config['controller'][control][module]['priority'], "listeners": config['controller'][control][module].listener})
+                }
+
                 // Loop on each listener of the controller module
                 _.each(config['controller'][control][module].listener, function (conf, index) {
-
                     if (control === 'hears') {
-                        controller.hears(
-                            config['controller'][control][module].listener[index].pattern,
-                            config['controller'][control][module].listener[index].from,
-                            function (bot, message) { run(controller, bot, message, config, control, module, index);}
-                        );
+                        //pass
                     }
                     else if (control === 'on') {
                         controller.on(
@@ -65,6 +67,26 @@ module.exports = function(controller, config, controls, message = '', bot = '') 
             }
             else Log.debug("lib controller " + control + " " + module + " disable");
         });
+
+
+        if (control === 'hears') {
+            controller_hears.sort((a, b) => (a.priority > b.priority) ? 1 : -1);
+
+            _.each(controller_hears, function (cont, index) {
+                let module = cont.name;
+                // Loop on each listener of the controller module
+                _.each(cont.listeners, function (conf, index) {
+                    controller.hears(
+                        config['controller'][control][module].listener[index].pattern,
+                        config['controller'][control][module].listener[index].from,
+                        function (bot, message) {
+                            run(controller, bot, message, config, control, module, index);
+                        }
+                    );
+                })
+            });
+        }
+
     });
     return controller;
 };
