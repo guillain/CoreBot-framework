@@ -44,20 +44,20 @@ via the botkit feature
 - ...
 
 ## Pre requisites
-1/ Python
+1. Python
   - 2.7
   - 3.5
-2/ Redis server
-3/ Internet access (Business Messaging and additional API)
+2. Redis server
+3. Internet access (Business Messaging and additional API)
 
 ## Fast Run
-1/ Clone the project:
+1. Clone the project:
 `git clone https://github.com/guillain/CoreBot-framework.git`
 
-2/ Create the config file for your env and scenario:
+2. Create the config file for your env and scenario:
 `vi CoreBot-framework/app/conf/config.json`
 
-3/ Run it:
+3. Run it:
  `
   - If you run on docker:
   `cd CoreBot-framework && ./image build && ./image run`
