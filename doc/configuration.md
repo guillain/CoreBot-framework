@@ -6,6 +6,10 @@ All configurations files that you need for your scenario are stored in the folde
 
 Each *controller* and *launcher* have also them dedicated configuration files.
 
+You can also overload the configuration values with the environment variables, useful when you
+need to drive it in your pipeline.
+
+
 ## Principle
 The script `./app/lib/config.js` is in charge to prepare the configuration in the following way:
 
@@ -55,6 +59,13 @@ It should *aways activated* instead if you rewrite or copy/paste all definitions
         "load_controller_conf": true
     }
 ```
+
+5/ Optionally your set environment variables to overload your needs during the
+module activation steps:
+* `export config_controller_hears_hello='{"enable":"false"}'`
+* `export config_launcher_slack='{"enable":"true", "token": "toto"}'`
+* `export config_launcher_park='{"access_token": "my_access_token", "url": "http://my_supper.url", "port": "666"}'`
+* `export config__db='{"host":"my_host", "user":"toto"}'`
 
 ## Where to find the conf files
 My personnal and example
