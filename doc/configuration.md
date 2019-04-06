@@ -60,8 +60,8 @@ It should *aways activated* instead if you rewrite or copy/paste all definitions
     }
 ```
 
-5/ Optionally your set environment variables to overload your needs during the
-module activation steps:
+5/ Optionally set your environment variables to overload your needs during the
+module activation steps. It will be the last one to be considered:
 * `export config_controller_hears_hello='{"enable":"false"}'`
 * `export config_launcher_slack='{"enable":"true", "token": "toto"}'`
 * `export config_launcher_park='{"access_token": "my_access_token", "url": "http://my_supper.url", "port": "666"}'`
