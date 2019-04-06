@@ -32,6 +32,14 @@
             "from": ["message_received", "direct_message", "direct_mention", "group_message"],
             "privilege": ["user","admin"],
             "access_list": ["default"]
+        },
+        "help_error": {
+            "controller": "hears",
+            "pattern": ["^help *"],
+            "remove_pattern": false,
+            "from": ["message_received", "direct_message", "direct_mention", "group_message"],
+            "privilege": ["user","admin"],
+            "access_list": ["default"]
         }
     }
 }

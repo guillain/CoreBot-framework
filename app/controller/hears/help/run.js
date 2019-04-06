@@ -78,7 +78,7 @@ exports.help_module = function(controller, bot, message, config, mod_conf) {
     var msg_arr = message.text.split(' ');
     _.each(config['controller'], function (conf, control) {
         _.each(config['controller'][control], function (conf, index) {
-            if (msg_arr[2].indexOf(index) >= 0) {
+            if (msg_arr.length>2 && msg_arr[2].indexOf(index) >= 0) {
                 // Add standard help message
                 to_say += config['controller'][control][index].msg.help.join('\n');
 
@@ -100,5 +100,12 @@ exports.help_module = function(controller, bot, message, config, mod_conf) {
     if (to_say) bot.reply(message, to_say);
     else        bot.reply(message, mod_conf.msg.module_not_found);
 
+};
+
+// Help when error in the command
+exports.help_error = function(controller, bot, message, config, mod_conf) {
+    var to_say = '';
+    var msg_arr = message.text.split(' ');
+    bot.reply(message, mod_conf.msg.error);
 };
 
