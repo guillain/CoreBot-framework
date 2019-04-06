@@ -80,7 +80,10 @@
             },
             "button": {
                 "enable": false
-            }
+            },
+	    "hello": {
+		"enable": false
+	    }
         },
         "action": {
             "hello": {

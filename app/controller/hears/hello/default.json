@@ -1,0 +1,13 @@
+{
+    "enable": true,
+    "listener": {
+        "hello": {
+            "controller": "hears",
+            "pattern": ["^([h|H]ello|[h|H]i|[b|B]onjour)$"],
+            "from": ["direct_message", "direct_mention"],
+            "privilege": ["user"],
+            "access_list": ["default"],
+            "remove_pattern": true
+        }
+    }
+}

@@ -5,6 +5,7 @@ var fs = require('fs');
 var path = require('path');
 var _ = require("underscore");
 var merge_json = require("merge-json");
+var jsonQuery = require('json-query')
 
 // Get the configuration
 module.exports = function() {
@@ -40,7 +41,19 @@ module.exports = function() {
         config = merge_json.merge(load_controller_conf, config);
     }
 
-    //Log.debug('config\n' + JSON.stringify(config, null, 4));
+    // Besure of the botkit token presence
+    if (!config.controller.on.hasOwnProperty('botkit')) {
+        config.controller.on.botkit = {};
+        config.controller.on.botkit.enable = false;
+    }
+    if (!config.controller.on.botkit.hasOwnProperty('token')) {
+        config.controller.on.botkit.token = '';
+    }
+
+    // Replace var conf value with env var
+    config = load_var_env_conf(config);
+
+    Log.debug('config\n' + JSON.stringify(config, null, 4));
     /*
     Log.debug('config user\n' + JSON.stringify(config.user, null, 4));
     Log.debug('config access_list\n' + JSON.stringify(config.access_list, null, 4));
@@ -49,13 +62,6 @@ module.exports = function() {
     Log.debug('config load_controller_conf\n' + JSON.stringify(load_controller_conf, null, 4));
     Log.debug('config load_controller_listener\n' + JSON.stringify(load_controller_listener, null, 4));
     */
-    if (!config.controller.on.hasOwnProperty('botkit')) {
-      config.controller.on.botkit = {};
-      config.controller.on.botkit.enable = false;
-    }
-    if (!config.controller.on.botkit.hasOwnProperty('token')) {
-      config.controller.on.botkit.token = '';
-    }
 
     return config;
 };
@@ -118,3 +124,19 @@ load_default_conf = function(config, folder, file){
     });
     return new_config;
 };
+
+// export config_controller_hears_hello_msg='{ "help": ["Salut,", "tout le mmonde!"], "ok": "tout va bien", "ko": "tout va mal"}'
+load_var_env_conf = function(config) {
+    // Loop over env var
+    _.each(process.env, (value, key) => {
+        var regex = /^config_(access_list|controller|launcher|user|default|file|log|db|message)/g;
+        if ( (key.match(regex)) && (jsonQuery(key.replace(/_/g,'.'), {data: config})) ){
+            var string_key = key.replace(/^config_/,'');
+            var json_string_key = '{ "' + string_key.replace(/_/g, '": {"') + '": ' + value;
+            for (i=0; i<string_key.split('_').length; i++) json_string_key += '}';
+            config = merge_json.merge(config, JSON.parse(json_string_key));
+        }
+    });
+    return config;
+};
+
