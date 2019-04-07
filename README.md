@@ -5,25 +5,7 @@ It provides the **application framework** useful to run the bot.
 
 Thanks to jump in the specific link to have a specific information
 
-## CoreBot documentation
-0. [README](https://github.com/guillain/CoreBot-doc/blob/master/README.md)
-
-1. GetStarted
-    - [logic](https://github.com/guillain/CoreBot-doc/blob/master/logic.md)
-    - [installation](https://github.com/guillain/CoreBot-doc/blob/master/installation.md)
-    - [configuration](https://github.com/guillain/CoreBot-doc/blob/master/configuration.md)
-
-2. Component explanation
-    - [controller](https://github.com/guillain/CoreBot-doc/blob/master/controller.md)
-    - [launcher](https://github.com/guillain/CoreBot-doc/blob/master/launcher.md)
-
-3. Features
-    - [add new](https://github.com/guillain/CoreBot-doc/blob/master/add_new.md)
-    - [library](https://github.com/guillain/CoreBot-doc/blob/master/library.md)
-    - [security](https://github.com/guillain/CoreBot-doc/blob/master/security.md)
-    - [ToDo](https://github.com/guillain/CoreBot-doc/blob/master/ToDo.md)
-
-## Welcome on the **CoreBot** repository structure
+## Welcome on the CoreBot repository structure
 0. [CoreBot](https://https://github.com/guillain/CoreBot)
     - Repository that regroups all CoreBot repositories
 
