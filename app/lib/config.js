@@ -53,7 +53,7 @@ module.exports = function() {
     // Replace var conf value with env var
     config = load_var_env_conf(config);
 
-    Log.debug('config\n' + JSON.stringify(config, null, 4));
+    //Log.debug('config\n' + JSON.stringify(config, null, 4));
     /*
     Log.debug('config user\n' + JSON.stringify(config.user, null, 4));
     Log.debug('config access_list\n' + JSON.stringify(config.access_list, null, 4));
