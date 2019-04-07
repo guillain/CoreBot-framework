@@ -8,7 +8,7 @@
         "hangouts": {
             "enable": false,
             "name": "CoreBot-framework",
-            "json_cred": "",
+            "jsonCred": "",
             "endpoint": "",
             "token": "",
             "port": "4003",
@@ -37,9 +37,9 @@
             "botid": "",
             "url": "",
             "port": "4001",
-            "access_token": "",
+            "accessToken": "",
             "secret": "",
-            "webhook_name": "corebot-framework",
+            "webhookName": "corebot-framework",
             "store": "./data/spark/"
         },
         "teams": {

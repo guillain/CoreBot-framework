@@ -7,9 +7,9 @@
             "botid": "",
             "url": "",
             "port": 3000,
-            "access_token": "",
+            "accessToken": "",
             "secret": "",
-            "webhook_name": "",
+            "webhookName": "",
             "store": "data/spark",
             "msg": {
                 "help": [
@@ -20,9 +20,9 @@
                     "- botid: bot's id",
                     "- url: host url with htttp/https and port",
                     "- port: local port",
-                    "- access_token: Cisco Webex Teams bot token",
+                    "- accessToken: Cisco Webex Teams bot token",
                     "- secret: specific secret (ie random)",
-                    "- webhook_name: the name of the webhook used to registered the bot in the Webex Teams cloud"
+                    "- webhookName: the name of the webhook used to registered the bot in the Webex Teams cloud"
                 ]
             }
         }

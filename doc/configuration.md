@@ -64,7 +64,7 @@ It should *aways activated* instead if you rewrite or copy/paste all definitions
 module activation steps. It will be the last one to be considered:
 * `export config_controller_hears_hello='{"enable":"false"}'`
 * `export config_launcher_slack='{"enable":"true", "token": "toto"}'`
-* `export config_launcher_park='{"access_token": "my_access_token", "url": "http://my_supper.url", "port": "666"}'`
+* `export config_launcher_park='{"accessToken": "my_accessToken", "url": "http://my_supper.url", "port": "666"}'`
 * `export config__db='{"host":"my_host", "user":"toto"}'`
 
 ## Where to find the conf files
