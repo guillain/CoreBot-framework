@@ -124,6 +124,9 @@
             },
             "translate": {
                 "enable": true
+            },
+            "welcome": {
+                "enable": false
             }
         }
     }

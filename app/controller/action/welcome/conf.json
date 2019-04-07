@@ -1,0 +1,32 @@
+{
+    "msg": {
+        "first_welcome": [
+            "Welcome on the **CoreBot-framework** demo ",
+            "Hi, how are you to day ",
+            "Happy to see you to day ",
+            "Hello, are doing well to day "
+        ],
+        "welcome": [
+            "Welcome to CoreBot!",
+            "Welcome to our CoreBot’s loyalty program!",
+            "Confirm your account to CoreBot!",
+            "Welcome to Premium CoreBot!",
+            "Welcome to your first delivery from CoreBot!",
+            "Welcome to CoreBot’s VIP list!",
+            "Welcome to our free cheat sheet!"
+        ],
+        "welcome_back": [
+            "Welcome back to CoreBot!",
+            "Welcome back to our CoreBot’s loyalty program!",
+            "Welcome back on your CoreBot account!",
+            "That's a pleasure to see you again to day",
+            "Hi again, I hope you're still doing well"
+        ],
+        "help": [
+            "Welcome message\n",
+            "- _No argument_\n",
+            "_Example_: ``",
+            "Reply a Welcome message once a day"
+        ]
+    }
+}

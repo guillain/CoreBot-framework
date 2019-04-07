@@ -3,9 +3,9 @@
     "listener": {
         "logstash": {
             "controller": "on",
-            "from": ["message_direct", "message_received"],
-            "privilege": ["user","admin"],
-            "access_list": ["default"]
+            "from": ["(.)"],
+            "privilege": ["(.)"],
+            "access_list": ["(.)"]
         }
     }
 }

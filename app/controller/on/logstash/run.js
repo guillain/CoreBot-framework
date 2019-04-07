@@ -5,7 +5,6 @@ var Log = require(__basedir + 'lib/log');
 var Run = require('logstash-client');
 
 // Run the function
-module.exports = function(evt, message, config) {
 exports.logstash = function(controller, bot, message, config, mod_conf) {
     var msg = message;
     delete msg["type"];

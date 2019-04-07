@@ -1,0 +1,13 @@
+{
+    "enable": false,
+    "listener": {
+        "welcome": {
+            "controller": "action",
+            "from": ["(.)"],
+            "privilege": ["user","admin"],
+            "access_list": ["default"],
+            "remove_pattern": false,
+            "storage": "welcome"
+        }
+    }
+}
