@@ -8,7 +8,7 @@ var Botkit = require('botkit');
 module.exports = function(config) {
   Log.debug('launcher hangouts run');
 
-  process.env.GOOGLE_APPLICATION_CREDENTIALS = __basedir + config.launcher.hangouts.json_cred;
+  process.env.GOOGLE_APPLICATION_CREDENTIALS = __basedir + config.launcher.hangouts.jsonCred;
 
   var controller = Botkit.googlehangoutsbot({
     endpoint: config.launcher.hangouts.endpoint,

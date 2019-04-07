@@ -3,7 +3,7 @@
         "hangouts": {
             "enable": false,
             "name": "corebot-framework",
-            "json_cred": "",
+            "jsonCred": "",
             "endpoint": "",
             "token": "",
             "port": 3002,
