@@ -21,6 +21,50 @@ exports.get_user = function(message){
     return user;
 };
 
+// Get all details from User function
+exports.get_user_details = async function(controller, message, cb) {
+  var user = message.user;
+
+  // Channel with an API
+  if (controller.api) {
+    // Spark User
+    if (controller.api.sessionId.slice(0,5) == "spark") {
+      controller.api.people.get(message.userId).then(function(people) {
+        cb({
+          "userId": people.id,
+          "displayName": people.displayName,
+          "nickName": people.nickName,
+          "firstName": people.firstName,
+          "lastName": people.lastName,
+          "emails": people.emails
+        })
+      })
+      return
+    }
+  }
+  // Local User
+  if (message.personEmail) {
+    cb({
+      "displayName": message.personEmail
+        .split('@')[0] // we don't need the domain of the email
+        .split('.') // email often begins with firstname.lastname
+        .map((word) => (word.replace(word[0], word[0].toUpperCase()))) // capitalize each word
+        .join(' '), // join to make a string
+      "emails": [message.personEmail]
+    })
+  } else if (message.from_jid) {
+    cb({
+      "displayName": message.from_jid.split('@')[0]
+    })
+  } else if (message.user) {
+    cb({
+      "userId": message.user.split('@')[0]
+    })
+  } else {
+    cb({})
+  }
+};
+
 // Get the user privilege
 exports.privilege_user = function(config, message, my_user = ''){
     var priv = false;

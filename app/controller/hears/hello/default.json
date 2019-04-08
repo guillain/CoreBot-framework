@@ -3,11 +3,11 @@
     "listener": {
         "hello": {
             "controller": "hears",
-            "pattern": ["^([h|H]ello|[h|H]i|[b|B]onjour)$"],
-            "from": ["direct_message", "direct_mention"],
-            "privilege": ["user"],
-            "access_list": ["default"],
-            "remove_pattern": true
+            "pattern":["^(h(e(llo|y)|i)|bonjour|good morning) *"],
+            "remove_pattern": true,
+            "from": ["message_received", "direct_mention", "direct_message"],
+            "privilege": ["user","admin"],
+            "access_list": ["default"]
         }
     }
 }

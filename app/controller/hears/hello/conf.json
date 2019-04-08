@@ -1,10 +1,10 @@
 {
     "msg": {
         "help": [
-            "say hello to <user email>\n",
-            "- _No argument_\n",
-            "_Example_: `hello`",
-            "Dialog with the bot and navigate  in the menu"
+            "When a user enters a greetings (",
+            "\"Hello\", \"Hi\", \"Bonjour\", \"Hey\", ...),\n",
+            "the bot answers with a welcoming phrase.\n",
+            "- _No argument_\n"
         ]
     }
 }
