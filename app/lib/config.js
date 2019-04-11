@@ -141,7 +141,7 @@ load_var_env_conf = function(config) {
         var regex = /^config_(access_list|controller|launcher|user|default|file|log|db|message)/g;
         if ( (key.match(regex)) && (jsonQuery(key.replace(/_/g,'.'), {data: config})) ){
             var string_key = key.replace(/^config_/,'');
-            var json_string = '{ "' + string_key.replace(/_/g, '": {"') + '": ' + JSON.stringify(value);
+            var json_string = '{ "' + string_key.replace(/_/g, '": {"') + '": ' + value;
             for (i=0; i<string_key.split('_').length; i++) json_string += '}';
             config = merge_json.merge(config, JSON.parse(json_string));
         }
