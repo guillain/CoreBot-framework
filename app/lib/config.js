@@ -81,10 +81,10 @@ load_default_listener = function(folder, file, config_controllers){
     File.search_file(folder, re, function (filename) {
 
         // Retrieve "hear" controller priority or set it to default value
-		var p = path.dirname(filename).split(path.sep)
+        var p = path.dirname(filename).split(path.sep)
         var mod_name = p.pop();
-		var controller_type = p.pop();
-		var mod_file = require(filename);
+        var controller_type = p.pop();
+        var mod_file = require(filename);
 
         if (mod_file.listener) {
             _.each(mod_file.listener, function (conf, index) {
@@ -101,8 +101,8 @@ load_default_listener = function(folder, file, config_controllers){
 
         // Set default value from template
         if (controller_type === "hears") {
-		    var template_controllers_hears = require(__basedir + 'conf/default/template_controllers_hears.json');
-		    config.controller[controller_type][mod_name] = merge_json.merge(template_controllers_hears, config.controller[controller_type][mod_name])
+            var template_controllers_hears = require(__basedir + 'template/controller_hears.json');
+            config.controller[controller_type][mod_name] = merge_json.merge(template_controllers_hears, config.controller[controller_type][mod_name])
         }
     });
     return config;
