@@ -5,7 +5,8 @@
     "msg": {
         "found": "Search result",
         "notfound": "No result found",
-        "too_short": "Your text to search is too short",
+        "too_short": "Your text to search is too short. Please add some more search terms to your search. ",
+        "help_user": ["This commands allows you to perform searches in the knowledge base. "],
         "help": [
             "Search engine\n",
             "- _No argument_\n",

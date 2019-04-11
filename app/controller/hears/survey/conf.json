@@ -13,6 +13,7 @@
         "no_report": "No report has been recorded",
         "already_done": "We already have recorded your survey, thanks for your participation!",
         "reset_done": "The reset command was successfully done",
+        "help_user": ["This commands starts that survey. If you already have started (but not yet completed it), it also offers you to continue from where you were. "],
         "help": [
             "Survey provides a Q&A support (generated with a CSV file) and a report from the local db\n",
             "- **report**: to request the survey's report",
