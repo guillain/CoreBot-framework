@@ -1,0 +1,9 @@
+{
+    "msg": {
+        "module_found": "Controller list",
+        "module_not_found": "No controller found",
+        "help": [
+            "Default message when bot did not understand user's input"
+        ]
+    }
+}

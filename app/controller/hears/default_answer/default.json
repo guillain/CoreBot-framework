@@ -1,0 +1,14 @@
+{
+    "enable": true,
+    "listener": {
+        "default_answer": {
+            "controller": "hears",
+            "pattern": "^.*$",
+            "remove_pattern": false,
+            "from": ["message_received", "direct_message", "direct_mention", "group_message"],
+            "privilege": ["user", "admin"],
+            "access_list": ["default"]
+        }
+    },
+	"priority": 100
+}
