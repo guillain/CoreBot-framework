@@ -143,6 +143,7 @@ load_var_env_conf = function(config) {
             var string_key = key.replace(/^config_/,'');
             var json_string = '{ "' + string_key.replace(/_/g, '": {"') + '": ' + value;
             for (i=0; i<string_key.split('_').length; i++) json_string += '}';
+            console.log('>>>>>>>>>>>>>>>>>>>>>', json_string);
             config = merge_json.merge(config, JSON.parse(json_string));
         }
     });
